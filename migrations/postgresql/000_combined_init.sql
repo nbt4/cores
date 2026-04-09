@@ -104,12 +104,12 @@ CREATE INDEX IF NOT EXISTS idx_audit_timestamp ON audit_log(timestamp);
 CREATE TABLE IF NOT EXISTS app_settings (
     id SERIAL PRIMARY KEY,
     scope VARCHAR(50) NOT NULL DEFAULT 'global',  -- 'global', 'rentalcore', 'warehousecore'
-    key VARCHAR(100) NOT NULL,
-    value TEXT,
+    k VARCHAR(100) NOT NULL,
+    v TEXT,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(scope, key)
+    UNIQUE(scope, k)
 );
 
 -- =============================================================================
@@ -260,8 +260,9 @@ CREATE TABLE IF NOT EXISTS devices (
     last_maintenance_cost DECIMAL(10,2),
     notes TEXT,
     barcode VARCHAR(255),
-    current_zone_id INT,
+    zone_id INT,
     current_case_id INT,
+    label_path VARCHAR(512),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -323,6 +324,7 @@ CREATE TABLE IF NOT EXISTS cases (
     status VARCHAR(50) DEFAULT 'free',
     barcode VARCHAR(255),
     zone_id INT,
+    label_path VARCHAR(512),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -471,7 +473,6 @@ CREATE INDEX IF NOT EXISTS idx_zone_parent ON storage_zones(parent_zone_id);
 CREATE INDEX IF NOT EXISTS idx_zone_barcode ON storage_zones(barcode);
 
 -- Add zone reference to devices and cases
-ALTER TABLE devices ADD COLUMN IF NOT EXISTS current_zone_id INT REFERENCES storage_zones(zone_id) ON DELETE SET NULL;
 ALTER TABLE cases ADD COLUMN IF NOT EXISTS zone_id INT REFERENCES storage_zones(zone_id) ON DELETE SET NULL;
 
 -- Device movements table
@@ -755,9 +756,9 @@ VALUES ('Meine Firma', 'Deutschland', 'EUR', 19.00)
 ON CONFLICT DO NOTHING;
 
 -- Default LED settings
-INSERT INTO app_settings (scope, key, value, description) VALUES
+INSERT INTO app_settings (scope, k, v, description) VALUES
 ('warehousecore', 'led.single_bin.default', '{"color": "#FF7A00", "pattern": "breathe", "intensity": 180}', 'Default LED highlighting settings for single bins')
-ON CONFLICT (scope, key) DO NOTHING;
+ON CONFLICT (scope, k) DO NOTHING;
 
 -- =============================================================================
 -- PART 5: INDEXES AND CONSTRAINTS
