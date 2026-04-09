@@ -227,6 +227,9 @@ CREATE TABLE IF NOT EXISTS products (
     min_stock_level DECIMAL(10,3),
     generic_barcode VARCHAR(100),
     price_per_unit DECIMAL(10,2),
+    website_visible BOOLEAN DEFAULT FALSE,
+    website_thumbnail VARCHAR(512),
+    website_images_json TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
