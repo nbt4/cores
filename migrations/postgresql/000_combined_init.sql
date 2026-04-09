@@ -209,10 +209,10 @@ CREATE TABLE IF NOT EXISTS products (
     categoryid INT REFERENCES categories(categoryid) ON DELETE SET NULL,
     subcategoryid VARCHAR(50) REFERENCES subcategories(subcategoryid) ON DELETE SET NULL,
     subbiercategoryid VARCHAR(50) REFERENCES subbiercategories(subbiercategoryid) ON DELETE SET NULL,
-    "manufacturerID" INT REFERENCES manufacturer(manufacturerid) ON DELETE SET NULL,
-    "brandID" INT REFERENCES brands(brandid) ON DELETE SET NULL,
+    manufacturerid INT REFERENCES manufacturer(manufacturerid) ON DELETE SET NULL,
+    brandid INT REFERENCES brands(brandid) ON DELETE SET NULL,
     description TEXT,
-    "maintenanceInterval" INT,
+    maintenanceinterval INT,
     itemcostperday DECIMAL(10,2) DEFAULT 0.00,
     weight DECIMAL(10,3),
     height DECIMAL(10,3),
@@ -335,7 +335,7 @@ CREATE TABLE IF NOT EXISTS devicescases (
 
 -- Cable connectors
 CREATE TABLE IF NOT EXISTS cable_connectors (
-    "cable_connectorsID" SERIAL PRIMARY KEY,
+    cable_connectorsid SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     abbreviation VARCHAR(20),
     gender VARCHAR(10)
@@ -343,16 +343,16 @@ CREATE TABLE IF NOT EXISTS cable_connectors (
 
 -- Cable types
 CREATE TABLE IF NOT EXISTS cable_types (
-    "cable_typesID" SERIAL PRIMARY KEY,
+    cable_typesid SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
 -- Cables table
 CREATE TABLE IF NOT EXISTS cables (
-    "cableID" SERIAL PRIMARY KEY,
-    connector1 INT NOT NULL REFERENCES cable_connectors("cable_connectorsID") ON DELETE RESTRICT,
-    connector2 INT NOT NULL REFERENCES cable_connectors("cable_connectorsID") ON DELETE RESTRICT,
-    typ INT NOT NULL REFERENCES cable_types("cable_typesID") ON DELETE RESTRICT,
+    cableid SERIAL PRIMARY KEY,
+    connector1 INT NOT NULL REFERENCES cable_connectors(cable_connectorsid) ON DELETE RESTRICT,
+    connector2 INT NOT NULL REFERENCES cable_connectors(cable_connectorsid) ON DELETE RESTRICT,
+    typ INT NOT NULL REFERENCES cable_types(cable_typesid) ON DELETE RESTRICT,
     length DECIMAL(10,2) NOT NULL,
     mm2 DECIMAL(10,2),
     name VARCHAR(255)
