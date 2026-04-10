@@ -638,6 +638,129 @@ CREATE INDEX IF NOT EXISTS idx_api_key_active ON api_keys(is_active);
 CREATE INDEX IF NOT EXISTS idx_api_key_user ON api_keys(user_id);
 
 -- =============================================================================
+-- PART 3b: PDF TABLES
+-- =============================================================================
+
+CREATE TABLE IF NOT EXISTS pdf_uploads (
+    upload_id               BIGSERIAL PRIMARY KEY,
+    job_id                  BIGINT REFERENCES jobs(jobid) ON DELETE SET NULL,
+    document_id             BIGINT DEFAULT NULL,
+    original_filename       VARCHAR(500) NOT NULL DEFAULT '',
+    stored_filename         VARCHAR(500) NOT NULL DEFAULT '',
+    file_path               VARCHAR(1000),
+    file_size               BIGINT,
+    mime_type               VARCHAR(100),
+    file_hash               VARCHAR(64) DEFAULT NULL,
+    uploaded_by             BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    uploaded_at             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processing_status       VARCHAR(50) DEFAULT 'pending',
+    processing_started_at   TIMESTAMP DEFAULT NULL,
+    processing_completed_at TIMESTAMP DEFAULT NULL,
+    error_message           TEXT DEFAULT NULL,
+    is_active               BOOLEAN DEFAULT TRUE
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_uploads_job    ON pdf_uploads(job_id);
+CREATE INDEX IF NOT EXISTS idx_pdf_uploads_status ON pdf_uploads(processing_status);
+CREATE INDEX IF NOT EXISTS idx_pdf_uploads_hash   ON pdf_uploads(file_hash);
+CREATE INDEX IF NOT EXISTS idx_pdf_uploads_user   ON pdf_uploads(uploaded_by);
+
+CREATE TABLE IF NOT EXISTS pdf_extractions (
+    extraction_id     BIGSERIAL PRIMARY KEY,
+    upload_id         BIGINT NOT NULL REFERENCES pdf_uploads(upload_id) ON DELETE CASCADE,
+    raw_text          TEXT,
+    extracted_data    JSONB,
+    confidence_score  DECIMAL(5,2),
+    page_count        INT DEFAULT 1,
+    extraction_method VARCHAR(50) DEFAULT 'python_parser',
+    extracted_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    customer_name     VARCHAR(255),
+    customer_id       BIGINT REFERENCES customers(customerid) ON DELETE SET NULL,
+    document_date     DATE,
+    document_number   VARCHAR(100),
+    parsed_total      DECIMAL(12,2),
+    discount_amount   DECIMAL(12,2),
+    discount_percent  DECIMAL(5,2),
+    total_amount      DECIMAL(12,2),
+    metadata          JSONB
+);
+CREATE UNIQUE INDEX IF NOT EXISTS unique_upload_extraction ON pdf_extractions(upload_id);
+
+CREATE TABLE IF NOT EXISTS pdf_extraction_items (
+    item_id             BIGSERIAL PRIMARY KEY,
+    extraction_id       BIGINT NOT NULL REFERENCES pdf_extractions(extraction_id) ON DELETE CASCADE,
+    line_number         INT,
+    raw_product_text    TEXT,
+    quantity            DECIMAL(10,3) DEFAULT 1,
+    unit_price          DECIMAL(12,2) DEFAULT 0,
+    line_total          DECIMAL(12,2) DEFAULT 0,
+    mapped_product_id   BIGINT REFERENCES products(productid) ON DELETE SET NULL,
+    mapped_package_id   BIGINT REFERENCES product_packages(package_id) ON DELETE SET NULL,
+    mapping_confidence  DECIMAL(5,2) DEFAULT 0,
+    mapping_status      VARCHAR(50) DEFAULT 'pending',
+    user_notes          TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_items_extraction ON pdf_extraction_items(extraction_id);
+CREATE INDEX IF NOT EXISTS idx_pdf_items_product    ON pdf_extraction_items(mapped_product_id);
+CREATE INDEX IF NOT EXISTS idx_pdf_items_package    ON pdf_extraction_items(mapped_package_id);
+CREATE INDEX IF NOT EXISTS idx_pdf_items_status     ON pdf_extraction_items(mapping_status);
+
+CREATE TABLE IF NOT EXISTS pdf_product_mappings (
+    mapping_id      BIGSERIAL PRIMARY KEY,
+    pdf_product_text TEXT NOT NULL UNIQUE,
+    normalized_text  TEXT,
+    product_id       BIGINT REFERENCES products(productid) ON DELETE CASCADE,
+    mapping_type     VARCHAR(20) DEFAULT 'fuzzy',
+    confidence_score DECIMAL(5,2) DEFAULT 0,
+    usage_count      INT DEFAULT 0,
+    last_used_at     TIMESTAMP,
+    created_by       BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    is_active        BOOLEAN DEFAULT TRUE
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_prod_map_text    ON pdf_product_mappings(normalized_text);
+CREATE INDEX IF NOT EXISTS idx_pdf_prod_map_product ON pdf_product_mappings(product_id);
+CREATE INDEX IF NOT EXISTS idx_pdf_prod_map_type    ON pdf_product_mappings(mapping_type);
+
+CREATE TABLE IF NOT EXISTS pdf_package_mappings (
+    mapping_id       BIGSERIAL PRIMARY KEY,
+    pdf_package_text TEXT NOT NULL UNIQUE,
+    normalized_text  TEXT,
+    package_id       BIGINT REFERENCES product_packages(package_id) ON DELETE CASCADE,
+    mapping_type     VARCHAR(20) DEFAULT 'fuzzy',
+    confidence_score DECIMAL(5,2) DEFAULT 0,
+    usage_count      INT DEFAULT 0,
+    last_used_at     TIMESTAMP,
+    created_by       BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    is_active        BOOLEAN DEFAULT TRUE
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_pkg_map_text    ON pdf_package_mappings(normalized_text);
+CREATE INDEX IF NOT EXISTS idx_pdf_pkg_map_package ON pdf_package_mappings(package_id);
+
+CREATE TABLE IF NOT EXISTS pdf_customer_mappings (
+    mapping_id        BIGSERIAL PRIMARY KEY,
+    pdf_customer_text TEXT NOT NULL,
+    normalized_text   TEXT,
+    customer_id       BIGINT REFERENCES customers(customerid) ON DELETE CASCADE,
+    mapping_type      VARCHAR(20) DEFAULT 'fuzzy',
+    confidence_score  DECIMAL(5,2) DEFAULT 0,
+    usage_count       INT DEFAULT 0,
+    last_used_at      TIMESTAMP,
+    created_by        BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    is_active         BOOLEAN DEFAULT TRUE
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_cust_map_text     ON pdf_customer_mappings(normalized_text);
+CREATE INDEX IF NOT EXISTS idx_pdf_cust_map_customer ON pdf_customer_mappings(customer_id);
+
+CREATE TABLE IF NOT EXISTS pdf_mapping_events (
+    event_id      BIGSERIAL PRIMARY KEY,
+    extraction_id BIGINT REFERENCES pdf_extractions(extraction_id) ON DELETE CASCADE,
+    item_id       BIGINT REFERENCES pdf_extraction_items(item_id) ON DELETE CASCADE,
+    event_type    VARCHAR(50) NOT NULL,
+    event_data    JSONB,
+    created_by    BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =============================================================================
 -- PART 4: DEFAULT DATA
 -- =============================================================================
 
