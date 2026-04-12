@@ -884,12 +884,100 @@ INSERT INTO app_settings (scope, k, v, description) VALUES
 ON CONFLICT (scope, k) DO NOTHING;
 
 -- =============================================================================
+-- PART 4b: JOB FEATURE TABLES
+-- =============================================================================
+
+CREATE TABLE IF NOT EXISTS job_packages (
+    job_package_id BIGSERIAL PRIMARY KEY,
+    job_id INTEGER NOT NULL,
+    package_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL DEFAULT 1,
+    custom_price DECIMAL(12,2) DEFAULT NULL,
+    added_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    added_by INTEGER DEFAULT NULL,
+    notes TEXT,
+    CONSTRAINT fk_job_packages_job FOREIGN KEY (job_id) REFERENCES jobs(jobid) ON DELETE CASCADE,
+    CONSTRAINT fk_job_packages_package FOREIGN KEY (package_id) REFERENCES product_packages(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_job_packages_user FOREIGN KEY (added_by) REFERENCES users(userid) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS job_package_reservations (
+    reservation_id BIGSERIAL PRIMARY KEY,
+    job_package_id BIGINT NOT NULL,
+    device_id VARCHAR(50) NOT NULL,
+    quantity INTEGER NOT NULL DEFAULT 1,
+    reservation_status VARCHAR(20) NOT NULL DEFAULT 'reserved' CHECK (reservation_status IN ('reserved','assigned','released')),
+    reserved_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    assigned_at TIMESTAMP DEFAULT NULL,
+    released_at TIMESTAMP DEFAULT NULL,
+    CONSTRAINT fk_job_pkg_res_job_package FOREIGN KEY (job_package_id) REFERENCES job_packages(job_package_id) ON DELETE CASCADE,
+    CONSTRAINT fk_job_pkg_res_device FOREIGN KEY (device_id) REFERENCES devices(deviceid) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS job_attachments (
+    attachment_id BIGSERIAL PRIMARY KEY,
+    job_id INTEGER NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    original_filename VARCHAR(255) NOT NULL,
+    file_path VARCHAR(500) NOT NULL,
+    file_size BIGINT NOT NULL,
+    mime_type VARCHAR(100) NOT NULL,
+    uploaded_by INTEGER DEFAULT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    CONSTRAINT fk_job_attachments_job FOREIGN KEY (job_id) REFERENCES jobs(jobid) ON DELETE CASCADE,
+    CONSTRAINT fk_job_attachments_user FOREIGN KEY (uploaded_by) REFERENCES users(userid) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS job_edit_sessions (
+    session_id BIGSERIAL PRIMARY KEY,
+    job_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    display_name VARCHAR(255) NOT NULL,
+    started_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_seen TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_job_edit_sessions_job FOREIGN KEY (job_id) REFERENCES jobs(jobid) ON DELETE CASCADE,
+    CONSTRAINT fk_job_edit_sessions_user FOREIGN KEY (user_id) REFERENCES users(userid) ON DELETE CASCADE,
+    CONSTRAINT uk_job_edit_sessions_job_user UNIQUE (job_id, user_id)
+);
+
+CREATE TABLE IF NOT EXISTS job_history (
+    history_id BIGSERIAL PRIMARY KEY,
+    job_id INTEGER NOT NULL,
+    user_id INTEGER DEFAULT NULL,
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    change_type VARCHAR(30) NOT NULL CHECK (change_type IN ('created','updated','status_changed','device_added','device_removed','deleted','file_added','file_removed')),
+    field_name VARCHAR(100) DEFAULT NULL,
+    old_value TEXT DEFAULT NULL,
+    new_value TEXT DEFAULT NULL,
+    description TEXT DEFAULT NULL,
+    ip_address VARCHAR(45) DEFAULT NULL,
+    user_agent VARCHAR(255) DEFAULT NULL,
+    CONSTRAINT fk_job_history_job FOREIGN KEY (job_id) REFERENCES jobs(jobid) ON DELETE CASCADE,
+    CONSTRAINT fk_job_history_user FOREIGN KEY (user_id) REFERENCES users(userid) ON DELETE SET NULL
+);
+
+-- =============================================================================
 -- PART 5: INDEXES AND CONSTRAINTS
 -- =============================================================================
 
 -- Performance indexes for common queries
 CREATE INDEX IF NOT EXISTS idx_jobs_active ON jobs(statusid) WHERE deleted_at IS NULL;
 CREATE INDEX IF NOT EXISTS idx_devices_available ON devices(status) WHERE status = 'free';
+CREATE INDEX IF NOT EXISTS idx_job_packages_job ON job_packages(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_packages_package ON job_packages(package_id);
+CREATE INDEX IF NOT EXISTS idx_job_pkg_res_job_package ON job_package_reservations(job_package_id);
+CREATE INDEX IF NOT EXISTS idx_job_attachments_job ON job_attachments(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_attachments_uploaded_at ON job_attachments(uploaded_at);
+CREATE INDEX IF NOT EXISTS idx_job_edit_sessions_job ON job_edit_sessions(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_edit_sessions_user ON job_edit_sessions(user_id);
+CREATE INDEX IF NOT EXISTS idx_job_edit_sessions_last_seen ON job_edit_sessions(last_seen);
+CREATE INDEX IF NOT EXISTS idx_job_history_job ON job_history(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_history_user ON job_history(user_id);
+CREATE INDEX IF NOT EXISTS idx_job_history_changed_at ON job_history(changed_at);
 
 -- =============================================================================
 -- INITIALIZATION COMPLETE
