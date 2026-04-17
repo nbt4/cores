@@ -960,6 +960,16 @@ CREATE TABLE IF NOT EXISTS job_history (
     CONSTRAINT fk_job_history_user FOREIGN KEY (user_id) REFERENCES users(userid) ON DELETE SET NULL
 );
 
+-- job_product_requirements: stores what products a job needs (stage 1 of two-stage availability)
+CREATE TABLE IF NOT EXISTS job_product_requirements (
+    id BIGSERIAL PRIMARY KEY,
+    job_id INTEGER NOT NULL REFERENCES jobs(jobid) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES products(productid) ON DELETE RESTRICT,
+    quantity INTEGER NOT NULL DEFAULT 1 CHECK (quantity > 0),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT job_product_requirements_job_product_unique UNIQUE (job_id, product_id)
+);
+
 -- =============================================================================
 -- PART 5: INDEXES AND CONSTRAINTS
 -- =============================================================================
@@ -978,6 +988,8 @@ CREATE INDEX IF NOT EXISTS idx_job_edit_sessions_last_seen ON job_edit_sessions(
 CREATE INDEX IF NOT EXISTS idx_job_history_job ON job_history(job_id);
 CREATE INDEX IF NOT EXISTS idx_job_history_user ON job_history(user_id);
 CREATE INDEX IF NOT EXISTS idx_job_history_changed_at ON job_history(changed_at);
+CREATE INDEX IF NOT EXISTS idx_job_product_req_job ON job_product_requirements(job_id);
+CREATE INDEX IF NOT EXISTS idx_job_product_req_product ON job_product_requirements(product_id);
 
 -- =============================================================================
 -- INITIALIZATION COMPLETE
