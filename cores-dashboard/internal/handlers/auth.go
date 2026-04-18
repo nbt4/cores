@@ -46,17 +46,10 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Determine if user has admin/manager role
-	var roleCount int64
-	h.db.Table("user_roles ur").
-		Joins("JOIN roles r ON r.role_id = ur.role_id").
-		Where("ur.user_id = ? AND r.name IN ?", user.UserID, []string{"admin", "manager"}).
-		Count(&roleCount)
-
 	claims := &middleware.Claims{
 		UserID:   user.UserID,
 		Username: user.Username,
-		IsAdmin:  roleCount > 0,
+		IsAdmin:  user.IsAdmin,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
@@ -83,7 +76,7 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"success":               true,
 		"username":              user.Username,
-		"is_admin":              roleCount > 0,
+		"is_admin":              user.IsAdmin,
 		"force_password_change": user.ForcePassword,
 	})
 }
