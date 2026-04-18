@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"strings"
 
 	"coresdashboard/internal/config"
 	"coresdashboard/internal/database"
@@ -40,11 +41,12 @@ func main() {
 		case r.URL.Path == "/api/v1/analytics/summary":
 			analyticsHandler.Summary(w, r)
 		default:
-			if len(r.URL.Path) > 21 && r.URL.Path[:21] == "/api/v1/proxy/rental" {
+			switch {
+			case strings.HasPrefix(r.URL.Path, "/api/v1/proxy/rental"):
 				proxyHandler.ProxyRental(w, r)
-			} else if len(r.URL.Path) > 24 && r.URL.Path[:24] == "/api/v1/proxy/warehouse" {
+			case strings.HasPrefix(r.URL.Path, "/api/v1/proxy/warehouse"):
 				proxyHandler.ProxyWarehouse(w, r)
-			} else {
+			default:
 				http.NotFound(w, r)
 			}
 		}
