@@ -1,0 +1,113 @@
+<h2>Wie soll das manuelle Mappen aussehen?</h2>
+<p class="subtitle">Wenn OCR einen Eintrag nicht zuordnen kann, muss der Nutzer manuell ein Produkt wählen — bevor der Job erstellt werden kann.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Inline Search per Zeile ⭐ empfohlen</h3>
+      <p>Jede nicht gemappte Zeile zeigt direkt ein Suchfeld. Tippen → Vorschläge erscheinen → Klick = gemappt. Schnellster Workflow.</p>
+      <div class="mockup" style="margin-top:10px;">
+        <div class="mockup-header">Positionen dieser Rechnung</div>
+        <div class="mockup-body" style="padding:8px;font-size:11px;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr style="color:#888;border-bottom:1px solid #333;">
+              <th style="padding:4px;text-align:left;">#</th>
+              <th style="padding:4px;text-align:left;">OCR-Text</th>
+              <th style="padding:4px;text-align:left;">→ Produkt</th>
+              <th style="padding:4px;text-align:left;">Menge</th>
+              <th style="padding:4px;text-align:left;">Preis</th>
+            </tr>
+            <tr style="border-bottom:1px solid #222;background:#1a2a1a;">
+              <td style="padding:4px;">1</td>
+              <td style="padding:4px;color:#4caf50;">Mikrofon Sennheiser e935</td>
+              <td style="padding:4px;color:#4caf50;">✓ Sennheiser e935 <span style="color:#555;font-size:9px;">98%</span></td>
+              <td style="padding:4px;">4</td>
+              <td style="padding:4px;">€45,00</td>
+            </tr>
+            <tr style="border-bottom:1px solid #222;background:#2a1a00;">
+              <td style="padding:4px;">2</td>
+              <td style="padding:4px;color:#ff9800;">Personal Technik</td>
+              <td style="padding:4px;" colspan="3">
+                <div style="display:flex;gap:4px;align-items:center;">
+                  <input class="mock-input" placeholder="Produkt suchen..." style="flex:1;font-size:11px;">
+                  <div style="background:#1a2535;border:1px solid #333;border-radius:4px;padding:4px;font-size:10px;color:#aaa;white-space:nowrap;">
+                    💡 Techniker Personal · Licht-Crew
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr style="background:#2a1a00;">
+              <td style="padding:4px;">3</td>
+              <td style="padding:4px;color:#ff9800;">DI-Box passiv 4ch</td>
+              <td style="padding:4px;" colspan="3">
+                <input class="mock-input" placeholder="Produkt suchen..." style="width:100%;font-size:11px;">
+              </td>
+            </tr>
+          </table>
+          <div style="margin-top:8px;padding:6px;background:#1a1a00;border:1px solid #ff9800;border-radius:4px;font-size:10px;color:#ff9800;">
+            ⚠ 2 Positionen noch nicht gemappt — Job kann erst danach erstellt werden.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Modal pro Item</h3>
+      <p>Klick auf "Zuordnen" öffnet ein Modal mit Suchfeld, Top-Vorschlägen und Produktdetails. Mehr Platz, aber mehr Klicks.</p>
+      <div class="mockup" style="margin-top:10px;">
+        <div class="mockup-header">Modal: Position 2 mappen</div>
+        <div class="mockup-body" style="padding:8px;font-size:11px;">
+          <div style="color:#aaa;margin-bottom:6px;">OCR-Text: <strong style="color:#ff9800;">"Personal Technik"</strong></div>
+          <input class="mock-input" placeholder="🔍 Produkt suchen..." style="width:100%;margin-bottom:8px;">
+          <div style="color:#888;font-size:10px;margin-bottom:4px;">Top-Vorschläge:</div>
+          <div style="background:#1a2535;border:1px solid #4caf50;border-radius:4px;padding:6px;margin-bottom:3px;cursor:pointer;">
+            <strong>Techniker Personal</strong> <span style="color:#4caf50;float:right;">85%</span>
+            <div style="color:#888;font-size:10px;">Kategorie: Personal</div>
+          </div>
+          <div style="background:#1a2535;border:1px solid #333;border-radius:4px;padding:6px;cursor:pointer;">
+            <strong>Licht-Crew Techniker</strong> <span style="color:#ff9800;float:right;">62%</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="mock-button" style="flex:1;">✓ Übernehmen</button>
+            <button class="mock-button" style="color:#888;">Abbrechen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Side Panel</h3>
+      <p>Rechts ein festes Panel, das sich aktualisiert wenn man eine unmapped Zeile anklickt. Gut für viele Positionen in einem Durchgang.</p>
+      <div class="mockup" style="margin-top:10px;">
+        <div class="mockup-header">Split: Tabelle + Panel</div>
+        <div class="mockup-body" style="padding:8px;">
+          <div class="split" style="gap:8px;">
+            <div style="flex:1;font-size:10px;">
+              <div style="color:#888;border-bottom:1px solid #333;padding:3px;">Positionen</div>
+              <div style="padding:3px;background:#1a2a1a;">✓ Sennheiser e935</div>
+              <div style="padding:3px;background:#2a1a00;border-left:2px solid #ff9800;">▶ Personal Technik</div>
+              <div style="padding:3px;background:#2a1a00;">  DI-Box passiv 4ch</div>
+            </div>
+            <div style="flex:1;background:#111;border-radius:4px;padding:6px;font-size:10px;">
+              <div style="color:#ff9800;margin-bottom:4px;">"Personal Technik"</div>
+              <input class="mock-input" placeholder="Suchen..." style="width:100%;font-size:10px;margin-bottom:4px;">
+              <div style="color:#4caf50;padding:3px;background:#1a2535;border-radius:3px;margin-bottom:2px;">Techniker Personal</div>
+              <div style="color:#aaa;padding:3px;">Licht-Crew Techniker</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px;padding:10px;background:#111;border-radius:6px;font-size:11px;color:#888;">
+  <strong style="color:#aaa;">Alle Varianten gemeinsam:</strong> Jedes Mapping das du setzt wird automatisch global gespeichert. Beim nächsten Upload mit demselben OCR-Text wird es direkt auto-gemappt.
+</div>

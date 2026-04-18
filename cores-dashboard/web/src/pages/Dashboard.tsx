@@ -46,7 +46,7 @@ export function Dashboard() {
 
       {/* Hub Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href={config?.rentalUrl ?? '#'} target="_blank" rel="noreferrer"
+        <a href={config?.rentalUrl ?? '#'}
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
           style={{ background: 'linear-gradient(135deg, #D0021B 0%, #6b0010 100%)' }}>
           <div>
@@ -62,7 +62,7 @@ export function Dashboard() {
           </div>
         </a>
 
-        <a href={config?.warehouseUrl ?? '#'} target="_blank" rel="noreferrer"
+        <a href={config?.warehouseUrl ?? '#'}
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
           style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f1f33 100%)', border: '1px solid #2a4a6b' }}>
           <div>

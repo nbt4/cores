@@ -1,0 +1,87 @@
+<h2>Wo sollen globale Mappings verwaltet werden?</h2>
+<p class="subtitle">Wenn OCR einen Eintrag nicht automatisch zuordnen kann, wird ein Mapping gespeichert. Wo siehst und bearbeitest du alle gespeicherten Mappings?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Dedizierte Settings-Seite</h3>
+      <p>Eigene Seite unter <code>/settings/mappings</code> — Tabelle aller OCR-Text → Produkt Zuordnungen mit Suchfeld, Edit und Delete. Erreichbar über das Einstellungsmenü.</p>
+      <div class="mockup" style="margin-top:12px;">
+        <div class="mockup-header">Einstellungen → Produkt-Mappings</div>
+        <div class="mockup-body" style="padding:8px;">
+          <div class="mock-nav" style="font-size:12px;">Einstellungen &nbsp;/&nbsp; Produkt-Mappings</div>
+          <div style="margin-top:8px;display:flex;gap:8px;">
+            <input class="mock-input" placeholder="🔍 Suche nach OCR-Text..." style="flex:1;">
+            <button class="mock-button">+ Manuell hinzufügen</button>
+          </div>
+          <table style="width:100%;font-size:11px;margin-top:8px;border-collapse:collapse;">
+            <tr style="color:#888;border-bottom:1px solid #333;">
+              <th style="text-align:left;padding:4px;">OCR-Text</th>
+              <th style="text-align:left;padding:4px;">→ Produkt</th>
+              <th style="text-align:left;padding:4px;">Typ</th>
+              <th style="text-align:left;padding:4px;">Verwendet</th>
+              <th style="text-align:left;padding:4px;"></th>
+            </tr>
+            <tr style="border-bottom:1px solid #222;">
+              <td style="padding:4px;">Mikrofon Sennheiser e935</td>
+              <td style="padding:4px;color:#4caf50;">Sennheiser e935</td>
+              <td style="padding:4px;"><span style="background:#1a3a2a;color:#4caf50;padding:1px 6px;border-radius:3px;font-size:10px;">manual</span></td>
+              <td style="padding:4px;">12x</td>
+              <td style="padding:4px;"><button class="mock-button" style="font-size:10px;padding:2px 6px;">Edit</button> <button class="mock-button" style="font-size:10px;padding:2px 6px;color:#f44;">✕</button></td>
+            </tr>
+            <tr style="border-bottom:1px solid #222;">
+              <td style="padding:4px;">DI-Box passiv</td>
+              <td style="padding:4px;color:#4caf50;">DI-Box passive BSS AR133</td>
+              <td style="padding:4px;"><span style="background:#1a2a3a;color:#42a5f5;padding:1px 6px;border-radius:3px;font-size:10px;">fuzzy</span></td>
+              <td style="padding:4px;">5x</td>
+              <td style="padding:4px;"><button class="mock-button" style="font-size:10px;padding:2px 6px;">Edit</button> <button class="mock-button" style="font-size:10px;padding:2px 6px;color:#f44;">✕</button></td>
+            </tr>
+            <tr>
+              <td style="padding:4px;">Personal Technik</td>
+              <td style="padding:4px;color:#ff9800;">— kein Produkt —</td>
+              <td style="padding:4px;"><span style="background:#2a1a00;color:#ff9800;padding:1px 6px;border-radius:3px;font-size:10px;">unmapped</span></td>
+              <td style="padding:4px;">8x</td>
+              <td style="padding:4px;"><button class="mock-button" style="font-size:10px;padding:2px 6px;">Zuordnen</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Inline im Mapping-Flow</h3>
+      <p>Direkt im Extraktions-Flow: ein Reiter "Globale Mappings" am oberen Rand der Mapping-Seite. Kein separates Menü — alles an einem Ort.</p>
+      <div class="mockup" style="margin-top:12px;">
+        <div class="mockup-header">PDF Mapping · Rechnung_2024_047.pdf</div>
+        <div class="mockup-body" style="padding:8px;">
+          <div style="display:flex;gap:0;border-bottom:1px solid #333;margin-bottom:8px;">
+            <div style="padding:4px 12px;font-size:11px;border-bottom:2px solid #888;color:#888;">📋 Diese Rechnung (5 Positionen)</div>
+            <div style="padding:4px 12px;font-size:11px;border-bottom:2px solid #4caf50;color:#4caf50;">🗂 Globale Mappings (34)</div>
+          </div>
+          <div style="font-size:11px;color:#aaa;">← Globale Mapping-Tabelle erscheint hier im selben Fenster</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Beides — dedizierte Seite + Link aus dem Flow</h3>
+      <p>Eigene Settings-Seite für die vollständige Verwaltung. Zusätzlich ein "Mappings verwalten →" Link auf der Mapping-Seite als schneller Shortcut.</p>
+      <div class="mockup" style="margin-top:12px;">
+        <div class="mockup-header">PDF Mapping · Rechnung_2024_047.pdf</div>
+        <div class="mockup-body" style="padding:8px;font-size:11px;">
+          <div style="color:#aaa;text-align:right;margin-bottom:6px;">
+            <a style="color:#42a5f5;text-decoration:none;">🗂 Globale Mappings verwalten →</a>
+          </div>
+          <div style="color:#ccc;">... Mapping-Zeilen für diese Rechnung ...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

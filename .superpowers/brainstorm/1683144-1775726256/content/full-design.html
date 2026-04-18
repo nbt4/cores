@@ -1,0 +1,219 @@
+<h2>Vollständiges Design: Produkt-Mapping</h2>
+<p class="subtitle">Drei Komponenten — bitte jede Sektion bestätigen bevor wir weitermachen.</p>
+
+<div class="section">
+  <h3>① Mapping-Flow (pro Extraktion) — <em>pdf_mapping.html</em></h3>
+  <div class="mockup">
+    <div class="mockup-header">
+      PDF Mapping · Rechnung_2024_047.pdf
+      <span style="float:right;font-size:11px;color:#ff9800;">2 / 5 gemappt &nbsp; ⚠ Job gesperrt</span>
+    </div>
+    <div class="mockup-body" style="padding:10px;font-size:11px;">
+
+      <div style="margin-bottom:8px;background:#1a1a00;border:1px solid #ff9800;border-radius:4px;padding:6px;color:#ff9800;font-size:11px;">
+        ⚠ <strong>3 Positionen noch nicht gemappt.</strong> Bitte alle zuordnen, um den Job zu erstellen.
+        <div style="margin-top:4px;background:#333;border-radius:3px;height:4px;overflow:hidden;">
+          <div style="background:#ff9800;width:40%;height:100%;border-radius:3px;"></div>
+        </div>
+      </div>
+
+      <table style="width:100%;border-collapse:collapse;">
+        <tr style="color:#666;border-bottom:1px solid #222;font-size:10px;">
+          <th style="padding:4px 6px;text-align:left;">#</th>
+          <th style="padding:4px 6px;text-align:left;">OCR-Text</th>
+          <th style="padding:4px 6px;text-align:left;">→ Produkt / Paket</th>
+          <th style="padding:4px 6px;text-align:left;">Menge</th>
+          <th style="padding:4px 6px;text-align:left;">Preis</th>
+        </tr>
+
+        <!-- Auto-gemappt -->
+        <tr style="border-bottom:1px solid #1a2a1a;background:#0d1a0d;">
+          <td style="padding:5px 6px;color:#666;">1</td>
+          <td style="padding:5px 6px;color:#aaa;">Mikrofon Sennheiser e935</td>
+          <td style="padding:5px 6px;">
+            <span style="color:#4caf50;">✓ Sennheiser e935</span>
+            <span style="font-size:9px;color:#555;margin-left:4px;">auto · 98%</span>
+          </td>
+          <td style="padding:5px 6px;color:#aaa;">4</td>
+          <td style="padding:5px 6px;color:#aaa;">€45,00</td>
+        </tr>
+        <tr style="border-bottom:1px solid #1a2a1a;background:#0d1a0d;">
+          <td style="padding:5px 6px;color:#666;">2</td>
+          <td style="padding:5px 6px;color:#aaa;">DI-Box passiv BSS</td>
+          <td style="padding:5px 6px;">
+            <span style="color:#4caf50;">✓ BSS AR133 DI-Box</span>
+            <span style="font-size:9px;color:#555;margin-left:4px;">gespeichert</span>
+          </td>
+          <td style="padding:5px 6px;color:#aaa;">2</td>
+          <td style="padding:5px 6px;color:#aaa;">€12,00</td>
+        </tr>
+
+        <!-- Nicht gemappt → inline search -->
+        <tr style="border-bottom:1px solid #2a1a00;background:#1a1000;">
+          <td style="padding:5px 6px;color:#666;">3</td>
+          <td style="padding:5px 6px;color:#ff9800;">Personal Technik</td>
+          <td style="padding:5px 6px;" colspan="3">
+            <div style="display:flex;gap:6px;align-items:flex-start;flex-direction:column;">
+              <div style="display:flex;gap:4px;width:100%;">
+                <input class="mock-input" value="Personal" style="flex:1;font-size:11px;border-color:#ff9800;">
+                <button class="mock-button" style="font-size:10px;padding:3px 8px;color:#888;">✕ leeren</button>
+              </div>
+              <!-- Vorschläge Dropdown -->
+              <div style="background:#1a2535;border:1px solid #333;border-radius:4px;width:100%;overflow:hidden;">
+                <div style="padding:5px 8px;border-bottom:1px solid #222;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="color:#ccc;">Techniker Personal</div>
+                    <div style="font-size:9px;color:#666;">Kategorie: Personal · ID: 47</div>
+                  </div>
+                  <span style="color:#ff9800;font-size:10px;">85%</span>
+                </div>
+                <div style="padding:5px 8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;opacity:0.7;">
+                  <div>
+                    <div style="color:#ccc;">Licht-Crew Techniker</div>
+                    <div style="font-size:9px;color:#666;">Kategorie: Personal · ID: 52</div>
+                  </div>
+                  <span style="color:#888;font-size:10px;">61%</span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Weitere nicht gemappte Zeilen (kompakt) -->
+        <tr style="border-bottom:1px solid #2a1a00;background:#1a1000;">
+          <td style="padding:5px 6px;color:#666;">4</td>
+          <td style="padding:5px 6px;color:#ff9800;">Kabelsatz XLR 10m</td>
+          <td style="padding:5px 6px;" colspan="3">
+            <input class="mock-input" placeholder="Produkt suchen..." style="width:100%;font-size:11px;">
+          </td>
+        </tr>
+        <tr style="background:#1a1000;">
+          <td style="padding:5px 6px;color:#666;">5</td>
+          <td style="padding:5px 6px;color:#ff9800;">Stagebox 24ch</td>
+          <td style="padding:5px 6px;" colspan="3">
+            <input class="mock-input" placeholder="Produkt suchen..." style="width:100%;font-size:11px;">
+          </td>
+        </tr>
+      </table>
+
+      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
+        <a style="color:#42a5f5;font-size:11px;text-decoration:none;">🗂 Globale Mappings verwalten →</a>
+        <button class="mock-button" style="opacity:0.4;cursor:not-allowed;padding:6px 16px;">
+          Job erstellen (gesperrt)
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div style="margin-top:8px;font-size:11px;color:#888;">
+    Beim Klick auf einen Vorschlag: sofort gemappt + global in <code>pdf_product_mappings</code> gespeichert. Fortschrittsbalken aktualisiert sich live.
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>② Globale Mapping-Verwaltung — <em>/settings/mappings</em></h3>
+  <div class="mockup">
+    <div class="mockup-header">Einstellungen → Produkt-Mappings</div>
+    <div class="mockup-body" style="padding:10px;font-size:11px;">
+      <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center;">
+        <input class="mock-input" placeholder="🔍 OCR-Text oder Produktname suchen..." style="flex:1;font-size:11px;">
+        <select class="mock-input" style="font-size:11px;width:auto;padding:5px 8px;">
+          <option>Alle Typen</option>
+          <option>manual</option>
+          <option>fuzzy</option>
+        </select>
+        <span style="color:#666;font-size:10px;white-space:nowrap;">34 Einträge</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse;">
+        <tr style="color:#555;border-bottom:1px solid #222;font-size:10px;">
+          <th style="padding:4px 6px;text-align:left;">OCR-Text</th>
+          <th style="padding:4px 6px;text-align:left;">→ Produkt / Paket</th>
+          <th style="padding:4px 6px;text-align:left;">Typ</th>
+          <th style="padding:4px 6px;text-align:left;">Verwendet</th>
+          <th style="padding:4px 6px;text-align:left;">Aktionen</th>
+        </tr>
+        <tr style="border-bottom:1px solid #1a1a1a;">
+          <td style="padding:5px 6px;color:#ccc;">Mikrofon Sennheiser e935</td>
+          <td style="padding:5px 6px;color:#4caf50;">Sennheiser e935</td>
+          <td style="padding:5px 6px;"><span style="background:#1a2535;color:#42a5f5;padding:1px 5px;border-radius:3px;font-size:9px;">auto/fuzzy</span></td>
+          <td style="padding:5px 6px;color:#666;">23×</td>
+          <td style="padding:5px 6px;display:flex;gap:4px;">
+            <button class="mock-button" style="font-size:10px;padding:2px 6px;">✏ Edit</button>
+            <button class="mock-button" style="font-size:10px;padding:2px 6px;color:#f44336;">✕</button>
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid #1a1a1a;background:#0d1209;">
+          <td style="padding:5px 6px;color:#ccc;">Personal Technik</td>
+          <td style="padding:5px 6px;color:#4caf50;">Techniker Personal</td>
+          <td style="padding:5px 6px;"><span style="background:#1a2a1a;color:#4caf50;padding:1px 5px;border-radius:3px;font-size:9px;">manual</span></td>
+          <td style="padding:5px 6px;color:#666;">8×</td>
+          <td style="padding:5px 6px;display:flex;gap:4px;">
+            <button class="mock-button" style="font-size:10px;padding:2px 6px;">✏ Edit</button>
+            <button class="mock-button" style="font-size:10px;padding:2px 6px;color:#f44336;">✕</button>
+          </td>
+        </tr>
+        <!-- Edit-Mode Zeile -->
+        <tr style="border-bottom:1px solid #1a1a1a;background:#0d1520;">
+          <td style="padding:5px 6px;color:#ccc;">DI-Box passiv 4ch</td>
+          <td style="padding:5px 6px;" colspan="3">
+            <div style="display:flex;gap:6px;align-items:center;">
+              <input class="mock-input" value="BSS AR133 DI-Box" style="flex:1;font-size:11px;border-color:#42a5f5;">
+              <button class="mock-button" style="font-size:10px;padding:2px 8px;background:#1a3a5a;color:#42a5f5;">✓ Speichern</button>
+              <button class="mock-button" style="font-size:10px;padding:2px 6px;color:#888;">✕</button>
+            </div>
+          </td>
+          <td style="padding:5px 6px;"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div style="margin-top:8px;font-size:11px;color:#888;">
+    Edit öffnet die Produkt-Zelle inline (kein Modal). Delete setzt <code>is_active = false</code>.
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>③ Was neu gebaut wird vs. was schon existiert</h3>
+  <table style="width:100%;font-size:11px;border-collapse:collapse;">
+    <tr style="color:#555;border-bottom:1px solid #222;">
+      <th style="padding:4px 8px;text-align:left;">Komponente</th>
+      <th style="padding:4px 8px;text-align:left;">Status</th>
+      <th style="padding:4px 8px;text-align:left;">Aufwand</th>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;">
+      <td style="padding:4px 8px;color:#ccc;">ProductMapper.SaveMapping() — globales Speichern</td>
+      <td style="padding:4px 8px;color:#4caf50;">✓ existiert</td>
+      <td style="padding:4px 8px;color:#666;">—</td>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;">
+      <td style="padding:4px 8px;color:#ccc;">Auto-Mapping (fuzzy + gespeicherte Lookups)</td>
+      <td style="padding:4px 8px;color:#4caf50;">✓ existiert</td>
+      <td style="padding:4px 8px;color:#666;">—</td>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;background:#0d1520;">
+      <td style="padding:4px 8px;color:#ccc;">Inline-Search UX in pdf_mapping.html (unmapped rows)</td>
+      <td style="padding:4px 8px;color:#ff9800;">⚠ partiell</td>
+      <td style="padding:4px 8px;color:#ff9800;">mittel</td>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;background:#0d1520;">
+      <td style="padding:4px 8px;color:#ccc;">Hard-Blocker: "Job erstellen" deaktiviert bis alles gemappt</td>
+      <td style="padding:4px 8px;color:#ff9800;">⚠ partiell</td>
+      <td style="padding:4px 8px;color:#ff9800;">klein</td>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;background:#150d00;">
+      <td style="padding:4px 8px;color:#ccc;">GET /settings/mappings — Management-Seite</td>
+      <td style="padding:4px 8px;color:#f44336;">✗ fehlt</td>
+      <td style="padding:4px 8px;color:#f44336;">mittel</td>
+    </tr>
+    <tr style="border-bottom:1px solid #1a1a1a;background:#150d00;">
+      <td style="padding:4px 8px;color:#ccc;">PUT /api/v1/pdf/mappings/:id — Edit eines Mappings</td>
+      <td style="padding:4px 8px;color:#f44336;">✗ fehlt</td>
+      <td style="padding:4px 8px;color:#f44336;">klein</td>
+    </tr>
+    <tr style="background:#150d00;">
+      <td style="padding:4px 8px;color:#ccc;">mapping_management.html Template</td>
+      <td style="padding:4px 8px;color:#f44336;">✗ fehlt</td>
+      <td style="padding:4px 8px;color:#f44336;">mittel</td>
+    </tr>
+  </table>
+</div>

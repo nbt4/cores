@@ -103,14 +103,14 @@ function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () 
         {/* External links */}
         <div className="mt-4 pt-4 border-t border-white/5 flex flex-col gap-0.5">
           {config?.rentalUrl && (
-            <a href={config.rentalUrl} target="_blank" rel="noreferrer"
+            <a href={config.rentalUrl}
               className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
               <ExternalLink className="w-4 h-4 flex-shrink-0" />
               {expanded && <span>RentalCore</span>}
             </a>
           )}
           {config?.warehouseUrl && (
-            <a href={config.warehouseUrl} target="_blank" rel="noreferrer"
+            <a href={config.warehouseUrl}
               className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
               <ExternalLink className="w-4 h-4 flex-shrink-0" />
               {expanded && <span>WarehouseCore</span>}
