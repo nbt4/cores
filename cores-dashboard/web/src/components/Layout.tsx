@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useAppConfig } from '../hooks/useAppConfig';
 
 const ADMIN_ITEMS = [
   { path: '/admin/users',       label: 'Benutzer',          icon: Users },
@@ -22,23 +23,8 @@ const ADMIN_ITEMS = [
   { path: '/admin/export',      label: 'CSV-Export',        icon: Download },
 ];
 
-function getRentalURL() {
-  const { hostname, port, protocol } = window.location;
-  if (!port || port === '443' || port === '80') {
-    return `${protocol}//${hostname.replace(/^cores\./, 'rent.')}`;
-  }
-  return `${protocol}//${hostname}:8081`;
-}
-
-function getWarehouseURL() {
-  const { hostname, port, protocol } = window.location;
-  if (!port || port === '443' || port === '80') {
-    return `${protocol}//${hostname.replace(/^cores\./, 'warehouse.')}`;
-  }
-  return `${protocol}//${hostname}:8082`;
-}
-
 function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () => void }) {
+  const config = useAppConfig();
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -116,16 +102,20 @@ function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () 
 
         {/* External links */}
         <div className="mt-4 pt-4 border-t border-white/5 flex flex-col gap-0.5">
-          <a href={getRentalURL()} target="_blank" rel="noreferrer"
-            className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
-            <ExternalLink className="w-4 h-4 flex-shrink-0" />
-            {expanded && <span>RentalCore</span>}
-          </a>
-          <a href={getWarehouseURL()} target="_blank" rel="noreferrer"
-            className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
-            <ExternalLink className="w-4 h-4 flex-shrink-0" />
-            {expanded && <span>WarehouseCore</span>}
-          </a>
+          {config?.rentalUrl && (
+            <a href={config.rentalUrl} target="_blank" rel="noreferrer"
+              className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+              <ExternalLink className="w-4 h-4 flex-shrink-0" />
+              {expanded && <span>RentalCore</span>}
+            </a>
+          )}
+          {config?.warehouseUrl && (
+            <a href={config.warehouseUrl} target="_blank" rel="noreferrer"
+              className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+              <ExternalLink className="w-4 h-4 flex-shrink-0" />
+              {expanded && <span>WarehouseCore</span>}
+            </a>
+          )}
         </div>
       </nav>
 

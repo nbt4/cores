@@ -3,10 +3,12 @@ package config
 import "os"
 
 type Config struct {
-	Port             string
-	JWTSecret        string
-	RentalCoreURL    string
-	WarehouseCoreURL string
+	Port              string
+	JWTSecret         string
+	RentalCoreURL     string
+	WarehouseCoreURL  string
+	RentalPublicURL   string
+	WarehousePublicURL string
 	DBHost           string
 	DBPort           string
 	DBName           string
@@ -19,8 +21,10 @@ func Load() *Config {
 	return &Config{
 		Port:             getEnv("PORT", "8080"),
 		JWTSecret:        getEnv("CORES_JWT_SECRET", "dev-secret-change-me"),
-		RentalCoreURL:    getEnv("RENTALCORE_URL", "http://localhost:8081"),
-		WarehouseCoreURL: getEnv("WAREHOUSECORE_URL", "http://localhost:8082"),
+		RentalCoreURL:      getEnv("RENTALCORE_URL", "http://localhost:8081"),
+		WarehouseCoreURL:   getEnv("WAREHOUSECORE_URL", "http://localhost:8082"),
+		RentalPublicURL:    getEnv("RENTAL_PUBLIC_URL", ""),
+		WarehousePublicURL: getEnv("WAREHOUSE_PUBLIC_URL", ""),
 		DBHost:           getEnv("DB_HOST", "localhost"),
 		DBPort:           getEnv("DB_PORT", "5432"),
 		DBName:           getEnv("DB_NAME", "rentalcore"),

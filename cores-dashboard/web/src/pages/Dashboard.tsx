@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { ExternalLink, Briefcase, Package, TrendingUp, Wrench, AlertTriangle, BarChart2 } from 'lucide-react';
 import { api } from '../lib/api';
+import { useAppConfig } from '../hooks/useAppConfig';
 
 interface AnalyticsSummary {
   rental: { totalRevenue?: number; totalJobs?: number; error?: string };
@@ -25,23 +26,13 @@ function StatCard({ label, value, icon: Icon, color }: { label: string; value: s
 
 export function Dashboard() {
   const [stats, setStats] = useState<AnalyticsSummary | null>(null);
+  const config = useAppConfig();
 
   useEffect(() => {
     api.get('/analytics/summary')
       .then(r => setStats(r.data as AnalyticsSummary))
       .catch(console.error);
   }, []);
-
-  const getRentalURL = () => {
-    const { hostname, port, protocol } = window.location;
-    if (port === '8080') return `${protocol}//${hostname}:8081`;
-    return `${protocol}//${hostname.replace(/^cores\./, 'rent.')}`;
-  };
-  const getWarehouseURL = () => {
-    const { hostname, port, protocol } = window.location;
-    if (port === '8080') return `${protocol}//${hostname}:8082`;
-    return `${protocol}//${hostname.replace(/^cores\./, 'warehouse.')}`;
-  };
 
   const fmt = (n?: number) => n !== undefined ? n.toLocaleString('de-DE') : '—';
   const fmtEur = (n?: number) => n !== undefined ? `€${n.toLocaleString('de-DE', { maximumFractionDigits: 0 })}` : '—';
@@ -55,7 +46,7 @@ export function Dashboard() {
 
       {/* Hub Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href={getRentalURL()} target="_blank" rel="noreferrer"
+        <a href={config?.rentalUrl ?? '#'} target="_blank" rel="noreferrer"
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
           style={{ background: 'linear-gradient(135deg, #D0021B 0%, #6b0010 100%)' }}>
           <div>
@@ -71,7 +62,7 @@ export function Dashboard() {
           </div>
         </a>
 
-        <a href={getWarehouseURL()} target="_blank" rel="noreferrer"
+        <a href={config?.warehouseUrl ?? '#'} target="_blank" rel="noreferrer"
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
           style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f1f33 100%)', border: '1px solid #2a4a6b' }}>
           <div>

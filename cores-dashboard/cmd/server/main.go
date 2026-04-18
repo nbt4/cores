@@ -31,6 +31,7 @@ func main() {
 	analyticsHandler := handlers.NewAnalyticsHandler(cfg)
 	proxyHandler := handlers.NewAdminProxyHandler(cfg)
 
+	mux.HandleFunc("GET /api/v1/config", handlers.ConfigHandler(cfg))
 	mux.HandleFunc("POST /api/v1/auth/login", authHandler.Login)
 	mux.HandleFunc("POST /api/v1/auth/logout", authHandler.Logout)
 
