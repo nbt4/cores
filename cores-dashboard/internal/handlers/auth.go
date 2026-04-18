@@ -67,7 +67,9 @@ func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
 		Name:     "cores_token",
 		Value:    signed,
 		Path:     "/",
+		Domain:   h.cfg.CookieDomain,
 		HttpOnly: true,
+		Secure:   h.cfg.CookieDomain != "",
 		SameSite: http.SameSiteLaxMode,
 		MaxAge:   86400,
 	})
@@ -86,6 +88,7 @@ func (h *AuthHandler) Logout(w http.ResponseWriter, r *http.Request) {
 		Name:     "cores_token",
 		Value:    "",
 		Path:     "/",
+		Domain:   h.cfg.CookieDomain,
 		HttpOnly: true,
 		MaxAge:   -1,
 	})

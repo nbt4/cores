@@ -7,9 +7,10 @@ type Config struct {
 	JWTSecret         string
 	RentalCoreURL     string
 	WarehouseCoreURL  string
-	RentalPublicURL   string
+	RentalPublicURL    string
 	WarehousePublicURL string
-	DBHost           string
+	CookieDomain       string
+	DBHost             string
 	DBPort           string
 	DBName           string
 	DBUser           string
@@ -25,6 +26,7 @@ func Load() *Config {
 		WarehouseCoreURL:   getEnv("WAREHOUSECORE_URL", "http://localhost:8082"),
 		RentalPublicURL:    getEnv("RENTAL_PUBLIC_URL", ""),
 		WarehousePublicURL: getEnv("WAREHOUSE_PUBLIC_URL", ""),
+		CookieDomain:       getEnv("COOKIE_DOMAIN", ""),
 		DBHost:           getEnv("DB_HOST", "localhost"),
 		DBPort:           getEnv("DB_PORT", "5432"),
 		DBName:           getEnv("DB_NAME", "rentalcore"),
