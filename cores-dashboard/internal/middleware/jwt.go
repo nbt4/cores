@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"coresdashboard/internal/config"
@@ -30,6 +31,9 @@ func RequireAuth(cfg *config.Config, next http.Handler) http.Handler {
 
 		claims := &Claims{}
 		token, err := jwt.ParseWithClaims(cookie.Value, claims, func(t *jwt.Token) (interface{}, error) {
+			if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
+			}
 			return []byte(cfg.JWTSecret), nil
 		})
 		if err != nil || !token.Valid {
