@@ -55,6 +55,8 @@ services:
       NEXTCLOUD_WEBDAV_PASSWORD: "${NEXTCLOUD_WEBDAV_PASSWORD:-}"
       NEXTCLOUD_WEBDAV_BASE_PATH: "${NEXTCLOUD_WEBDAV_BASE_PATH:-rentalcore-filepool}"
       NEXTCLOUD_BACKFILL_ON_START: "${NEXTCLOUD_BACKFILL_ON_START:-true}"
+      # JWT Secret for SSO (shared across all cores)
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
       # App port
       SERVER_HOST: "0.0.0.0"
       SERVER_PORT: "8081"
@@ -69,6 +71,38 @@ services:
       interval: 15s
       timeout: 10s
       retries: 10
+      start_period: 60s
+
+  # ============================================================================
+  # CoresDashboard - Central SSO Dashboard & Admin Hub
+  # ============================================================================
+  cores-dashboard:
+    image: nobentie/cores-dashboard:latest
+    container_name: cores-dashboard
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8080"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
+      RENTALCORE_URL: "http://rentalcore:8081"
+      WAREHOUSECORE_URL: "http://warehousecore:8082"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${POSTGRES_USER:-rentalcore}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      DB_SSLMODE: "disable"
+    ports:
+      - "8080:8080"
+    networks:
+      - weidelbach
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/v1/auth/me || true"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
       start_period: 60s
 
   # ============================================================================
@@ -96,6 +130,8 @@ services:
       DB_USER: "${POSTGRES_USER:-rentalcore}"
       DB_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
       DB_SSLMODE: "disable"
+      # JWT Secret for SSO (shared across all cores)
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
       # App port
       PORT: "8082"
       # Nextcloud File Pool (shared with RentalCore) for product pictures
