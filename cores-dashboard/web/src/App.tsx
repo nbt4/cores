@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { AdminPage } from './pages/AdminPage';
+import { SecurityPage } from './pages/SecurityPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
           <Route path="/admin" element={<Navigate to="/admin/users" replace />} />
           <Route path="/admin/:tab" element={<ProtectedRoute><Layout><AdminPage /></Layout></ProtectedRoute>} />
+          <Route path="/profile/security" element={<ProtectedRoute><Layout><div className="rounded-xl p-5" style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.06)' }}><SecurityPage /></div></Layout></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

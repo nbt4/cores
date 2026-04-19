@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Home, Settings, LogOut, User, ExternalLink, Menu, X, ChevronDown,
   Users, Shield, Layers, Lightbulb, Cpu, FolderTree, Tag, Ruler,
-  Database, KeyRound, Download,
+  Database, KeyRound, Download, Cable,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
@@ -18,6 +18,7 @@ const ADMIN_ITEMS = [
   { path: '/admin/categories',  label: 'Kategorien',        icon: FolderTree },
   { path: '/admin/brands',      label: 'Marken & Hersteller',            icon: Tag },
   { path: '/admin/counttypes',  label: 'Maßeinheiten',      icon: Ruler },
+  { path: '/admin/cables',      label: 'Kabel-Typen & Anschlüsse', icon: Cable },
   { path: '/admin/apisettings', label: 'API-Einstellungen', icon: Database },
   { path: '/admin/apikeys',     label: 'API-Keys',          icon: KeyRound },
   { path: '/admin/export',      label: 'CSV-Export',        icon: Download },
@@ -119,14 +120,20 @@ function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () 
         </div>
       </nav>
 
-      {/* User + Logout */}
+      {/* User + Security + Logout */}
       <div className="p-2 border-t border-white/5 flex-shrink-0">
-        <div className="flex items-center gap-2 px-2 py-2">
+        <Link to="/profile/security" onClick={onClose}
+          className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-colors ${isActive('/profile/security') ? 'bg-accent-red/10 text-accent-red' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>
           <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
             <User className="w-4 h-4 text-gray-400" />
           </div>
-          {expanded && <span className="text-gray-300 text-sm truncate flex-1">{user?.username}</span>}
-        </div>
+          {expanded && (
+            <div className="flex-1 min-w-0">
+              <p className="text-sm truncate">{user?.username}</p>
+              <p className="text-xs text-gray-600">Sicherheit & Passkeys</p>
+            </div>
+          )}
+        </Link>
         <button onClick={handleLogout}
           className="w-full flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-red-400 transition-colors">
           <LogOut className="w-4 h-4 flex-shrink-0" />

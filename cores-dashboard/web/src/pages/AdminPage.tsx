@@ -6,6 +6,7 @@ import { LEDControllersTab } from '../components/admin/LEDControllersTab';
 import { CategoriesTab } from '../components/admin/CategoriesTab';
 import { BrandsManufacturersTab } from '../components/admin/BrandsManufacturersTab';
 import { CountTypesTab } from '../components/admin/CountTypesTab';
+import { CablesTab } from '../components/admin/CablesTab';
 import { RolesTab } from '../components/admin/RolesTab';
 import { APISettingsTab } from '../components/admin/APISettingsTab';
 import { APIKeysTab } from '../components/admin/APIKeysTab';
@@ -20,6 +21,7 @@ const tabComponents: Record<string, React.ElementType> = {
   categories: CategoriesTab,
   brands: BrandsManufacturersTab,
   counttypes: CountTypesTab,
+  cables: CablesTab,
   apisettings: APISettingsTab,
   apikeys: APIKeysTab,
   export: ExportTab,
