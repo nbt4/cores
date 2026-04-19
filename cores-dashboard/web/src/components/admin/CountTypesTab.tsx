@@ -6,13 +6,13 @@ interface CountType {
   count_type_id: number;
   name: string;
   abbreviation: string;
-  is_active: boolean;
+  is_decimal: boolean;
 }
 
 interface CountTypeFormData {
   name: string;
   abbreviation: string;
-  is_active: boolean;
+  is_decimal: boolean;
 }
 
 export function CountTypesTab() {
@@ -23,7 +23,7 @@ export function CountTypesTab() {
   const [formData, setFormData] = useState<CountTypeFormData>({
     name: '',
     abbreviation: '',
-    is_active: true,
+    is_decimal: true,
   });
   const [message, setMessage] = useState<string>('');
 
@@ -46,7 +46,7 @@ export function CountTypesTab() {
 
   const resetForm = () => {
     setEditing(null);
-    setFormData({ name: '', abbreviation: '', is_active: true });
+    setFormData({ name: '', abbreviation: '', is_decimal: true });
   };
 
   const handleSave = async () => {
@@ -92,7 +92,7 @@ export function CountTypesTab() {
     setFormData({
       name: ct.name,
       abbreviation: ct.abbreviation,
-      is_active: ct.is_active,
+      is_decimal: ct.is_decimal,
     });
   };
 
@@ -106,7 +106,7 @@ export function CountTypesTab() {
         <button
           onClick={() => {
             setEditing('new');
-            setFormData({ name: '', abbreviation: '', is_active: true });
+            setFormData({ name: '', abbreviation: '', is_decimal: true });
           }}
           className="px-4 py-2 bg-accent-red text-white rounded-lg font-semibold hover:shadow-lg flex items-center gap-2"
         >
@@ -148,11 +148,11 @@ export function CountTypesTab() {
             <label className="flex items-center gap-2 text-white font-semibold">
               <input
                 type="checkbox"
-                checked={formData.is_active}
-                onChange={e => setFormData({ ...formData, is_active: e.target.checked })}
+                checked={formData.is_decimal}
+                onChange={e => setFormData({ ...formData, is_decimal: e.target.checked })}
                 className="w-5 h-5 rounded border-white/20 bg-white/10 text-accent-red focus:ring-accent-red"
               />
-              Aktiv
+              Dezimalzahl (z.B. 1,5 kg)
             </label>
           </div>
           <div className="flex gap-2">
@@ -186,8 +186,8 @@ export function CountTypesTab() {
               <div>
                 <h3 className="text-white font-semibold">{ct.name}</h3>
                 <p className="text-gray-400 text-sm">{ct.abbreviation}</p>
-                <p className={`text-xs mt-1 ${ct.is_active ? 'text-green-400' : 'text-gray-500'}`}>
-                  {ct.is_active ? 'Aktiv' : 'Inaktiv'}
+                <p className={`text-xs mt-1 ${ct.is_decimal ? 'text-blue-400' : 'text-gray-500'}`}>
+                  {ct.is_decimal ? 'Dezimalzahl' : 'Ganzzahl'}
                 </p>
               </div>
               <div className="flex gap-2">

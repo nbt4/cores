@@ -16,7 +16,7 @@ const ADMIN_ITEMS = [
   { path: '/admin/led',         label: 'LED-Verhalten',     icon: Lightbulb },
   { path: '/admin/controllers', label: 'ESP-Controller',    icon: Cpu },
   { path: '/admin/categories',  label: 'Kategorien',        icon: FolderTree },
-  { path: '/admin/brands',      label: 'Marken',            icon: Tag },
+  { path: '/admin/brands',      label: 'Marken & Hersteller',            icon: Tag },
   { path: '/admin/counttypes',  label: 'Maßeinheiten',      icon: Ruler },
   { path: '/admin/apisettings', label: 'API-Einstellungen', icon: Database },
   { path: '/admin/apikeys',     label: 'API-Keys',          icon: KeyRound },
