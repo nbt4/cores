@@ -537,6 +537,19 @@ CREATE INDEX IF NOT EXISTS idx_defect_status ON defect_reports(status);
 CREATE INDEX IF NOT EXISTS idx_defect_severity ON defect_reports(severity);
 CREATE INDEX IF NOT EXISTS idx_defect_created ON defect_reports(created_at);
 
+-- Zone type definitions (LED defaults, labels)
+CREATE TABLE IF NOT EXISTS zone_types (
+    id SERIAL PRIMARY KEY,
+    key VARCHAR(50) UNIQUE NOT NULL,
+    label VARCHAR(100) NOT NULL,
+    description TEXT DEFAULT '',
+    default_led_pattern VARCHAR(20) DEFAULT 'solid',
+    default_led_color VARCHAR(20) DEFAULT '#ffffff',
+    default_intensity SMALLINT DEFAULT 128,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- LED Controllers table
 CREATE TABLE IF NOT EXISTS led_controllers (
     id SERIAL PRIMARY KEY,
@@ -552,6 +565,13 @@ CREATE TABLE IF NOT EXISTS led_controllers (
 );
 CREATE INDEX IF NOT EXISTS idx_led_controller_id ON led_controllers(controller_id);
 CREATE INDEX IF NOT EXISTS idx_led_active ON led_controllers(is_active);
+
+-- LED controller ↔ zone type many-to-many
+CREATE TABLE IF NOT EXISTS led_controller_zone_types (
+    controller_id INTEGER NOT NULL REFERENCES led_controllers(id) ON DELETE CASCADE,
+    zone_type_id INTEGER NOT NULL REFERENCES zone_types(id) ON DELETE CASCADE,
+    PRIMARY KEY (controller_id, zone_type_id)
+);
 
 -- Label templates table
 CREATE TABLE IF NOT EXISTS label_templates (
