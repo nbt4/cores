@@ -7,6 +7,7 @@ import { CategoriesTab } from '../components/admin/CategoriesTab';
 import { BrandsManufacturersTab } from '../components/admin/BrandsManufacturersTab';
 import { CountTypesTab } from '../components/admin/CountTypesTab';
 import { CablesTab } from '../components/admin/CablesTab';
+import { RentalFieldsTab } from '../components/admin/RentalFieldsTab';
 import { RolesTab } from '../components/admin/RolesTab';
 import { APISettingsTab } from '../components/admin/APISettingsTab';
 import { APIKeysTab } from '../components/admin/APIKeysTab';
@@ -22,6 +23,7 @@ const tabComponents: Record<string, React.ElementType> = {
   brands: BrandsManufacturersTab,
   counttypes: CountTypesTab,
   cables: CablesTab,
+  rentalfields: RentalFieldsTab,
   apisettings: APISettingsTab,
   apikeys: APIKeysTab,
   export: ExportTab,

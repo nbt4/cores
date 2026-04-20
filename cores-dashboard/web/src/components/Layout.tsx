@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Home, Settings, LogOut, User, ExternalLink, Menu, X, ChevronDown,
   Users, Shield, Layers, Lightbulb, Cpu, FolderTree, Tag, Ruler,
-  Database, KeyRound, Download, Cable,
+  Database, KeyRound, Download, Cable, ShoppingCart,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
@@ -19,6 +19,7 @@ const ADMIN_ITEMS = [
   { path: '/admin/brands',      label: 'Marken & Hersteller',            icon: Tag },
   { path: '/admin/counttypes',  label: 'Maßeinheiten',      icon: Ruler },
   { path: '/admin/cables',      label: 'Kabel-Typen & Anschlüsse', icon: Cable },
+  { path: '/admin/rentalfields', label: 'Mietprodukt-Felder', icon: ShoppingCart },
   { path: '/admin/apisettings', label: 'API-Einstellungen', icon: Database },
   { path: '/admin/apikeys',     label: 'API-Keys',          icon: KeyRound },
   { path: '/admin/export',      label: 'CSV-Export',        icon: Download },
