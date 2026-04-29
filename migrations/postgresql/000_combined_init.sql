@@ -576,12 +576,11 @@ CREATE TABLE IF NOT EXISTS led_controller_zone_types (
 -- Label templates table
 CREATE TABLE IF NOT EXISTS label_templates (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
-    template_type VARCHAR(50) NOT NULL DEFAULT 'device',
-    width_mm DECIMAL(10,2) DEFAULT 62,
-    height_mm DECIMAL(10,2) DEFAULT 29,
-    template_content TEXT,
+    width DECIMAL(10,2) NOT NULL DEFAULT 62,
+    height DECIMAL(10,2) NOT NULL DEFAULT 29,
+    template_json TEXT NOT NULL DEFAULT '[]',
     is_default BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -771,13 +770,17 @@ CREATE INDEX IF NOT EXISTS idx_pdf_cust_map_text     ON pdf_customer_mappings(no
 CREATE INDEX IF NOT EXISTS idx_pdf_cust_map_customer ON pdf_customer_mappings(customer_id);
 
 CREATE TABLE IF NOT EXISTS pdf_mapping_events (
-    event_id      BIGSERIAL PRIMARY KEY,
-    extraction_id BIGINT REFERENCES pdf_extractions(extraction_id) ON DELETE CASCADE,
-    item_id       BIGINT REFERENCES pdf_extraction_items(item_id) ON DELETE CASCADE,
-    event_type    VARCHAR(50) NOT NULL,
-    event_data    JSONB,
-    created_by    BIGINT REFERENCES users(userid) ON DELETE SET NULL,
-    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    event_id         BIGSERIAL PRIMARY KEY,
+    extraction_id    BIGINT REFERENCES pdf_extractions(extraction_id) ON DELETE CASCADE,
+    item_id          BIGINT REFERENCES pdf_extraction_items(item_id) ON DELETE CASCADE,
+    pdf_product_text VARCHAR(1000) NOT NULL DEFAULT '',
+    normalized_text  VARCHAR(1000),
+    product_id       BIGINT DEFAULT 0,
+    package_id       BIGINT DEFAULT 0,
+    mapped_by        BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    event_type       VARCHAR(50),
+    created_by       BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- =============================================================================
@@ -838,8 +841,8 @@ INSERT INTO storage_zones (code, name, type, description, is_active) VALUES
 ON CONFLICT (code) DO NOTHING;
 
 -- Default label template
-INSERT INTO label_templates (name, description, template_type, width_mm, height_mm, is_default) VALUES
-('Standard Geräte-Label', 'Standard Geräteetikett 62x29mm', 'device', 62, 29, TRUE)
+INSERT INTO label_templates (name, description, width, height, template_json, is_default) VALUES
+('Standard Geräte-Label', 'Standard Geräteetikett 62x29mm', 62, 29, '[]', TRUE)
 ON CONFLICT (name) DO NOTHING;
 
 -- Default count types for accessories/consumables
