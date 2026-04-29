@@ -155,6 +155,7 @@ services:
       - "8082:8082"
     volumes:
       - led-mapping:/var/lib/warehousecore/led
+      - warehousecore-labels:/root/web/dist/labels
     networks:
       - weidelbach
     healthcheck:
@@ -283,6 +284,9 @@ volumes:
     driver: local
   # LED mapping configuration
   led-mapping:
+    driver: local
+  # Warehousecore label images (persisted across container restarts)
+  warehousecore-labels:
     driver: local
   # Mosquitto MQTT broker
   mosquitto-config:
