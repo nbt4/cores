@@ -132,6 +132,8 @@ CREATE TABLE IF NOT EXISTS customers (
     phonenumber VARCHAR(50),
     email VARCHAR(255),
     customertype VARCHAR(50),
+    is_customer BOOLEAN NOT NULL DEFAULT TRUE,
+    is_supplier BOOLEAN NOT NULL DEFAULT FALSE,
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -626,6 +628,7 @@ CREATE TABLE IF NOT EXISTS rental_equipment (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     supplier VARCHAR(255),
+    supplier_id  INT REFERENCES customers(customerid) ON DELETE SET NULL,
     category VARCHAR(100),
     description TEXT,
     rental_price DECIMAL(10,2) DEFAULT 0.00,
