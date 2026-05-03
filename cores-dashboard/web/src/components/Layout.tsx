@@ -3,13 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Home, Settings, LogOut, User, ExternalLink, Menu, X, ChevronDown,
   Users, Shield, Layers, Lightbulb, Cpu, FolderTree, Tag, Ruler,
-  Database, KeyRound, Download, Cable, ShoppingCart,
+  Database, KeyRound, Download, Cable, ShoppingCart, BookUser,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useAppConfig } from '../hooks/useAppConfig';
 
 const ADMIN_ITEMS = [
+  { path: '/admin/contacts',     label: 'Kontakte',           icon: BookUser },
   { path: '/admin/users',       label: 'Benutzer',          icon: Users },
   { path: '/admin/roles',       label: 'Rollen',            icon: Shield },
   { path: '/admin/zonetypes',   label: 'Lagertypen',        icon: Layers },

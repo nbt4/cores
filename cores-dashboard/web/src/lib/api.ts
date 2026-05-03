@@ -13,6 +13,13 @@ export const warehouseApi = axios.create({
   withCredentials: true,
 });
 
+// RentalCore proxy API instance — routes through the dashboard's proxy to RentalCore
+export const rentalApi = axios.create({
+  baseURL: '/api/v1/proxy/rental/api/v1',
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+});
+
 // ---- Types needed by warehousecore admin tabs ----
 
 export interface ZoneTypeDefinition {
@@ -141,4 +148,36 @@ export const apiKeysAdminApi = {
   updateStatus: (id: number, is_active: boolean) =>
     warehouseApi.put(`/admin/api-keys/${id}/status`, { is_active }),
   delete: (id: number) => warehouseApi.delete(`/admin/api-keys/${id}`),
+};
+
+// ---- Contacts (via RentalCore proxy) ----
+
+export interface Contact {
+  customer_id: number;
+  companyname?: string | null;
+  firstname?: string | null;
+  lastname?: string | null;
+  email?: string | null;
+  phonenumber?: string | null;
+  street?: string | null;
+  housenumber?: string | null;
+  ZIP?: string | null;
+  city?: string | null;
+  federalstate?: string | null;
+  country?: string | null;
+  customertype?: string | null;
+  is_customer: boolean;
+  is_supplier: boolean;
+  notes?: string | null;
+}
+
+export type ContactPayload = Omit<Contact, 'customer_id'>;
+
+export const contactsApi = {
+  getAll: (params?: { role?: string; q?: string }) =>
+    rentalApi.get<{ customers: Contact[] }>('/customers', { params }),
+  getById: (id: number) => rentalApi.get<Contact>(`/customers/${id}`),
+  create: (data: ContactPayload) => rentalApi.post<{ customer_id: number }>('/customers', data),
+  update: (id: number, data: ContactPayload) => rentalApi.put(`/customers/${id}`, data),
+  delete: (id: number) => rentalApi.delete(`/customers/${id}`),
 };
