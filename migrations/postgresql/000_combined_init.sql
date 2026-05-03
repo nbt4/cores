@@ -717,6 +717,7 @@ CREATE TABLE IF NOT EXISTS pdf_extraction_items (
     line_total          DECIMAL(12,2) DEFAULT 0,
     mapped_product_id   BIGINT REFERENCES products(productid) ON DELETE SET NULL,
     mapped_package_id   BIGINT REFERENCES product_packages(package_id) ON DELETE SET NULL,
+    mapped_rental_equipment_id BIGINT REFERENCES rental_equipment(id) ON DELETE SET NULL,
     mapping_confidence  DECIMAL(5,2) DEFAULT 0,
     mapping_status      VARCHAR(50) DEFAULT 'pending',
     user_notes          TEXT
@@ -756,6 +757,22 @@ CREATE TABLE IF NOT EXISTS pdf_package_mappings (
 );
 CREATE INDEX IF NOT EXISTS idx_pdf_pkg_map_text    ON pdf_package_mappings(normalized_text);
 CREATE INDEX IF NOT EXISTS idx_pdf_pkg_map_package ON pdf_package_mappings(package_id);
+
+CREATE TABLE IF NOT EXISTS pdf_rental_mappings (
+    mapping_id            BIGSERIAL PRIMARY KEY,
+    pdf_rental_text       TEXT NOT NULL UNIQUE,
+    normalized_text       TEXT,
+    rental_equipment_id   BIGINT REFERENCES rental_equipment(id) ON DELETE CASCADE,
+    mapping_type          VARCHAR(20) DEFAULT 'manual',
+    confidence_score      DECIMAL(5,2) DEFAULT 100,
+    usage_count           INT DEFAULT 0,
+    last_used_at          TIMESTAMP,
+    created_by            BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    is_active             BOOLEAN DEFAULT TRUE,
+    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_rental_map_text ON pdf_rental_mappings(normalized_text);
 
 CREATE TABLE IF NOT EXISTS pdf_customer_mappings (
     mapping_id        BIGSERIAL PRIMARY KEY,
