@@ -659,6 +659,19 @@ CREATE INDEX IF NOT EXISTS idx_api_key_hash ON api_keys(key_hash);
 CREATE INDEX IF NOT EXISTS idx_api_key_active ON api_keys(is_active);
 CREATE INDEX IF NOT EXISTS idx_api_key_user ON api_keys(user_id);
 
+-- Service items (non-physical cost positions: Fahrtkosten, Personal, etc.)
+CREATE TABLE IF NOT EXISTS service_items (
+    id              BIGSERIAL PRIMARY KEY,
+    name            VARCHAR(255) NOT NULL,
+    description     TEXT,
+    default_price   DECIMAL(12,2) DEFAULT 0,
+    category        VARCHAR(100),
+    unit            VARCHAR(50) DEFAULT 'pauschal',
+    is_active       BOOLEAN DEFAULT TRUE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- =============================================================================
 -- PART 3b: PDF TABLES
 -- =============================================================================
@@ -718,6 +731,7 @@ CREATE TABLE IF NOT EXISTS pdf_extraction_items (
     mapped_product_id   BIGINT REFERENCES products(productid) ON DELETE SET NULL,
     mapped_package_id   BIGINT REFERENCES product_packages(package_id) ON DELETE SET NULL,
     mapped_rental_equipment_id BIGINT REFERENCES rental_equipment(id) ON DELETE SET NULL,
+    mapped_service_item_id BIGINT REFERENCES service_items(id) ON DELETE SET NULL,
     mapping_confidence  DECIMAL(5,2) DEFAULT 0,
     mapping_status      VARCHAR(50) DEFAULT 'pending',
     user_notes          TEXT
@@ -773,6 +787,22 @@ CREATE TABLE IF NOT EXISTS pdf_rental_mappings (
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_pdf_rental_map_text ON pdf_rental_mappings(normalized_text);
+
+CREATE TABLE IF NOT EXISTS pdf_service_mappings (
+    mapping_id          BIGSERIAL PRIMARY KEY,
+    pdf_service_text    TEXT NOT NULL UNIQUE,
+    normalized_text     TEXT,
+    service_item_id     BIGINT REFERENCES service_items(id) ON DELETE CASCADE,
+    mapping_type        VARCHAR(20) DEFAULT 'manual',
+    confidence_score    DECIMAL(5,2) DEFAULT 100,
+    usage_count         INT DEFAULT 0,
+    last_used_at        TIMESTAMP,
+    created_by          BIGINT REFERENCES users(userid) ON DELETE SET NULL,
+    is_active           BOOLEAN DEFAULT TRUE,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_pdf_service_map_text ON pdf_service_mappings(normalized_text);
 
 CREATE TABLE IF NOT EXISTS pdf_customer_mappings (
     mapping_id        BIGSERIAL PRIMARY KEY,
