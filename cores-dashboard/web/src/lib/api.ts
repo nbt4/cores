@@ -173,6 +173,35 @@ export interface Contact {
 
 export type ContactPayload = Omit<Contact, 'customer_id'>;
 
+// ---- Service Items (via RentalCore proxy) ----
+
+export interface ServiceItem {
+  id: number;
+  name: string;
+  description?: string | null;
+  default_price: number;
+  category?: string | null;
+  unit: string;
+  is_active: boolean;
+}
+
+export type ServiceItemPayload = Omit<ServiceItem, 'id' | 'is_active'>;
+
+// The service-items endpoints live under the PDF API namespace in RentalCore
+const rentalPdfApi = axios.create({
+  baseURL: '/api/v1/proxy/rental/api/pdf',
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+});
+
+export const serviceItemsApi = {
+  getAll: () => rentalPdfApi.get<{ service_items: ServiceItem[] }>('/service-items'),
+  search: (q: string) => rentalPdfApi.get<{ service_items: ServiceItem[] }>('/service-items/search', { params: { q } }),
+  create: (data: ServiceItemPayload) => rentalPdfApi.post<{ service_item_id: number; name: string }>('/service-items', data),
+  update: (id: number, data: ServiceItemPayload) => rentalPdfApi.put(`/service-items/${id}`, data),
+  delete: (id: number) => rentalPdfApi.delete(`/service-items/${id}`),
+};
+
 export const contactsApi = {
   getAll: (params?: { role?: string; q?: string }) =>
     rentalApi.get<{ customers: Contact[] }>('/customers', { params }),

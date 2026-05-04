@@ -1,5 +1,6 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { ContactsTab } from '../components/admin/ContactsTab';
+import { ServiceItemsTab } from '../components/admin/ServiceItemsTab';
 import { UsersTab } from '../components/admin/UsersTab';
 import { ZoneTypesTab } from '../components/admin/ZoneTypesTab';
 import { LEDSettingsTab } from '../components/admin/LEDSettingsTab';
@@ -16,6 +17,7 @@ import { ExportTab } from '../components/admin/ExportTab';
 
 const tabComponents: Record<string, React.ElementType> = {
   contacts: ContactsTab,
+  services: ServiceItemsTab,
   users: UsersTab,
   roles: RolesTab,
   zonetypes: ZoneTypesTab,
