@@ -146,6 +146,7 @@ CREATE INDEX IF NOT EXISTS idx_customers_name ON customers(name);
 CREATE INDEX IF NOT EXISTS idx_customers_email ON customers(email);
 CREATE INDEX IF NOT EXISTS idx_customers_companyname ON customers(companyname);
 CREATE INDEX IF NOT EXISTS idx_customers_lastname ON customers(lastname);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_customers_m365_id ON customers(m365_id) WHERE m365_id IS NOT NULL;
 
 -- Sync state for external integrations (e.g. M365 delta token)
 CREATE TABLE IF NOT EXISTS sync_state (
