@@ -135,6 +135,10 @@ CREATE TABLE IF NOT EXISTS customers (
     is_customer BOOLEAN NOT NULL DEFAULT TRUE,
     is_supplier BOOLEAN NOT NULL DEFAULT FALSE,
     notes TEXT,
+    m365_id VARCHAR(255),
+    m365_updated_at TIMESTAMP,
+    is_archived BOOLEAN NOT NULL DEFAULT FALSE,
+    archived_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -142,6 +146,13 @@ CREATE INDEX IF NOT EXISTS idx_customers_name ON customers(name);
 CREATE INDEX IF NOT EXISTS idx_customers_email ON customers(email);
 CREATE INDEX IF NOT EXISTS idx_customers_companyname ON customers(companyname);
 CREATE INDEX IF NOT EXISTS idx_customers_lastname ON customers(lastname);
+
+-- Sync state for external integrations (e.g. M365 delta token)
+CREATE TABLE IF NOT EXISTS sync_state (
+    key        VARCHAR(100) PRIMARY KEY,
+    value      TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- Status table (for job statuses)
 CREATE TABLE IF NOT EXISTS status (
@@ -287,6 +298,8 @@ CREATE TABLE IF NOT EXISTS jobs (
     final_revenue DECIMAL(12,2),
     startdate DATE,
     enddate DATE,
+    multiply_by_days BOOLEAN NOT NULL DEFAULT TRUE,
+    prices_include_tax BOOLEAN NOT NULL DEFAULT FALSE,
     created_by INT REFERENCES users(userid) ON DELETE SET NULL,
     updated_by INT REFERENCES users(userid) ON DELETE SET NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -1071,9 +1084,10 @@ CREATE INDEX IF NOT EXISTS idx_job_product_req_product ON job_product_requiremen
 CREATE TABLE IF NOT EXISTS job_positions (
     position_id     BIGSERIAL PRIMARY KEY,
     job_id          BIGINT NOT NULL REFERENCES jobs(jobid) ON DELETE CASCADE,
-    position_type   VARCHAR(20) NOT NULL DEFAULT 'product' CHECK (position_type IN ('product', 'service')),
+    position_type   VARCHAR(20) NOT NULL DEFAULT 'product' CHECK (position_type IN ('product', 'service', 'rental', 'package')),
     product_id      INT REFERENCES products(productid) ON DELETE SET NULL,
     service_item_id BIGINT REFERENCES service_items(id) ON DELETE SET NULL,
+    rental_equipment_id INT REFERENCES rental_equipment(id) ON DELETE SET NULL,
     description     TEXT NOT NULL DEFAULT '',
     quantity        DECIMAL(10,2) NOT NULL DEFAULT 1,
     unit            VARCHAR(50) NOT NULL DEFAULT 'Stück',
@@ -1081,6 +1095,7 @@ CREATE TABLE IF NOT EXISTS job_positions (
     follow_day_factor DECIMAL(4,2) NOT NULL DEFAULT 0.50,
     discount_percent  DECIMAL(5,2) NOT NULL DEFAULT 0,
     discount_amount   DECIMAL(12,2) NOT NULL DEFAULT 0,
+    tax_rate          DECIMAL(5,2) NOT NULL DEFAULT 19.00,
     sort_order      INT NOT NULL DEFAULT 0,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -1089,6 +1104,7 @@ CREATE TABLE IF NOT EXISTS job_positions (
 CREATE INDEX idx_job_positions_job_id ON job_positions(job_id);
 CREATE INDEX idx_job_positions_product_id ON job_positions(product_id);
 CREATE INDEX idx_job_positions_service_item_id ON job_positions(service_item_id);
+CREATE INDEX IF NOT EXISTS idx_job_positions_rental_equipment ON job_positions(rental_equipment_id);
 
 CREATE TABLE IF NOT EXISTS job_position_devices (
     id          BIGSERIAL PRIMARY KEY,
