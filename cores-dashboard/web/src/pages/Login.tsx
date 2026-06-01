@@ -28,16 +28,16 @@ export function Login() {
     <div className="min-h-screen bg-dark flex items-center justify-center relative overflow-hidden">
       {/* Red glow behind card */}
       <div className="absolute w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'rgba(208,2,27,0.12)', filter: 'blur(80px)', top: '50%', left: '50%', transform: 'translate(-50%, -60%)' }} />
+        style={{ background: 'rgba(var(--accent-red-rgb), 0.12)', filter: 'blur(80px)', top: '50%', left: '50%', transform: 'translate(-50%, -60%)' }} />
 
       <div className="relative z-10 w-full max-w-sm mx-4">
         <div className="rounded-2xl p-8 flex flex-col items-center gap-6"
-          style={{ background: 'rgba(17,17,17,0.92)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+          style={{ background: 'rgba(var(--color-dark-100-rgb), 0.92)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-subtle)' }}>
 
           {/* Logo */}
           <div className="flex flex-col items-center gap-3">
             <div className="w-14 h-14 bg-accent-red rounded-xl flex items-center justify-center"
-              style={{ boxShadow: '0 0 28px rgba(208,2,27,0.35)' }}>
+              style={{ boxShadow: '0 0 28px rgba(var(--accent-red-rgb), 0.35)' }}>
               <span className="text-white font-black text-2xl">C</span>
             </div>
             <div className="text-center">
@@ -70,7 +70,7 @@ export function Login() {
               type="submit"
               disabled={loading}
               className="w-full py-3 rounded-lg font-semibold text-white transition-all disabled:opacity-50"
-              style={{ background: '#D0021B', boxShadow: '0 0 16px rgba(208,2,27,0.25)' }}
+              style={{ background: 'var(--accent-red)', boxShadow: '0 0 16px rgba(var(--accent-red-rgb), 0.25)' }}
             >
               {loading ? 'Anmelden...' : 'Anmelden'}
             </button>

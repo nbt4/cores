@@ -355,7 +355,7 @@ function PasskeysSection() {
         <div className="space-y-2">
           {passkeys.map(pk => (
             <div key={pk.passkeyID} className="flex items-center justify-between p-3 rounded-xl"
-              style={{ background: '#161616', border: '1px solid rgba(255,255,255,0.06)' }}>
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--border-subtle)' }}>
               <div>
                 <p className="text-white text-sm font-semibold">{pk.name}</p>
                 <p className="text-gray-500 text-xs">Erstellt: {fmt(pk.createdAt)} · Zuletzt: {fmt(pk.lastUsed)}</p>

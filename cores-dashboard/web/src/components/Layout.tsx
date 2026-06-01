@@ -50,8 +50,7 @@ function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () 
       {/* Logo */}
       <div className="flex items-center gap-3 px-3 py-4 border-b border-white/5 flex-shrink-0">
         <div
-          className="w-8 h-8 bg-accent-red rounded-lg flex items-center justify-center flex-shrink-0"
-          style={{ boxShadow: '0 0 14px rgba(208,2,27,0.3)' }}
+          className="w-8 h-8 bg-accent-red rounded-lg flex items-center justify-center flex-shrink-0 shadow-[0_0_14px_rgba(var(--accent-red-rgb),0.3)]"
         >
           <span className="text-white font-black text-sm">C</span>
         </div>
@@ -159,15 +158,13 @@ export function Layout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-dark flex">
 
       {/* ── MOBILE top bar ─────────────────────────────────── */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-30 h-14 flex items-center px-4 gap-3"
-        style={{ background: '#111111', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+      <header className="md:hidden fixed top-0 left-0 right-0 z-30 h-14 flex items-center px-4 gap-3 bg-dark-100 border-b border-white/5">
         <button onClick={() => setDrawerOpen(true)}
           className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-300 hover:bg-white/5">
           <Menu className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-accent-red rounded-md flex items-center justify-center"
-            style={{ boxShadow: '0 0 10px rgba(208,2,27,0.3)' }}>
+          <div className="w-6 h-6 bg-accent-red rounded-md flex items-center justify-center shadow-[0_0_10px_rgba(var(--accent-red-rgb),0.3)]">
             <span className="text-white font-black text-xs">C</span>
           </div>
           <span className="text-white font-black tracking-widest text-sm">CORES</span>
@@ -178,8 +175,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {drawerOpen && (
         <div className="md:hidden fixed inset-0 z-40 flex">
           <div className="absolute inset-0 bg-black/60" onClick={() => setDrawerOpen(false)} />
-          <aside className="relative z-50 w-64 h-full flex flex-col"
-            style={{ background: '#111111', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+          <aside className="relative z-50 w-64 h-full flex flex-col bg-dark-100 border-r border-white/5">
             <button onClick={() => setDrawerOpen(false)}
               className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-white/5">
               <X className="w-4 h-4" />
@@ -191,9 +187,8 @@ export function Layout({ children }: { children: ReactNode }) {
 
       {/* ── DESKTOP sidebar ────────────────────────────────── */}
       <aside
-        className={`hidden md:flex flex-col fixed top-0 left-0 h-full z-20 transition-all duration-200
+        className={`hidden md:flex flex-col fixed top-0 left-0 h-full z-20 transition-all duration-200 bg-dark-100 border-r border-white/5
           ${desktopExpanded ? 'w-56' : 'w-14'}`}
-        style={{ background: '#111111', borderRight: '1px solid rgba(255,255,255,0.06)' }}
       >
         {/* Collapse toggle */}
         <button

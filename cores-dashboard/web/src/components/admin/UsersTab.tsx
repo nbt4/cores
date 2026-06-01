@@ -205,7 +205,7 @@ export function UsersTab() {
         <div className="space-y-2">
           {users.map(u => (
             <div key={u.userID} className="flex items-center justify-between p-4 rounded-xl"
-              style={{ background: '#161616', border: '1px solid rgba(255,255,255,0.06)' }}>
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--border-subtle)' }}>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <p className="text-white text-sm font-semibold">{u.username}</p>

@@ -40,7 +40,7 @@ export function AdminPage() {
   if (!Component) return <Navigate to="/admin/users" replace />;
 
   return (
-    <div className="rounded-xl p-5" style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.06)' }}>
+    <div className="rounded-xl p-5" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-subtle)' }}>
       <Component />
     </div>
   );

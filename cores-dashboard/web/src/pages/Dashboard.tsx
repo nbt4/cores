@@ -12,7 +12,7 @@ interface AnalyticsSummary {
 
 function StatCard({ label, value, icon: Icon, color }: { label: string; value: string | number; icon: React.ElementType; color: string }) {
   return (
-    <div className="bg-dark-100 rounded-xl p-4 flex items-center gap-4" style={{ border: '1px solid rgba(255,255,255,0.06)' }}>
+    <div className="bg-dark-100 rounded-xl p-4 flex items-center gap-4" style={{ border: '1px solid var(--border-subtle)' }}>
       <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${color}18` }}>
         <Icon className="w-5 h-5" style={{ color }} />
       </div>
@@ -48,7 +48,7 @@ export function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href={config?.rentalUrl ?? '#'}
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
-          style={{ background: 'linear-gradient(135deg, #D0021B 0%, #6b0010 100%)' }}>
+          style={{ background: 'var(--gradient-accent)' }}>
           <div>
             <p className="text-white/70 text-xs font-semibold tracking-wider uppercase">Auftragsmanagement</p>
             <h2 className="text-white text-2xl font-black mt-1">RentalCore</h2>
@@ -64,7 +64,7 @@ export function Dashboard() {
 
         <a href={config?.warehouseUrl ?? '#'}
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
-          style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0f1f33 100%)', border: '1px solid #2a4a6b' }}>
+          style={{ background: 'var(--gradient-primary)', border: '1px solid var(--border-default)' }}>
           <div>
             <p className="text-white/70 text-xs font-semibold tracking-wider uppercase">Lagermanagement</p>
             <h2 className="text-white text-2xl font-black mt-1">WarehouseCore</h2>

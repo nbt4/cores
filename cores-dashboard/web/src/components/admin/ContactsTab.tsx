@@ -229,7 +229,7 @@ function ContactDetail({ contact, onBack, onEdit, onDelete }: {
         </div>
       </div>
 
-      <div className="rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-xl p-4" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-subtle)' }}>
         <Row label="Unternehmen" value={contact.companyname} />
         <Row label="Vorname" value={contact.firstname} />
         <Row label="Nachname" value={contact.lastname} />
@@ -344,7 +344,7 @@ export function ContactsTab() {
       </div>
 
       {/* Search bar */}
-      <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-subtle)' }}>
         <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
         <input
           type="search"
@@ -361,7 +361,7 @@ export function ContactsTab() {
       {error && <p className="text-sm text-red-400">{error}</p>}
 
       {/* List */}
-      <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
         {loading ? (
           <div className="flex justify-center py-14">
             <div className="w-7 h-7 border-4 border-accent-red/20 border-t-accent-red rounded-full animate-spin" />

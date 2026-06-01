@@ -152,7 +152,7 @@ export function RentalFieldsTab() {
       )}
 
       {editing !== null && (
-        <div className="rounded-xl p-4 space-y-4" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="rounded-xl p-4 space-y-4" style={{ background: 'var(--surface-3)', border: '1px solid var(--border-subtle)' }}>
           <h3 className="text-sm font-semibold text-white">{editing === 'new' ? 'Neues Feld' : 'Feld bearbeiten'}</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -232,9 +232,9 @@ export function RentalFieldsTab() {
       ) : fields.length === 0 ? (
         <p className="text-sm text-gray-500">Noch keine Felder definiert.</p>
       ) : (
-        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
           <table className="w-full text-sm">
-            <thead style={{ background: '#1a1a1a' }}>
+            <thead style={{ background: 'var(--surface-3)' }}>
               <tr className="text-left text-gray-400 text-xs uppercase tracking-wider">
                 <th className="px-4 py-3">Typ</th>
                 <th className="px-4 py-3">Name</th>

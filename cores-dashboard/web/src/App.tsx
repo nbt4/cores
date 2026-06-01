@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
           <Route path="/admin" element={<Navigate to="/admin/users" replace />} />
           <Route path="/admin/:tab" element={<ProtectedRoute><Layout><AdminPage /></Layout></ProtectedRoute>} />
-          <Route path="/profile/security" element={<ProtectedRoute><Layout><div className="rounded-xl p-5" style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.06)' }}><SecurityPage /></div></Layout></ProtectedRoute>} />
+          <Route path="/profile/security" element={<ProtectedRoute><Layout><div className="rounded-xl p-5" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-subtle)' }}><SecurityPage /></div></Layout></ProtectedRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

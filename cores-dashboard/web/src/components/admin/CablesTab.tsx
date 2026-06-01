@@ -92,7 +92,7 @@ function CableTypesSection() {
         <div className="space-y-2">
           {items.map(item => (
             <div key={item.cable_type_id} className="flex items-center justify-between p-3 rounded-xl"
-              style={{ background: '#161616', border: '1px solid rgba(255,255,255,0.06)' }}>
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--border-subtle)' }}>
               <div>
                 <p className="text-white text-sm font-semibold">{item.name}</p>
                 <p className="text-gray-500 text-xs">{item.count} Kabel</p>
@@ -211,7 +211,7 @@ function CableConnectorsSection() {
         <div className="space-y-2">
           {items.map(item => (
             <div key={item.connector_id} className="flex items-center justify-between p-3 rounded-xl"
-              style={{ background: '#161616', border: '1px solid rgba(255,255,255,0.06)' }}>
+              style={{ background: 'var(--surface-2)', border: '1px solid var(--border-subtle)' }}>
               <div className="flex items-center gap-3">
                 <div>
                   <p className="text-white text-sm font-semibold">{item.name}</p>
