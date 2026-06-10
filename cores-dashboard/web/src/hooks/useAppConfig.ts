@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 interface AppConfig {
   rentalUrl: string;
   warehouseUrl: string;
+  plannerUrl: string;
 }
 
 let cached: AppConfig | null = null;

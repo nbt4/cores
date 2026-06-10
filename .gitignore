@@ -44,3 +44,7 @@ AGENTS.md
 .claude/
 .gemini/
 *.md.bak
+aws/
+awscliv2.zip
+*.zip
+Screenshot*.png

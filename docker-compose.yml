@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_DB: "${POSTGRES_DB:-rentalcore}"
       POSTGRES_USER: "${POSTGRES_USER:-rentalcore}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-}"
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
@@ -47,7 +47,7 @@ services:
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
       DB_USER: "${POSTGRES_USER:-rentalcore}"
-      DB_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
       DB_SSLMODE: "disable"
       # Nextcloud File Pool (WebDAV)
       NEXTCLOUD_WEBDAV_URL: "${NEXTCLOUD_WEBDAV_URL:-}"
@@ -56,7 +56,7 @@ services:
       NEXTCLOUD_WEBDAV_BASE_PATH: "${NEXTCLOUD_WEBDAV_BASE_PATH:-rentalcore-filepool}"
       NEXTCLOUD_BACKFILL_ON_START: "${NEXTCLOUD_BACKFILL_ON_START:-true}"
       # JWT Secret for SSO (shared across all cores)
-      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       # App port
       SERVER_HOST: "0.0.0.0"
       SERVER_PORT: "8081"
@@ -64,6 +64,8 @@ services:
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
     ports:
       - "8081:8081"
+    volumes:
+      - branding-data:/var/lib/branding
     networks:
       - weidelbach
     healthcheck:
@@ -85,15 +87,18 @@ services:
         condition: service_healthy
     environment:
       PORT: "8080"
-      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       RENTALCORE_URL: "http://rentalcore:8081"
       WAREHOUSECORE_URL: "http://warehousecore:8082"
+      PLANNERCORE_URL: "http://plannercore:8080"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
       DB_USER: "${POSTGRES_USER:-rentalcore}"
-      DB_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
       DB_SSLMODE: "disable"
+    volumes:
+      - branding-data:/var/lib/branding
     ports:
       - "8080:8080"
     networks:
@@ -128,10 +133,10 @@ services:
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
       DB_USER: "${POSTGRES_USER:-rentalcore}"
-      DB_PASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
       DB_SSLMODE: "disable"
       # JWT Secret for SSO (shared across all cores)
-      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-dev-secret-please-change}"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       # App port
       PORT: "8082"
       # Nextcloud File Pool (shared with RentalCore) for product pictures
@@ -144,7 +149,7 @@ services:
       LED_MQTT_PORT: "${LED_MQTT_PORT:-1883}"
       LED_MQTT_TLS: "${LED_MQTT_TLS:-false}"
       LED_MQTT_USER: "${LED_MQTT_USER:-leduser}"
-      LED_MQTT_PASS: "${LED_MQTT_PASS:-ledpassword123}"
+      LED_MQTT_PASS: "${LED_MQTT_PASS:-}"
       LED_MQTT_TOPIC_PREFIX: "${LED_MQTT_TOPIC_PREFIX:-weidelbach}"
       LED_WAREHOUSE_ID: "${LED_WAREHOUSE_ID:-weidelbach}"
       LED_MAPPING_FILE: "${LED_MAPPING_FILE:-/var/lib/warehousecore/led/led_mapping.json}"
@@ -156,10 +161,43 @@ services:
     volumes:
       - led-mapping:/var/lib/warehousecore/led
       - warehousecore-labels:/root/web/dist/labels
+      - branding-data:/var/lib/branding
     networks:
       - weidelbach
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:8082/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  # ============================================================================
+  # PlannerCore - Planning & Task Management (Node.js)
+  # ============================================================================
+  plannercore:
+    image: nobentie/plannercore:latest
+    container_name: plannercore
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8080"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${POSTGRES_USER:-rentalcore}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
+      APP_URL: "${PLANNER_APP_URL:-http://localhost:8080}"
+    ports:
+      - "8083:8080"
+    volumes:
+      - branding-data:/var/lib/branding
+    networks:
+      - weidelbach
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/health || exit 1"]
       interval: 15s
       timeout: 10s
       retries: 10
@@ -180,7 +218,7 @@ services:
     environment:
       PGHOST: "postgres"
       PGUSER: "${POSTGRES_USER:-rentalcore}"
-      PGPASSWORD: "${POSTGRES_PASSWORD:-rentalcore123}"
+      PGPASSWORD: "${POSTGRES_PASSWORD:-}"
       PGDATABASE: "${POSTGRES_DB:-rentalcore}"
       BACKUP_RETENTION_DAYS: "${BACKUP_RETENTION_DAYS:-7}"
       BACKUP_INTERVAL_HOURS: "${BACKUP_INTERVAL_HOURS:-24}"
@@ -235,7 +273,7 @@ services:
       - mosquitto-log:/mosquitto/log
     environment:
       LED_MQTT_USER: "${LED_MQTT_USER:-leduser}"
-      LED_MQTT_PASS: "${LED_MQTT_PASS:-ledpassword123}"
+      LED_MQTT_PASS: "${LED_MQTT_PASS:-}"
     entrypoint:
       - /bin/sh
       - -c
@@ -292,3 +330,6 @@ volumes:
   mosquitto-config:
   mosquitto-data:
   mosquitto-log:
+  # Branding logos (shared across all services, writable by cores-dashboard)
+  branding-data:
+    external: true

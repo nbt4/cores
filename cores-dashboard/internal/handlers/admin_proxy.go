@@ -33,6 +33,64 @@ func (h *AdminProxyHandler) ProxyWarehouse(w http.ResponseWriter, r *http.Reques
 	h.proxy(w, r, h.cfg.WarehouseCoreURL+target)
 }
 
+// ProxyPlanner forwards both /api/v1/planner/* and /api/v1/proxy/planner/* → plannercore:8080
+func (h *AdminProxyHandler) ProxyPlanner(w http.ResponseWriter, r *http.Request) {
+	path := r.URL.Path
+	// Admin proxy: /api/v1/proxy/planner/* → /api/v1/planner/*
+	if strings.HasPrefix(path, "/api/v1/proxy/planner") {
+		remaining := strings.TrimPrefix(path, "/api/v1/proxy/planner")
+		if remaining == "" {
+			remaining = "/"
+		}
+		path = "/api/v1/planner" + remaining
+	}
+	// Direct proxy: /api/v1/planner/* → forward as-is
+	h.proxy(w, r, h.cfg.PlannercoreURL+path)
+}
+
+// ProxyPlannerSpa forwards /planner/* → plannercore:8080/* (serves Plannercore frontend)
+func (h *AdminProxyHandler) ProxyPlannerSpa(w http.ResponseWriter, r *http.Request) {
+	path := strings.TrimPrefix(r.URL.Path, "/planner")
+	if path == "" {
+		path = "/"
+	}
+	// Also pass query string
+	target := h.cfg.PlannercoreURL + path
+	if r.URL.RawQuery != "" {
+		target += "?" + r.URL.RawQuery
+	}
+	h.serveSPAProxy(w, r, target)
+}
+
+func (h *AdminProxyHandler) serveSPAProxy(w http.ResponseWriter, r *http.Request, targetURL string) {
+	req, err := http.NewRequest(r.Method, targetURL, r.Body)
+	if err != nil {
+		http.Error(w, `{"error":"proxy error"}`, http.StatusBadGateway)
+		return
+	}
+
+	req.Header.Set("Content-Type", r.Header.Get("Content-Type"))
+	// Forward cookies for auth
+	for _, c := range r.Cookies() {
+		req.AddCookie(c)
+	}
+
+	resp, err := h.client.Do(req)
+	if err != nil {
+		http.Error(w, `{"error":"upstream unavailable"}`, http.StatusBadGateway)
+		return
+	}
+	defer resp.Body.Close()
+
+	for k, vs := range resp.Header {
+		for _, v := range vs {
+			w.Header().Add(k, v)
+		}
+	}
+	w.WriteHeader(resp.StatusCode)
+	io.Copy(w, resp.Body)
+}
+
 func (h *AdminProxyHandler) proxy(w http.ResponseWriter, r *http.Request, targetURL string) {
 	if r.URL.RawQuery != "" {
 		targetURL += "?" + r.URL.RawQuery

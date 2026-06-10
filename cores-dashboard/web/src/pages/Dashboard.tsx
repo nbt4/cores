@@ -1,6 +1,6 @@
 // File: cores-dashboard/web/src/pages/Dashboard.tsx
 import { useEffect, useState } from 'react';
-import { ExternalLink, Briefcase, Package, TrendingUp, Wrench, AlertTriangle, BarChart2 } from 'lucide-react';
+import { ExternalLink, Briefcase, Package, TrendingUp, Wrench, AlertTriangle, BarChart2, Kanban } from 'lucide-react';
 import { api } from '../lib/api';
 import { useAppConfig } from '../hooks/useAppConfig';
 
@@ -45,7 +45,7 @@ export function Dashboard() {
       </div>
 
       {/* Hub Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href={config?.rentalUrl ?? '#'}
           className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
           style={{ background: 'var(--gradient-accent)' }}>
@@ -75,6 +75,22 @@ export function Dashboard() {
           </div>
           <div className="absolute right-4 bottom-4 opacity-10">
             <Package className="w-20 h-20 text-white" />
+          </div>
+        </a>
+
+        <a href={config?.plannerUrl ?? (config?.rentalUrl ? new URL('/planner', config.rentalUrl).href : '#')}
+          className="group relative overflow-hidden rounded-2xl p-6 flex flex-col justify-between min-h-40 transition-transform hover:scale-[1.01]"
+          style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%)' }}>
+          <div>
+            <p className="text-white/70 text-xs font-semibold tracking-wider uppercase">Aufgaben & Planung</p>
+            <h2 className="text-white text-2xl font-black mt-1">PlannerCore</h2>
+          </div>
+          <div className="flex items-center gap-2 text-white/80 text-sm font-medium mt-4">
+            <span>Öffnen</span>
+            <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </div>
+          <div className="absolute right-4 bottom-4 opacity-10">
+            <Kanban className="w-20 h-20 text-white" />
           </div>
         </a>
       </div>

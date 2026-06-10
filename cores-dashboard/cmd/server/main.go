@@ -47,6 +47,10 @@ func main() {
 				proxyHandler.ProxyRental(w, r)
 			case strings.HasPrefix(r.URL.Path, "/api/v1/proxy/warehouse"):
 				proxyHandler.ProxyWarehouse(w, r)
+			case strings.HasPrefix(r.URL.Path, "/api/v1/proxy/planner"):
+				proxyHandler.ProxyPlanner(w, r)
+			case strings.HasPrefix(r.URL.Path, "/api/v1/planner"):
+				proxyHandler.ProxyPlanner(w, r)
 			default:
 				http.NotFound(w, r)
 			}
@@ -55,6 +59,13 @@ func main() {
 	mux.Handle("/api/v1/auth/me", protected)
 	mux.Handle("/api/v1/analytics/", protected)
 	mux.Handle("/api/v1/proxy/", protected)
+	mux.Handle("/api/v1/planner/", protected)
+
+	// Plannercore SPA proxy (public — auth handled by Plannercore itself)
+	mux.HandleFunc("/planner/", proxyHandler.ProxyPlannerSpa)
+	mux.HandleFunc("/planner", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/planner/", http.StatusMovedPermanently)
+	})
 
 	distFS, err := fs.Sub(staticFiles, "dist")
 	if err != nil {

@@ -119,6 +119,13 @@ function SidebarContent({ expanded, onClose }: { expanded: boolean; onClose: () 
               {expanded && <span>WarehouseCore</span>}
             </a>
           )}
+          {config?.plannerUrl && (
+            <a href={config.plannerUrl}
+              className="flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+              <ExternalLink className="w-4 h-4 flex-shrink-0" />
+              {expanded && <span>PlannerCore</span>}
+            </a>
+          )}
         </div>
       </nav>
 
