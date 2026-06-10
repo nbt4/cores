@@ -236,7 +236,13 @@ router.get('/:id/export', async (req, res) => {
   );
   const progressName = { 0: 'Nicht begonnen', 50: 'In Arbeit', 100: 'Erledigt' };
   const prioName = { 1: 'Dringend', 3: 'Wichtig', 5: 'Mittel', 9: 'Niedrig' };
-  const escCsv = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const escCsv = (v) => {
+    const s = String(v ?? '');
+    const escaped = '"' + s.replace(/"/g, '""') + '"';
+    // Formula-Injection-Schutz: Werte die mit =, +, -, @ beginnen,
+    // mit einem Tab-Präfix versehen (verhindert Excel-Formula-Ausführung)
+    return /^[=+\-@\t\r\n]/.test(s) ? '\t' + escaped : escaped;
+  };
   const header = ['Aufgaben-ID', 'Aufgabenname', 'Bucket', 'Status', 'Priorität', 'Zugewiesen an', 'Erstellt von', 'Erstellt am', 'Startdatum', 'Fälligkeitsdatum', 'Abgeschlossen am', 'Checkliste', 'Beschreibung'];
   const lines = rows.map((r) =>
     [r.id, r.title, r.bucket, progressName[r.progress], prioName[r.priority] || r.priority, r.assignees, r.creator, r.created, r.start, r.due, r.completed, r.cl_total ? `${r.cl_done}/${r.cl_total}` : '', r.description]

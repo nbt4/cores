@@ -1,8 +1,12 @@
-# Planner
+# PlannerCore
 
-Ein vollständiger, selbst gehosteter Klon von Microsoft Planner – mit Board, Raster-, Diagramm- und Zeitplanansicht, Buckets, Bezeichnungen, Checklisten, Kommentaren, Anhängen, Benutzerverwaltung und E-Mail-Benachrichtigungen über einen Microsoft-365-Tenant. Dark/Light-Mode inklusive, optimiert für jede Bildschirmgröße vom Smartphone bis zum Ultrawide-Monitor.
+Planungs- und Aufgabenmanagement-Tool – Teil des **Tsunami Events Cores-Ökosystems**.
+Authentifizierung via cores-dashboard (SSO), geteiltes Branding und Tsunami-Design-System.
+
+Ehemals ein eigenständiger Microsoft-Planner-Klon; jetzt vollständig in die Cores-Plattform integriert.
 
 ![Stack](https://img.shields.io/badge/Stack-React%20%2B%20Node.js%20%2B%20PostgreSQL-31752f)
+![Cores](https://img.shields.io/badge/Cores-SSO%20%7C%20Branding%20%7C%20Tsunami%20Theme-D0021B)
 
 ## Funktionen
 
@@ -10,126 +14,142 @@ Ein vollständiger, selbst gehosteter Klon von Microsoft Planner – mit Board, 
 - Pläne mit Farbe, Symbol, Beschreibung, Favoriten und Planner-Hub-Übersicht
 - Buckets: anlegen, umbenennen, löschen, per Drag & Drop sortieren
 - Aufgaben per Drag & Drop verschieben (auch auf Touch-Geräten)
-- Gruppierung des Boards nach **Bucket, Status, Priorität, Fälligkeitsdatum, Zugewiesen zu oder Bezeichnungen** – Ablegen in einer Gruppe ändert das jeweilige Feld (wie im Original)
-- Plan kopieren, Export nach Excel (CSV), Plan verlassen/löschen
+- Gruppierung des Boards nach **Bucket, Status, Priorität, Fälligkeitsdatum, Zugewiesen zu oder Bezeichnungen**
+- Plan kopieren, Export nach Excel (CSV)
 
 **Aufgaben**
 - Status (Nicht begonnen / In Arbeit / Erledigt), Priorität (Dringend / Wichtig / Mittel / Niedrig)
 - Start- und Fälligkeitsdatum mit Überfällig-Markierung
 - 25 farbige Bezeichnungen, pro Plan frei benennbar
 - Checklisten, Notizen, Kommentare, Dateianhänge (Upload/Download)
-- Mehrfach-Zuweisung an Planmitglieder, Aufgabe kopieren
-- Schnellerfassung direkt im Board, Inline-Bearbeitung im Raster
+- Mehrfach-Zuweisung an Planmitglieder
 
 **Ansichten**
 - **Board** – Kanban mit Schnellerfassung
-- **Raster** – sortierbare Tabelle mit Inline-Bearbeitung (auf Mobilgeräten als Kartenliste)
+- **Raster** – sortierbare Tabelle mit Inline-Bearbeitung
 - **Diagramme** – Status-Donut, Aufgaben je Bucket/Priorität/Mitglied
-- **Zeitplan** – Monatskalender mit Fälligkeiten und nicht geplanten Aufgaben
-- **Meine Aufgaben** – planübergreifend alles, was Ihnen zugewiesen ist
+- **Zeitplan** – Monatskalender mit Fälligkeiten
+- **Meine Aufgaben** – planübergreifende Aufgabenliste
 - Filter nach Stichwort, Fälligkeit, Priorität, Bezeichnung und Person
 
-**Benutzer & Benachrichtigungen**
-- Registrierung/Anmeldung (JWT), Profil mit Avatarfarbe, Passwort ändern
-- „Passwort vergessen" per E-Mail-Link
-- Benutzerverwaltung für Administratoren (anlegen, Rolle, Passwort zurücksetzen, löschen) – **der erste registrierte Benutzer wird automatisch Admin**
-- In-App-Benachrichtigungen (Glocke) **und E-Mails über Microsoft 365** bei:
+**Benachrichtigungen**
+- In-App-Benachrichtigungen (Glocke) und E-Mails über Microsoft 365 bei:
   - Zuweisung einer Aufgabe
-  - neuem Kommentar zu eigenen/zugewiesenen Aufgaben
+  - neuem Kommentar
   - Aufnahme in einen Plan
   - bald fälligen und überfälligen Aufgaben (automatische Prüfung alle 30 Minuten)
-- E-Mail-Benachrichtigungen pro Benutzer abschaltbar
 
 **Oberfläche**
-- Dark Mode, Light Mode oder Systemeinstellung
-- Vollständig responsiv: einhändig bedienbares Board mit Snap-Scrolling, Vollbild-Dialoge und Drawer-Navigation auf dem Smartphone
+- Dark Mode, Light Mode oder Systemeinstellung (Tsunami Design System)
+- Vollständig responsiv für Smartphone bis Ultrawide
 
-## Schnellstart
+## Cores-Integration
 
-Voraussetzung: Docker mit Compose.
+### Authentifizierung (SSO)
+- Login erfolgt über das **cores-dashboard** (`POST /api/v1/auth/login`)
+- Alle Requests nutzen das `cores_token` HttpOnly-Cookie
+- PlannerCore validiert das Token eigenständig gegen die geteilte `users`-Tabelle
+- `CORES_JWT_SECRET` muss mit dem Wert in cores-dashboard übereinstimmen
+
+### Branding
+- Logo/Favicon werden aus der geteilten `branding_config`-Datenbanktabelle geladen
+- `/api/v1/branding` liefert Planner-spezifische Branding-Daten
+- Logo-Dateien liegen im geteilten Volume `/var/lib/branding/logos`
+
+### Theme
+- Verwendet das **Tsunami Events Design System** (`tsunami-theme.css`)
+- Alle Farben, Abstände, Schatten etc. über CSS-Variablen
+- Planner-eigene Akzentfarbe: Grün (`--planner-accent: #31752f`)
+
+## Schnellstart (im Cores-Stack)
 
 ```bash
+# Im cores-dashboard Projektverzeichnis:
+docker compose up -d
+# PlannerCore ist unter http://localhost:8083 erreichbar
+# Oder über das Dashboard: http://localhost:8080/planner/
+```
+
+## Entwicklung (standalone)
+
+```bash
+# PostgreSQL bereitstellen (Benutzer/DB: rentalcore)
 cp .env.example .env
-# .env anpassen: mindestens JWT_SECRET und DB_PASSWORD ändern!
-docker compose up -d --build
+# .env anpassen: CORES_JWT_SECRET und DB_PASSWORD setzen!
+cd server && npm install && npm run dev          # API auf :8080
+cd web   && npm install && npm run dev           # Vite-Dev-Server auf :5173
 ```
-
-Anschließend <http://localhost:8080> öffnen und das erste Konto registrieren – dieses erhält automatisch Administratorrechte. Möchten Sie die Selbstregistrierung danach unterbinden, setzen Sie `ALLOW_REGISTRATION=false`; neue Benutzer legt dann der Admin unter *Benutzerverwaltung* an.
-
-Daten (PostgreSQL) und Dateianhänge liegen in Docker-Volumes (`pgdata`, `uploads`) und überstehen Neustarts und Updates.
-
-## E-Mail über Microsoft 365 einrichten
-
-Alle Benachrichtigungen werden über Ihren M365-Tenant versendet. Zwei Varianten stehen zur Auswahl (in `.env` über `MAIL_PROVIDER` wählbar). Ohne Konfiguration (`MAIL_PROVIDER=console`) werden E-Mails nur ins Server-Log geschrieben – praktisch zum Testen.
-
-### Variante A: Microsoft Graph API (empfohlen)
-
-1. [Entra Admin Center](https://entra.microsoft.com) → **App-Registrierungen** → **Neue Registrierung** (z. B. „Planner Mailer", nur Konten dieses Organisationsverzeichnisses).
-2. In der App: **API-Berechtigungen** → **Berechtigung hinzufügen** → **Microsoft Graph** → **Anwendungsberechtigungen** → `Mail.Send` → anschließend **Administratorzustimmung erteilen**.
-3. **Zertifikate & Geheimnisse** → **Neuer geheimer Clientschlüssel** → Wert kopieren.
-4. In `.env` eintragen:
-
-```ini
-MAIL_PROVIDER=graph
-GRAPH_TENANT_ID=<Verzeichnis-ID (Tenant)>
-GRAPH_CLIENT_ID=<Anwendungs-ID (Client)>
-GRAPH_CLIENT_SECRET=<geheimer Clientschlüssel>
-MAIL_SENDER=planner@ihre-firma.de   # Absenderpostfach (UPN oder freigegebenes Postfach)
-```
-
-> **Tipp:** Beschränken Sie die App per [Application Access Policy](https://learn.microsoft.com/graph/auth-limit-mailbox-access) auf das Absenderpostfach, damit sie nicht aus beliebigen Postfächern senden kann:
-> `New-ApplicationAccessPolicy -AppId <CLIENT_ID> -PolicyScopeGroupId planner@ihre-firma.de -AccessRight RestrictAccess`
-
-### Variante B: SMTP AUTH (Office 365)
-
-Erfordert ein Postfach mit aktivierter SMTP-Authentifizierung (Microsoft 365 Admin Center → Benutzer → E-Mail → *Authentifiziertes SMTP* aktivieren).
-
-```ini
-MAIL_PROVIDER=smtp
-SMTP_HOST=smtp.office365.com
-SMTP_PORT=587
-SMTP_USER=planner@ihre-firma.de
-SMTP_PASS=<Passwort oder App-Kennwort>
-MAIL_SENDER=planner@ihre-firma.de
-```
-
-Damit Links in E-Mails (z. B. „Aufgabe öffnen", Passwort-Reset) stimmen, `APP_URL` auf die öffentlich erreichbare Adresse der Installation setzen.
 
 ## Konfigurationsreferenz
 
 | Variable | Standard | Beschreibung |
 |---|---|---|
-| `APP_PORT` | `8080` | Veröffentlichter Port der App |
+| `PORT` | `8080` | Port des API-Servers |
 | `APP_URL` | `http://localhost:8080` | Basis-URL für Links in E-Mails |
-| `JWT_SECRET` | – | **Pflicht:** langer Zufallswert für Anmelde-Token |
-| `DB_PASSWORD` | `planner` | Passwort der PostgreSQL-Datenbank |
-| `ALLOW_REGISTRATION` | `true` | `false` = nur Admins legen Benutzer an (erster Benutzer darf sich immer registrieren) |
+| `CORES_JWT_SECRET` | – | **Pflicht:** Geteiltes JWT-Secret (muss mit cores-dashboard übereinstimmen) |
+| `DB_HOST` | `localhost` | PostgreSQL-Host |
+| `DB_PORT` | `5432` | PostgreSQL-Port |
+| `DB_NAME` | `rentalcore` | Datenbankname (geteilte Cores-DB) |
+| `DB_USER` | `rentalcore` | Datenbankbenutzer |
+| `DB_PASSWORD` | – | Datenbankpasswort |
 | `MAIL_PROVIDER` | `console` | `graph`, `smtp` oder `console` |
-| `GRAPH_TENANT_ID/CLIENT_ID/CLIENT_SECRET` | – | App-Registrierung für Variante A |
-| `MAIL_SENDER` | – | Absenderadresse |
-| `SMTP_HOST/PORT/USER/PASS` | `smtp.office365.com:587` | Zugangsdaten für Variante B |
+| `MAIL_SENDER` | – | Absenderadresse für E-Mails |
 
-## Entwicklung ohne Docker
+## E-Mail über Microsoft 365
 
-```bash
-# PostgreSQL bereitstellen (Benutzer/DB/Passwort: planner)
-cd server && npm install && npm run dev          # API auf :8080
-cd web   && npm install && npm run dev           # Vite-Dev-Server auf :5173 (Proxy auf die API)
+Siehe [ursprüngliche Planner-Dokumentation](#). Kurzfassung:
+
+**Variante A: Microsoft Graph API (empfohlen)**
+```ini
+MAIL_PROVIDER=graph
+GRAPH_TENANT_ID=<Verzeichnis-ID>
+GRAPH_CLIENT_ID=<Anwendungs-ID>
+GRAPH_CLIENT_SECRET=<geheimer Clientschlüssel>
+MAIL_SENDER=planner@ihre-firma.de
+```
+
+**Variante B: SMTP AUTH (Office 365)**
+```ini
+MAIL_PROVIDER=smtp
+SMTP_HOST=smtp.office365.com
+SMTP_PORT=587
+SMTP_USER=planner@ihre-firma.de
+SMTP_PASS=<Passwort>
+MAIL_SENDER=planner@ihre-firma.de
 ```
 
 ## Architektur
 
 ```
-docker-compose.yml   → db (PostgreSQL 16) + app (Node 22)
-server/              → Express-API, JWT-Auth, Mailer (Graph/SMTP), Scheduler
-  src/routes/        → auth, users, plans, buckets, tasks, notifications
-web/                 → React 18 + Vite, @hello-pangea/dnd (Drag & Drop, touchfähig)
+cores/
+├── docker-compose.yml       → postgres + cores-dashboard + rentalcore + warehousecore + plannercore
+├── theme/tsunami-theme.css  → Geteiltes Design System
+└── plannercore/
+    ├── Dockerfile            → Multi-Stage: Node 22 Alpine
+    ├── server/               → Express-API, JWT-Validierung, Mailer, Scheduler
+    │   └── src/
+    │       ├── auth.js       → cores_token JWT-Validierung
+    │       ├── branding.js   → Branding aus geteilter DB
+    │       ├── db.js         → PostgreSQL (geteilte DB, eigene Plan-Tabellen)
+    │       └── routes/       → auth, users, plans, buckets, tasks, notifications
+    └── web/                  → React 18 + Vite, @hello-pangea/dnd
+        └── src/
+            ├── theme-tsunami.css  → Tsunami Design System
+            ├── styles.css         → Planner-spezifische Styles
+            └── hooks/useBranding.js → Branding-Polling
 ```
 
-Das Produktiv-Image baut das Frontend in einer Build-Stufe und liefert es als statische Dateien direkt aus dem API-Container aus – ein einziger Port, kein separater Webserver nötig.
+## Docker Image
+
+```bash
+docker build -t nobentie/plannercore:2.0 .
+docker push nobentie/plannercore:2.0
+docker tag nobentie/plannercore:2.0 nobentie/plannercore:latest
+docker push nobentie/plannercore:latest
+```
 
 ## Hinweise für den Produktivbetrieb
 
-- Betreiben Sie die App hinter einem Reverse Proxy mit HTTPS (z. B. Traefik, Caddy, nginx).
-- `JWT_SECRET` und `DB_PASSWORD` unbedingt durch starke Zufallswerte ersetzen.
-- Backups: Volume `pgdata` (Datenbank) und `uploads` (Anhänge) sichern.
+- `CORES_JWT_SECRET` muss in ALLEN Services identisch sein
+- Branding-Logos werden über das cores-dashboard-Admin-Panel verwaltet
+- Backups: PostgreSQL-Volume (`postgres-data`) und Branding-Volume (`branding-data`) sichern
