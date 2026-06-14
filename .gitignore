@@ -2,7 +2,6 @@
 .env
 
 # Project-specific directories (these have their own repos)
-warehousecore/
 
 # Temporary files
 *.tmp
@@ -35,7 +34,6 @@ AGENTS.md
 
 # Migration backups
 migrations/*.backup
-rentalcore/
 
 # AI Agent Files - NEVER COMMIT
 GEMINI.md

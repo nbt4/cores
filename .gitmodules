@@ -1,0 +1,12 @@
+[submodule "cores-dashboard"]
+	path = cores-dashboard
+	url = https://github.com/nbt4/cores-dashboard.git
+[submodule "rentalcore"]
+	path = rentalcore
+	url = https://github.com/nbt4/rentalcore.git
+[submodule "warehousecore"]
+	path = warehousecore
+	url = https://github.com/nbt4/warehousecore.git
+[submodule "plannercore"]
+	path = plannercore
+	url = https://github.com/nbt4/plannercore.git
