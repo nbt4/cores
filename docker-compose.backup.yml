@@ -1,0 +1,39 @@
+# ============================================================================
+# PostgreSQL Backup Service - Standalone backup compose file
+# Start with: docker compose -f compose.yaml -f docker-compose.backup.yml up -d
+# Or standalone: docker compose -f docker-compose.backup.yml up -d
+# ============================================================================
+services:
+  db-backup:
+    image: postgres:16-alpine
+    container_name: cores-db-backup
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./scripts/backup-db.sh:/backup.sh:ro
+      - ./scripts/restore-db.sh:/restore.sh:ro
+      - ./scripts/upload-backup.sh:/upload.sh:ro
+      - backup_data:/backups
+    environment:
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-rentalcore}
+      - POSTGRES_USER=${POSTGRES_USER:-rentalcore}
+      - PGHOST=postgres
+      - NEXTCLOUD_WEBDAV_URL=${NEXTCLOUD_WEBDAV_URL:-}
+      - NEXTCLOUD_WEBDAV_USER=${NEXTCLOUD_WEBDAV_USER:-}
+      - NEXTCLOUD_WEBDAV_PASSWORD=${NEXTCLOUD_WEBDAV_PASSWORD:-}
+    entrypoint: ["/bin/sh"]
+    command: |
+      -c "echo '0 2 * * * /backup.sh >> /var/log/backup.log 2>&1' | crontab - && crond -f -l 2"
+    networks:
+      - weidelbach
+
+volumes:
+  backup_data:
+    driver: local
+
+networks:
+  weidelbach:
+    external: true
