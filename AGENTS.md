@@ -33,9 +33,10 @@
 
 ## Deployment Discipline
 - For every change, always build and push the matching Docker image to Docker Hub after checking the latest published tag.
-- Mirror the build by pushing code to GitLab (per-service repo + cores if affected) so image and source stay in sync.
-- Before starting a build, check Docker Hub for the most recent `nobentie/rentalcore` or `nobentie/warehousecore` tag and bump to the next sequential version, then push both the new tag and `latest` alongside the corresponding GitLab commit.
-- Always push work to GitLab and refresh all relevant README files when behavior, configuration, or deployment steps change.
+- GitHub (`github.com/nbt4`) is the only source-code remote and source of truth.
+- Mirror the build by pushing code to GitHub (per-service repo + `cores` if affected) so image and source stay in sync.
+- Before starting a build, check Docker Hub for the most recent matching image tag and bump to the next sequential version, then push both the new tag and `latest` alongside the corresponding GitHub commit.
+- Always push work to GitHub and refresh all relevant README files when behavior, configuration, or deployment steps change.
 - I AM LOGGED IN YOU CAN JUST EXECUTE THE NEEDED COMMANDS
 ## Commit & Pull Request Guidelines
 - Use imperative, present-tense commit subjects (e.g., `Ensure default admin seeding matches new RBAC`) capped at 72 characters.
@@ -46,4 +47,4 @@
 ## Issues
 - When you are working on an Issue change the Label to in_progress.
 - When your are done and solved the issue, change the label to done and try to close the Issue
-- List all remaining Issues after you solved one and ask which one next. But that at the very end (after redploy, docker build and push, gitlab push).
+- List all remaining Issues after you solved one and ask which one next. But that at the very end (after redeploy, Docker build/push, and GitHub push).
