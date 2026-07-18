@@ -21,7 +21,7 @@ Complete guide for deploying RentalCore + WarehouseCore on a fresh system.
 ### Step 1: Get the Project
 
 ```bash
-git clone https://git.server-nt.de/ntielmann/cores.git
+git clone git@github.com:nbt4/cores.git
 cd cores
 ```
 

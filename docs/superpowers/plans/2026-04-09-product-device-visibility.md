@@ -719,7 +719,7 @@ Merke die aktuelle Versionsnummer (z. B. `1.14`).
 
 Im `README.md` die Versionsnummer um eins erhöhen (z. B. `1.14` → `1.15`).
 
-- [ ] **Schritt 3: GitLab pushen**
+- [ ] **Schritt 3: GitHub pushen**
 
 ```bash
 cd warehousecore && git push origin main

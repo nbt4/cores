@@ -592,7 +592,7 @@ Stage 3: alpine:latest      → binary + web/dist + migrations
 | Target | Wert |
 |--------|------|
 | Docker Image | `nobentie/plannercore` |
-| GitLab Repo | `git.server-nt.de/ntielmann/plannercore` |
+| GitHub Repo | `github.com/nbt4/plannercore` (SSH: `git@github.com:nbt4/plannercore.git`) |
 | DB Migration | `migrations/postgresql/003_plannercore_schema.sql` |
 | Stack Pfad | `/opt/docker/komodo/stacks/tscores/docker-compose.yml` |
 | Port | 8083 |

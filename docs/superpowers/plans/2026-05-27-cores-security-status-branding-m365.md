@@ -295,7 +295,7 @@ echo "Aktuelle Version: $CURRENT"
 
 README.md aktualisieren mit neuer Version.
 
-- [ ] **Schritt 3: Zu GitLab pushen**
+- [ ] **Schritt 3: Zu GitHub pushen**
 
 ```bash
 cd /opt/dev/cores/rentalcore

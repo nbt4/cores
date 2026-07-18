@@ -68,7 +68,7 @@ The system is deployed using Docker Compose with automatic database initializati
 ### Quick Start
 ```bash
 # 1. Clone the repository
-git clone https://git.server-nt.de/ntielmann/cores.git
+git clone git@github.com:nbt4/cores.git
 cd cores
 
 # 2. Copy environment configuration
@@ -223,4 +223,4 @@ Based on the improvement plan:
 5. Improve observability with metrics and tracing
 
 ## Qwen Added Memories
-- ALWAYS BUILD AND PUSH TO DOCKERHUB AND GITLAB AFTER CHANGES
+- ALWAYS BUILD AND PUSH TO DOCKER HUB AND GITHUB AFTER CHANGES
