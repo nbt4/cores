@@ -185,11 +185,11 @@ services:
     environment:
       PORT: "8080"
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
-      PGHOST: "postgres"
-      PGPORT: "5432"
-      PGDATABASE: "${POSTGRES_DB:-rentalcore}"
-      PGUSER: "${POSTGRES_USER:-rentalcore}"
-      PGPASSWORD: "${POSTGRES_PASSWORD:-}"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${POSTGRES_USER:-rentalcore}"
+      DB_PASS: "${POSTGRES_PASSWORD:-}"
       APP_URL: "${PLANNER_APP_URL:-http://localhost:8080}"
     ports:
       - "8083:8080"
