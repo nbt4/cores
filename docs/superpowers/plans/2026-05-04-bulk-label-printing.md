@@ -619,7 +619,7 @@ git add web/src/pages/LabelDesignerPage.tsx web/src/pages/LabelDesignerPage.css
 git commit -m "feat(labels): add bulk print dialog with single/selection/all modes"
 ```
 
-- [ ] **Step 2: Push zu GitLab**
+- [ ] **Step 2: Push zu GitHub**
 
 ```bash
 git push origin main

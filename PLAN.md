@@ -110,7 +110,7 @@
 
 ```bash
 # 1. Clone
-git clone https://git.server-nt.de/ntielmann/cores.git
+git clone git@github.com:nbt4/cores.git
 cd cores
 
 # 2. Configure
@@ -128,18 +128,19 @@ docker compose up -d
 
 ---
 
-## 📝 Manuelle Schritte (Git Push)
+## 📝 Manuelle Schritte (GitHub Push)
 
-Der GitLab-Server ist aktuell sehr langsam. Push-Befehle:
+Alle Source-Repositories liegen unter `github.com/nbt4` und verwenden SSH:
 
 ```bash
-# WarehouseCore (mit neuem Token)
+# WarehouseCore
 cd /opt/dev/cores/warehousecore
-git remote set-url origin https://glpat-Rs5hkMNGnW1MLD7xb43PsG86MQp1OmQH.01.0w1yh3dq8@git.server-nt.de/ntielmann/warehousecore.git
+git remote set-url origin git@github.com:nbt4/warehousecore.git
 git push origin main
 
-# Cores (benötigt gültigen Token)
+# Cores
 cd /opt/dev/cores
+git remote set-url origin git@github.com:nbt4/cores.git
 git push origin main
 ```
 

@@ -1514,7 +1514,7 @@ Version auf das nächste Patch-Level erhöhen (z.B. 5.3.43 → 5.3.44) und einen
 cd /opt/dev/cores/rentalcore && git add README.md && git commit -m "chore: bump version to 5.3.44, add M365 sync to changelog"
 ```
 
-- [ ] **Schritt 3: Zu GitLab pushen**
+- [ ] **Schritt 3: Zu GitHub pushen**
 
 ```bash
 cd /opt/dev/cores/rentalcore && git push origin main

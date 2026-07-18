@@ -842,7 +842,7 @@ git add README.md
 git commit -m "docs: bump version to v5.3.X"
 ```
 
-- [ ] **Step 3: Push zu GitLab**
+- [ ] **Step 3: Push zu GitHub**
 
 ```bash
 cd /opt/dev/cores/rentalcore

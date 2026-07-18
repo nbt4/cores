@@ -80,7 +80,7 @@ docker-compose up -d    # Neu starten (triggert Auto-Init)
 ## 🧩 2. RentalCore
 
 ### Repository & Deployment
-- **Git:** [git.server-nt.de/ntielmann/rentalcore](https://git.server-nt.de/ntielmann/rentalcore)  
+- **Git:** [github.com/nbt4/rentalcore](https://github.com/nbt4/rentalcore)
 - **Docker Image:** `nobentie/rentalcore`
 - **Version Tags:** `1.X` + `latest`
 
@@ -103,7 +103,7 @@ docker push nobentie/rentalcore:latest
 - Keine Debug- oder temporären Dateien im Repo behalten  
 - Nach jedem Commit:
   - `README` aktualisieren  
-  - zu GitLab **pushen**  
+  - zu GitHub **pushen**
   - Docker-Image **builden & pushen**  
 - **Sicherheitscheck:** vor jedem Push auf sensible Daten prüfen  
 - **Commit Messages:** keine Erwähnung von „Claude“ oder „AI“  
@@ -117,7 +117,7 @@ docker push nobentie/rentalcore:latest
 ## 📦 3. WarehouseCore
 
 ### Repository & Deployment
-- **Git:** [git.server-nt.de/ntielmann/warehousecore](https://git.server-nt.de/ntielmann/warehousecore)  
+- **Git:** [github.com/nbt4/warehousecore](https://github.com/nbt4/warehousecore)
 - **Docker Image:** `nobentie/warehousecore`
 - **Version Tags:** `1.X` + `latest`
 
@@ -159,7 +159,7 @@ Verwendet dieselbe Konfiguration wie RentalCore — Credentials nur über `.env`
 - Gleiche Philosophie & Buildstruktur wie RentalCore  
 - Nach jedem Commit:
   - `README` aktualisieren  
-  - zu GitLab **pushen**  
+  - zu GitHub **pushen**
   - Docker-Image **builden & pushen**  
 - **Keine sensiblen Daten ins Repo!**
 - Tabellenänderungen immer in `RentalCore.sql` nachziehen  
@@ -203,8 +203,8 @@ Verwendet dieselbe Konfiguration wie RentalCore — Credentials nur über `.env`
 | **Docker Images** | `nobentie/rentalcore`, `nobentie/warehousecore` |
 | **Docker Stack** | docker03 via Komodo |
 - DO NOT RESTART THE LOCAL DOCKER STACK. The docker stack runs on a diffrent server and I start it manually. so always build & push it to the dockerhub.
-- Bitte IMMER zu gitlab pushen und falls nötig alle docker images builden und zu dockerhub pushen
-- My Stack runs via Komodo (docker mgm like portainer) on my docker server (Hostname: docker03 user: noah, password: Nben@2024) DO NOT RESTART THE DOCKER STACK ON THIS SERVER MANUALLY ONLY I AM ALLOWED TO DO) you can inspect logs from the docker container or do some commands like to clear the mqqt history.
+- Bitte IMMER ausschließlich zu GitHub pushen und falls nötig alle Docker-Images builden und zu Docker Hub pushen.
+- Der Stack läuft via Komodo auf `docker03` (User `noah`, SSH-Key hinterlegt). Zugangsdaten ausschließlich aus der lokalen Laufzeitumgebung beziehen und niemals in Dokumentation speichern.
 - Denk dran, dass alle *cores mit allen funktionen auf JEDEM Gerät / Server deployt werden soll. Also auch ohne datenbank etc. Das ganze soll nur mit der docker-compose.yml und der .env passieren.
 - Du kannst auf meinen DOcker03 zugriefen (da läuft der Stack) aber du darfst dort nichts ändern, **NUR LESEN**. Hostname: docker03 User: noah. Der Public key ist hinterlegt.
 
@@ -228,13 +228,12 @@ Verwendet dieselbe Konfiguration wie RentalCore — Credentials nur über `.env`
     - Container löschen
     - Volumes manipulieren
 
-### GitLab Repositories
+### GitHub Repositories
 - Nach **jeder Änderung** am Code → pushen zum jeweiligen Repo
 - Repo-URLs automatisch aus `.git/config` ermitteln
 - **Commit Messages:** Keine Erwähnung von „Claude" oder „AI"
-- **Personal Access Token:** `glpat-MUyzD2kDzRH0_wDl7EdwzG86MQp1OjQH.01.0w1mjxy3l`
-  - GitLab-Instanz: `https://git.server-nt.de`
-  - Verwenden für API-Calls (Labels, Boards, etc.) via curl wenn MCP nicht ausreicht
+- Authentifizierung ausschließlich über die konfigurierte SSH-Verbindung, `gh auth` oder einen Secret Manager.
+- Tokens niemals in Repository-Dateien, Remote-URLs oder Shell-Beispielen speichern.
 
 ### Docker Hub
 - **Account:** `nobentie/`
@@ -244,7 +243,7 @@ Verwendet dieselbe Konfiguration wie RentalCore — Credentials nur über `.env`
 
 ### Workflow nach Code-Änderungen
 1. ✅ Code ändern & testen
-2. ✅ GitLab: `git push` zum entsprechenden Repo
+2. ✅ GitHub: `git push` zum entsprechenden Repo
 3. ✅ Docker: Image builden (`docker build -t nobentie/<project>:1.X .`)
 4. ✅ DockerHub: Version + Latest pushen
 5. ✅ Server: Image pullen & Container neu starten (auf docker03 via Komodo)

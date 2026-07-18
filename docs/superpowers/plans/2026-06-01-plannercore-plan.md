@@ -10,7 +10,7 @@
 
 ---
 
-### Task 1: Projektgerüst & GitLab Repo
+### Task 1: Projektgerüst & GitHub Repo
 
 **Files:**
 - Create: `/opt/dev/cores/plannercore/go.mod`
@@ -19,7 +19,7 @@
 - Create: `/opt/dev/cores/plannercore/README.md`
 - Create: `/opt/dev/cores/plannercore/Dockerfile`
 
-- [ ] **Step 1: GitLab Repo erstellen**
+- [ ] **Step 1: GitHub Repo erstellen**
 
 ```bash
 cd /opt/dev/cores
@@ -28,12 +28,13 @@ cd plannercore
 git init
 ```
 
-Via GitLab API:
+Via GitHub CLI (nutzt die lokale `gh auth`-Anmeldung; keine Tokens in Dateien):
 ```bash
-curl -s -H "PRIVATE-TOKEN: glpat-MUyzD2kDzRH0_wDl7EdwzG86MQp1OjQH.01.0w1mjxy3l" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"plannercore","visibility":"private","description":"Microsoft Planner Clone — Cores Project Management Service"}' \
-  "https://git.server-nt.de/api/v4/projects"
+gh repo create nbt4/plannercore \
+  --private \
+  --description "Microsoft Planner Clone — Cores Project Management Service" \
+  --source . \
+  --remote origin
 ```
 
 - [ ] **Step 2: go.mod initialisieren**
@@ -152,7 +153,7 @@ CMD ["./server"]
 cd /opt/dev/cores/plannercore
 git add go.mod .gitignore README.md Dockerfile
 git commit -m "chore: initialize Plannercore project structure"
-git remote add origin https://git.server-nt.de/ntielmann/plannercore.git
+git remote add origin git@github.com:nbt4/plannercore.git
 git push -u origin main
 ```
 
@@ -3404,10 +3405,10 @@ In `/opt/docker/komodo/stacks/tscores/docker-compose.yml` auf docker03:
 
 ```bash
 curl -s -X POST "https://komodo.server-nt.de/api/v1/stack/tscores/deploy" \
-  -H "Authorization: Bearer K-JjzIjQZH4Tb8VHbwsGI9jSPB3iVc7hA5xn4z3fe1"
+  -H "Authorization: Bearer ${KOMODO_API_TOKEN:?set KOMODO_API_TOKEN}"
 ```
 
-- [ ] **Step 5: Git push zu GitLab**
+- [ ] **Step 5: Git push zu GitHub**
 
 ```bash
 cd /opt/dev/cores/plannercore

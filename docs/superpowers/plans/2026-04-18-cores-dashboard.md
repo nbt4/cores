@@ -2141,7 +2141,7 @@ git commit -m "feat: add cores-dashboard service to docker-compose with shared J
 
 ## Task 16: Build and Push All Images
 
-- [ ] **Step 1: Push all git changes to GitLab**
+- [ ] **Step 1: Push all git changes to GitHub**
 
 ```bash
 cd /opt/dev/cores/rentalcore && git push

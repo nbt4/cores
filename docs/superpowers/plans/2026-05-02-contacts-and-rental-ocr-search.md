@@ -516,7 +516,7 @@ git commit -m "feat(contacts): supplier picker in rental equipment form with FK 
 ## Deployment (nach allen Tasks)
 
 - [ ] README version bump in `rentalcore/README.md`
-- [ ] GitLab push: `git push origin main`
+- [ ] GitHub push: `git push origin main`
 - [ ] Docker build: `docker build -t nobentie/rentalcore:5.3.32 rentalcore/`
 - [ ] Docker push: `docker push nobentie/rentalcore:5.3.32 && docker tag nobentie/rentalcore:5.3.32 nobentie/rentalcore:latest && docker push nobentie/rentalcore:latest`
 - [ ] Auf docker03: `docker pull nobentie/rentalcore:latest` + Container restart (durch Nutzer via Komodo)

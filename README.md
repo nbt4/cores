@@ -282,6 +282,7 @@ cores/                              # Monorepo Root
 ├── docker-compose.yml              # Gesamt-Deployment-Konfiguration
 ├── .env.example                    # Beispiel-Umgebungsvariablen
 ├── cores-dashboard/                # Submodule: Dashboard + Auth
+├── cores-common/                   # Submodule: gemeinsame Go-Pakete
 ├── rentalcore/                     # Submodule: Vermietung
 ├── warehousecore/                  # Submodule: Lager
 ├── plannercore/                    # Submodule: Planung
@@ -292,6 +293,20 @@ cores/                              # Monorepo Root
 │   └── scripts/                    # Gemeinsame Utility-Scripts
 └── README.md                       # Diese Datei
 ```
+
+### GitHub-Repositories
+
+GitHub unter `github.com/nbt4` ist die einzige Source-of-Truth für den Quellcode.
+Zugangsdaten gehören ausschließlich in die lokale Laufzeitumgebung oder einen Secret Manager.
+
+| Komponente | Repository |
+|------------|------------|
+| Monorepo | [nbt4/cores](https://github.com/nbt4/cores) |
+| Dashboard | [nbt4/cores-dashboard](https://github.com/nbt4/cores-dashboard) |
+| Gemeinsame Go-Pakete | [nbt4/cores-common](https://github.com/nbt4/cores-common) |
+| RentalCore | [nbt4/rentalcore](https://github.com/nbt4/rentalcore) |
+| WarehouseCore | [nbt4/warehousecore](https://github.com/nbt4/warehousecore) |
+| PlannerCore | [nbt4/plannercore](https://github.com/nbt4/plannercore) |
 
 ---
 
