@@ -41,6 +41,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 ### 🎯 Kernziele
 
 - **Zentrales SSO** — Ein Login für alle Services über cores-dashboard
+- **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
 - **Docker-basiertes Deployment** — Vollständig containerisiert mit docker-compose
@@ -71,9 +72,10 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 3. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
 4. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
 5. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
-6. **Benutzerverwaltung** — Zentrale Benutzer- und Rollenverwaltung (RBAC) über alle Services hinweg
-7. **Health-Check & Monitoring** — Statusüberwachung aller verbundenen Backend-Services
-8. **Responsive Admin-UI** — Vollständig responsive Administrationsoberfläche für Desktop und Mobile
+6. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
+7. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
+8. **Health-Check & Monitoring** — Statusüberwachung aller verbundenen Backend-Services
+9. **Responsive Admin-UI** — Vollständig responsive Administrationsoberfläche für Desktop und Mobile
 
 #### 📡 Wichtigste API-Endpunkte
 
