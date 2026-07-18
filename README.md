@@ -350,41 +350,29 @@ nano .env
 **Wichtige Umgebungsvariablen:**
 
 ```env
-# PostgreSQL
-POSTGRES_HOST=your-postgres-host
-POSTGRES_PORT=5432
-POSTGRES_DB=cores
-POSTGRES_USER=cores_user
+# PostgreSQL (the Compose file starts PostgreSQL automatically)
+POSTGRES_DB=rentalcore
+POSTGRES_USER=rentalcore
 POSTGRES_PASSWORD=your-secure-password
 
-# JWT Secret (für SSO)
-JWT_SECRET=your-jwt-secret-key-min-32-chars
+# JWT Secret (für SSO; mindestens 32 Zeichen)
+CORES_JWT_SECRET=your-jwt-secret-key-min-32-chars
 
-# Service-URLs
-DASHBOARD_URL=https://cores.tsunami-events.de
-RENTAL_URL=https://rent.tsunami-events.de
-WAREHOUSE_URL=https://warehouse.tsunami-events.de
-PLANNER_URL=https://planner.tsunami-events.de
+# Optional Nextcloud File-Pool
+NEXTCLOUD_WEBDAV_URL=https://cloud.example.com/remote.php/dav/files/user
+NEXTCLOUD_WEBDAV_USER=rentalcore-user
+NEXTCLOUD_WEBDAV_PASSWORD=your-nextcloud-app-password
+NEXTCLOUD_WEBDAV_BASE_PATH=rentalcore-filepool
 
 # MQTT (Warehouse LED-Highlighting)
-MQTT_BROKER=mosquitto
-MQTT_PORT=1883
+LED_MQTT_USER=leduser
+LED_MQTT_PASS=your-mqtt-password
 
-# SMTP (E-Mail-Benachrichtigungen)
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=noreply@tsunami-events.de
-SMTP_PASSWORD=your-smtp-password
-
-# Nextcloud (rentalcore File-Pool)
-NEXTCLOUD_URL=https://nextcloud.tsunami-events.de
-NEXTCLOUD_USER=rentalcore-user
-NEXTCLOUD_PASSWORD=your-nextcloud-password
-
-# M365 (Kunden-Synchronisation)
+# M365 / Microsoft Entra (optional; zentrale App im Dashboard)
 M365_TENANT_ID=your-tenant-id
 M365_CLIENT_ID=your-client-id
 M365_CLIENT_SECRET=your-client-secret
+APP_BASE_URL=https://cores.example.com
 ```
 
 #### 3. Docker-Container starten
@@ -404,10 +392,10 @@ docker compose restart rentalcore
 
 | Service | Container-Name | Port | Health Check |
 |---------|---------------|------|-------------|
-| `dashboard` | cores-dashboard | 8080 | `/api/health` |
-| `rentalcore` | rentalcore | 8081 | `/api/health` |
-| `warehousecore` | warehousecore | 8082 | `/api/health` |
-| `plannercore` | plannercore | 8083 | `/api/health` |
+| `cores-dashboard` | cores-dashboard | 8080 | `/health` |
+| `rentalcore` | rentalcore | 8081 | `/health` |
+| `warehousecore` | warehousecore | 8082 | `/api/v1/health` |
+| `plannercore` | plannercore | 8083 | `/health` |
 | `postgres` | cores-postgres | 5432 | `pg_isready` |
 | `mosquitto` | cores-mosquitto | 1883 | MQTT Connect |
 
@@ -430,11 +418,31 @@ Das Produktions-Deployment erfolgt über **Komodo** auf dem Host `docker03`:
 
 ```bash
 # Auf docker03 via Komodo ausgeführt:
-cd /opt/stacks/cores
+cd /opt/docker/komodo/stacks/tscores
 git pull --recurse-submodules
 docker compose pull
 docker compose up -d --force-recreate
 ```
+
+#### 6. Clean-Install-Smoke-Test
+
+Auf einem neuen Host werden PostgreSQL, Mosquitto, das Branding-Volume und die
+Service-Volumes automatisch angelegt. Nach dem Start sollten alle Container
+healthy sein:
+
+```bash
+docker compose up -d
+docker compose ps
+curl -fsS http://localhost:8080/health
+curl -fsS http://localhost:8081/health
+curl -fsS http://localhost:8082/api/v1/health
+curl -fsS http://localhost:8083/health
+```
+
+Die erste Anmeldung erfolgt über `http://localhost:8080/login` mit `admin/admin`;
+das Dashboard erzwingt danach die Änderung des Passworts. Für einen wirklich
+frischen Test dürfen keine bestehenden Container oder Volumes mit denselben
+Compose-Namen vorhanden sein.
 
 ---
 
