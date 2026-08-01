@@ -189,6 +189,7 @@ services:
     environment:
       PORT: "8080"
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"

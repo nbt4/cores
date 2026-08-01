@@ -40,7 +40,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 ### 🎯 Kernziele
 
-- **Zentrales SSO** — Ein Login für alle Services über cores-dashboard
+- **Zentrales SSO** — Ein Login in Dashboard, RentalCore, WarehouseCore oder PlannerCore gilt für alle Services
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
