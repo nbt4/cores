@@ -63,6 +63,9 @@ services:
       SERVER_PORT: "8081"
       # OCR Parser Configuration
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
+      # Microsoft 365 central job calendar
+      M365_CALENDAR_MAILBOX: "${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}"
+      M365_CALENDAR_ORGANIZER: "${M365_CALENDAR_ORGANIZER:-}"
     ports:
       - "8081:8081"
     volumes:

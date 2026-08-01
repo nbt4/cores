@@ -372,6 +372,9 @@ LED_MQTT_PASS=your-mqtt-password
 M365_TENANT_ID=your-tenant-id
 M365_CLIENT_ID=your-client-id
 M365_CLIENT_SECRET=your-client-secret
+M365_CALENDAR_MAILBOX=events@yourdomain.com
+# Must be a real user mailbox; requires Calendars.ReadWrite (Application)
+M365_CALENDAR_ORGANIZER=calendar-organizer@yourdomain.com
 APP_BASE_URL=https://cores.example.com
 ```
 
