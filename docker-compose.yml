@@ -67,6 +67,7 @@ services:
       - "8081:8081"
     volumes:
       - branding-data:/var/lib/branding
+      - rentalcore-uploads:/app/uploads
     networks:
       - weidelbach
     healthcheck:
@@ -328,6 +329,9 @@ volumes:
   # Warehousecore label images (persisted across container restarts)
   warehousecore-labels:
     driver: local
+  # RentalCore OCR source files and job attachments
+  rentalcore-uploads:
+    name: tscores_rentalcore-uploads
   # Mosquitto MQTT broker
   mosquitto-config:
   mosquitto-data:

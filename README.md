@@ -439,6 +439,10 @@ curl -fsS http://localhost:8082/api/v1/health
 curl -fsS http://localhost:8083/health
 ```
 
+RentalCore speichert OCR-Quelldateien und Job-Anhänge dauerhaft im benannten
+Volume `tscores_rentalcore-uploads`. Das Volume muss bei Backups zusammen mit
+der PostgreSQL-Datenbank berücksichtigt werden.
+
 Die erste Anmeldung erfolgt über `http://localhost:8080/login` mit `admin/admin`;
 das Dashboard erzwingt danach die Änderung des Passworts. Für einen wirklich
 frischen Test dürfen keine bestehenden Container oder Volumes mit denselben
