@@ -151,7 +151,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 4. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
 5. **Case-/Kistenmanagement** — Verwaltung von Transportkisten, Cases und Verpackungseinheiten mit Tracking
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
-7. **Label-Generierung** — Automatische Erstellung von Geräte- und Kistenlabels für Drucker
+7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Produkt-/Kabel-, Case- und Zonenlabels; Browserdruck sowie Zebra-ZPL-Direktdruck über TCP
 8. **Produkt-/Paketverwaltung** — Gruppierung von Geräten in Produkte und Versandpakete
 
 #### 📡 Wichtigste API-Endpunkte
