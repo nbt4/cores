@@ -382,6 +382,26 @@ CREATE INDEX IF NOT EXISTS idx_cables_connector1 ON cables(connector1);
 CREATE INDEX IF NOT EXISTS idx_cables_connector2 ON cables(connector2);
 CREATE INDEX IF NOT EXISTS idx_cables_type ON cables(typ);
 
+-- Product-backed cable inventory. A cable specification is a normal product so
+-- jobs, packages, barcodes and stock workflows can use it directly.
+CREATE TABLE IF NOT EXISTS cable_products (
+    cable_product_id BIGSERIAL PRIMARY KEY,
+    product_id INT NOT NULL UNIQUE REFERENCES products(productid) ON DELETE CASCADE,
+    connector_a_id INT NOT NULL REFERENCES cable_connectors(cable_connectorsid) ON DELETE RESTRICT,
+    connector_b_id INT NOT NULL REFERENCES cable_connectors(cable_connectorsid) ON DELETE RESTRICT,
+    cable_type_id INT NOT NULL REFERENCES cable_types(cable_typesid) ON DELETE RESTRICT,
+    length_m NUMERIC(10,2) NOT NULL CHECK (length_m > 0),
+    cross_section_mm2 NUMERIC(10,2),
+    tracking_mode VARCHAR(20) NOT NULL DEFAULT 'quantity'
+        CHECK (tracking_mode IN ('quantity', 'individual')),
+    migrated_from_legacy BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_cable_products_connector_a ON cable_products(connector_a_id);
+CREATE INDEX IF NOT EXISTS idx_cable_products_connector_b ON cable_products(connector_b_id);
+CREATE INDEX IF NOT EXISTS idx_cable_products_type ON cable_products(cable_type_id);
+
 -- Company settings table
 CREATE TABLE IF NOT EXISTS company_settings (
     id SERIAL PRIMARY KEY,
@@ -487,6 +507,24 @@ CREATE INDEX IF NOT EXISTS idx_zone_type ON storage_zones(type);
 CREATE INDEX IF NOT EXISTS idx_zone_active ON storage_zones(is_active);
 CREATE INDEX IF NOT EXISTS idx_zone_parent ON storage_zones(parent_zone_id);
 CREATE INDEX IF NOT EXISTS idx_zone_barcode ON storage_zones(barcode);
+
+-- Quantity-based stock per product and storage zone. NULL represents stock that
+-- has not yet been assigned to a physical zone.
+CREATE TABLE IF NOT EXISTS product_locations (
+    location_id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL REFERENCES products(productid) ON DELETE CASCADE,
+    zone_id INT NULL REFERENCES storage_zones(zone_id) ON DELETE CASCADE,
+    quantity NUMERIC(10,3) NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_product_locations_zone ON product_locations(zone_id);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_product_locations_product_zone
+    ON product_locations(product_id, zone_id) NULLS NOT DISTINCT;
+
+CREATE TABLE IF NOT EXISTS warehouse_schema_migrations (
+    version VARCHAR(100) PRIMARY KEY,
+    applied_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 -- Add zone reference to devices and cases
 ALTER TABLE cases ADD COLUMN IF NOT EXISTS zone_id INT REFERENCES storage_zones(zone_id) ON DELETE SET NULL;
