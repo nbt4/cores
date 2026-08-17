@@ -44,6 +44,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
+- **Installierbare Mobile-Apps** — Alle vier Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation
 - **Docker-basiertes Deployment** — Vollständig containerisiert mit docker-compose
 - **Git Submodules** — Jeder Service ist ein eigenständiges Repository, eingebunden als Submodule
 
@@ -75,7 +76,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
 7. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
 8. **Health-Check & Monitoring** — Statusüberwachung aller verbundenen Backend-Services
-9. **Responsive Admin-UI** — Vollständig responsive Administrationsoberfläche für Desktop und Mobile
+9. **Installierbare Mobile-App** — Responsive Admin-PWA mit eigenem Icon, Safe Areas, Touch-Zielen, Drawer und fester App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -115,7 +116,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **RBAC + WebAuthn/2FA** — Rollenbasierte Zugriffskontrolle mit hardwaregestützter Zwei-Faktor-Authentifizierung
 7. **Nextcloud WebDAV File-Pool** — Integration mit Nextcloud für zentrale Dateiablage und Dokumentenmanagement
 8. **Dashboard mit Widgets** — Konfigurierbare Dashboard-Ansicht mit Status-Übersichten, Statistiken und KPIs
-9. **Installierbare Web-App** — RentalCore lässt sich mit eigenem App-Icon als responsive PWA zum iPhone-/iPad-Homescreen hinzufügen
+9. **Installierbare Mobile-App** — RentalCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -154,7 +155,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
 8. **Produkt-/Paketverwaltung** — Gruppierung von Geräten in Produkte und Versandpakete
-9. **Installierbare Web-App** — WarehouseCore lässt sich mit eigenem App-Icon als responsive PWA zum iPhone-/iPad-Homescreen hinzufügen
+9. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -193,6 +194,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **Datei-Anhänge** — Dokumenten-Upload und Verlinkung direkt an Aufgaben
 7. **Benachrichtigungen** — In-App- und E-Mail-Benachrichtigungen bei Änderungen und Fälligkeiten
 8. **Fälligkeits-Scheduler** — Automatische Deadline-Überwachung mit Eskalationslogik
+9. **Installierbare Mobile-App** — PlannerCore bietet Safe Areas, Touch-Drag-and-drop, eine mobile App-Tabbar und funktioniert eigenständig sowie unter `/planner/`
 
 #### 📡 Wichtigste API-Endpunkte
 
