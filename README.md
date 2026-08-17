@@ -115,6 +115,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **RBAC + WebAuthn/2FA** — Rollenbasierte Zugriffskontrolle mit hardwaregestützter Zwei-Faktor-Authentifizierung
 7. **Nextcloud WebDAV File-Pool** — Integration mit Nextcloud für zentrale Dateiablage und Dokumentenmanagement
 8. **Dashboard mit Widgets** — Konfigurierbare Dashboard-Ansicht mit Status-Übersichten, Statistiken und KPIs
+9. **Installierbare Web-App** — RentalCore lässt sich mit eigenem App-Icon als responsive PWA zum iPhone-/iPad-Homescreen hinzufügen
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -153,6 +154,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
 8. **Produkt-/Paketverwaltung** — Gruppierung von Geräten in Produkte und Versandpakete
+9. **Installierbare Web-App** — WarehouseCore lässt sich mit eigenem App-Icon als responsive PWA zum iPhone-/iPad-Homescreen hinzufügen
 
 #### 📡 Wichtigste API-Endpunkte
 
