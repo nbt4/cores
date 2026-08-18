@@ -241,6 +241,12 @@ CREATE TABLE IF NOT EXISTS products (
     min_stock_level DECIMAL(10,3),
     generic_barcode VARCHAR(100),
     price_per_unit DECIMAL(10,2),
+	product_type VARCHAR(20) NOT NULL DEFAULT 'equipment'
+		CHECK (product_type IN ('equipment', 'accessory', 'consumable')),
+	tracking_mode VARCHAR(20) NOT NULL DEFAULT 'individual'
+		CHECK (tracking_mode IN ('individual', 'quantity', 'none')),
+	lifecycle_status VARCHAR(20) NOT NULL DEFAULT 'active'
+		CHECK (lifecycle_status IN ('active', 'archived')),
     website_visible BOOLEAN DEFAULT FALSE,
     website_thumbnail VARCHAR(512),
     website_images_json TEXT,
@@ -252,6 +258,13 @@ CREATE INDEX IF NOT EXISTS idx_products_category ON products(categoryid);
 CREATE INDEX IF NOT EXISTS idx_products_is_accessory ON products(is_accessory);
 CREATE INDEX IF NOT EXISTS idx_products_is_consumable ON products(is_consumable);
 CREATE INDEX IF NOT EXISTS idx_products_generic_barcode ON products(generic_barcode);
+CREATE INDEX IF NOT EXISTS idx_products_lifecycle_status ON products(lifecycle_status);
+CREATE INDEX IF NOT EXISTS idx_products_product_type ON products(product_type);
+CREATE INDEX IF NOT EXISTS idx_products_tracking_mode ON products(tracking_mode);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_products_name_normalized ON products (LOWER(TRIM(name)));
+CREATE UNIQUE INDEX IF NOT EXISTS uq_products_barcode_normalized
+    ON products (LOWER(TRIM(generic_barcode)))
+    WHERE NULLIF(TRIM(generic_barcode), '') IS NOT NULL;
 
 -- Devices table
 CREATE TABLE IF NOT EXISTS devices (
@@ -514,12 +527,35 @@ CREATE TABLE IF NOT EXISTS product_locations (
     location_id SERIAL PRIMARY KEY,
     product_id INT NOT NULL REFERENCES products(productid) ON DELETE CASCADE,
     zone_id INT NULL REFERENCES storage_zones(zone_id) ON DELETE CASCADE,
-    quantity NUMERIC(10,3) NOT NULL DEFAULT 0,
+	quantity NUMERIC(10,3) NOT NULL DEFAULT 0 CHECK (quantity >= 0),
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_product_locations_zone ON product_locations(zone_id);
 CREATE UNIQUE INDEX IF NOT EXISTS uq_product_locations_product_zone
     ON product_locations(product_id, zone_id) NULLS NOT DISTINCT;
+
+CREATE OR REPLACE FUNCTION sync_product_stock_from_locations()
+RETURNS TRIGGER AS $$
+DECLARE affected_product_id INT;
+BEGIN
+    IF TG_OP = 'DELETE' THEN affected_product_id := OLD.product_id;
+    ELSE affected_product_id := NEW.product_id;
+    END IF;
+
+    UPDATE products
+    SET stock_quantity = COALESCE((SELECT SUM(quantity) FROM product_locations WHERE product_id = affected_product_id), 0),
+        updated_at = CURRENT_TIMESTAMP
+    WHERE productid = affected_product_id AND tracking_mode = 'quantity';
+
+    IF TG_OP = 'DELETE' THEN RETURN OLD;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER product_locations_sync_stock
+AFTER INSERT OR UPDATE OR DELETE ON product_locations
+FOR EACH ROW EXECUTE FUNCTION sync_product_stock_from_locations();
 
 CREATE TABLE IF NOT EXISTS warehouse_schema_migrations (
     version VARCHAR(100) PRIMARY KEY,

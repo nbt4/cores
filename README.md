@@ -154,7 +154,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 5. **Case-/Kistenmanagement** — Verwaltung von Transportkisten, Cases und Verpackungseinheiten mit Tracking
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
-8. **Produkt-/Paketverwaltung** — Gruppierung von Geräten in Produkte und Versandpakete
+8. **Produkt-/Paketverwaltung** — Typisierte Produktstammdaten mit Einzel- oder Mengenverfolgung, sicherer Archivierung, automatisch synchronisierten Lagerbeständen und eigenständigen Produktpaketen
 9. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
