@@ -149,7 +149,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung aller Geräte mit QR- und Barcode-Identifikation für schnelles Scannen
 2. **Zonenmanagement** — Flexible Lagerzonen-Definition und -Verwaltung für optimierte Lagerorganisation
-3. **Job-Picklisten mit Barcode-Scan** — Automatisch generierte Picklisten für Veranstaltungsaufträge mit Barcode-basierter Bestätigung
+3. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
 4. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
 5. **Case-/Kistenmanagement** — Verwaltung von Transportkisten, Cases und Verpackungseinheiten mit Tracking
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
@@ -188,7 +188,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 1. **Plan-Management (Kanban-Boards)** — Flexible Kanban-Boards für Projektplanung mit visueller Aufgabenverfolgung
 2. **Task-Management mit Zuweisung** — Aufgaben mit Verantwortlichkeiten, Prioritäten und Status-Tracking
-3. **Bucket/Kanban-Spalten** — Frei definierbare Kanban-Spalten (Buckets) für individuelle Workflows
+3. **Bucket/Kanban-Spalten** — Frei definierbare Kanban-Spalten (Buckets), die per Drag-and-drop nach links und rechts verschoben und dauerhaft synchronisiert werden
 4. **Checklisten** — Aufgaben mit detaillierten Checklisten für schrittweise Abarbeitung
 5. **Kommentare** — Aufgabenbezogene Diskussionen und Notizen mit Timeline-Ansicht
 6. **Datei-Anhänge** — Dokumenten-Upload und Verlinkung direkt an Aufgaben
