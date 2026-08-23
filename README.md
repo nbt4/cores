@@ -70,7 +70,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. **Zentrale JWT-Authentifizierung (SSO)** — Single-Sign-On für alle Cores-Services mit Token-basierter Authentifizierung
-2. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore, PlannerCore und ProcurementCore
+2. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore und PlannerCore
 3. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
 4. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
 5. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
@@ -92,7 +92,6 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 | `*` | `/api/rental/*` | Proxy zu rentalcore |
 | `*` | `/api/warehouse/*` | Proxy zu warehousecore |
 | `*` | `/api/planner/*` | Proxy zu plannercore |
-| `*` | `/api/v1/procurement/*` | Proxy zu procurementcore |
 
 ---
 
@@ -223,7 +222,8 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 | **Tech-Stack** | Go + React/TypeScript |
 | **Docker Image** | `nobentie/procurementcore` |
 | **Interner Port** | `8084` |
-| **Dashboard-Pfad** | `/procurement/` |
+| **Öffentliche URL** | `https://procurement.tsunami-events.de` |
+| **Docker03 Host-Port** | `8084` |
 
 #### 🔑 Haupt-Features
 

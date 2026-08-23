@@ -97,7 +97,7 @@ services:
       PLANNERCORE_URL: "http://plannercore:8080"
       PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-/planner/}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
-      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-/procurement/}"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
