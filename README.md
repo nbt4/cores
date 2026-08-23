@@ -227,7 +227,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 #### 🔑 Haupt-Features
 
-1. Parametrisierbarer Beschaffungskatalog mit Kategorie-spezifischen technischen Filtern
+1. Parametrisierbarer Beschaffungskatalog mit visuellem Schema-Editor und technischen Filtern
 2. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
 3. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
 4. Tiefpreis-Alarme gegen persönliche Zielpreise
