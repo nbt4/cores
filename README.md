@@ -228,11 +228,12 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. Parametrisierbarer Beschaffungskatalog mit visuellem Schema-Editor und technischen Filtern
-2. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
-3. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
-4. Tiefpreis-Alarme gegen persönliche Zielpreise
-5. Bedarfsmeldungen mit Einreichungs- und Freigabeprozess
-6. Angebots-/Lieferantenvergleich und Übernahme des besten gepflegten Preises
+2. Sicherer Artikelimport aus Produktlinks mit editierbarer Datenvorschau
+3. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
+4. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
+5. Tiefpreis-Alarme gegen persönliche Zielpreise
+6. Bedarfsmeldungen mit Einreichungs- und Freigabeprozess
+7. Angebots-/Lieferantenvergleich und Übernahme des besten gepflegten Preises
 7. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung
 8. Spend-, Einsparungs- und Aktivitätsübersicht sowie CSV-Export
 9. Cores-SSO, zentrales Branding, responsive Oberfläche und Health-Monitoring
