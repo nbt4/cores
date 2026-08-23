@@ -13,3 +13,6 @@
 [submodule "cores-common"]
 	path = cores-common
 	url = git@github.com:nbt4/cores-common.git
+[submodule "procurementcore"]
+	path = procurementcore
+	url = https://github.com/nbt4/procurementcore.git

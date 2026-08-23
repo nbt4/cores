@@ -24,9 +24,16 @@ CREATE TABLE IF NOT EXISTS branding_config (
     logo_warehouse_login    VARCHAR(512) DEFAULT NULL,
     logo_planner_sidebar    VARCHAR(512) DEFAULT NULL,
     logo_planner_login      VARCHAR(512) DEFAULT NULL,
+    logo_procurement_sidebar VARCHAR(512) DEFAULT NULL,
+    logo_procurement_login  VARCHAR(512) DEFAULT NULL,
 
     -- Global favicon (browser tab icon)
     favicon_path            VARCHAR(512) DEFAULT NULL,
+    favicon_cores           VARCHAR(512) DEFAULT NULL,
+    favicon_rental          VARCHAR(512) DEFAULT NULL,
+    favicon_warehouse       VARCHAR(512) DEFAULT NULL,
+    favicon_planner         VARCHAR(512) DEFAULT NULL,
+    favicon_procurement     VARCHAR(512) DEFAULT NULL,
 
     -- Logo size as percentage (50 = half size, 200 = double size)
     logo_size_sidebar       SMALLINT NOT NULL DEFAULT 100

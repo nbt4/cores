@@ -96,6 +96,8 @@ services:
       WAREHOUSECORE_URL: "http://warehousecore:8082"
       PLANNERCORE_URL: "http://plannercore:8080"
       PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-/planner/}"
+      PROCUREMENTCORE_URL: "http://procurementcore:8084"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-/procurement/}"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
@@ -208,6 +210,40 @@ services:
       timeout: 10s
       retries: 10
       start_period: 60s
+
+  # ============================================================================
+  # ProcurementCore - Purchasing & Supplier Management
+  # ============================================================================
+  procurementcore:
+    image: nobentie/procurementcore:latest
+    container_name: procurementcore
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8084"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
+      DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${POSTGRES_USER:-rentalcore}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
+      DB_SSLMODE: "disable"
+    ports:
+      - "8084:8084"
+    volumes:
+      - branding-data:/var/lib/branding
+    networks:
+      - weidelbach
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8084/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
 
   # ============================================================================
   # PostgreSQL Backup Service - Daily automatic backups

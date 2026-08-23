@@ -1,7 +1,7 @@
 # 🏗️ Cores — Tsunami Events Management System
 
 > **Monorepo für das Cores-Ökosystem**  
-> Vollständige Event-Management-Plattform bestehend aus vier Microservices mit zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
+> Vollständige Management-Plattform bestehend aus fünf Core-Services mit zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
@@ -21,6 +21,7 @@
   - [rentalcore](#rentalcore)
   - [warehousecore](#warehousecore)
   - [plannercore](#plannercore)
+  - [procurementcore](#procurementcore)
 - [Architektur](#architektur)
 - [Repository-Struktur](#repository-struktur)
 - [Installation & Deployment](#installation--deployment)
@@ -34,13 +35,13 @@
 
 ## Projektübersicht
 
-**Cores** ist das zentrale Event-Management-Ökosystem von **Tsunami Events**. Es besteht aus vier spezialisierten Microservices, die gemeinsam den gesamten Lebenszyklus von Veranstaltungen abdecken — von der Planung über die Vermietung und Lagerverwaltung bis hin zur zentralen Administration.
+**Cores** ist das zentrale Management-Ökosystem von **Tsunami Events**. Fünf Core-Services decken Planung, Vermietung, Lager, Einkauf und zentrale Administration ab.
 
 Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit geteilten Ressourcen, zentralem Branding und konsistenter Authentifizierung über alle Dienste hinweg zu ermöglichen.
 
 ### 🎯 Kernziele
 
-- **Zentrales SSO** — Ein Login in Dashboard, RentalCore, WarehouseCore oder PlannerCore gilt für alle Services
+- **Zentrales SSO** — Ein Login gilt für Dashboard, RentalCore, WarehouseCore, PlannerCore und ProcurementCore
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
@@ -69,7 +70,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. **Zentrale JWT-Authentifizierung (SSO)** — Single-Sign-On für alle Cores-Services mit Token-basierter Authentifizierung
-2. **API Reverse-Proxy** — Intelligentes Routing aller API-Anfragen an die jeweiligen Backend-Services (rentalcore, warehousecore, plannercore)
+2. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore, PlannerCore und ProcurementCore
 3. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
 4. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
 5. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
@@ -91,6 +92,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 | `*` | `/api/rental/*` | Proxy zu rentalcore |
 | `*` | `/api/warehouse/*` | Proxy zu warehousecore |
 | `*` | `/api/planner/*` | Proxy zu plannercore |
+| `*` | `/api/v1/procurement/*` | Proxy zu procurementcore |
 
 ---
 
@@ -211,6 +213,44 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 ---
 
+### procurementcore
+
+> **Einkaufsplanung, Lieferantensteuerung & Beschaffung**
+
+| Eigenschaft | Detail |
+|-------------|--------|
+| **Zweck** | Bedarf, Sourcing, Preisüberwachung, Bestellungen und Wareneingänge |
+| **Tech-Stack** | Go + React/TypeScript |
+| **Docker Image** | `nobentie/procurementcore` |
+| **Interner Port** | `8084` |
+| **Dashboard-Pfad** | `/procurement/` |
+
+#### 🔑 Haupt-Features
+
+1. Parametrisierbarer Beschaffungskatalog mit Kategorie-spezifischen technischen Filtern
+2. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
+3. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
+4. Tiefpreis-Alarme gegen persönliche Zielpreise
+5. Bedarfsmeldungen mit Einreichungs- und Freigabeprozess
+6. Angebots-/Lieferantenvergleich und Übernahme des besten gepflegten Preises
+7. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung
+8. Spend-, Einsparungs- und Aktivitätsübersicht sowie CSV-Export
+9. Cores-SSO, zentrales Branding, responsive Oberfläche und Health-Monitoring
+
+#### 📡 Wichtigste API-Endpunkte
+
+| Methode | Pfad | Beschreibung |
+|---------|------|-------------|
+| `GET/POST` | `/api/v1/products` | Katalog suchen / Artikel anlegen |
+| `GET/POST` | `/api/v1/suppliers` | Lieferanten auflisten / anlegen |
+| `GET/POST` | `/api/v1/alerts` | Tiefpreis-Alarme verwalten |
+| `GET/POST` | `/api/v1/requisitions` | Bedarfsmeldungen verwalten |
+| `POST` | `/api/v1/requisitions/:id/decision` | Bedarf freigeben / ablehnen |
+| `GET/POST` | `/api/v1/orders` | Bestellungen verwalten |
+| `POST` | `/api/v1/orders/:id/receipt` | Wareneingang verbuchen |
+
+---
+
 ## Architektur
 
 ### 🏛️ System-Architektur
@@ -292,6 +332,7 @@ cores/                              # Monorepo Root
 ├── rentalcore/                     # Submodule: Vermietung
 ├── warehousecore/                  # Submodule: Lager
 ├── plannercore/                    # Submodule: Planung
+├── procurementcore/                # Submodule: Einkauf
 ├── shared/                         # Geteilte Ressourcen
 │   ├── logos/                      # Zentrales Logo- & Branding-Material
 │   ├── migrations/                 # Datenbank-Migrationen (alle Services)
@@ -313,6 +354,7 @@ Zugangsdaten gehören ausschließlich in die lokale Laufzeitumgebung oder einen 
 | RentalCore | [nbt4/rentalcore](https://github.com/nbt4/rentalcore) |
 | WarehouseCore | [nbt4/warehousecore](https://github.com/nbt4/warehousecore) |
 | PlannerCore | [nbt4/plannercore](https://github.com/nbt4/plannercore) |
+| ProcurementCore | [nbt4/procurementcore](https://github.com/nbt4/procurementcore) |
 
 ---
 
@@ -403,6 +445,7 @@ docker compose restart rentalcore
 | `rentalcore` | rentalcore | 8081 | `/health` |
 | `warehousecore` | warehousecore | 8082 | `/api/v1/health` |
 | `plannercore` | plannercore | 8083 | `/health` |
+| `procurementcore` | procurementcore | 8084 | `/health` |
 | `postgres` | cores-postgres | 5432 | `pg_isready` |
 | `mosquitto` | cores-mosquitto | 1883 | MQTT Connect |
 
@@ -444,6 +487,7 @@ curl -fsS http://localhost:8080/health
 curl -fsS http://localhost:8081/health
 curl -fsS http://localhost:8082/api/v1/health
 curl -fsS http://localhost:8083/health
+curl -fsS http://localhost:8084/health
 ```
 
 Die erste Anmeldung erfolgt über `http://localhost:8080/login` mit `admin/admin`;
