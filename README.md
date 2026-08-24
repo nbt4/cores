@@ -560,6 +560,9 @@ Das Dashboard verwaltet getrennte Unternehmens- und Produktmarken. Die fünf
 Services verwenden semantische Varianten für Bildmarke, horizontales und
 gestapeltes Logo, Favicon sowie PWA-Icons. Änderungen werden aus dem gemeinsamen
 PostgreSQL-Datensatz und Branding-Volume ohne Neustart übernommen.
+Produktlogos stehen ausschließlich in den ein-/ausklappbaren Sidebars: geöffnet
+in einer einheitlichen 176 × 48-px-Fläche, eingeklappt als 40 × 40-px-Symbol.
+App-Header bleiben logofrei; Browser-Tabs verwenden immer nur das Favicon.
 
 Die verbindliche Matrix „welches Logo wo“ sowie Dateivorgaben und der
 Asset-Sync sind im [Cores Brand Guide](docs/BRANDING.md) dokumentiert.

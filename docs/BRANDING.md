@@ -9,8 +9,8 @@ Unternehmensmarke.
 
 | Kontext | Primäre Marke | Variante |
 |---|---|---|
-| Erweiterte Sidebar, Desktop-Header | jeweiliges Produkt | `horizontalOnDark` |
-| Eingeklappte/mobile Navigation | jeweiliges Produkt | `markOnDark` |
+| Geöffnete Sidebar | jeweiliges Produkt | `horizontalOnDark` |
+| Eingeklappte Sidebar | jeweiliges Produkt | `markOnDark` |
 | Login und Splashscreen | jeweiliges Produkt | `stackedOnDark`, darunter „by …“ |
 | Browser-Tab | jeweiliges Produkt | `favicon` |
 | Installierte PWA | jeweiliges Produkt | `appIcon` / `maskableIcon` |
@@ -22,6 +22,12 @@ Ein Produktlogo gehört insbesondere nicht auf Rechnungen oder physische
 Etiketten. Auf dunklen Flächen wird `OnDark`, auf hellen Flächen `OnLight`
 verwendet; „Dark“ beschreibt den Hintergrund, nicht die Logofarbe.
 
+Produktlogos erscheinen in der App-Shell ausschließlich in der Sidebar.
+Header und mobile Kopfzeilen bleiben logofrei. Alle Services verwenden geöffnet
+dieselbe Logofläche von 176 × 48 px und eingeklappt dieselbe Symbolfläche von
+40 × 40 px. Die Sidebars sind auf dem Desktop ein- und ausklappbar; auf Mobilgeräten
+öffnen sie sich als Drawer. Im Browser-Tab wird ausschließlich `favicon` verwendet.
+
 ## Asset-Empfehlungen
 
 - `mark*`, `favicon`, `appIcon`, `maskableIcon`: annähernd quadratisch
@@ -31,6 +37,8 @@ verwendet; „Dark“ beschreibt den Hintergrund, nicht die Logofarbe.
 - Abweichende Seitenverhältnisse werden nicht abgelehnt; die Oberflächen
   skalieren Logos unverzerrt innerhalb der verfügbaren Fläche.
 - Digital: SVG oder transparentes PNG; es gibt keine feste Dateigrößengrenze.
+- Transparente Außenränder sollten vor dem Upload entfernt werden, damit die
+  sichtbare Bildmarke die gemeinsame Logofläche vollständig nutzt.
 - Druck: zusätzlich JPEG; für RentalCore-Labels PNG/JPEG verwenden.
 - Maskable Icons: das vollständige Motiv muss innerhalb der zentralen 60 %
   liegen. Ein farbiger Hintergrund gehört in die Datei.
