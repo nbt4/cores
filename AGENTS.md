@@ -34,6 +34,7 @@
 ## Deployment Discipline
 - Treat `github.com/nbt4/cores` as the canonical umbrella repository for the complete Cores stack. Every Core service must be present as a Git submodule, including ProcurementCore and future services.
 - After every service release, update and commit all changed service submodule pointers in `cores`, and keep the root Compose files, service inventory, README, and deployment documentation synchronized with the released versions.
+- Finish every complete umbrella release by merging the updated `cores` branch into `main` and pushing `origin/main`; `main` must always represent the latest fully deployed Cores stack.
 - For every change, always build and push the matching Docker image to Docker Hub after checking the latest published tag.
 - GitHub (`github.com/nbt4`) is the only source-code remote and source of truth.
 - Mirror the build by pushing code to GitHub (per-service repo + `cores` if affected) so image and source stay in sync.
