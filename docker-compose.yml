@@ -232,6 +232,8 @@ services:
       DB_USER: "${POSTGRES_USER:-rentalcore}"
       DB_PASSWORD: "${POSTGRES_PASSWORD:-}"
       DB_SSLMODE: "disable"
+      ADAMHALL_USERNAME: "${ADAMHALL_USERNAME:-}"
+      ADAMHALL_PASSWORD: "${ADAMHALL_PASSWORD:-}"
     ports:
       - "8084:8084"
     volumes:
