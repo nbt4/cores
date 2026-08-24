@@ -228,7 +228,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. Parametrisierbarer Beschaffungskatalog mit visuellem Schema-Editor und technischen Filtern
-2. Sicherer Artikelimport aus Produktlinks mit editierbarer Datenvorschau und Kategorieparametern
+2. Sicherer Artikelimport aus Produktlinks mit editierbarer Datenvorschau, Kategorieparametern und erweiterter Adam-Hall-Shop-Erkennung
 3. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
 4. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
 5. Tiefpreis-Alarme gegen persönliche Zielpreise
