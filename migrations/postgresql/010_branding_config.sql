@@ -35,6 +35,10 @@ CREATE TABLE IF NOT EXISTS branding_config (
     favicon_planner         VARCHAR(512) DEFAULT NULL,
     favicon_procurement     VARCHAR(512) DEFAULT NULL,
 
+    -- Extensible semantic assets grouped by service id. Legacy position
+    -- columns above remain as backward-compatible fallbacks.
+    assets_json             JSONB NOT NULL DEFAULT '{}'::jsonb,
+
     -- Logo size as percentage (50 = half size, 200 = double size)
     logo_size_sidebar       SMALLINT NOT NULL DEFAULT 100
                              CHECK (logo_size_sidebar BETWEEN 50 AND 200),

@@ -45,7 +45,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
-- **Installierbare Mobile-Apps** — Alle vier Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation
+- **Installierbare Mobile-Apps** — Alle fünf Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation
 - **Docker-basiertes Deployment** — Vollständig containerisiert mit docker-compose
 - **Git Submodules** — Jeder Service ist ein eigenständiges Repository, eingebunden als Submodule
 
@@ -556,39 +556,13 @@ Das `shared/`-Verzeichnis enthält monorepo-weite Ressourcen:
 
 ## Branding-System
 
-### 🎨 Zentrales Branding-Management
+Das Dashboard verwaltet getrennte Unternehmens- und Produktmarken. Die fünf
+Services verwenden semantische Varianten für Bildmarke, horizontales und
+gestapeltes Logo, Favicon sowie PWA-Icons. Änderungen werden aus dem gemeinsamen
+PostgreSQL-Datensatz und Branding-Volume ohne Neustart übernommen.
 
-Das Cores-Ökosystem verfügt über ein **zentrales Branding-System**, das ein konsistentes Erscheinungsbild über alle Services sicherstellt.
-
-#### Funktionsweise
-
-1. **Branding-Konfiguration** wird im cores-dashboard verwaltet (Admin-Bereich)
-2. **Services laden** ihre Branding-Einstellungen beim Start vom zentralen `/api/branding`-Endpunkt
-3. **Änderungen** werden live übernommen — kein Neustart der Services erforderlich
-
-#### Verwaltete Branding-Elemente
-
-| Element | Beschreibung |
-|---------|-------------|
-| **Logo (Light/Dark)** | Primäres Logo für Header und Login-Seiten |
-| **Favicon** | Browser-Tab-Icon für alle Services |
-| **Farbpalette** | Primary, Secondary, Accent-Farben (HEX) |
-| **Schriftart** | Primäre und sekundäre Schriftfamilie |
-| **E-Mail-Template** | Absender-Name, Footer, Farben für System-E-Mails |
-| **Footer-Text** | Copyright, Links, Unternehmensdaten |
-
-#### Implementierung
-
-```typescript
-// Alle Services laden Branding beim Initialisieren:
-const branding = await fetch('/api/branding', {
-  headers: { Authorization: `Bearer ${token}` }
-}).then(res => res.json());
-
-// CSS Custom Properties setzen
-document.documentElement.style.setProperty('--color-primary', branding.colors.primary);
-document.documentElement.style.setProperty('--logo-url', `url(${branding.logo})`);
-```
+Die verbindliche Matrix „welches Logo wo“ sowie Dateivorgaben und der
+Asset-Sync sind im [Cores Brand Guide](docs/BRANDING.md) dokumentiert.
 
 ---
 
