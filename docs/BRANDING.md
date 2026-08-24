@@ -28,7 +28,7 @@ verwendet; „Dark“ beschreibt den Hintergrund, nicht die Logofarbe.
   (Seitenverhältnis 0,8–1,25).
 - `horizontal*`: Seitenverhältnis 1,4–6,0.
 - `stacked*`: Seitenverhältnis 0,7–1,7.
-- Digital: SVG oder transparentes PNG, maximal 2 MB.
+- Digital: SVG oder transparentes PNG; es gibt keine feste Dateigrößengrenze.
 - Druck: zusätzlich JPEG; für RentalCore-Labels PNG/JPEG verwenden.
 - Maskable Icons: das vollständige Motiv muss innerhalb der zentralen 60 %
   liegen. Ein farbiger Hintergrund gehört in die Datei.
