@@ -61,6 +61,7 @@ services:
       # App port
       SERVER_HOST: "0.0.0.0"
       SERVER_PORT: "8081"
+      APP_BASE_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
       # OCR Parser Configuration
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
       # Microsoft 365 central job calendar
