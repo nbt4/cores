@@ -228,7 +228,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. Parametrisierbarer Beschaffungskatalog mit visuellem Schema-Editor und technischen Filtern
-2. Sicherer Artikelimport aus Produktlinks mit editierbarer Datenvorschau, dauerhaften kategorieunabhängigen Originalattributen, Kategorieparametern sowie serverseitiger Adam-Hall-Erkennung inklusive optionaler Kundenpreise über Azure-B2C-PKCE
+2. Sicherer Artikelimport aus Produktlinks mit JSON-LD, schema.org-Microdata und OpenGraph sowie eigenen Adaptern für Adam Hall, LTT, Huss, Thomann, Steinigke, Eurobox- und Casebau-Shops; Vorschau, Originalattribute, Kategorieparameter und optionale Adam-Hall-Kundenpreise bleiben prüfbar
 3. Preferred Supplier, Bewertungen, Risiken, Konditionen und Lieferzeiten
 4. Bezugsquellen mit Preisverlauf, Mindestmengen und direkten Einkaufslinks
 5. Tiefpreis-Alarme gegen persönliche Zielpreise
