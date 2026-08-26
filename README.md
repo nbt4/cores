@@ -149,10 +149,10 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung aller Geräte mit QR- und Barcode-Identifikation für schnelles Scannen
-2. **Zonenmanagement** — Flexible Lagerzonen-Definition und -Verwaltung für optimierte Lagerorganisation
+2. **Professionelle Lagersteuerung** — Hierarchische Standorte bis zum Fach mit Prozessrollen, Sperrzuständen, Kapazitäten, Pick-Reihenfolge, Arbeitsvorrat und scannerbasierter Blind-/Zählinventur
 3. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
 4. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
-5. **Case-/Kistenmanagement** — Verwaltung von Transportkisten, Cases und Verpackungseinheiten mit Tracking
+5. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
 6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
 8. **Produkt-/Paketverwaltung** — Typisierte Produktstammdaten mit Einzel- oder Mengenverfolgung, sicherer Archivierung, automatisch synchronisierten Lagerbeständen und eigenständigen Produktpaketen
@@ -165,6 +165,9 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 | `GET/POST` | `/api/devices` | Geräte auflisten / erstellen |
 | `GET/PUT` | `/api/devices/:id` | Gerät abrufen / aktualisieren |
 | `GET/POST` | `/api/zones` | Zonen auflisten / erstellen |
+| `GET/POST` | `/api/warehouse/locations` | Lagerstruktur steuern |
+| `GET/POST` | `/api/warehouse/counts` | Zählinventuren verwalten |
+| `GET/POST` | `/api/handling-units` | Dynamische und feste Cases verwalten |
 | `GET/POST` | `/api/picklists` | Picklisten auflisten / generieren |
 | `POST` | `/api/picklists/:id/scan` | Barcode-Scan auf Pickliste bestätigen |
 | `POST` | `/api/mqtt/highlight` | MQTT-LED-Highlighting auslösen |
