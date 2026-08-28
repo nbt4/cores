@@ -148,7 +148,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 #### 🔑 Haupt-Features
 
-1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung aller Geräte mit QR- und Barcode-Identifikation für schnelles Scannen
+1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung mit getrenntem, workflowgeführtem Lagerstatus und unabhängigem Betriebszustand samt automatischer Statushistorie
 2. **Professionelle Lagersteuerung** — Hierarchische Standorte bis zum Fach mit Prozessrollen, Sperrzuständen, Kapazitäten, Pick-Reihenfolge, Arbeitsvorrat und scannerbasierter Blind-/Zählinventur
 3. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
 4. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
@@ -164,6 +164,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 |---------|------|-------------|
 | `GET/POST` | `/api/devices` | Geräte auflisten / erstellen |
 | `GET/PUT` | `/api/devices/:id` | Gerät abrufen / aktualisieren |
+| `GET` | `/api/devices/:id/status-history` | Lagerstatus-, Zustands- und Ortsänderungen nachvollziehen |
 | `GET/POST` | `/api/zones` | Zonen auflisten / erstellen |
 | `GET/POST` | `/api/warehouse/locations` | Lagerstruktur steuern |
 | `GET/POST` | `/api/warehouse/counts` | Zählinventuren verwalten |
