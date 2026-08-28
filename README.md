@@ -149,14 +149,15 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung mit getrenntem, workflowgeführtem Lagerstatus und unabhängigem Betriebszustand samt automatischer Statushistorie
-2. **Professionelle Lagersteuerung** — Hierarchische Standorte bis zum Fach mit Prozessrollen, Sperrzuständen, Kapazitäten, Pick-Reihenfolge, Arbeitsvorrat und scannerbasierter Blind-/Zählinventur
-3. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
-4. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
-5. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
-6. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
-7. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
-8. **Produkt-/Paketverwaltung** — Typisierte Produktstammdaten mit Einzel- oder Mengenverfolgung, sicherer Archivierung, automatisch synchronisierten Lagerbeständen und eigenständigen Produktpaketen
-9. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
+2. **Live-Lagercockpit** — Priorisierte Aufgaben, Einsatzbereitschaft, Materialfluss, Tagesbewegungen, aktive Jobs, Case-Prozesse und technische Risiken mit automatischer Aktualisierung
+3. **Professionelle Lagersteuerung** — Hierarchische Standorte bis zum Fach mit Prozessrollen, Sperrzuständen, Kapazitäten, Pick-Reihenfolge, Arbeitsvorrat und scannerbasierter Blind-/Zählinventur
+4. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
+5. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
+6. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
+7. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
+8. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
+9. **Produkt-/Paketverwaltung** — Typisierte Produktstammdaten mit Einzel- oder Mengenverfolgung, sicherer Archivierung, automatisch synchronisierten Lagerbeständen und eigenständigen Produktpaketen
+10. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
