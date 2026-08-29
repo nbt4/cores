@@ -16,15 +16,15 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller gemeinsamer UI-Release (29.08.2026):
+Aktueller gemeinsamer UI-Release (30.08.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.25` |
-| RentalCore | `nobentie/rentalcore:5.3.93` |
-| WarehouseCore | `nobentie/warehousecore:5.9.60` |
-| PlannerCore | `nobentie/plannercore:2.6.15` |
-| ProcurementCore | `nobentie/procurementcore:1.0.21` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.26` |
+| RentalCore | `nobentie/rentalcore:5.3.94` |
+| WarehouseCore | `nobentie/warehousecore:5.9.61` |
+| PlannerCore | `nobentie/plannercore:2.6.16` |
+| ProcurementCore | `nobentie/procurementcore:1.0.22` |
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
@@ -46,6 +46,7 @@ Aktueller gemeinsamer UI-Release (29.08.2026):
   - [plannercore](#plannercore)
   - [procurementcore](#procurementcore)
 - [Architektur](#architektur)
+- [Globales Routing](#globales-routing)
 - [Repository-Struktur](#repository-struktur)
 - [Installation & Deployment](#installation--deployment)
 - [Entwicklung](#entwicklung)
@@ -62,13 +63,23 @@ Aktueller gemeinsamer UI-Release (29.08.2026):
 
 Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit geteilten Ressourcen, zentralem Branding und konsistenter Authentifizierung über alle Dienste hinweg zu ermöglichen.
 
+## Globales Routing
+
+`CORES_ROUTING_MODE` entscheidet einmal für das gesamte Deployment zwischen
+`paths` und `subdomains`; ein Mischbetrieb ist ausgeschlossen. Der vollständige
+Stack verwendet standardmäßig `paths` und stellt die Apps unter
+`/rentalcore/`, `/warehousecore/`, `/plannercore/` und `/procurementcore/` auf
+der Dashboard-Domain bereit. Mit `subdomains` verlinkt das Dashboard stattdessen
+die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
+[`docs/ROUTING.md`](docs/ROUTING.md).
+
 ### 🎯 Kernziele
 
 - **Zentrales SSO** — Ein Login gilt für Dashboard, RentalCore, WarehouseCore, PlannerCore und ProcurementCore
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
-- **Installierbare Mobile-Apps** — Alle fünf Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation; RentalCore bleibt über `/rental/` innerhalb der installierten Cores-PWA ohne externe iOS-Browserleiste
+- **Installierbare Mobile-Apps** — Alle fünf Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation; im globalen Pfadmodus bleiben alle Cores unter `/rentalcore/`, `/warehousecore/`, `/plannercore/` und `/procurementcore/` innerhalb der installierten Cores-PWA ohne externe iOS-Browserleiste
 - **Docker-basiertes Deployment** — Vollständig containerisiert mit docker-compose
 - **Git Submodules** — Jeder Service ist ein eigenständiges Repository, eingebunden als Submodule
 
@@ -482,16 +493,15 @@ docker compose restart rentalcore
 
 #### 4. NPM Reverse Proxy einrichten
 
-Für jeden Service einen **Proxy Host** im Nginx Proxy Manager anlegen:
+Im standardmäßigen Pfadmodus genügt ein **Proxy Host**:
 
 | Domain | Forward Host | Forward Port | SSL |
 |--------|-------------|-------------|-----|
 | `cores.tsunami-events.de` | `cores-dashboard` | `8080` | ✅ Force SSL |
-| `rent.tsunami-events.de` | `cores-dashboard` | `8080` | ✅ Force SSL |
-| `warehouse.tsunami-events.de` | `cores-dashboard` | `8080` | ✅ Force SSL |
-| `planner.tsunami-events.de` | `cores-dashboard` | `8080` | ✅ Force SSL |
 
-> **Hinweis:** Alle Domains zeigen auf `cores-dashboard:8080`, da das Dashboard als zentraler API-Gateway und Reverse-Proxy fungiert und Anfragen intern an die jeweiligen Services weiterleitet.
+Das Dashboard routet die vier Core-Pfade intern. Im Subdomainmodus wird dagegen
+jede öffentliche Core-Domain direkt an ihren Service-Port weitergeleitet. Die
+vollständige Zuordnung steht in [`docs/ROUTING.md`](docs/ROUTING.md).
 
 #### 5. Deployment via Komodo (docker03)
 

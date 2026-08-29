@@ -92,11 +92,15 @@ services:
         condition: service_healthy
     environment:
       PORT: "8080"
+      # Global switch: every Core uses either suite paths or its own subdomain.
+      CORES_ROUTING_MODE: "${CORES_ROUTING_MODE:-paths}"
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       RENTALCORE_URL: "http://rentalcore:8081"
+      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
       WAREHOUSECORE_URL: "http://warehousecore:8082"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
       PLANNERCORE_URL: "http://plannercore:8080"
-      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-/planner/}"
+      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
       PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
       DB_HOST: "postgres"
