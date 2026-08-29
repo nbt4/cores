@@ -26,6 +26,14 @@
 - Follow identifier patterns: PascalCase for exports, camelCase for locals, uppercase snake case for config keys.
 - Static assets in `web/` use kebab-case filenames and established folder splits (`css/`, `js/`, `img/`).
 
+## Verbindliches Cores Designsystem
+- Vor jeder UI-Arbeit `docs/DESIGN_SYSTEM.md` und `theme/README.md` vollständig lesen; diese Regeln gelten für jeden bestehenden und zukünftigen Core.
+- `theme/tsunami-theme.css` und `theme/cores-design.ts` sind die einzigen kanonischen Quellen für Suite-Tokens, globale Primitives, Datumslogik und Begrüßungen. Generierte Kopien unter `*/web/src/cores-theme.css`, `*/web/src/lib/cores-design.ts` und `rentalcore/web/static/css/cores-theme.css` niemals direkt bearbeiten.
+- Nach Änderungen am Designsystem `./scripts/sync-design-system.sh` ausführen und vor jedem UI-Commit `./scripts/check-design-system.sh` ausführen.
+- Keine service-spezifischen Paletten, Schriftarten, Größenleitern, Sidebar-Maße, Tabellen-, Select-, Dropdown- oder Scrollbar-Designs einführen. Fachliche Datenfarben bleiben semantisch und dürfen die gemeinsame Shell nicht verändern.
+- Neue oder überarbeitete Dashboards müssen dem Dashboard-Vertrag in `docs/DESIGN_SYSTEM.md` und den `suite-dashboard*`-/`suite-kpi*`-Primitives folgen. Begrüßungen werden ausschließlich über `suiteGreeting()` erzeugt.
+- Bei jeder UI-Änderung alle betroffenen Breakpoints sowie Tastaturfokus, Kontrast, Light/Dark und leere/ladende/fehlerhafte Zustände prüfen; relevante README- und Design-Dokumentation im selben Commit aktualisieren.
+
 ## Testing Guidelines
 - Mirror the source tree with package-level `_test.go` files and favor table-driven cases.
 - Run `go test ./...` from each service root before pushing; add coverage whenever touching `internal` logic or SQL migrations.

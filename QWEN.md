@@ -1,5 +1,7 @@
 # Qwen Code Context - Tsunami Events Core Management Systems
 
+> **Mandatory UI rule:** Before any UI work, read `docs/DESIGN_SYSTEM.md`, `theme/README.md`, and `AGENTS.md`. Change only the canonical files in `theme/`, run the sync and design-check scripts, and never edit generated service copies directly.
+
 ## Project Overview
 
 This is a comprehensive equipment rental and warehouse management solution built for professional event technology companies. The system consists of two main Go applications:

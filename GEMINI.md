@@ -1,5 +1,7 @@
 # GEMINI.md
 
+> **Mandatory UI rule:** Before any UI work, read `docs/DESIGN_SYSTEM.md`, `theme/README.md`, and `AGENTS.md`. Change only the canonical files in `theme/`, run the sync and design-check scripts, and never edit generated service copies directly.
+
 ## Project Overview
 
 This project contains the deployment configuration for the Tsunami Events core management systems, an integrated equipment rental and warehouse management solution. The system is composed of two main Go applications, **RentalCore** and **WarehouseCore**, which share a single **PostgreSQL** database. The stack also includes a **Mosquitto MQTT broker** for real-time LED bin highlighting in the warehouse. The entire system is containerized and managed using `docker-compose`.

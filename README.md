@@ -3,6 +3,29 @@
 > **Monorepo für das Cores-Ökosystem**  
 > Vollständige Management-Plattform bestehend aus fünf Core-Services mit zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
+## Einheitliches Designsystem
+
+Alle Oberflächen der Cores Suite verwenden ein verbindliches Designsystem für Farbpalette, Inter-Typografie, Größenleiter, Shell/Sidebar, Tabellen, Formulare, Selects, Dropdowns, Scrollbars, Karten, Responsive-Verhalten und Dashboards. Die vollständige Spezifikation steht in [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md); Marken- und Logoregeln stehen ergänzend in [`docs/BRANDING.md`](docs/BRANDING.md).
+
+Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme/cores-design.ts`. Service-Kopien werden nicht direkt geändert:
+
+```bash
+./scripts/sync-design-system.sh
+./scripts/check-design-system.sh
+```
+
+Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
+
+Aktueller gemeinsamer UI-Release (29.08.2026):
+
+| Service | Image |
+|---|---|
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.24` |
+| RentalCore | `nobentie/rentalcore:5.3.91` |
+| WarehouseCore | `nobentie/warehousecore:5.9.60` |
+| PlannerCore | `nobentie/plannercore:2.6.15` |
+| ProcurementCore | `nobentie/procurementcore:1.0.21` |
+
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
 [![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go)](https://go.dev/)

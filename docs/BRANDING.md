@@ -1,5 +1,7 @@
 # Cores Brand Guide
 
+Diese Markenregeln ergänzen das verbindliche [`Cores Suite Designsystem`](DESIGN_SYSTEM.md). Bei Shell, Typografie, Farben, Abständen und Komponenten gilt die Designsystem-Spezifikation.
+
 ## Markenarchitektur
 
 Cores ist eine Familie eigenständiger Produktmarken unter einer gemeinsamen
