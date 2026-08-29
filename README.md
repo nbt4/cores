@@ -61,7 +61,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 
 | Eigenschaft | Detail |
 |-------------|--------|
-| **Zweck** | Zentrale SSO-Authentifizierung, API-Reverse-Proxy, Branding-Management, Admin-Oberfläche |
+| **Zweck** | Organisationsweites Operations-Cockpit, zentrale SSO-Authentifizierung, API-Reverse-Proxy, Branding-Management und Administration |
 | **Tech-Stack** | Go (Backend) + React/TypeScript (Frontend) |
 | **Docker Image** | `cores-dashboard` |
 | **Interner Port** | `8080` |
@@ -70,28 +70,30 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 #### 🔑 Haupt-Features
 
 1. **Zentrale JWT-Authentifizierung (SSO)** — Single-Sign-On für alle Cores-Services mit Token-basierter Authentifizierung
-2. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore und PlannerCore
-3. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
-4. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
-5. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
-6. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
-7. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
-8. **Health-Check & Monitoring** — Statusüberwachung aller verbundenen Backend-Services
-9. **Installierbare Mobile-App** — Responsive Admin-PWA mit eigenem Icon, Safe Areas, Touch-Zielen, Drawer und fester App-Tabbar
+2. **Live-Operations-Cockpit** — Priorisiertes Lagebild mit Umsatz, aktiven Jobs, Lagerbereitschaft, Rückläufen, persönlichen Planner-Aufgaben, Beschaffungsfreigaben und direkten Arbeitswegen
+3. **Plattformgesundheit** — Parallele Healthchecks aller fünf Cores-Dienste und PostgreSQL mit Versionen, Antwortzeiten und teilfehlertoleranter Darstellung
+4. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore und PlannerCore
+5. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
+6. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
+7. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
+8. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
+9. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
+10. **Installierbare Mobile-App** — Responsive Admin-PWA mit eigenem Icon, Safe Areas, Touch-Zielen, Drawer und fester App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
 | Methode | Pfad | Beschreibung |
 |---------|------|-------------|
-| `POST` | `/api/auth/login` | SSO-Login mit JWT-Token-Ausstellung |
-| `POST` | `/api/auth/logout` | Token-Invalidierung |
-| `GET` | `/api/auth/validate` | Token-Validierung für andere Services |
-| `GET` | `/api/config` | Globale Konfiguration abrufen |
-| `GET` | `/api/branding` | Branding-Einstellungen (Logos, Farben, Themes) |
-| `PUT` | `/api/branding` | Branding aktualisieren (Admin) |
-| `*` | `/api/rental/*` | Proxy zu rentalcore |
-| `*` | `/api/warehouse/*` | Proxy zu warehousecore |
-| `*` | `/api/planner/*` | Proxy zu plannercore |
+| `POST` | `/api/v1/auth/login` | SSO-Login mit JWT-Cookie |
+| `POST` | `/api/v1/auth/logout` | Sitzung beenden |
+| `GET` | `/api/v1/auth/me` | Angemeldeten Benutzer abrufen |
+| `GET` | `/api/v1/config` | Globale Konfiguration und Cross-Links abrufen |
+| `GET` | `/api/v1/branding` | Öffentliche Branding-Einstellungen |
+| `GET` | `/api/v1/analytics/summary` | Cores-Lagebild, Prioritäten und Servicezustand |
+| `GET` | `/api/v1/admin/health` | Service-Versionen und Antwortzeiten (Admin) |
+| `*` | `/api/v1/proxy/rental/*` | Proxy zu RentalCore |
+| `*` | `/api/v1/proxy/warehouse/*` | Proxy zu WarehouseCore |
+| `*` | `/api/v1/proxy/planner/*` | Proxy zu PlannerCore |
 
 ---
 
