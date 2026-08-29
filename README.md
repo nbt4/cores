@@ -20,8 +20,8 @@ Aktueller gemeinsamer UI-Release (29.08.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.24` |
-| RentalCore | `nobentie/rentalcore:5.3.92` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.25` |
+| RentalCore | `nobentie/rentalcore:5.3.93` |
 | WarehouseCore | `nobentie/warehousecore:5.9.60` |
 | PlannerCore | `nobentie/plannercore:2.6.15` |
 | ProcurementCore | `nobentie/procurementcore:1.0.21` |
@@ -68,7 +68,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
-- **Installierbare Mobile-Apps** — Alle fünf Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation
+- **Installierbare Mobile-Apps** — Alle fünf Oberflächen laufen als touchoptimierte PWAs mit Standalone-Modus, Safe Areas und App-Navigation; RentalCore bleibt über `/rental/` innerhalb der installierten Cores-PWA ohne externe iOS-Browserleiste
 - **Docker-basiertes Deployment** — Vollständig containerisiert mit docker-compose
 - **Git Submodules** — Jeder Service ist ein eigenständiges Repository, eingebunden als Submodule
 
@@ -98,7 +98,7 @@ Das System wurde als **Monorepo** konzipiert, um eine einheitliche Codebasis mit
 4. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore und PlannerCore
 5. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
 6. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
-7. **SPA-Proxy für Plannercore** — Auslieferung der Plannercore-Single-Page-Application über das Dashboard
+7. **SPA-Proxys für RentalCore und Plannercore** — Auslieferung beider Single-Page-Applications unter `/rental/` und `/planner/` über das Dashboard
 8. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
 9. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
 10. **Installierbare Mobile-App** — Responsive Admin-PWA mit eigenem Icon, Safe Areas, Touch-Zielen, Drawer und fester App-Tabbar
