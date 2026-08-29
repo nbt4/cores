@@ -21,7 +21,7 @@ Aktueller gemeinsamer UI-Release (29.08.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.24` |
-| RentalCore | `nobentie/rentalcore:5.3.91` |
+| RentalCore | `nobentie/rentalcore:5.3.92` |
 | WarehouseCore | `nobentie/warehousecore:5.9.60` |
 | PlannerCore | `nobentie/plannercore:2.6.15` |
 | ProcurementCore | `nobentie/procurementcore:1.0.21` |
