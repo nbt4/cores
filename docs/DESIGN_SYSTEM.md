@@ -67,6 +67,8 @@ Die Reihenfolge ist: produktbezogene Hauptnavigation, fachliche Unterbereiche, L
 
 Eingaben, Textareas und Selects sind 40 px hoch, mobil mindestens 44 px, mit 10 px Radius, `--surface-2`, 1-px-`--border-input` und 14-px-Text. Fokus verwendet Rot plus einen 3-px-Fokusring mit 15 % Deckkraft. Placeholder nutzen `--text-placeholder`. Disabled-Zustände behalten die Struktur, verwenden 50 % Deckkraft und `not-allowed`.
 
+Suchfelder verwenden ausschließlich `.suite-search-field` als Wrapper. Das Lupen-Icon ist dessen direktes erstes Kind; das Eingabefeld folgt direkt danach. Das Primitive reserviert links 40 px und verhindert damit in allen Breakpoints eine Überlagerung von Icon, Placeholder und eingegebenem Text. Service-spezifische `left`-/`padding-left`-Korrekturen sind nicht zulässig.
+
 Native Selects erhalten in jedem Core denselben Chevron, 40 px Mindesthöhe und explizit gestylte `option`-Elemente. Optionen sind `--surface-2`/`--text-primary`, ausgewählte oder fokussierte Optionen `--surface-3`. Browser-Standardfarben sind nicht zulässig.
 
 Buttons: sekundär `--surface-1` plus Linie; primär ausschließlich roter Vollton; destruktiv Fehlerfarbe; Icon-only quadratisch. Text und Icon haben 8 px Abstand. Primäraktionen stehen rechts bzw. im mobilen Flow zuerst. Pro Abschnitt gibt es höchstens eine Primäraktion.
