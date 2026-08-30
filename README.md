@@ -20,11 +20,11 @@ Aktueller gemeinsamer UI-Release (30.08.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.27` |
-| RentalCore | `nobentie/rentalcore:5.3.95` |
-| WarehouseCore | `nobentie/warehousecore:5.9.64` |
-| PlannerCore | `nobentie/plannercore:2.6.17` |
-| ProcurementCore | `nobentie/procurementcore:1.0.23` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.28` |
+| RentalCore | `nobentie/rentalcore:5.3.96` |
+| WarehouseCore | `nobentie/warehousecore:5.9.65` |
+| PlannerCore | `nobentie/plannercore:2.6.18` |
+| ProcurementCore | `nobentie/procurementcore:1.0.24` |
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)

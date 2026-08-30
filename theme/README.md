@@ -3,7 +3,7 @@
 Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsbild der gesamten Cores Suite.
 
 - `tsunami-theme.css` enthält die verbindlichen Tokens, globalen Bedienelemente und Dashboard-Primitives.
-- `.suite-search-field` aus `tsunami-theme.css` ist der verbindliche Wrapper für Suchfeld, Lupe und kollisionsfreien Texteinsatz.
+- `.suite-search-field` aus `tsunami-theme.css` ist der verbindliche Wrapper für Suchfeld, vertikal zentrierte Lupe und kollisionsfreien Texteinsatz.
 - `cores-design.ts` enthält die einheitliche Datums-, Anzeigenamen- und Begrüßungslogik.
 - [`../docs/DESIGN_SYSTEM.md`](../docs/DESIGN_SYSTEM.md) beschreibt die Produkt- und Anwendungsregeln.
 - `../scripts/sync-design-system.sh` verteilt die kanonische CSS-Datei in alle eigenständig deploybaren Core-Repositories.
