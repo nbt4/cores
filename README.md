@@ -21,8 +21,8 @@ Aktueller gemeinsamer UI-Release (30.08.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.28` |
-| RentalCore | `nobentie/rentalcore:5.3.96` |
-| WarehouseCore | `nobentie/warehousecore:5.9.65` |
+| RentalCore | `nobentie/rentalcore:5.3.97` |
+| WarehouseCore | `nobentie/warehousecore:5.9.66` |
 | PlannerCore | `nobentie/plannercore:2.6.18` |
 | ProcurementCore | `nobentie/procurementcore:1.0.24` |
 
@@ -145,7 +145,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 
 #### 🔑 Haupt-Features
 
-1. **Job-/Event-Management** — Erstellung, Planung und Verwaltung von Veranstaltungen mit vollständigem Lebenszyklus (Angebot → Auftrag → Abrechnung)
+1. **Job-/Event-Management** — Verbindlicher Lebenszyklus `Planung → Bestätigt → Abgeschlossen` mit `Storniert` als Abbruch; Packfortschritt, Datumsaktivität, Geräterücklauf und Abrechnung bleiben getrennte Dimensionen
 2. **Device-/Equipment-Verwaltung** — Katalogisierung und Verwaltung aller Mietgeräte mit Barcode-/QR-Code-Identifikation
 3. **Kundenmanagement** — Vollständige CRM-Funktionalität mit Microsoft 365-Synchronisation für Kontaktdaten
 4. **PDF-Rechnungsextraktion (OCR)** — Automatische Extraktion von Rechnungsdaten aus PDF-Dokumenten mittels optischer Zeichenerkennung
@@ -187,7 +187,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 1. **Geräteverwaltung mit QR/Barcode** — Vollständige Inventarisierung mit getrenntem, workflowgeführtem Lagerstatus und unabhängigem Betriebszustand samt automatischer Statushistorie
 2. **Live-Lagercockpit** — Priorisierte Aufgaben, Einsatzbereitschaft, Materialfluss, Tagesbewegungen, aktive Jobs, Case-Prozesse und technische Risiken mit automatischer Aktualisierung
 3. **Professionelle Lagersteuerung** — Hierarchische Standorte bis zum Fach mit Prozessrollen, Sperrzuständen, Kapazitäten, Pick-Reihenfolge, Arbeitsvorrat und scannerbasierter Blind-/Zählinventur
-4. **Geführte Job- und Lager-Scans** — Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz; Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
+4. **Geführte Job- und Lager-Scans** — Nur bestätigte Jobs können ausgegeben werden; Ausgaben führen von Job zu Artikel, Einlagerungen von Artikel zu Lagerplatz, Mengenartikel besitzen ein eigenes Mengenfeld und Rückgaben werden physisch bestätigt
 5. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
 6. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
 7. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen

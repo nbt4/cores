@@ -977,16 +977,27 @@ CREATE TABLE IF NOT EXISTS pdf_mapping_events (
 -- PART 4: DEFAULT DATA
 -- =============================================================================
 
--- Default job statuses
-INSERT INTO status (status, description, color, sort_order) VALUES
-('Planung', 'Job ist in der Planungsphase', '#6c757d', 1),
-('Vorbereitung', 'Job wird vorbereitet', '#17a2b8', 2),
-('Aktiv', 'Job ist aktuell aktiv', '#28a745', 3),
-('Abgeschlossen', 'Job wurde abgeschlossen', '#007bff', 4),
-('Abgerechnet', 'Job wurde abgerechnet', '#6610f2', 5),
-('Storniert', 'Job wurde storniert', '#dc3545', 6),
-('Pausiert', 'Job ist temporär pausiert', '#ffc107', 7)
-ON CONFLICT (status) DO NOTHING;
+-- Canonical job lifecycle. Preparation progress, current date activity and
+-- invoice settlement are separate dimensions and therefore not job statuses.
+INSERT INTO status (statusid, status, description, color, sort_order) VALUES
+(1, 'Planung', 'Job ist in Planung und noch nicht zur Ausgabe freigegeben', '#6c757d', 1),
+(2, 'Bestätigt', 'Job ist verbindlich und zur Vorbereitung und Ausgabe freigegeben', '#17a2b8', 2),
+(4, 'Abgeschlossen', 'Job ist beendet; ausgegebene Geräte befinden sich im Rücklauf', '#007bff', 3),
+(6, 'Storniert', 'Job wurde storniert; Reservierungen sind aufgehoben', '#dc3545', 4)
+ON CONFLICT (statusid) DO UPDATE SET
+status=EXCLUDED.status,
+description=EXCLUDED.description,
+color=EXCLUDED.color,
+sort_order=EXCLUDED.sort_order;
+
+SELECT setval('status_statusid_seq', 6, true);
+
+ALTER TABLE status ADD CONSTRAINT chk_job_status_canonical CHECK (
+    (statusid=1 AND status='Planung') OR
+    (statusid=2 AND status='Bestätigt') OR
+    (statusid=4 AND status='Abgeschlossen') OR
+    (statusid=6 AND status='Storniert')
+);
 
 -- Default RBAC roles
 INSERT INTO roles (name, display_name, description, scope, is_system_role, permissions) VALUES
@@ -1271,8 +1282,7 @@ CREATE INDEX IF NOT EXISTS idx_job_devices_issued_device
 CREATE OR REPLACE FUNCTION warehouse_job_status_is_closed(job_status TEXT)
 RETURNS BOOLEAN AS $$
     SELECT LOWER(TRIM(COALESCE(job_status, ''))) IN (
-        'abgeschlossen', 'abgerechnet', 'storniert',
-        'completed', 'paid', 'canceled', 'cancelled'
+        'abgeschlossen', 'storniert'
     );
 $$ LANGUAGE SQL IMMUTABLE;
 
