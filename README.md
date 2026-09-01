@@ -22,7 +22,7 @@ Aktueller gemeinsamer UI-Release (30.08.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.28` |
 | RentalCore | `nobentie/rentalcore:5.3.97` |
-| WarehouseCore | `nobentie/warehousecore:5.9.66` |
+| WarehouseCore | `nobentie/warehousecore:5.9.67` |
 | PlannerCore | `nobentie/plannercore:2.6.18` |
 | ProcurementCore | `nobentie/procurementcore:1.0.24` |
 
@@ -192,7 +192,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 6. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
 7. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 8. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
-9. **Produkt-/Paketverwaltung** — Typisierte Produktstammdaten mit Einzel- oder Mengenverfolgung, sicherer Archivierung, automatisch synchronisierten Lagerbeständen und eigenständigen Produktpaketen
+9. **Produktstammdaten 2.0** — Getrennte Produktklasse, Zubehörrolle und Bestandsführung; transaktionale Anlage mit initialen Devices, global unveränderliche Produkt-/Device-/Case-Barcodes, Scan-Aliase, typisierte Zubehörbeziehungen, Case-Modelle und automatisch kategorisierte Kabelprodukte
 10. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
