@@ -22,9 +22,9 @@ Aktueller gemeinsamer UI-Release (30.08.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.28` |
 | RentalCore | `nobentie/rentalcore:5.3.97` |
-| WarehouseCore | `nobentie/warehousecore:5.9.68` |
+| WarehouseCore | `nobentie/warehousecore:5.9.69` |
 | PlannerCore | `nobentie/plannercore:2.6.18` |
-| ProcurementCore | `nobentie/procurementcore:1.0.24` |
+| ProcurementCore | `nobentie/procurementcore:1.0.25` |
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
@@ -193,7 +193,8 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 7. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
 8. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
 9. **Produktstammdaten 2.0** — Getrennte Produktklasse, Zubehörrolle und Bestandsführung; transaktionale Anlage mit initialen Devices, global unveränderliche Produkt-/Device-/Case-Barcodes, Scan-Aliase, typisierte Zubehörbeziehungen, Case-Modelle und automatisch kategorisierte Kabelprodukte
-10. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
+10. **Procurement-Verknüpfung** — Bestehende Produkte automatisch vorgeschlagen oder manuell eindeutig abgleichen, Procurement-Artikel vollständig vorausgefüllt im Warehouse anlegen und Lagerbedarf direkt als Einkaufsentwurf melden
+11. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -275,15 +276,17 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 5. Tiefpreis-Alarme gegen persönliche Zielpreise
 6. Bedarfsmeldungen mit Einreichungs- und Freigabeprozess
 7. Angebots-/Lieferantenvergleich und Übernahme des besten gepflegten Preises
-7. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung
-8. Spend-, Einsparungs- und Aktivitätsübersicht sowie CSV-Export
-9. Cores-SSO, zentrales Branding, responsive Oberfläche und Health-Monitoring
+8. Bestehende Einkaufsartikel mit Warehouse-Produkten über EAN, Artikelnummer, Modell, Hersteller und Name abgleichen oder in den vollständigen Warehouse-Produktdialog übernehmen
+9. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung
+10. Spend-, Einsparungs- und Aktivitätsübersicht sowie CSV-Export
+11. Cores-SSO, zentrales Branding, responsive Oberfläche und Health-Monitoring
 
 #### 📡 Wichtigste API-Endpunkte
 
 | Methode | Pfad | Beschreibung |
 |---------|------|-------------|
 | `GET/POST` | `/api/v1/products` | Katalog suchen / Artikel anlegen |
+| `GET` | `/api/v1/product-links` | Procurement- und Warehouse-Produkte abgleichen |
 | `GET/POST` | `/api/v1/suppliers` | Lieferanten auflisten / anlegen |
 | `GET/POST` | `/api/v1/alerts` | Tiefpreis-Alarme verwalten |
 | `GET/POST` | `/api/v1/requisitions` | Bedarfsmeldungen verwalten |

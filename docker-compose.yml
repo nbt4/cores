@@ -40,6 +40,7 @@ services:
       # Domain configuration for cross-navigation (without protocol or port)
       RENTALCORE_DOMAIN: "${RENTALCORE_DOMAIN:-}"
       WAREHOUSECORE_DOMAIN: "${WAREHOUSECORE_DOMAIN:-}"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
       # Cookie domain for SSO (e.g., .example.com for subdomains, leave empty for localhost)
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       # PostgreSQL Database Configuration
@@ -231,6 +232,7 @@ services:
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
