@@ -25,7 +25,7 @@ Aktueller Suite-Release (04.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.70` |
 | PlannerCore | `nobentie/plannercore:2.6.18` |
 | ProcurementCore | `nobentie/procurementcore:1.0.26` |
-| Cores MCP | `nobentie/cores-mcp:1.0.0` |
+| Cores MCP | `nobentie/cores-mcp:1.0.1` |
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
