@@ -90,6 +90,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      cores-mcp:
+        condition: service_healthy
     environment:
       PORT: "8080"
       # Global switch: every Core uses either suite paths or its own subdomain.
@@ -103,6 +105,7 @@ services:
       PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
       PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      CORES_MCP_URL: "http://cores-mcp:8090"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
@@ -121,6 +124,52 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+
+  # ============================================================================
+  # Cores MCP - Read-only AI/Agent integration for the complete suite
+  # ============================================================================
+  cores-mcp:
+    image: nobentie/cores-mcp:latest
+    container_name: cores-mcp
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ADDRESS: ":8090"
+      MCP_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
+      CORES_DASHBOARD_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
+      MCP_AUTH_MODE: "${MCP_AUTH_MODE:-oauth}"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      MCP_STATIC_TOKENS: "${MCP_STATIC_TOKENS:-}"
+      MCP_OAUTH_DATA_FILE: "/var/lib/cores-mcp/oauth/clients.json"
+      MCP_KNOWLEDGE_DIRS: "/app/knowledge,/knowledge/cores"
+      MCP_MAX_ROWS: "${MCP_MAX_ROWS:-200}"
+      MCP_QUERY_TIMEOUT: "${MCP_QUERY_TIMEOUT:-8s}"
+      MCP_RATE_LIMIT_PER_MINUTE: "${MCP_RATE_LIMIT_PER_MINUTE:-120}"
+      MCP_ALLOWED_ORIGINS: "${MCP_ALLOWED_ORIGINS:-}"
+      TRUST_PROXY_HEADERS: "true"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${MCP_DB_USER:-rentalcore}"
+      DB_PASSWORD: "${MCP_DB_PASSWORD:-}"
+      DB_SSLMODE: "disable"
+      RENTALCORE_URL: "http://rentalcore:8081"
+      WAREHOUSECORE_URL: "http://warehousecore:8082"
+      PLANNERCORE_URL: "http://plannercore:8080"
+      PROCUREMENTCORE_URL: "http://procurementcore:8084"
+    volumes:
+      - cores-mcp-oauth:/var/lib/cores-mcp/oauth
+      - ./docs:/knowledge/cores:ro
+    networks:
+      - weidelbach
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8090/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
 
   # ============================================================================
   # WarehouseCore - Warehouse Management System (PostgreSQL)
@@ -386,3 +435,5 @@ volumes:
     # Keep a stable volume name so existing deployments retain their branding,
     # while a clean host can create it automatically on first start.
     name: tscores_branding-data
+  # Registered OAuth clients for Cores MCP
+  cores-mcp-oauth:

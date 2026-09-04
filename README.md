@@ -1,7 +1,7 @@
 # 🏗️ Cores — Tsunami Events Management System
 
 > **Monorepo für das Cores-Ökosystem**  
-> Vollständige Management-Plattform bestehend aus fünf Core-Services mit zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
+> Vollständige Management-Plattform bestehend aus fünf Core-Services, einer MCP-KI-Anbindung, zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
 ## Einheitliches Designsystem
 
@@ -16,15 +16,16 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller gemeinsamer UI-Release (30.08.2026):
+Aktueller Suite-Release (04.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.28` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.29` |
 | RentalCore | `nobentie/rentalcore:5.3.97` |
 | WarehouseCore | `nobentie/warehousecore:5.9.70` |
 | PlannerCore | `nobentie/plannercore:2.6.18` |
 | ProcurementCore | `nobentie/procurementcore:1.0.26` |
+| Cores MCP | `nobentie/cores-mcp:1.0.0` |
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
@@ -296,6 +297,22 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 
 ---
 
+### cores-mcp
+
+> **Read-only KI- und Agent-Anbindung der vollständigen Suite**
+
+| Eigenschaft | Detail |
+|-------------|--------|
+| **Zweck** | Aktuellen Cores-Kontext per Model Context Protocol für ChatGPT, Claude und Agents bereitstellen |
+| **Tech-Stack** | Go + offizielles MCP SDK + Streamable HTTP |
+| **Docker Image** | `nobentie/cores-mcp` |
+| **Interner Port** | `8090` |
+| **Öffentlicher Endpunkt** | `https://cores.tsunami-events.de/mcp` |
+
+Der Dienst umfasst 56 fest definierte Tools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. OAuth nutzt den bestehenden Cores-Login. Es gibt kein beliebiges SQL und keinerlei Schreib-, Bestell- oder Freigabefunktion. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
+
+---
+
 ## Architektur
 
 ### 🏛️ System-Architektur
@@ -341,6 +358,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 4. **SSO-Authentifizierung**: cores-dashboard stellt JWT-Tokens aus und validiert diese für alle Backend-Services
 5. **Shared Branding**: Alle Services beziehen Logos, Themes und Branding-Konfiguration vom zentralen Branding-Endpunkt
 6. **Shared PostgreSQL**: Gemeinsame Datenbank-Instanz für konsistente Datenhaltung
+7. **MCP-Anbindung**: Dashboard reicht `/mcp`, OAuth und Discovery unverändert an den read-only Cores-MCP-Dienst weiter
 
 ### 🔗 Service-Abhängigkeiten
 
@@ -348,7 +366,12 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 cores-dashboard ──► PostgreSQL (Auth + Config)
                   ├─► rentalcore (Proxy)
                   ├─► warehousecore (Proxy)
-                  └─► plannercore (Proxy + SPA)
+                  ├─► plannercore (Proxy + SPA)
+                  └─► cores-mcp (MCP + OAuth Proxy)
+
+cores-mcp ─────────► PostgreSQL (Read-only)
+                  ├─► Cores Health-Endpunkte
+                  └─► freigegebene Knowledge-Dokumente
 
 rentalcore ───────► PostgreSQL (Data)
                   ├─► M365 API (Kunden-Sync)
@@ -374,6 +397,7 @@ cores/                              # Monorepo Root
 ├── .env.example                    # Beispiel-Umgebungsvariablen
 ├── cores-dashboard/                # Submodule: Dashboard + Auth
 ├── cores-common/                   # Submodule: gemeinsame Go-Pakete
+├── cores-mcp/                      # Submodule: read-only MCP-KI-Anbindung
 ├── rentalcore/                     # Submodule: Vermietung
 ├── warehousecore/                  # Submodule: Lager
 ├── plannercore/                    # Submodule: Planung
@@ -396,6 +420,7 @@ Zugangsdaten gehören ausschließlich in die lokale Laufzeitumgebung oder einen 
 | Monorepo | [nbt4/cores](https://github.com/nbt4/cores) |
 | Dashboard | [nbt4/cores-dashboard](https://github.com/nbt4/cores-dashboard) |
 | Gemeinsame Go-Pakete | [nbt4/cores-common](https://github.com/nbt4/cores-common) |
+| Cores MCP | [nbt4/cores-mcp](https://github.com/nbt4/cores-mcp) |
 | RentalCore | [nbt4/rentalcore](https://github.com/nbt4/rentalcore) |
 | WarehouseCore | [nbt4/warehousecore](https://github.com/nbt4/warehousecore) |
 | PlannerCore | [nbt4/plannercore](https://github.com/nbt4/plannercore) |

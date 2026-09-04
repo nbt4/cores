@@ -16,3 +16,6 @@
 [submodule "procurementcore"]
 	path = procurementcore
 	url = https://github.com/nbt4/procurementcore.git
+[submodule "cores-mcp"]
+	path = cores-mcp
+	url = https://github.com/nbt4/cores-mcp.git
