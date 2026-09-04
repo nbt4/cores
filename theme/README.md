@@ -7,6 +7,7 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 - `cores-design.ts` enthält die einheitliche Datums-, Anzeigenamen- und Begrüßungslogik.
 - [`../docs/DESIGN_SYSTEM.md`](../docs/DESIGN_SYSTEM.md) beschreibt die Produkt- und Anwendungsregeln.
 - `../scripts/sync-design-system.sh` verteilt die kanonische CSS-Datei in alle eigenständig deploybaren Core-Repositories.
+- `cores-dashboard/web/public/cores-theme.css` stellt dieselben Primitives für serverseitige OAuth- und Protokollseiten unter der stabilen Suite-URL `/cores-theme.css` bereit.
 - `../scripts/check-design-system.sh` verhindert fehlende oder veraltete Theme-Kopien und nicht standardisierte Dashboard-Begrüßungen.
 
 ## Arbeitsablauf

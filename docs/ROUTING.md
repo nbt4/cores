@@ -49,3 +49,13 @@ Die kanonischen Images sind dual lauffähig: Sie bedienen auf einer eigenen
 Subdomain weiterhin `/`, während dasselbe Image im Pfadmodus seine Assets,
 API-Aufrufe, Router-Basis, Manifest-Scope und Service Worker automatisch auf den
 Core-Pfad legt.
+
+## Zentraler Login und Rücksprung
+
+Alle Core-Oberflächen verwenden ausschließlich den Login des Dashboards unter
+`<CORES_DASHBOARD_PUBLIC_URL>/login`. Bei fehlender Sitzung wird die vollständig
+aufgerufene Core-URL als validierter `redirect`-Parameter übergeben. Nach lokaler
+oder Microsoft-Anmeldung landet der Benutzer deshalb wieder auf derselben
+Ansicht – im Pfadmodus etwa unter `/warehousecore/products`, im Subdomainmodus
+auf der freigegebenen `*_PUBLIC_URL`. Fremde Origins, Protokollhandler und
+protokollrelative Ziele werden verworfen.

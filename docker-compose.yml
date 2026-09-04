@@ -97,6 +97,7 @@ services:
       # Global switch: every Core uses either suite paths or its own subdomain.
       CORES_ROUTING_MODE: "${CORES_ROUTING_MODE:-paths}"
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       RENTALCORE_URL: "http://rentalcore:8081"
       RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
       WAREHOUSECORE_URL: "http://warehousecore:8082"
@@ -188,6 +189,7 @@ services:
       RENTALCORE_DOMAIN: "${RENTALCORE_DOMAIN:-}"
       WAREHOUSECORE_DOMAIN: "${WAREHOUSECORE_DOMAIN:-}"
       PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
       # Cookie domain for SSO (e.g., .example.com for subdomains, leave empty for localhost)
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       # PostgreSQL Database Configuration

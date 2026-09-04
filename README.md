@@ -77,6 +77,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 ### 🎯 Kernziele
 
 - **Zentrales SSO** — Ein Login gilt für Dashboard, RentalCore, WarehouseCore, PlannerCore und ProcurementCore
+- **Ein Loginfenster** — Jeder Core leitet unauthentifizierte Nutzer zu `cores.tsunami-events.de/login`; lokale und Microsoft-Anmeldung führen anschließend zur ursprünglich geöffneten Core-Ansicht zurück
 - **Flexible Benutzerquellen** — Lokale, Microsoft-Entra- oder hybride Benutzerverwaltung mit gruppenbasierter Synchronisation
 - **Einheitliches Branding** — Zentral verwaltetes Theme- und Logo-System
 - **Shared Infrastructure** — Gemeinsame PostgreSQL-Datenbank, zentrales Reverse-Proxying
@@ -642,6 +643,11 @@ Asset-Sync sind im [Cores Brand Guide](docs/BRANDING.md) dokumentiert.
 ### 🔐 Sicherheitsarchitektur
 
 #### JWT-basiertes Single-Sign-On (SSO)
+
+Das Dashboard ist der einzige interaktive Login-Einstieg. Die Core-Clients
+übergeben ihr aktuelles Ziel als `redirect`; das Dashboard prüft es gegen die
+eigene Origin und die konfigurierten Core-Origins. Derselbe Rücksprung gilt für
+lokale Anmeldung, Microsoft Entra und den Cores-MCP-OAuth-Dialog.
 
 - **Ausstellung**: cores-dashboard stellt signierte JWT-Access-Tokens und Refresh-Tokens aus
 - **Validierung**: Alle Backend-Services validieren Tokens gegen den zentralen `/api/auth/validate`-Endpunkt

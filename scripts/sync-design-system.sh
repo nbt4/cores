@@ -8,6 +8,7 @@ typescript_source="$repo_root/theme/cores-design.ts"
 
 targets="
 $repo_root/cores-dashboard/web/src/cores-theme.css
+$repo_root/cores-dashboard/web/public/cores-theme.css
 $repo_root/plannercore/web/src/cores-theme.css
 $repo_root/procurementcore/web/src/cores-theme.css
 $repo_root/rentalcore/web/src/cores-theme.css
