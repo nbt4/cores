@@ -1,39 +1,9 @@
-# ============================================================================
-# PostgreSQL Backup Service - Standalone backup compose file
-# Start with: docker compose -f compose.yaml -f docker-compose.backup.yml up -d
-# Or standalone: docker compose -f docker-compose.backup.yml up -d
-# ============================================================================
+# Optional overrides for the backup service already included in docker-compose.yml.
+# docker compose -f docker-compose.yml -f docker-compose.backup.yml up -d db-backup
 services:
   db-backup:
-    image: postgres:16-alpine
-    container_name: cores-db-backup
-    restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - ./scripts/backup-db.sh:/backup.sh:ro
-      - ./scripts/restore-db.sh:/restore.sh:ro
-      - ./scripts/upload-backup.sh:/upload.sh:ro
-      - backup_data:/backups
+    image: nobentie/cores-backup:1.0.0
     environment:
-      - PGPASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB:-rentalcore}
-      - POSTGRES_USER=${POSTGRES_USER:-rentalcore}
-      - PGHOST=postgres
-      - NEXTCLOUD_WEBDAV_URL=${NEXTCLOUD_WEBDAV_URL:-}
-      - NEXTCLOUD_WEBDAV_USER=${NEXTCLOUD_WEBDAV_USER:-}
-      - NEXTCLOUD_WEBDAV_PASSWORD=${NEXTCLOUD_WEBDAV_PASSWORD:-}
-    entrypoint: ["/bin/sh"]
-    command: |
-      -c "echo '0 2 * * * /backup.sh >> /var/log/backup.log 2>&1' | crontab - && crond -f -l 2"
-    networks:
-      - weidelbach
-
-volumes:
-  backup_data:
-    driver: local
-
-networks:
-  weidelbach:
-    external: true
+      BACKUP_RETENTION_DAYS: "${BACKUP_RETENTION_DAYS:-7}"
+      BACKUP_INTERVAL_HOURS: "${BACKUP_INTERVAL_HOURS:-24}"
+      BACKUP_WEBDAV_URL: "${BACKUP_WEBDAV_URL:-}"

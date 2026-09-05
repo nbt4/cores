@@ -16,16 +16,32 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (04.09.2026):
+Aktueller Suite-Release (05.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.29` |
-| RentalCore | `nobentie/rentalcore:5.3.97` |
-| WarehouseCore | `nobentie/warehousecore:5.9.70` |
-| PlannerCore | `nobentie/plannercore:2.6.18` |
-| ProcurementCore | `nobentie/procurementcore:1.0.26` |
-| Cores MCP | `nobentie/cores-mcp:1.0.2` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.31` |
+| RentalCore | `nobentie/rentalcore:5.3.98` |
+| WarehouseCore | `nobentie/warehousecore:5.9.71` |
+| PlannerCore | `nobentie/plannercore:2.6.20` |
+| ProcurementCore | `nobentie/procurementcore:1.0.28` |
+| Cores MCP | `nobentie/cores-mcp:1.1.1` |
+| Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
+
+Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
+Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und
+Administratoränderungen gelten auch für bestehende Tokens ab der nächsten Anfrage.
+MCP prüft aktive Konten bei jedem OAuth-Zugriff und beschränkt alle Planner-Abfragen
+auf die Mitgliedschaften des angemeldeten Nutzers, einschließlich Suche und Kennzahlen.
+Maschinentokens erhalten keine privaten Planner-Daten.
+
+Der Backupdienst stellt jeden Dump in einem temporären PostgreSQL-Cluster wieder
+her, bevor er Erfolg meldet. Optional lädt er Dump und Prüfsumme in eine dedizierte
+Nextcloud-Collection hoch. Konfiguration und Grenzen: [Backup-Dokumentation](backup/README.md).
+Die [GitHub-Prüfung](.github/workflows/verify.yml) baut alle fünf Frontends, testet
+alle sieben Go-Module und prüft Planner-Isolation, Backups, Designsystem und Release-Inventar.
+Technische Zuständigkeiten und weitere Architekturarbeit stehen in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)

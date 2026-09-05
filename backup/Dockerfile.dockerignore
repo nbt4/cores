@@ -1,0 +1,9 @@
+**
+!backup/
+!backup/Dockerfile
+!backup/entrypoint.sh
+!scripts/
+!scripts/backup-db.sh
+!scripts/verify-backup.sh
+!scripts/upload-backup.sh
+!scripts/backup-health.sh

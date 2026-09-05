@@ -1,8 +1,34 @@
 # 🚀 Fresh System Deployment Guide
 
-Complete guide for deploying RentalCore + WarehouseCore on a fresh system.
+Deployment entry points for the complete Cores suite.
 
-**Last Updated:** January 2026
+**Last Updated:** September 2026
+
+The canonical service inventory and pinned images are in [README.md](README.md)
+and [docker-compose.yml](docker-compose.yml). Deploy the exact committed Compose
+file; do not replace service tags with `latest`. Before publishing, use
+`./build_and_push_docker.sh <service> <next-X.Y.Z>`: it checks Docker Hub,
+builds a committed Git snapshot and pushes the version and `latest` with the
+source revision recorded in the image.
+
+The default stack includes `db-backup`. Every dump must successfully restore in
+an isolated temporary PostgreSQL cluster before the backup becomes healthy.
+Configure a dedicated `BACKUP_WEBDAV_URL` for a second copy; see
+[backup/README.md](backup/README.md). A WebDAV server on the same physical host
+does not independently protect against host loss. Restore file volumes and
+protected configuration separately from the database.
+
+The versioned [docker03 Compose](deploy/docker03/compose.yaml) preserves the
+existing host's network, volume and port layout. On docker03, Komodo manages stack `cores` using
+`/opt/docker/komodo/stacks/tscores/compose.yaml` and project name `cores`.
+Existing volume names and internal service ports differ from a fresh install
+and must be preserved when applying release updates. Synchronize the host file
+and Komodo's stored configuration. Recreating only changed application services
+avoids restarting PostgreSQL and unrelated services. Verify all application
+health endpoints and the completed backup after deployment.
+
+The older two-service examples below are retained as background; use the
+complete root Compose and current README for new installations.
 
 ---
 

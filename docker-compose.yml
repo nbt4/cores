@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:latest
+    image: nobentie/rentalcore:5.3.98
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -84,13 +84,11 @@ services:
   # CoresDashboard - Central SSO Dashboard & Admin Hub
   # ============================================================================
   cores-dashboard:
-    image: nobentie/cores-dashboard:latest
+    image: nobentie/cores-dashboard:1.14.31
     container_name: cores-dashboard
     restart: unless-stopped
     depends_on:
       postgres:
-        condition: service_healthy
-      cores-mcp:
         condition: service_healthy
     environment:
       PORT: "8080"
@@ -120,7 +118,7 @@ services:
     networks:
       - weidelbach
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/v1/auth/me || true"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -130,7 +128,7 @@ services:
   # Cores MCP - Read-only AI/Agent integration for the complete suite
   # ============================================================================
   cores-mcp:
-    image: nobentie/cores-mcp:latest
+    image: nobentie/cores-mcp:1.1.1
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -166,7 +164,7 @@ services:
     networks:
       - weidelbach
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8090/health || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8090/ready || exit 1"]
       interval: 15s
       timeout: 10s
       retries: 5
@@ -176,7 +174,7 @@ services:
   # WarehouseCore - Warehouse Management System (PostgreSQL)
   # ============================================================================
   warehousecore:
-    image: nobentie/warehousecore:latest
+    image: nobentie/warehousecore:5.9.71
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
@@ -239,7 +237,7 @@ services:
   # PlannerCore - Planning & Task Management (Node.js)
   # ============================================================================
   plannercore:
-    image: nobentie/plannercore:latest
+    image: nobentie/plannercore:2.6.20
     container_name: plannercore
     restart: unless-stopped
     depends_on:
@@ -272,7 +270,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:latest
+    image: nobentie/procurementcore:1.0.28
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
@@ -309,7 +307,7 @@ services:
   # PostgreSQL Backup Service - Daily automatic backups
   # ============================================================================
   db-backup:
-    image: postgres:16-alpine
+    image: nobentie/cores-backup:1.0.0
     container_name: db-backup
     restart: unless-stopped
     depends_on:
@@ -324,40 +322,9 @@ services:
       PGDATABASE: "${POSTGRES_DB:-rentalcore}"
       BACKUP_RETENTION_DAYS: "${BACKUP_RETENTION_DAYS:-7}"
       BACKUP_INTERVAL_HOURS: "${BACKUP_INTERVAL_HOURS:-24}"
-    entrypoint:
-      - /bin/sh
-      - -c
-      - |
-        set -e
-        
-        backup_database() {
-          TIMESTAMP=$$(date +%Y%m%d_%H%M%S)
-          echo "🔄 Starting backup at $$(date)"
-          
-          # Create PostgreSQL dump
-          pg_dump -Fc > "/backups/rentalcore_$${TIMESTAMP}.dump"
-          echo "✅ Database backed up to rentalcore_$${TIMESTAMP}.dump"
-          
-          # Cleanup old backups
-          find /backups -name "*.dump" -mtime +$${BACKUP_RETENTION_DAYS:-7} -delete
-          echo "🧹 Old backups cleaned up"
-          
-          # List current backups
-          echo "📂 Current backups:"
-          ls -lah /backups/*.dump 2>/dev/null || echo "No backups found"
-        }
-        
-        # Wait for database to be ready
-        sleep 30
-        
-        # Initial backup
-        backup_database
-        
-        # Schedule regular backups
-        while true; do
-          sleep $${BACKUP_INTERVAL_HOURS:-24}h
-          backup_database
-        done
+      BACKUP_WEBDAV_URL: "${BACKUP_WEBDAV_URL:-}"
+      NEXTCLOUD_WEBDAV_USER: "${NEXTCLOUD_WEBDAV_USER:-}"
+      NEXTCLOUD_WEBDAV_PASSWORD: "${NEXTCLOUD_WEBDAV_PASSWORD:-}"
     networks:
       - weidelbach
 

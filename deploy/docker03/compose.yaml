@@ -1,0 +1,346 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-rentalcore}
+      POSTGRES_USER: ${POSTGRES_USER:-rentalcore}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rentalcore123}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rentalcore} -d ${POSTGRES_DB:-rentalcore}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - proxy
+      - internal
+
+  rentalcore:
+    image: nobentie/rentalcore:5.3.98
+    container_name: rentalcore
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-rentalcore}
+      DB_USER: ${POSTGRES_USER:-rentalcore}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-rentalcore123}
+      DB_SSLMODE: disable
+      RENTALCORE_DOMAIN: ${RENTALCORE_DOMAIN}
+      WAREHOUSECORE_DOMAIN: ${WAREHOUSECORE_DOMAIN}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN}
+      NEXTCLOUD_WEBDAV_URL: ${NEXTCLOUD_WEBDAV_URL}
+      NEXTCLOUD_WEBDAV_USER: ${NEXTCLOUD_WEBDAV_USER}
+      NEXTCLOUD_WEBDAV_PASSWORD: ${NEXTCLOUD_WEBDAV_PASSWORD}
+      NEXTCLOUD_WEBDAV_BASE_PATH: ${NEXTCLOUD_WEBDAV_BASE_PATH:-Shared/_rentalcore}
+      FILEPOOL_ASSIGNED_ROOT: ${FILEPOOL_ASSIGNED_ROOT:-assigned}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      FILEPOOL_UNASSIGNED_ROOT: ${FILEPOOL_UNASSIGNED_ROOT:-unassigned}
+      TSWEB_REVALIDATE_URL: ${TSWEB_REVALIDATE_URL}
+      TSWEB_REVALIDATE_SECRET: ${TSWEB_REVALIDATE_SECRET}
+      CORES_JWT_SECRET: ${CORES_JWT_SECRET}
+      M365_TENANT_ID: ${M365_TENANT_ID}
+      M365_CLIENT_ID: ${M365_CLIENT_ID}
+      M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
+      M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      M365_CALENDAR_ORGANIZER: ${M365_CALENDAR_ORGANIZER}
+      APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
+    volumes:
+      - tscores_branding-data:/var/lib/branding
+      - rentalcore-uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    ports:
+      - 8081:8080
+    networks:
+      - proxy
+      - internal
+
+  warehousecore:
+    image: nobentie/warehousecore:5.9.71
+    container_name: warehousecore
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mosquitto:
+        condition: service_started
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-rentalcore}
+      DB_USER: ${POSTGRES_USER:-rentalcore}
+      DB_PASS: ${POSTGRES_PASSWORD:-rentalcore123}
+      DB_SSLMODE: disable
+      RENTALCORE_DOMAIN: ${RENTALCORE_DOMAIN}
+      WAREHOUSECORE_DOMAIN: ${WAREHOUSECORE_DOMAIN}
+      PROCUREMENTCORE_PUBLIC_URL: ${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN}
+      LED_MQTT_HOST: ${LED_MQTT_HOST:-mosquitto}
+      LED_MQTT_PORT: ${LED_MQTT_PORT:-1883}
+      LED_MQTT_TLS: ${LED_MQTT_TLS:-false}
+      LED_MQTT_USER: ${LED_MQTT_USER}
+      LED_MQTT_PASS: ${LED_MQTT_PASS}
+      LED_MQTT_TOPIC_PREFIX: ${LED_MQTT_TOPIC_PREFIX:-weidelbach}
+      LED_WAREHOUSE_ID: ${LED_WAREHOUSE_ID:-WDL}
+      LED_MQTT_CONNECT_RETRIES: ${LED_MQTT_CONNECT_RETRIES:-10}
+      LED_MQTT_CONNECT_RETRY_DELAY_MS: ${LED_MQTT_CONNECT_RETRY_DELAY_MS:-2000}
+      ADMIN_NAME_MATCH: ${ADMIN_NAME_MATCH:-Noah Tielmann}
+      NEXTCLOUD_WEBDAV_URL: ${NEXTCLOUD_WEBDAV_URL}
+      NEXTCLOUD_WEBDAV_USER: ${NEXTCLOUD_WEBDAV_USER}
+      NEXTCLOUD_WEBDAV_PASSWORD: ${NEXTCLOUD_WEBDAV_PASSWORD}
+      NEXTCLOUD_WEBDAV_BASE_PATH: ${NEXTCLOUD_WEBDAV_BASE_PATH:-Shared/_rentalcore}
+      FILEPOOL_ASSIGNED_ROOT: ${FILEPOOL_ASSIGNED_ROOT:-assigned}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      FILEPOOL_UNASSIGNED_ROOT: ${FILEPOOL_UNASSIGNED_ROOT:-unassigned}
+      TSWEB_REVALIDATE_URL: ${TSWEB_REVALIDATE_URL}
+      TSWEB_REVALIDATE_SECRET: ${TSWEB_REVALIDATE_SECRET}
+      CORES_JWT_SECRET: ${CORES_JWT_SECRET}
+      M365_TENANT_ID: ${M365_TENANT_ID}
+      M365_CLIENT_ID: ${M365_CLIENT_ID}
+      M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
+      M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
+      PICTURE_CACHE_DIR: /root/web/dist/cache
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8081/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    ports:
+      - 8082:8081
+    volumes:
+      - warehousecore-labels:/root/web/dist/labels
+      - warehousecore-cache:/root/web/dist/cache
+      - tscores_branding-data:/var/lib/branding
+    networks:
+      - proxy
+      - internal
+
+  cores-dashboard:
+    image: nobentie/cores-dashboard:1.14.31
+    container_name: cores-dashboard
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      cores-mcp:
+        condition: service_healthy
+    environment:
+      PORT: "8080"
+      CORES_ROUTING_MODE: "${CORES_ROUTING_MODE:-paths}"
+      CORES_JWT_SECRET: ${CORES_JWT_SECRET}
+      M365_TENANT_ID: ${M365_TENANT_ID}
+      M365_CLIENT_ID: ${M365_CLIENT_ID}
+      M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
+      M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
+      RENTALCORE_URL: http://rentalcore:8080
+      WAREHOUSECORE_URL: http://warehousecore:8081
+      PLANNERCORE_URL: "http://plannercore:8080"
+      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
+      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      PROCUREMENTCORE_URL: "http://procurementcore:8084"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      CORES_MCP_URL: "http://cores-mcp:8090"
+      RENTAL_PUBLIC_URL: ${RENTAL_PUBLIC_URL}
+      WAREHOUSE_PUBLIC_URL: ${WAREHOUSE_PUBLIC_URL}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN}
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-rentalcore}
+      DB_USER: ${POSTGRES_USER:-rentalcore}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-rentalcore123}
+      DB_SSLMODE: disable
+    volumes:
+      - tscores_branding-data:/var/lib/branding
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    ports:
+      - 8080:8080
+    networks:
+      - proxy
+      - internal
+
+  cores-mcp:
+    image: nobentie/cores-mcp:1.1.1
+    container_name: cores-mcp
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ADDRESS: ":8090"
+      MCP_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
+      CORES_DASHBOARD_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
+      MCP_AUTH_MODE: "oauth"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET}"
+      MCP_STATIC_TOKENS: "${MCP_STATIC_TOKENS:-}"
+      MCP_OAUTH_DATA_FILE: "/var/lib/cores-mcp/oauth/clients.json"
+      MCP_KNOWLEDGE_DIRS: "/app/knowledge,/knowledge/cores"
+      MCP_MAX_ROWS: "${MCP_MAX_ROWS:-200}"
+      MCP_QUERY_TIMEOUT: "${MCP_QUERY_TIMEOUT:-8s}"
+      MCP_RATE_LIMIT_PER_MINUTE: "${MCP_RATE_LIMIT_PER_MINUTE:-120}"
+      TRUST_PROXY_HEADERS: "true"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: "${POSTGRES_DB:-rentalcore}"
+      DB_USER: "${MCP_DB_USER}"
+      DB_PASSWORD: "${MCP_DB_PASSWORD}"
+      DB_SSLMODE: disable
+      RENTALCORE_URL: "http://rentalcore:8080"
+      WAREHOUSECORE_URL: "http://warehousecore:8081"
+      PLANNERCORE_URL: "http://plannercore:8080"
+      PROCUREMENTCORE_URL: "http://procurementcore:8084"
+    volumes:
+      - cores-mcp-oauth:/var/lib/cores-mcp/oauth
+      - ./knowledge:/knowledge/cores:ro
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8090/ready || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto
+    restart: unless-stopped
+    volumes:
+      - mosquitto-config:/mosquitto/config
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+    ports:
+      - 1883:1883
+    networks:
+      - internal
+
+
+  plannercore:
+    image: nobentie/plannercore:2.6.20
+    container_name: plannercore
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8080"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-rentalcore}
+      DB_USER: ${POSTGRES_USER:-rentalcore}
+      DB_PASS: ${POSTGRES_PASSWORD:-}
+      APP_URL: "${PLANNER_APP_URL:-http://localhost:8080}"
+      DASHBOARD_URL: ${DASHBOARD_URL}
+    ports:
+      - "8083:8080"
+    volumes:
+      - tscores_branding-data:/var/lib/branding
+    networks:
+      - proxy
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  procurementcore:
+    image: nobentie/procurementcore:1.0.28
+    container_name: procurementcore
+    restart: unless-stopped
+    env_file:
+      - .env.adamhall
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: "8084"
+      CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
+      COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
+      DASHBOARD_URL: "${DASHBOARD_URL:-https://cores.tsunami-events.de}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-rentalcore}
+      DB_USER: ${POSTGRES_USER:-rentalcore}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-rentalcore123}
+      DB_SSLMODE: disable
+    ports:
+      - "8084:8084"
+    volumes:
+      - tscores_branding-data:/var/lib/branding
+    networks:
+      - proxy
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8084/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+  db-backup:
+    image: nobentie/cores-backup:1.0.0
+    container_name: db-backup
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [internal]
+    volumes:
+      - postgres-backups:/backups
+    environment:
+      PGHOST: postgres
+      PGUSER: ${POSTGRES_USER:-rentalcore}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB:-rentalcore}
+      BACKUP_INTERVAL_HOURS: ${BACKUP_INTERVAL_HOURS:-24}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+      BACKUP_WEBDAV_URL: ${BACKUP_WEBDAV_URL:-}
+      NEXTCLOUD_WEBDAV_USER: ${NEXTCLOUD_WEBDAV_USER:-}
+      NEXTCLOUD_WEBDAV_PASSWORD: ${NEXTCLOUD_WEBDAV_PASSWORD:-}
+
+volumes:
+  postgres-backups:
+  postgres-data:
+  warehousecore-labels:
+  warehousecore-cache:
+  mosquitto-config:
+  mosquitto-data:
+  mosquitto-log:
+  tscores_branding-data:
+    external: true
+  rentalcore-uploads:
+    name: tscores_rentalcore-uploads
+  cores-mcp-oauth:
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
