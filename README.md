@@ -16,7 +16,7 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (05.09.2026):
+Aktueller Suite-Release (06.09.2026):
 
 | Service | Image |
 |---|---|
@@ -25,7 +25,7 @@ Aktueller Suite-Release (05.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.71` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
-| Cores MCP | `nobentie/cores-mcp:1.1.1` |
+| Cores MCP | `nobentie/cores-mcp:1.2.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -316,7 +316,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 
 ### cores-mcp
 
-> **Read-only KI- und Agent-Anbindung der vollständigen Suite**
+> **KI- und Agent-Anbindung mit sicheren Abfragen und geführten Anlagefunktionen**
 
 | Eigenschaft | Detail |
 |-------------|--------|
@@ -326,7 +326,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 | **Interner Port** | `8090` |
 | **Öffentlicher Endpunkt** | `https://cores.tsunami-events.de/mcp` |
 
-Der Dienst umfasst 56 fest definierte Tools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. OAuth nutzt den bestehenden Cores-Login. Es gibt kein beliebiges SQL und keinerlei Schreib-, Bestell- oder Freigabefunktion. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
+Der Dienst umfasst 59 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Zusätzlich bereiten vier optionale Tools Produkt- und Jobanlagen vor, fragen fehlende oder mehrdeutige Angaben ab und schreiben erst nach finaler Nutzerbestätigung über die validierte API des zuständigen Core. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Es gibt kein beliebiges SQL und keinerlei Änderungs-, Lösch-, Bestell- oder Freigabefunktion. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
 
 ---
 
@@ -375,7 +375,7 @@ Der Dienst umfasst 56 fest definierte Tools für Jobs, Bestand, Geräte, Planung
 4. **SSO-Authentifizierung**: cores-dashboard stellt JWT-Tokens aus und validiert diese für alle Backend-Services
 5. **Shared Branding**: Alle Services beziehen Logos, Themes und Branding-Konfiguration vom zentralen Branding-Endpunkt
 6. **Shared PostgreSQL**: Gemeinsame Datenbank-Instanz für konsistente Datenhaltung
-7. **MCP-Anbindung**: Dashboard reicht `/mcp`, OAuth und Discovery unverändert an den read-only Cores-MCP-Dienst weiter
+7. **MCP-Anbindung**: Dashboard reicht `/mcp`, OAuth und Discovery an Cores MCP weiter; Abfragen lesen direkt, bestätigte Produkt-/Jobanlagen laufen über die validierten Core-APIs
 
 ### 🔗 Service-Abhängigkeiten
 
@@ -388,6 +388,7 @@ cores-dashboard ──► PostgreSQL (Auth + Config)
 
 cores-mcp ─────────► PostgreSQL (Read-only)
                   ├─► Cores Health-Endpunkte
+                  ├─► ProcurementCore-/RentalCore-API (nur geführte Anlagen)
                   └─► freigegebene Knowledge-Dokumente
 
 rentalcore ───────► PostgreSQL (Data)
@@ -414,7 +415,7 @@ cores/                              # Monorepo Root
 ├── .env.example                    # Beispiel-Umgebungsvariablen
 ├── cores-dashboard/                # Submodule: Dashboard + Auth
 ├── cores-common/                   # Submodule: gemeinsame Go-Pakete
-├── cores-mcp/                      # Submodule: read-only MCP-KI-Anbindung
+├── cores-mcp/                      # Submodule: MCP-KI-Anbindung und geführte Anlagen
 ├── rentalcore/                     # Submodule: Vermietung
 ├── warehousecore/                  # Submodule: Lager
 ├── plannercore/                    # Submodule: Planung

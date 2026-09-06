@@ -125,10 +125,10 @@ services:
       start_period: 60s
 
   # ============================================================================
-  # Cores MCP - Read-only AI/Agent integration for the complete suite
+  # Cores MCP - AI/Agent integration with guided product/job creation
   # ============================================================================
   cores-mcp:
-    image: nobentie/cores-mcp:1.1.1
+    image: nobentie/cores-mcp:1.2.0
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -139,6 +139,7 @@ services:
       MCP_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
       CORES_DASHBOARD_PUBLIC_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
       MCP_AUTH_MODE: "${MCP_AUTH_MODE:-oauth}"
+      MCP_ENABLE_WRITES: "${MCP_ENABLE_WRITES:-true}"
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       MCP_STATIC_TOKENS: "${MCP_STATIC_TOKENS:-}"
       MCP_OAUTH_DATA_FILE: "/var/lib/cores-mcp/oauth/clients.json"
