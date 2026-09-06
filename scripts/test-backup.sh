@@ -11,12 +11,15 @@ trap cleanup EXIT HUP INT TERM
 docker run -d --name "$test_name" --tmpfs /var/lib/postgresql/data \
   -e POSTGRES_PASSWORD=isolated-backup-test -e POSTGRES_DB=cores_test postgres:16-alpine >/dev/null
 attempt=0
-until docker exec "$test_name" pg_isready -U postgres >/dev/null 2>&1; do
+# The image's temporary initialization server accepts Unix-socket connections
+# before it shuts down. TCP becomes available only on the final server.
+until docker exec "$test_name" pg_isready -h 127.0.0.1 -U postgres -d cores_test >/dev/null 2>&1; do
   attempt=$((attempt+1))
   [ "$attempt" -lt 30 ] || exit 1
   sleep 1
 done
-docker exec "$test_name" psql -U postgres -d cores_test -v ON_ERROR_STOP=1 \
+docker exec -e PGPASSWORD=isolated-backup-test "$test_name" \
+  psql -h 127.0.0.1 -U postgres -d cores_test -v ON_ERROR_STOP=1 \
   -c "CREATE TABLE backup_probe (id integer PRIMARY KEY, value text NOT NULL); INSERT INTO backup_probe VALUES (1, 'restore this row');" >/dev/null
 docker run --rm --network "container:$test_name" \
   -e PGHOST=127.0.0.1 -e PGUSER=postgres -e PGDATABASE=cores_test \

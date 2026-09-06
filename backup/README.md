@@ -33,6 +33,9 @@ docker build -f backup/Dockerfile -t cores-backup-test:stabilization .
 sh scripts/test-backup.sh cores-backup-test:stabilization
 ```
 
+The test waits for PostgreSQL's final TCP listener, not the temporary
+initialization socket, before creating its disposable fixture.
+
 For an immediate production backup, run
 `docker compose exec db-backup backup-db.sh` when no scheduled backup is running.
 Inspect `docker compose logs db-backup` and Docker health after each deployment.
