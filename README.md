@@ -25,7 +25,7 @@ Aktueller Suite-Release (06.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.71` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
-| Cores MCP | `nobentie/cores-mcp:1.2.0` |
+| Cores MCP | `nobentie/cores-mcp:1.2.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle

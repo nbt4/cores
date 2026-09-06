@@ -182,7 +182,7 @@ services:
       - internal
 
   cores-mcp:
-    image: nobentie/cores-mcp:1.2.0
+    image: nobentie/cores-mcp:1.2.1
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
