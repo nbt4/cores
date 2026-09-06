@@ -726,10 +726,10 @@ Viewer          ──► Lesezugriff auf zugewiesene Bereiche
 docker compose ps
 
 # Health-Checks
-curl https://cores.tsunami-events.de/api/health
-curl https://rent.tsunami-events.de/api/health
-curl https://warehouse.tsunami-events.de/api/health
-curl https://planner.tsunami-events.de/api/health
+curl --fail https://cores.tsunami-events.de/health
+curl --fail https://rent.tsunami-events.de/health
+curl --fail https://warehouse.tsunami-events.de/api/v1/health
+curl --fail https://planner.tsunami-events.de/health
 
 # Ressourcen-Nutzung
 docker stats

@@ -264,7 +264,7 @@ services:
       - proxy
       - internal
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/health || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health || exit 1"]
       interval: 15s
       timeout: 10s
       retries: 10

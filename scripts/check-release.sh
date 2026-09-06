@@ -14,4 +14,8 @@ if grep -Eq 'auth/me.*\|\| true' docker-compose.yml; then
   echo "Dashboard healthcheck masks failures" >&2
   exit 1
 fi
+if grep -Eq 'localhost:[0-9]+/api/health' deploy/docker03/compose.yaml docker-compose.yml; then
+  echo "Planner healthcheck must use /health, not the SPA fallback /api/health" >&2
+  exit 1
+fi
 echo "Release image pins and inventory verified"

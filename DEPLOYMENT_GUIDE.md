@@ -25,7 +25,8 @@ Existing volume names and internal service ports differ from a fresh install
 and must be preserved when applying release updates. Synchronize the host file
 and Komodo's stored configuration. Recreating only changed application services
 avoids restarting PostgreSQL and unrelated services. Verify all application
-health endpoints and the completed backup after deployment.
+health endpoints and the completed backup after deployment. PlannerCore uses
+`/health`; `/api/health` serves the SPA fallback and is not a health check.
 
 The older two-service examples below are retained as background; use the
 complete root Compose and current README for new installations.
