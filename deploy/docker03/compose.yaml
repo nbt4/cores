@@ -19,7 +19,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.99
+    image: nobentie/rentalcore:5.3.100
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -50,7 +50,6 @@ services:
       M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
       M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
-      M365_CALENDAR_ORGANIZER: ${M365_CALENDAR_ORGANIZER}
       APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
     volumes:
       - tscores_branding-data:/var/lib/branding
@@ -131,7 +130,7 @@ services:
       - internal
 
   cores-dashboard:
-    image: nobentie/cores-dashboard:1.14.31
+    image: nobentie/cores-dashboard:1.14.32
     container_name: cores-dashboard
     restart: unless-stopped
     depends_on:

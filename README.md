@@ -16,12 +16,12 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (06.09.2026):
+Aktueller Suite-Release (07.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.31` |
-| RentalCore | `nobentie/rentalcore:5.3.99` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.32` |
+| RentalCore | `nobentie/rentalcore:5.3.100` |
 | WarehouseCore | `nobentie/warehousecore:5.9.71` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
@@ -506,11 +506,12 @@ LED_MQTT_PASS=your-mqtt-password
 M365_TENANT_ID=your-tenant-id
 M365_CLIENT_ID=your-client-id
 M365_CLIENT_SECRET=your-client-secret
+# Exchange Online room mailbox; requires Calendars.ReadWrite (Application)
 M365_CALENDAR_MAILBOX=events@yourdomain.com
-# Must be a real user mailbox; requires Calendars.ReadWrite (Application)
-M365_CALENDAR_ORGANIZER=calendar-organizer@yourdomain.com
 APP_BASE_URL=https://cores.example.com
 ```
+
+`M365_CALENDAR_MAILBOX` wird als zentrale Exchange-Raumressource betrieben. RentalCore legt jeden Job dort genau einmal an, führt Bearbeiter als Teilnehmer desselben Meetings und bestätigt deren Teilnehmerinstanz ohne Antwortmail. Die Ressource kann in Exchange Online PowerShell mit `Set-Mailbox events@yourdomain.com -Type Room` und `Set-CalendarProcessing events@yourdomain.com -AutomateProcessing AutoAccept -AllowConflicts $true -AllBookInPolicy $true -DeleteSubject $false -DeleteComments $false -AddOrganizerToSubject $false` vorbereitet werden.
 
 #### 3. Docker-Container starten
 
