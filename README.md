@@ -16,12 +16,12 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (07.09.2026):
+Aktueller Suite-Release (08.09.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.32` |
-| RentalCore | `nobentie/rentalcore:5.3.100` |
+| RentalCore | `nobentie/rentalcore:5.3.101` |
 | WarehouseCore | `nobentie/warehousecore:5.9.71` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
