@@ -21,7 +21,7 @@ Aktueller Suite-Release (08.09.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.32` |
-| RentalCore | `nobentie/rentalcore:5.3.101` |
+| RentalCore | `nobentie/rentalcore:5.3.102` |
 | WarehouseCore | `nobentie/warehousecore:5.9.71` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
@@ -166,7 +166,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 1. **Job-/Event-Management** — Verbindlicher Lebenszyklus `Planung → Bestätigt → Abgeschlossen` mit `Storniert` als Abbruch; Packfortschritt, Datumsaktivität, Geräterücklauf und Abrechnung bleiben getrennte Dimensionen
 2. **Device-/Equipment-Verwaltung** — Katalogisierung und Verwaltung aller Mietgeräte mit Barcode-/QR-Code-Identifikation
 3. **Kundenmanagement** — Vollständige CRM-Funktionalität mit Microsoft 365-Synchronisation für Kontaktdaten
-4. **PDF-Rechnungsextraktion (OCR)** — Automatische Extraktion von Rechnungsdaten aus PDF-Dokumenten mittels optischer Zeichenerkennung
+4. **PDF-Belegextraktion (OCR)** — Automatische Erkennung editierbarer Jobtitel, mehrzeiliger Positionsbeschreibungen, Mengen und Preise aus Angeboten, Auftragsbestätigungen und Rechnungen
 5. **Deutsche DIN-5008-Rechnungserstellung** — Erstellung normgerechter Rechnungen nach DIN 5008 direkt aus dem System
 6. **RBAC + WebAuthn/2FA** — Rollenbasierte Zugriffskontrolle mit hardwaregestützter Zwei-Faktor-Authentifizierung
 7. **Nextcloud WebDAV File-Pool** — Integration mit Nextcloud für zentrale Dateiablage und Dokumentenmanagement
