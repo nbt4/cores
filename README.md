@@ -50,6 +50,8 @@ Raum-Mailbox `events-calender@tsunami-events.de`.
 WarehouseCore `5.9.72` vereinigt die vollständige Main-Historie wieder mit der
 zentralen Login-Weiterleitung. ProcurementCore-Verknüpfung, kontextuelle Suche,
 Wartungs- und Lagerabläufe sind damit wieder gemeinsam im veröffentlichten Image.
+Die Docker03-Konfiguration initialisiert Mosquitto mit einem netzwerkfähigen,
+authentifizierten Listener und prüft den Broker über einen MQTT-Healthcheck.
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)

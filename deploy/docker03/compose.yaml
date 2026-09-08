@@ -228,15 +228,47 @@ services:
     image: eclipse-mosquitto:2.0
     container_name: mosquitto
     restart: unless-stopped
+    environment:
+      LED_MQTT_USER: ${LED_MQTT_USER:-leduser}
+      LED_MQTT_PASS: ${LED_MQTT_PASS:-}
     volumes:
       - mosquitto-config:/mosquitto/config
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
-    command: mosquitto -c /mosquitto/config/mosquitto.conf
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        mkdir -p /mosquitto/config
+        if [ ! -f /mosquitto/config/mosquitto.conf ] || ! grep -q '^listener 1883' /mosquitto/config/mosquitto.conf 2>/dev/null; then
+          printf '%s\n' \
+            'listener 1883 0.0.0.0' \
+            'allow_anonymous false' \
+            'password_file /mosquitto/config/passwd' \
+            'persistence true' \
+            'persistence_location /mosquitto/data/' \
+            'log_dest stdout' \
+            > /mosquitto/config/mosquitto.conf
+        fi
+        if [ -n "$$LED_MQTT_USER" ]; then
+          if [ ! -f /mosquitto/config/passwd ]; then
+            mosquitto_passwd -c -b /mosquitto/config/passwd "$$LED_MQTT_USER" "$$LED_MQTT_PASS"
+          elif ! grep -q "^$$LED_MQTT_USER:" /mosquitto/config/passwd 2>/dev/null; then
+            mosquitto_passwd -b /mosquitto/config/passwd "$$LED_MQTT_USER" "$$LED_MQTT_PASS"
+          fi
+        fi
+        exec /docker-entrypoint.sh /usr/sbin/mosquitto -c /mosquitto/config/mosquitto.conf
     ports:
       - 1883:1883
     networks:
       - internal
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -t '$$SYS/#' -C 1 -i healthcheck -u \"$$LED_MQTT_USER\" -P \"$$LED_MQTT_PASS\" -W 3"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
 
   plannercore:
