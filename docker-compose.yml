@@ -270,7 +270,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.28
+    image: nobentie/procurementcore:1.0.29
     container_name: procurementcore
     restart: unless-stopped
     depends_on:

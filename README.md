@@ -24,7 +24,7 @@ Aktueller Suite-Release (08.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.103` |
 | WarehouseCore | `nobentie/warehousecore:5.9.72` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
-| ProcurementCore | `nobentie/procurementcore:1.0.28` |
+| ProcurementCore | `nobentie/procurementcore:1.0.29` |
 | Cores MCP | `nobentie/cores-mcp:1.2.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -305,7 +305,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 6. Bedarfsmeldungen mit Einreichungs- und Freigabeprozess
 7. Angebots-/Lieferantenvergleich und Übernahme des besten gepflegten Preises
 8. Bestehende Einkaufsartikel mit Warehouse-Produkten über EAN, Artikelnummer, Modell, Hersteller und Name abgleichen oder in den vollständigen Warehouse-Produktdialog übernehmen
-9. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung
+9. Bestellungen, Teilwareneingänge und vollständige Empfangsverfolgung; verknüpfte Warehouse-Produkte erhalten atomar Mengenbestand oder neue Devices, fehlende Produkte können direkt übernommen werden
 10. Spend-, Einsparungs- und Aktivitätsübersicht sowie CSV-Export
 11. Cores-SSO, zentrales Branding, responsive Oberfläche und Health-Monitoring
 
