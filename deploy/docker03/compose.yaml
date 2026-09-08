@@ -67,7 +67,7 @@ services:
       - internal
 
   warehousecore:
-    image: nobentie/warehousecore:5.9.71
+    image: nobentie/warehousecore:5.9.72
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
@@ -85,6 +85,7 @@ services:
       RENTALCORE_DOMAIN: ${RENTALCORE_DOMAIN}
       WAREHOUSECORE_DOMAIN: ${WAREHOUSECORE_DOMAIN}
       PROCUREMENTCORE_PUBLIC_URL: ${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}
+      DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
       COOKIE_DOMAIN: ${COOKIE_DOMAIN}
       LED_MQTT_HOST: ${LED_MQTT_HOST:-mosquitto}
       LED_MQTT_PORT: ${LED_MQTT_PORT:-1883}

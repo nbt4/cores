@@ -22,7 +22,7 @@ Aktueller Suite-Release (08.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.32` |
 | RentalCore | `nobentie/rentalcore:5.3.103` |
-| WarehouseCore | `nobentie/warehousecore:5.9.71` |
+| WarehouseCore | `nobentie/warehousecore:5.9.72` |
 | PlannerCore | `nobentie/plannercore:2.6.20` |
 | ProcurementCore | `nobentie/procurementcore:1.0.28` |
 | Cores MCP | `nobentie/cores-mcp:1.2.1` |
@@ -46,6 +46,10 @@ Technische Zuständigkeiten und weitere Architekturarbeit stehen in
 RentalCore ergänzt Kundenorte aus deutschen PLZ, übernimmt OCR-Positionsrabatte
 und synchronisiert auch aus OCR erzeugte Jobs unmittelbar mit der zentralen
 Raum-Mailbox `events-calender@tsunami-events.de`.
+
+WarehouseCore `5.9.72` vereinigt die vollständige Main-Historie wieder mit der
+zentralen Login-Weiterleitung. ProcurementCore-Verknüpfung, kontextuelle Suche,
+Wartungs- und Lagerabläufe sind damit wieder gemeinsam im veröffentlichten Image.
 
 [![License](https://img.shields.io/badge/license-proprietary-red)](LICENSE)
 [![Docker](https://img.shields.io/badge/docker-compose-blue?logo=docker)](docker-compose.yml)
