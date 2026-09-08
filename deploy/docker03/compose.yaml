@@ -19,7 +19,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.102
+    image: nobentie/rentalcore:5.3.103
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -49,7 +49,7 @@ services:
       M365_CLIENT_ID: ${M365_CLIENT_ID}
       M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
-      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
       APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
     volumes:
       - tscores_branding-data:/var/lib/branding
@@ -110,7 +110,7 @@ services:
       M365_CLIENT_ID: ${M365_CLIENT_ID}
       M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
-      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
       APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
       PICTURE_CACHE_DIR: /root/web/dist/cache
     healthcheck:
@@ -146,7 +146,7 @@ services:
       M365_CLIENT_ID: ${M365_CLIENT_ID}
       M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
-      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}
+      M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
       APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
       RENTALCORE_URL: http://rentalcore:8080
       WAREHOUSECORE_URL: http://warehousecore:8081

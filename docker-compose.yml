@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.102
+    image: nobentie/rentalcore:5.3.103
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -65,7 +65,7 @@ services:
       # OCR Parser Configuration
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
       # Microsoft 365 central job calendar
-      M365_CALENDAR_MAILBOX: "${M365_CALENDAR_MAILBOX:-events@tsunami-events.de}"
+      M365_CALENDAR_MAILBOX: "${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}"
     ports:
       - "8081:8081"
     volumes:
