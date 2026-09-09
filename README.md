@@ -25,7 +25,7 @@ Aktueller Suite-Release (09.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.73` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
 | ProcurementCore | `nobentie/procurementcore:1.0.32` |
-| Cores MCP | `nobentie/cores-mcp:1.2.2` |
+| Cores MCP | `nobentie/cores-mcp:1.2.3` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -33,7 +33,9 @@ Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und
 Administratoränderungen gelten auch für bestehende Tokens ab der nächsten Anfrage.
 MCP prüft aktive Konten bei jedem OAuth-Zugriff und beschränkt alle Planner-Abfragen
 auf die Mitgliedschaften des angemeldeten Nutzers, einschließlich Suche und Kennzahlen.
-Maschinentokens erhalten keine privaten Planner-Daten.
+Maschinentokens erhalten keine privaten Planner-Daten. Bei aktivierten geführten
+Schreibtools fordert MCP `cores:read` und `cores:write` bereits in der
+OAuth-Challenge verbindlich an, damit Connectoren keinen alten Lesetoken verwenden.
 
 Der Backupdienst stellt jeden Dump in einem temporären PostgreSQL-Cluster wieder
 her, bevor er Erfolg meldet. Optional lädt er Dump und Prüfsumme in eine dedizierte
