@@ -25,7 +25,7 @@ Aktueller Suite-Release (09.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.73` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
 | ProcurementCore | `nobentie/procurementcore:1.0.30` |
-| Cores MCP | `nobentie/cores-mcp:1.2.1` |
+| Cores MCP | `nobentie/cores-mcp:1.2.2` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -387,7 +387,7 @@ Der Dienst umfasst 59 fest definierte Abfragetools für Jobs, Bestand, Geräte, 
 4. **SSO-Authentifizierung**: cores-dashboard stellt JWT-Tokens aus und validiert diese für alle Backend-Services
 5. **Shared Branding**: Alle Services beziehen Logos, Themes und Branding-Konfiguration vom zentralen Branding-Endpunkt
 6. **Shared PostgreSQL**: Gemeinsame Datenbank-Instanz für konsistente Datenhaltung
-7. **MCP-Anbindung**: Dashboard reicht `/mcp`, OAuth und Discovery an Cores MCP weiter; Abfragen lesen direkt, bestätigte Produkt-/Jobanlagen laufen über die validierten Core-APIs
+7. **MCP-Anbindung**: Dashboard reicht `/mcp`, OAuth und Discovery an Cores MCP weiter; Abfragen lesen direkt, bestätigte additive Anlagen für Procurement-, Rental-, Planner- und WarehouseCore laufen über fest verdrahtete Core-APIs
 
 ### 🔗 Service-Abhängigkeiten
 
