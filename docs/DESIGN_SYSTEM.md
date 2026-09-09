@@ -61,7 +61,7 @@ Desktop-Sidebars sind in jedem Core 256 px geöffnet und 80 px eingeklappt. Sie 
 
 Unter 768 px wird die Sidebar zum maximal 320 px breiten Drawer. Oben steht eine 56-px-Leiste, unten eine 64-px-Tabbar inklusive Safe-Area. Berührungsziele sind mindestens 44 × 44 px. Die mobile Kopfzeile enthält kein zusätzliches Logo; das Produktlogo bleibt im Drawer.
 
-Die Reihenfolge ist: produktbezogene Hauptnavigation, fachliche Unterbereiche, Link zum Cores Dashboard, Benutzerkontext, Abmelden. Benennung, Icons und Positionen bleiben innerhalb eines Services stabil.
+Die Reihenfolge ist: produktbezogene Hauptnavigation, fachliche Unterbereiche, Suite-Navigation, Benutzerkontext, Abmelden. Die Suite-Navigation steht in jedem Core am Ende der fachlichen Navigation und besteht immer aus dem Dropdown „Core wechseln“ mit RentalCore, WarehouseCore, PlannerCore und ProcurementCore sowie direkt darunter dem dedizierten Link „Cores Dashboard“. Sie verwendet ausschließlich die `.suite-core-*`-Primitives, bleibt auch in der eingeklappten Sidebar per Tastatur und Touch bedienbar und löst Ziele aus der öffentlichen Dashboard-Konfiguration auf. Benennung, Icons und Positionen bleiben innerhalb eines Services stabil.
 
 ## 6. Bedienelemente
 

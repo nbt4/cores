@@ -16,15 +16,15 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (08.09.2026):
+Aktueller Suite-Release (09.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.32` |
-| RentalCore | `nobentie/rentalcore:5.3.103` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.33` |
+| RentalCore | `nobentie/rentalcore:5.3.104` |
 | WarehouseCore | `nobentie/warehousecore:5.9.72` |
-| PlannerCore | `nobentie/plannercore:2.6.20` |
-| ProcurementCore | `nobentie/procurementcore:1.0.29` |
+| PlannerCore | `nobentie/plannercore:2.6.21` |
+| ProcurementCore | `nobentie/procurementcore:1.0.30` |
 | Cores MCP | `nobentie/cores-mcp:1.2.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -47,9 +47,11 @@ RentalCore ergänzt Kundenorte aus deutschen PLZ, übernimmt OCR-Positionsrabatt
 und synchronisiert auch aus OCR erzeugte Jobs unmittelbar mit der zentralen
 Raum-Mailbox `events-calender@tsunami-events.de`.
 
-WarehouseCore `5.9.72` vereinigt die vollständige Main-Historie wieder mit der
-zentralen Login-Weiterleitung. ProcurementCore-Verknüpfung, kontextuelle Suche,
-Wartungs- und Lagerabläufe sind damit wieder gemeinsam im veröffentlichten Image.
+Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
+ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
+WarehouseCore `5.9.72` ergänzt persistierte Job-Packlisten und den kontextsensitiven
+Scanner, ProcurementCore fortlaufende Wareneingänge samt Lieferantenreferenz und
+PlannerCore den vollständig funktionsfähigen `/plannercore/`-Pfadmodus.
 Die Docker03-Konfiguration initialisiert Mosquitto mit einem netzwerkfähigen,
 authentifizierten Listener und prüft den Broker über einen MQTT-Healthcheck.
 

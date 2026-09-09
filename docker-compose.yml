@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.103
+    image: nobentie/rentalcore:5.3.104
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -83,7 +83,7 @@ services:
   # CoresDashboard - Central SSO Dashboard & Admin Hub
   # ============================================================================
   cores-dashboard:
-    image: nobentie/cores-dashboard:1.14.32
+    image: nobentie/cores-dashboard:1.14.33
     container_name: cores-dashboard
     restart: unless-stopped
     depends_on:
@@ -215,6 +215,7 @@ services:
       LED_MQTT_TOPIC_PREFIX: "${LED_MQTT_TOPIC_PREFIX:-weidelbach}"
       LED_WAREHOUSE_ID: "${LED_WAREHOUSE_ID:-weidelbach}"
       LED_MAPPING_FILE: "${LED_MAPPING_FILE:-/var/lib/warehousecore/led/led_mapping.json}"
+      PACKING_LIST_DIR: "${PACKING_LIST_DIR:-/var/lib/warehousecore/packing-lists}"
       LED_MQTT_CONNECT_RETRIES: "${LED_MQTT_CONNECT_RETRIES:-10}"
       LED_MQTT_CONNECT_RETRY_DELAY_MS: "${LED_MQTT_CONNECT_RETRY_DELAY_MS:-2000}"
       ADMIN_NAME_MATCH: "${ADMIN_NAME_MATCH:-Noah Tielmann}"
@@ -223,6 +224,7 @@ services:
     volumes:
       - led-mapping:/var/lib/warehousecore/led
       - warehousecore-labels:/root/web/dist/labels
+      - warehousecore-packing-lists:/var/lib/warehousecore/packing-lists
       - branding-data:/var/lib/branding
     networks:
       - weidelbach
@@ -237,7 +239,7 @@ services:
   # PlannerCore - Planning & Task Management (Node.js)
   # ============================================================================
   plannercore:
-    image: nobentie/plannercore:2.6.20
+    image: nobentie/plannercore:2.6.21
     container_name: plannercore
     restart: unless-stopped
     depends_on:
@@ -253,6 +255,8 @@ services:
       DB_USER: "${POSTGRES_USER:-rentalcore}"
       DB_PASS: "${POSTGRES_PASSWORD:-}"
       APP_URL: "${PLANNER_APP_URL:-http://localhost:8080}"
+      DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
+      CORS_ALLOWED_ORIGINS: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
     ports:
       - "8083:8080"
     volumes:
@@ -270,7 +274,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.29
+    image: nobentie/procurementcore:1.0.30
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
@@ -394,6 +398,9 @@ volumes:
     driver: local
   # Warehousecore label images (persisted across container restarts)
   warehousecore-labels:
+    driver: local
+  # Automatically saved job packing-list PDFs
+  warehousecore-packing-lists:
     driver: local
   # Mosquitto MQTT broker
   mosquitto-config:
