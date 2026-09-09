@@ -24,7 +24,7 @@ Aktueller Suite-Release (09.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.104` |
 | WarehouseCore | `nobentie/warehousecore:5.9.73` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
-| ProcurementCore | `nobentie/procurementcore:1.0.31` |
+| ProcurementCore | `nobentie/procurementcore:1.0.32` |
 | Cores MCP | `nobentie/cores-mcp:1.2.2` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -51,7 +51,8 @@ Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Posi
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
 WarehouseCore `5.9.73` ergänzt persistierte Job-Packlisten und den kontextsensitiven
 Scanner, ProcurementCore fortlaufende Wareneingänge samt Lieferantenreferenz
-und einen prüfbaren Adam-Hall-Live-Warenkorb mit verbindlicher Direktbestellung
+und einen vorab bereinigten, exakt geprüften Adam-Hall-Live-Warenkorb mit
+verbindlicher Direktbestellung
 sowie PlannerCore den vollständig funktionsfähigen `/plannercore/`-Pfadmodus.
 Die Docker03-Konfiguration initialisiert Mosquitto mit einem netzwerkfähigen,
 authentifizierten Listener und prüft den Broker über einen MQTT-Healthcheck.
