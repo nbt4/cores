@@ -22,7 +22,7 @@ Aktueller Suite-Release (09.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.33` |
 | RentalCore | `nobentie/rentalcore:5.3.104` |
-| WarehouseCore | `nobentie/warehousecore:5.9.72` |
+| WarehouseCore | `nobentie/warehousecore:5.9.73` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
 | ProcurementCore | `nobentie/procurementcore:1.0.30` |
 | Cores MCP | `nobentie/cores-mcp:1.2.1` |
@@ -49,7 +49,7 @@ Raum-Mailbox `events-calender@tsunami-events.de`.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
-WarehouseCore `5.9.72` ergänzt persistierte Job-Packlisten und den kontextsensitiven
+WarehouseCore `5.9.73` ergänzt persistierte Job-Packlisten und den kontextsensitiven
 Scanner, ProcurementCore fortlaufende Wareneingänge samt Lieferantenreferenz und
 PlannerCore den vollständig funktionsfähigen `/plannercore/`-Pfadmodus.
 Die Docker03-Konfiguration initialisiert Mosquitto mit einem netzwerkfähigen,
