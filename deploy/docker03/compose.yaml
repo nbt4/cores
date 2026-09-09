@@ -307,7 +307,7 @@ services:
       start_period: 60s
 
   procurementcore:
-    image: nobentie/procurementcore:1.0.30
+    image: nobentie/procurementcore:1.0.32
     container_name: procurementcore
     restart: unless-stopped
     env_file:
