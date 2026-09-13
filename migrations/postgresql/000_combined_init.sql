@@ -276,6 +276,9 @@ CREATE TABLE IF NOT EXISTS devices (
     nextmaintenance DATE,
     insurancenumber VARCHAR(100),
     status VARCHAR(50) DEFAULT 'free',
+    lifecycle_status VARCHAR(20) NOT NULL DEFAULT 'active' CHECK (lifecycle_status IN ('active','archived')),
+    archived_at TIMESTAMP,
+    archived_by_product BOOLEAN NOT NULL DEFAULT FALSE,
     insuranceid INT,
     qr_code VARCHAR(255),
     current_location VARCHAR(255),
@@ -295,6 +298,8 @@ CREATE TABLE IF NOT EXISTS devices (
 );
 CREATE INDEX IF NOT EXISTS idx_devices_productid ON devices(productid);
 CREATE INDEX IF NOT EXISTS idx_devices_status ON devices(status);
+CREATE INDEX IF NOT EXISTS idx_devices_lifecycle_status ON devices(lifecycle_status);
+CREATE INDEX IF NOT EXISTS idx_devices_product_lifecycle ON devices(productid,lifecycle_status);
 CREATE INDEX IF NOT EXISTS idx_devices_barcode ON devices(barcode);
 CREATE INDEX IF NOT EXISTS idx_devices_serialnumber ON devices(serialnumber);
 
