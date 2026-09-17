@@ -16,13 +16,13 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (13.09.2026):
+Aktueller Suite-Release (17.09.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.33` |
 | RentalCore | `nobentie/rentalcore:5.3.104` |
-| WarehouseCore | `nobentie/warehousecore:5.9.74` |
+| WarehouseCore | `nobentie/warehousecore:5.9.75` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
 | ProcurementCore | `nobentie/procurementcore:1.0.34` |
 | Cores MCP | `nobentie/cores-mcp:1.2.3` |
@@ -51,9 +51,11 @@ Raum-Mailbox `events-calender@tsunami-events.de`.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
-WarehouseCore `5.9.74` ergänzt den Geräte-Lebenszyklus: Produkte archivieren ihre
+WarehouseCore `5.9.75` ergänzt den Geräte-Lebenszyklus: Produkte archivieren ihre
 Devices atomar mit, archivierte Geräte bleiben aus allen operativen Abläufen heraus
 und archivierte Produkte oder Devices können kontrolliert endgültig gelöscht werden.
+Die Produktarchivierung schaltet dabei sämtliche Produkt- und Device-Kennungen
+transaktional und typsicher gemeinsam um.
 ProcurementCore unterstützt fortlaufende Wareneingänge samt Lieferantenreferenz
 und einen vorab bereinigten, exakt geprüften Adam-Hall-Live-Warenkorb mit
 Shop-Direktlink und verbindlicher Direktbestellung sowie die nachträgliche
