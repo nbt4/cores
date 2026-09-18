@@ -16,15 +16,15 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
-Aktueller Suite-Release (17.09.2026):
+Aktueller Suite-Release (18.09.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.33` |
 | RentalCore | `nobentie/rentalcore:5.3.104` |
-| WarehouseCore | `nobentie/warehousecore:5.9.75` |
+| WarehouseCore | `nobentie/warehousecore:5.9.76` |
 | PlannerCore | `nobentie/plannercore:2.6.21` |
-| ProcurementCore | `nobentie/procurementcore:1.0.34` |
+| ProcurementCore | `nobentie/procurementcore:1.0.35` |
 | Cores MCP | `nobentie/cores-mcp:1.2.3` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -51,12 +51,14 @@ Raum-Mailbox `events-calender@tsunami-events.de`.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
-WarehouseCore `5.9.75` ergänzt den Geräte-Lebenszyklus: Produkte archivieren ihre
+WarehouseCore `5.9.76` ergänzt den Geräte-Lebenszyklus: Produkte archivieren ihre
 Devices atomar mit, archivierte Geräte bleiben aus allen operativen Abläufen heraus
 und archivierte Produkte oder Devices können kontrolliert endgültig gelöscht werden.
 Die Produktarchivierung schaltet dabei sämtliche Produkt- und Device-Kennungen
-transaktional und typsicher gemeinsam um.
-ProcurementCore unterstützt fortlaufende Wareneingänge samt Lieferantenreferenz
+transaktional und typsicher gemeinsam um. Die Produktbeziehungs-Tabelle wird bei
+frischen oder lückenhaft migrierten Installationen selbstständig nachgezogen.
+ProcurementCore `1.0.35` startet zuverlässig auf den vom Umbrella angelegten
+PostgreSQL-Constraints und unterstützt fortlaufende Wareneingänge samt Lieferantenreferenz
 und einen vorab bereinigten, exakt geprüften Adam-Hall-Live-Warenkorb mit
 Shop-Direktlink und verbindlicher Direktbestellung sowie die nachträgliche
 Bestellerfassung aus PDF mit editierbarer Erkennungsvorschau
@@ -348,6 +350,8 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 | **Öffentlicher Endpunkt** | `https://cores.tsunami-events.de/mcp` |
 
 Der Dienst umfasst 59 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Zusätzlich bereiten vier optionale Tools Produkt- und Jobanlagen vor, fragen fehlende oder mehrdeutige Angaben ab und schreiben erst nach finaler Nutzerbestätigung über die validierte API des zuständigen Core. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Es gibt kein beliebiges SQL und keinerlei Änderungs-, Lösch-, Bestell- oder Freigabefunktion. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
+
+Bleiben `MCP_DB_USER` und `MCP_DB_PASSWORD` leer, übernimmt Compose automatisch `POSTGRES_USER` und `POSTGRES_PASSWORD`. Ein abweichender PostgreSQL-Login funktioniert damit ohne zusätzliche MCP-Konfiguration. Produktionssysteme können weiterhin beide MCP-Werte auf einen dedizierten Read-only-Login setzen.
 
 ---
 

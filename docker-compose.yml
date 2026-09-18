@@ -151,8 +151,8 @@ services:
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
-      DB_USER: "${MCP_DB_USER:-rentalcore}"
-      DB_PASSWORD: "${MCP_DB_PASSWORD:-}"
+      DB_USER: "${MCP_DB_USER:-${POSTGRES_USER:-rentalcore}}"
+      DB_PASSWORD: "${MCP_DB_PASSWORD:-${POSTGRES_PASSWORD:-}}"
       DB_SSLMODE: "disable"
       RENTALCORE_URL: "http://rentalcore:8081"
       WAREHOUSECORE_URL: "http://warehousecore:8082"
@@ -174,7 +174,7 @@ services:
   # WarehouseCore - Warehouse Management System (PostgreSQL)
   # ============================================================================
   warehousecore:
-    image: nobentie/warehousecore:5.9.75
+    image: nobentie/warehousecore:5.9.76
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
@@ -274,7 +274,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.34
+    image: nobentie/procurementcore:1.0.35
     container_name: procurementcore
     restart: unless-stopped
     depends_on:

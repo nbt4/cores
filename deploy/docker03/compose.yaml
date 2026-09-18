@@ -67,7 +67,7 @@ services:
       - internal
 
   warehousecore:
-    image: nobentie/warehousecore:5.9.73
+    image: nobentie/warehousecore:5.9.76
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
@@ -207,8 +207,8 @@ services:
       DB_HOST: postgres
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"
-      DB_USER: "${MCP_DB_USER}"
-      DB_PASSWORD: "${MCP_DB_PASSWORD}"
+      DB_USER: "${MCP_DB_USER:-${POSTGRES_USER:-rentalcore}}"
+      DB_PASSWORD: "${MCP_DB_PASSWORD:-${POSTGRES_PASSWORD:-rentalcore123}}"
       DB_SSLMODE: disable
       RENTALCORE_URL: "http://rentalcore:8080"
       WAREHOUSECORE_URL: "http://warehousecore:8081"
@@ -307,7 +307,7 @@ services:
       start_period: 60s
 
   procurementcore:
-    image: nobentie/procurementcore:1.0.34
+    image: nobentie/procurementcore:1.0.35
     container_name: procurementcore
     restart: unless-stopped
     env_file:
