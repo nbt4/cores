@@ -4,7 +4,8 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 
 - `tsunami-theme.css` enthält die verbindlichen Tokens, globalen Bedienelemente und Dashboard-Primitives.
 - `.suite-search-field` aus `tsunami-theme.css` ist der verbindliche Wrapper für Suchfeld, vertikal zentrierte Lupe und kollisionsfreien Texteinsatz.
-- `cores-design.ts` enthält die einheitliche Datums-, Anzeigenamen- und Begrüßungslogik.
+- `cores-design.ts` enthält die einheitliche Sprach-, Datums-, Anzeigenamen- und Begrüßungslogik.
+- `SuiteLanguageSwitcher.tsx` und `locales/{de,en}.json` stellen den gemeinsamen Sprach-Select und die synchronisierten Basisübersetzungen bereit.
 - `cores-design.ts` löst außerdem die öffentliche Suite-Navigation auf; `.suite-core-*` stellt den identischen Core-Switcher und Dashboard-Link für jede Sidebar bereit.
 - [`../docs/DESIGN_SYSTEM.md`](../docs/DESIGN_SYSTEM.md) beschreibt die Produkt- und Anwendungsregeln.
 - `../scripts/sync-design-system.sh` verteilt die kanonische CSS-Datei in alle eigenständig deploybaren Core-Repositories.
@@ -13,7 +14,7 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 
 ## Arbeitsablauf
 
-1. Ausschließlich `theme/tsunami-theme.css` im Umbrella-Repository ändern.
+1. Ausschließlich die kanonischen Quellen unter `theme/` im Umbrella-Repository ändern.
 2. `./scripts/sync-design-system.sh` ausführen.
 3. Die betroffene Oberfläche nur mit vorhandenen Tokens oder den `suite-*`-Primitives implementieren.
 4. `./scripts/check-design-system.sh` und anschließend die Web-Builds aller betroffenen Services ausführen.

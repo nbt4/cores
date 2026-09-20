@@ -2,6 +2,21 @@
 
 Version 1.0 · verbindlich für Cores Dashboard, RentalCore, WarehouseCore, PlannerCore, ProcurementCore und jeden zukünftigen Core.
 
+## Sprache und Lokalisierung
+
+Jede Core-Shell zeigt den gemeinsamen `SuiteLanguageSwitcher`. Die Auswahl wird
+suiteweit unter `cores_language` gespeichert; aktuell werden Deutsch (`de`) und
+Englisch (`en`) unterstützt. `theme/cores-design.ts` ist die kanonische Quelle
+für Spracherkennung, Umschaltung, Locale-Auswahl, Datumsformat und Begrüßungen.
+`theme/locales/de.json` und `theme/locales/en.json` verwenden identische stabile
+Schlüssel. Weitere Sprachen werden durch eine zusätzliche gleich strukturierte
+Ressource ergänzt, nicht durch service-spezifische Umschalter.
+
+Text, Placeholder, Titel und ARIA-Labels müssen in beiden Sprachen verständlich
+sein. Fachliche Namen und Nutzdaten werden nicht übersetzt. Der Sprach-Select
+erfüllt dieselben Fokus-, Kontrast- und Touch-Zielregeln wie alle Formulare und
+bleibt in der kompakten 80-px-Sidebar erreichbar.
+
 ## 1. Grundsatz und Quelle der Wahrheit
 
 Alle Cores sind Teile einer Anwendungssuite. Produktlogos, Navigation und Fachdaten unterscheiden die Services; Typografie, Farbpalette, Abstände, Bedienelemente, Tabellen, Sidebars, Zustände und Dashboard-Aufbau unterscheiden sich nicht.

@@ -16,16 +16,26 @@ Die kanonischen Implementierungen liegen in `theme/tsunami-theme.css` und `theme
 
 Jede neue oder überarbeitete UI muss diese Prüfung sowie den jeweiligen Frontend-Build bestehen. Die Regel ist zusätzlich in den `AGENTS.md`-Dateien der Suite und ihrer Services verankert.
 
+## Gemeinsame Oberflächensprache
+
+Dashboard, RentalCore, WarehouseCore, PlannerCore und ProcurementCore bieten in
+der Sidebar dieselbe Sprachwahl für Deutsch und Englisch. Die Auswahl wird als
+`cores_language` gespeichert und gilt beim Wechsel zwischen allen Cores weiter;
+Datumsformate und Begrüßungen folgen ebenfalls der gewählten Sprache. Gemeinsame
+Übersetzungen liegen unter `theme/locales/` und werden mit dem Designsystem
+synchronisiert. Neue Sprachen können dort als gleich strukturierte Ressource
+ergänzt werden.
+
 Aktueller Suite-Release (18.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.33` |
-| RentalCore | `nobentie/rentalcore:5.3.104` |
-| WarehouseCore | `nobentie/warehousecore:5.9.76` |
-| PlannerCore | `nobentie/plannercore:2.6.21` |
-| ProcurementCore | `nobentie/procurementcore:1.0.35` |
-| Cores MCP | `nobentie/cores-mcp:1.2.3` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.34` |
+| RentalCore | `nobentie/rentalcore:5.3.105` |
+| WarehouseCore | `nobentie/warehousecore:5.9.77` |
+| PlannerCore | `nobentie/plannercore:2.6.22` |
+| ProcurementCore | `nobentie/procurementcore:1.0.36` |
+| Cores MCP | `nobentie/cores-mcp:1.2.4` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -36,6 +46,10 @@ auf die Mitgliedschaften des angemeldeten Nutzers, einschließlich Suche und Ken
 Maschinentokens erhalten keine privaten Planner-Daten. Bei aktivierten geführten
 Schreibtools fordert MCP `cores:read` und `cores:write` bereits in der
 OAuth-Challenge verbindlich an, damit Connectoren keinen alten Lesetoken verwenden.
+Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
+Auswahl. Cores MCP `1.2.4` kann Produktbedarfe nach eindeutiger Job- und
+Produktauflösung sowie ausdrücklicher Bestätigung additiv in RentalCore anlegen;
+vorhandene Bedarfe werden nicht überschrieben.
 
 Der Backupdienst stellt jeden Dump in einem temporären PostgreSQL-Cluster wieder
 her, bevor er Erfolg meldet. Optional lädt er Dump und Prüfsumme in eine dedizierte
