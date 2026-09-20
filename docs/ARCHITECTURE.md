@@ -11,7 +11,7 @@ keine vollständige technische Isolation der Datenbereiche dar.
 | Produkte, Geräte, Lagerorte, physische Bewegungen | WarehouseCore | Vermietung und explizite Einkaufsverknüpfungen |
 | Pläne, Aufgaben, Mitgliedschaften | PlannerCore | lesend nur innerhalb aktueller Mitgliedschaften |
 | Lieferanten, Angebote, Bestellungen, Wareneingang | ProcurementCore | explizite Lagerverknüpfungen |
-| KI-Abfragen und geführte Anlagen | Cores MCP | kuratierte Felder; PostgreSQL READ ONLY; additive Schreibpfade nur per persönlichem OAuth, Live-Validierung und Bestätigung über Core-APIs |
+| KI-Abfragen und geführte Schreibzugriffe | Cores MCP | kuratierte Felder; PostgreSQL READ ONLY; eng begrenzte Anlagen und P0/P1-Workflows nur per persönlichem OAuth, Live-Validierung, Vorschau und Bestätigung über Core-APIs |
 | Release-Inventar, gemeinsame Migrationen, Designsystem, Backups | Cores-Umbrella | versionierter Suite-Vertrag |
 
 Ein bestehendes gemeinsames Schema wird nicht während einer Auth-Korrektur

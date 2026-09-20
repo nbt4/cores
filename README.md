@@ -26,16 +26,16 @@ Datumsformate und Begrüßungen folgen ebenfalls der gewählten Sprache. Gemeins
 synchronisiert. Neue Sprachen können dort als gleich strukturierte Ressource
 ergänzt werden.
 
-Aktueller Suite-Release (18.09.2026):
+Aktueller Suite-Release (20.09.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.34` |
-| RentalCore | `nobentie/rentalcore:5.3.106` |
+| RentalCore | `nobentie/rentalcore:5.3.107` |
 | WarehouseCore | `nobentie/warehousecore:5.9.77` |
 | PlannerCore | `nobentie/plannercore:2.6.22` |
 | ProcurementCore | `nobentie/procurementcore:1.0.36` |
-| Cores MCP | `nobentie/cores-mcp:1.2.4` |
+| Cores MCP | `nobentie/cores-mcp:1.3.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -47,9 +47,11 @@ Maschinentokens erhalten keine privaten Planner-Daten. Bei aktivierten geführte
 Schreibtools fordert MCP `cores:read` und `cores:write` bereits in der
 OAuth-Challenge verbindlich an, damit Connectoren keinen alten Lesetoken verwenden.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
-Auswahl. Cores MCP `1.2.4` kann Produktbedarfe nach eindeutiger Job- und
-Produktauflösung sowie ausdrücklicher Bestätigung additiv in RentalCore anlegen;
-vorhandene Bedarfe werden nicht überschrieben.
+Auswahl. Cores MCP `1.3.0` bietet zusätzlich zu den geführten Anlagen sechs
+zweistufige P0/P1-Workflows: Gerätezuweisung, Job-/Storno-Änderung,
+Requirement-Mengenänderung, Bestellung, Lagerbewegung und Gerätezustand. Jede
+Ausführung folgt auf eine read-only Live-Vorschau, Ziel-Core-Berechtigung und
+ausdrückliche Bestätigung; Löschungen und Freigaben bleiben ausgeschlossen.
 
 Der Backupdienst stellt jeden Dump in einem temporären PostgreSQL-Cluster wieder
 her, bevor er Erfolg meldet. Optional lädt er Dump und Prüfsumme in eine dedizierte
@@ -353,7 +355,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 
 ### cores-mcp
 
-> **KI- und Agent-Anbindung mit sicheren Abfragen und geführten Anlagefunktionen**
+> **KI- und Agent-Anbindung mit sicheren Abfragen und geführten Schreibfunktionen**
 
 | Eigenschaft | Detail |
 |-------------|--------|
@@ -363,7 +365,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 | **Interner Port** | `8090` |
 | **Öffentlicher Endpunkt** | `https://cores.tsunami-events.de/mcp` |
 
-Der Dienst umfasst 59 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Zusätzlich bereiten vier optionale Tools Produkt- und Jobanlagen vor, fragen fehlende oder mehrdeutige Angaben ab und schreiben erst nach finaler Nutzerbestätigung über die validierte API des zuständigen Core. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Es gibt kein beliebiges SQL und keinerlei Änderungs-, Lösch-, Bestell- oder Freigabefunktion. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
+Der Dienst umfasst 59 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Optional kommen zwölf read-only Vorbereitungstools und zwölf bestätigte Schreibtools hinzu. Sie decken eng begrenzte Anlagen sowie Gerätezuweisung, Job-/Requirement-Änderung, Bestellung, Lagerbewegung und Gerätezustand über die validierte API des zuständigen Core ab. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Beliebiges SQL, generische Mutation, Löschen und Freigeben bleiben ausgeschlossen. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
 
 Bleiben `MCP_DB_USER` und `MCP_DB_PASSWORD` leer, übernimmt Compose automatisch `POSTGRES_USER` und `POSTGRES_PASSWORD`. Ein abweichender PostgreSQL-Login funktioniert damit ohne zusätzliche MCP-Konfiguration. Produktionssysteme können weiterhin beide MCP-Werte auf einen dedizierten Read-only-Login setzen.
 
@@ -427,7 +429,7 @@ cores-dashboard ──► PostgreSQL (Auth + Config)
 
 cores-mcp ─────────► PostgreSQL (Read-only)
                   ├─► Cores Health-Endpunkte
-                  ├─► ProcurementCore-/RentalCore-API (nur geführte Anlagen)
+                  ├─► Core-APIs (nur geführte, bestätigte Fachoperationen)
                   └─► freigegebene Knowledge-Dokumente
 
 rentalcore ───────► PostgreSQL (Data)
@@ -454,7 +456,7 @@ cores/                              # Monorepo Root
 ├── .env.example                    # Beispiel-Umgebungsvariablen
 ├── cores-dashboard/                # Submodule: Dashboard + Auth
 ├── cores-common/                   # Submodule: gemeinsame Go-Pakete
-├── cores-mcp/                      # Submodule: MCP-KI-Anbindung und geführte Anlagen
+├── cores-mcp/                      # Submodule: MCP-KI-Anbindung und geführte Schreibzugriffe
 ├── rentalcore/                     # Submodule: Vermietung
 ├── warehousecore/                  # Submodule: Lager
 ├── plannercore/                    # Submodule: Planung
