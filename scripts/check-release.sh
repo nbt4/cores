@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eu
+./scripts/check-env-contract.sh
 # Read the unexpanded Compose file, so this check does not need deployment secrets.
 images=$(sed -n 's/^[[:space:]]*image: \(nobentie\/[^[:space:]]*\).*/\1/p' docker-compose.yml)
 [ "$(printf '%s\n' "$images" | wc -l)" -eq 7 ] || { echo "Expected six Core images and the backup image" >&2; exit 1; }

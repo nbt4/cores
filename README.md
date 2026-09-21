@@ -604,14 +604,20 @@ vollständige Zuordnung steht in [`docs/ROUTING.md`](docs/ROUTING.md).
 
 #### 5. Deployment via Komodo (docker03)
 
-Das Produktions-Deployment erfolgt über **Komodo** auf dem Host `docker03`:
+Das Produktions-Deployment wird in **Komodo** als ein Git-basierter Stack namens
+`cores` verwaltet. Die kanonische Compose-Quelle ist
+[`deploy/docker03/compose.yaml`](deploy/docker03/compose.yaml), alle Werte liegen
+in genau einem Komodo **Stack Environment** entsprechend [`.env.example`](.env.example).
+Compose-Änderungen werden in Git vorgenommen; ENV-Werte werden in Komodo gepflegt.
+Service-spezifische ENV-Dateien sind nicht vorgesehen. Die vollständige
+Konfiguration steht in [`deploy/docker03/README.md`](deploy/docker03/README.md).
 
 ```bash
-# Auf docker03 via Komodo ausgeführt:
-cd /opt/docker/komodo/stacks/tscores
-git pull --recurse-submodules
-docker compose pull
-docker compose up -d --force-recreate
+# Vor dem Release im Repository:
+./scripts/check-env-contract.sh
+./scripts/check-release.sh
+
+# Danach in Komodo: Stack "cores" -> Pull and Deploy
 ```
 
 #### 6. Clean-Install-Smoke-Test
