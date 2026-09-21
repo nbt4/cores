@@ -29,6 +29,12 @@ edit Compose in this repository and redeploy the Stack. The explicit
 `name: cores` also keeps manual and Komodo deployments in the same Compose
 project.
 
+Komodo Periphery must have outbound DNS and HTTPS access to `github.com`, since
+Periphery performs the clone on the target server. If Komodo's backend network
+is declared `internal: true`, attach the Periphery service to an additional
+egress-capable network without publishing its port. Keep the `km` CLI version
+aligned with the Komodo Core version when automating Stack updates.
+
 Before a deployment, validate the contract without reading any secret values:
 
 ```bash
