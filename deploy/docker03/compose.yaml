@@ -19,7 +19,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.107
+    image: nobentie/rentalcore:5.3.108
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -51,6 +51,14 @@ services:
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
       M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
       APP_BASE_URL: ${APP_BASE_URL:-https://rent.tsunami-events.de}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      JEV_ENABLED: ${JEV_ENABLED:-true}
+      JEV_API_URL: ${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}
+      JEV_MODEL: ${JEV_MODEL:-typesafe/jev-1.13}
+      JEV_TIMEOUT: ${JEV_TIMEOUT:-3s}
+      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE:-0.70}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-Cores}
     volumes:
       - tscores_branding-data:/var/lib/branding
       - rentalcore-uploads:/app/uploads
@@ -184,7 +192,7 @@ services:
       - internal
 
   cores-mcp:
-    image: nobentie/cores-mcp:1.3.0
+    image: nobentie/cores-mcp:1.3.1
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -307,7 +315,7 @@ services:
       start_period: 60s
 
   procurementcore:
-    image: nobentie/procurementcore:1.0.36
+    image: nobentie/procurementcore:1.0.37
     container_name: procurementcore
     restart: unless-stopped
     env_file:
@@ -327,6 +335,14 @@ services:
       DB_USER: ${POSTGRES_USER:-rentalcore}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-rentalcore123}
       DB_SSLMODE: disable
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      JEV_ENABLED: ${JEV_ENABLED:-true}
+      JEV_API_URL: ${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}
+      JEV_MODEL: ${JEV_MODEL:-typesafe/jev-1.13}
+      JEV_TIMEOUT: ${JEV_TIMEOUT:-3s}
+      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE:-0.70}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-Cores}
     ports:
       - "8084:8084"
     volumes:

@@ -31,10 +31,10 @@ Aktueller Suite-Release (21.09.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.34` |
-| RentalCore | `nobentie/rentalcore:5.3.107` |
+| RentalCore | `nobentie/rentalcore:5.3.108` |
 | WarehouseCore | `nobentie/warehousecore:5.9.77` |
 | PlannerCore | `nobentie/plannercore:2.6.22` |
-| ProcurementCore | `nobentie/procurementcore:1.0.36` |
+| ProcurementCore | `nobentie/procurementcore:1.0.37` |
 | Cores MCP | `nobentie/cores-mcp:1.3.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -66,6 +66,15 @@ Technische Zuständigkeiten und weitere Architekturarbeit stehen in
 RentalCore ergänzt Kundenorte aus deutschen PLZ, übernimmt OCR-Positionsrabatte
 und synchronisiert auch aus OCR erzeugte Jobs unmittelbar mit der zentralen
 Raum-Mailbox `events-calender@tsunami-events.de`.
+
+RentalCore `5.3.108` und ProcurementCore `1.0.37` ergänzen optional Jev über
+OpenRouter als eng begrenzte Entscheidungsschicht: OCR-Positionen werden gegen
+Produkte, Pakete, Mietmaterial und Dienstleistungen entschieden; Procurement-
+Artikel werden zusätzlich gegen WarehouseCore-Kandidaten neu gerankt. Exakte
+IDs, gespeicherte Zuordnungen, Preise, Mengen und Berechtigungen bleiben
+deterministisch. Ohne API-Key, bei Timeout oder bei geringer Konfidenz läuft der
+bisherige Ablauf unverändert weiter. Konfiguration, Datenfluss und Grenzen sind
+in [docs/JEV_DECISIONS.md](docs/JEV_DECISIONS.md) beschrieben.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.

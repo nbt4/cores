@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.107
+    image: nobentie/rentalcore:5.3.108
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -64,6 +64,15 @@ services:
       APP_BASE_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
       # OCR Parser Configuration
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
+      # Optional Jev decision layer for OCR catalog matching
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
+      JEV_ENABLED: "${JEV_ENABLED:-true}"
+      JEV_API_URL: "${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}"
+      JEV_MODEL: "${JEV_MODEL:-typesafe/jev-1.13}"
+      JEV_TIMEOUT: "${JEV_TIMEOUT:-3s}"
+      JEV_MIN_CONFIDENCE: "${JEV_MIN_CONFIDENCE:-0.70}"
+      OPENROUTER_SITE_URL: "${OPENROUTER_SITE_URL:-}"
+      OPENROUTER_APP_NAME: "${OPENROUTER_APP_NAME:-Cores}"
       # Microsoft 365 central job calendar
       M365_CALENDAR_MAILBOX: "${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}"
     ports:
@@ -274,7 +283,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.36
+    image: nobentie/procurementcore:1.0.37
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
@@ -294,6 +303,15 @@ services:
       DB_SSLMODE: "disable"
       ADAMHALL_USERNAME: "${ADAMHALL_USERNAME:-}"
       ADAMHALL_PASSWORD: "${ADAMHALL_PASSWORD:-}"
+      # Optional Jev decision layer for PDF and cross-core product matching
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
+      JEV_ENABLED: "${JEV_ENABLED:-true}"
+      JEV_API_URL: "${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}"
+      JEV_MODEL: "${JEV_MODEL:-typesafe/jev-1.13}"
+      JEV_TIMEOUT: "${JEV_TIMEOUT:-3s}"
+      JEV_MIN_CONFIDENCE: "${JEV_MIN_CONFIDENCE:-0.70}"
+      OPENROUTER_SITE_URL: "${OPENROUTER_SITE_URL:-}"
+      OPENROUTER_APP_NAME: "${OPENROUTER_APP_NAME:-Cores}"
     ports:
       - "8084:8084"
     volumes:
