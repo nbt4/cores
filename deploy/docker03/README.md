@@ -15,6 +15,10 @@ Create or update the Stack with these settings:
 - Project name: `cores`
 - Environment: the production values corresponding to `.env.example`
 
+Relative bind mounts are resolved from the directory containing this Compose
+file. The MCP knowledge mount therefore uses `../../knowledge` to reach the
+repository-root knowledge directory after Komodo clones the repository.
+
 Komodo stores the Stack Environment as the stack `.env` and passes it to
 Compose. Mark credentials and tokens as secret variables. Do not add additional
 service-specific `.env` files; `ADAMHALL_*`, `OPENROUTER_API_KEY`, and all other

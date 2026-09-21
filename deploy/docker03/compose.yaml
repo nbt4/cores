@@ -209,7 +209,7 @@ services:
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
     volumes:
       - cores-mcp-oauth:/var/lib/cores-mcp/oauth
-      - ./knowledge:/knowledge/cores:ro
+      - ../../knowledge:/knowledge/cores:ro
     networks:
       - internal
     healthcheck:
