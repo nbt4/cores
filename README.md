@@ -26,7 +26,7 @@ Datumsformate und Begrüßungen folgen ebenfalls der gewählten Sprache. Gemeins
 synchronisiert. Neue Sprachen können dort als gleich strukturierte Ressource
 ergänzt werden.
 
-Aktueller Suite-Release (20.09.2026):
+Aktueller Suite-Release (21.09.2026):
 
 | Service | Image |
 |---|---|
@@ -35,7 +35,7 @@ Aktueller Suite-Release (20.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.77` |
 | PlannerCore | `nobentie/plannercore:2.6.22` |
 | ProcurementCore | `nobentie/procurementcore:1.0.36` |
-| Cores MCP | `nobentie/cores-mcp:1.3.0` |
+| Cores MCP | `nobentie/cores-mcp:1.3.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -47,11 +47,13 @@ Maschinentokens erhalten keine privaten Planner-Daten. Bei aktivierten geführte
 Schreibtools fordert MCP `cores:read` und `cores:write` bereits in der
 OAuth-Challenge verbindlich an, damit Connectoren keinen alten Lesetoken verwenden.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
-Auswahl. Cores MCP `1.3.0` bietet zusätzlich zu den geführten Anlagen sechs
+Auswahl. Cores MCP `1.3.1` bietet zusätzlich zu den geführten Anlagen sechs
 zweistufige P0/P1-Workflows: Gerätezuweisung, Job-/Storno-Änderung,
 Requirement-Mengenänderung, Bestellung, Lagerbewegung und Gerätezustand. Jede
 Ausführung folgt auf eine read-only Live-Vorschau, Ziel-Core-Berechtigung und
 ausdrückliche Bestätigung; Löschungen und Freigaben bleiben ausgeschlossen.
+Die Produktauswahl für Job-Bedarfe löst Hersteller dabei korrekt über die
+normalisierte Warehouse-Relation auf.
 
 Der Backupdienst stellt jeden Dump in einem temporären PostgreSQL-Cluster wieder
 her, bevor er Erfolg meldet. Optional lädt er Dump und Prüfsumme in eine dedizierte
