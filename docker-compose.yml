@@ -136,7 +136,7 @@ services:
   # Cores MCP - AI/Agent integration with confirmed guided writes across all Cores
   # ============================================================================
   cores-mcp:
-    image: nobentie/cores-mcp:1.3.1
+    image: nobentie/cores-mcp:1.4.0
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -183,7 +183,7 @@ services:
   # WarehouseCore - Warehouse Management System (PostgreSQL)
   # ============================================================================
   warehousecore:
-    image: nobentie/warehousecore:5.9.77
+    image: nobentie/warehousecore:5.9.78
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
