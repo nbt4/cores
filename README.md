@@ -34,8 +34,8 @@ Aktueller Suite-Release (22.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.108` |
 | WarehouseCore | `nobentie/warehousecore:5.9.78` |
 | PlannerCore | `nobentie/plannercore:2.6.22` |
-| ProcurementCore | `nobentie/procurementcore:1.0.37` |
-| Cores MCP | `nobentie/cores-mcp:1.4.1` |
+| ProcurementCore | `nobentie/procurementcore:1.0.38` |
+| Cores MCP | `nobentie/cores-mcp:1.5.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -48,14 +48,20 @@ nur `cores:read`, sodass bewusst read-only ausgestellte Tokens gültig bleiben;
 jedes Schreibtool prüft zusätzlich `cores:write` oder seinen granularen
 Service-/Aktions-Scope.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
-Auswahl. Cores MCP `1.4.1` bietet zusätzlich zu den geführten Anlagen sechs
-zweistufige P0/P1-Workflows: Gerätezuweisung, Job-/Storno-Änderung,
-Requirement-Mengenänderung, Bestellung, Lagerbewegung und Gerätezustand. Jede
+Auswahl. Cores MCP `1.5.0` bietet zusätzlich zu den geführten Anlagen acht
+zweistufige P0/P1- und Procurement-Workflows: Gerätezuweisung,
+Job-/Storno-Änderung, Requirement-Mengenänderung, Bestellung, Lagerbewegung,
+Gerätezustand, Bedarfsentscheidung und Wareneingang. Jede
 Ausführung folgt auf eine read-only Live-Vorschau, Ziel-Core-Berechtigung und
 ausdrückliche Bestätigung. Bestätigte Aufrufe verlangen einen Idempotenzschlüssel;
 `dry_run=true` erzwingt eine auswirkungsfreie Simulation. MCP dedupliziert
 Wiederholungen, blockiert abweichende Payloads unter demselben Schlüssel und
-protokolliert die Herkunft `MCP/AI`; Löschungen und Freigaben bleiben ausgeschlossen.
+protokolliert die Herkunft `MCP/AI`. ProcurementCore `1.0.38` erzwingt für
+Freigaben das Vier-Augen-Prinzip und für Freigaben sowie Wareneingänge
+Versionsprüfung, persistente Idempotenz und eine atomare Fachtransaktion.
+Seriennummern, Überlieferungen und Putaway-Tasks werden vor der erhöhten
+Bestätigung vollständig ausgewiesen; beliebige Mutationen und Hard-Deletes
+bleiben ausgeschlossen.
 Die Produktauswahl für Job-Bedarfe löst Hersteller dabei korrekt über die
 normalisierte Warehouse-Relation auf. Neue Schema- und Resolve-Tools beschreiben
 pflegbare Felder und unterscheiden exakte, ähnliche, mehrdeutige oder fehlende
@@ -75,7 +81,7 @@ RentalCore ergänzt Kundenorte aus deutschen PLZ, übernimmt OCR-Positionsrabatt
 und synchronisiert auch aus OCR erzeugte Jobs unmittelbar mit der zentralen
 Raum-Mailbox `events-calender@tsunami-events.de`.
 
-RentalCore `5.3.108` und ProcurementCore `1.0.37` ergänzen optional Jev über
+RentalCore `5.3.108` und ProcurementCore `1.0.38` ergänzen optional Jev über
 OpenRouter als eng begrenzte Entscheidungsschicht: OCR-Positionen werden gegen
 Produkte, Pakete, Mietmaterial und Dienstleistungen entschieden; Procurement-
 Artikel werden zusätzlich gegen WarehouseCore-Kandidaten neu gerankt. Exakte
