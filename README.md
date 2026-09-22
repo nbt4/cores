@@ -35,7 +35,7 @@ Aktueller Suite-Release (22.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.78` |
 | PlannerCore | `nobentie/plannercore:2.6.22` |
 | ProcurementCore | `nobentie/procurementcore:1.0.37` |
-| Cores MCP | `nobentie/cores-mcp:1.4.0` |
+| Cores MCP | `nobentie/cores-mcp:1.4.1` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -43,15 +43,19 @@ Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und
 Administratoränderungen gelten auch für bestehende Tokens ab der nächsten Anfrage.
 MCP prüft aktive Konten bei jedem OAuth-Zugriff und beschränkt alle Planner-Abfragen
 auf die Mitgliedschaften des angemeldeten Nutzers, einschließlich Suche und Kennzahlen.
-Maschinentokens erhalten keine privaten Planner-Daten. Bei aktivierten geführten
-Schreibtools fordert MCP `cores:read` und `cores:write` bereits in der
-OAuth-Challenge verbindlich an, damit Connectoren keinen alten Lesetoken verwenden.
+Maschinentokens erhalten keine privaten Planner-Daten. MCP verlangt am Endpunkt
+nur `cores:read`, sodass bewusst read-only ausgestellte Tokens gültig bleiben;
+jedes Schreibtool prüft zusätzlich `cores:write` oder seinen granularen
+Service-/Aktions-Scope.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
-Auswahl. Cores MCP `1.4.0` bietet zusätzlich zu den geführten Anlagen sechs
+Auswahl. Cores MCP `1.4.1` bietet zusätzlich zu den geführten Anlagen sechs
 zweistufige P0/P1-Workflows: Gerätezuweisung, Job-/Storno-Änderung,
 Requirement-Mengenänderung, Bestellung, Lagerbewegung und Gerätezustand. Jede
 Ausführung folgt auf eine read-only Live-Vorschau, Ziel-Core-Berechtigung und
-ausdrückliche Bestätigung; Löschungen und Freigaben bleiben ausgeschlossen.
+ausdrückliche Bestätigung. Bestätigte Aufrufe verlangen einen Idempotenzschlüssel;
+`dry_run=true` erzwingt eine auswirkungsfreie Simulation. MCP dedupliziert
+Wiederholungen, blockiert abweichende Payloads unter demselben Schlüssel und
+protokolliert die Herkunft `MCP/AI`; Löschungen und Freigaben bleiben ausgeschlossen.
 Die Produktauswahl für Job-Bedarfe löst Hersteller dabei korrekt über die
 normalisierte Warehouse-Relation auf. Neue Schema- und Resolve-Tools beschreiben
 pflegbare Felder und unterscheiden exakte, ähnliche, mehrdeutige oder fehlende
