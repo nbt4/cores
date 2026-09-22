@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.108
+    image: nobentie/rentalcore:5.3.109
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -92,7 +92,7 @@ services:
   # CoresDashboard - Central SSO Dashboard & Admin Hub
   # ============================================================================
   cores-dashboard:
-    image: nobentie/cores-dashboard:1.14.34
+    image: nobentie/cores-dashboard:1.14.35
     container_name: cores-dashboard
     restart: unless-stopped
     depends_on:
@@ -183,7 +183,7 @@ services:
   # WarehouseCore - Warehouse Management System (PostgreSQL)
   # ============================================================================
   warehousecore:
-    image: nobentie/warehousecore:5.9.78
+    image: nobentie/warehousecore:5.9.79
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
@@ -248,7 +248,7 @@ services:
   # PlannerCore - Planning & Task Management (Node.js)
   # ============================================================================
   plannercore:
-    image: nobentie/plannercore:2.6.22
+    image: nobentie/plannercore:2.6.23
     container_name: plannercore
     restart: unless-stopped
     depends_on:
@@ -283,7 +283,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.38
+    image: nobentie/procurementcore:1.0.39
     container_name: procurementcore
     restart: unless-stopped
     depends_on:

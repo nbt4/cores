@@ -26,15 +26,20 @@ Datumsformate und Begrüßungen folgen ebenfalls der gewählten Sprache. Gemeins
 synchronisiert. Neue Sprachen können dort als gleich strukturierte Ressource
 ergänzt werden.
 
+Die Übersetzungsauflösung akzeptiert deutsche und englische Quelltexte und
+liefert immer die ausgewählte Zielsprache. Gemeinsame Platzhalter erhalten
+dynamische Zähler, Uhrzeiten und Statuswerte; die Dashboards aller fünf Cores
+sind einschließlich ihrer Live-Kennzahlen vollständig abgedeckt.
+
 Aktueller Suite-Release (22.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.34` |
-| RentalCore | `nobentie/rentalcore:5.3.108` |
-| WarehouseCore | `nobentie/warehousecore:5.9.78` |
-| PlannerCore | `nobentie/plannercore:2.6.22` |
-| ProcurementCore | `nobentie/procurementcore:1.0.38` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.35` |
+| RentalCore | `nobentie/rentalcore:5.3.109` |
+| WarehouseCore | `nobentie/warehousecore:5.9.79` |
+| PlannerCore | `nobentie/plannercore:2.6.23` |
+| ProcurementCore | `nobentie/procurementcore:1.0.39` |
 | Cores MCP | `nobentie/cores-mcp:1.5.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 

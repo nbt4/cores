@@ -17,6 +17,12 @@ sein. Fachliche Namen und Nutzdaten werden nicht übersetzt. Der Sprach-Select
 erfüllt dieselben Fokus-, Kontrast- und Touch-Zielregeln wie alle Formulare und
 bleibt in der kompakten 80-px-Sidebar erreichbar.
 
+Die gemeinsame Laufzeit behandelt deutsche wie englische Quelltexte als
+zulässige Eingabe und löst sie immer in die ausgewählte Sprache auf. Dynamische
+UI-Sätze verwenden gleich benannte `{{platzhalter}}` in beiden Locale-Dateien;
+dadurch bleiben Zähler, Uhrzeiten und Statuswerte erhalten. Für jede neue oder
+geänderte Dashboard-Zeile wird das Sprachpaar im selben Commit ergänzt.
+
 ## 1. Grundsatz und Quelle der Wahrheit
 
 Alle Cores sind Teile einer Anwendungssuite. Produktlogos, Navigation und Fachdaten unterscheiden die Services; Typografie, Farbpalette, Abstände, Bedienelemente, Tabellen, Sidebars, Zustände und Dashboard-Aufbau unterscheiden sich nicht.
