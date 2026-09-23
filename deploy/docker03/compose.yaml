@@ -134,7 +134,7 @@ services:
       - internal
 
   cores-dashboard:
-    image: nobentie/cores-dashboard:1.14.38
+    image: nobentie/cores-dashboard:1.14.39
     container_name: cores-dashboard
     restart: unless-stopped
     depends_on:
