@@ -102,6 +102,14 @@ Karten verwenden `--surface-1`, 1-px-`--border-default` und 12 px Radius. Standa
 
 Dropdown-Menüs sind `--surface-3`, 10 px Radius, 1-px-Linie und `--shadow-dropdown`; Einträge sind mindestens 40 px hoch. Scrollbars sind suite-weit 8 px, sekundäre Scrollbereiche 6 px. Track, Thumb, Hover und Active stammen ausschließlich aus den Scrollbar-Tokens.
 
+Komplexe Datentransfer-Ansichten verwenden einen klaren Export-/Import-Modus,
+eine primäre Aktion pro Abschnitt und `.suite-card`/`.suite-table-wrap` für
+Konfiguration und Vorschau. Feldlisten brechen responsiv um; Tabellen scrollen
+horizontal. Vor einem Import stehen immer Dateiprüfung, headerbasierte Zuordnung,
+Zeilenzähler und eine sichtbare Konfliktentscheidung. Bei Zusammenführungen ist
+die Regel pro Feld auswählbar und die Vorschau zeigt abweichende Bestandswerte;
+Status wird nie nur durch Farbe vermittelt.
+
 ## 8. Dashboard-Vertrag
 
 Jeder Core besitzt ein fachlich angepasstes Dashboard, folgt aber derselben Informationsreihenfolge:

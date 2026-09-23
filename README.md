@@ -31,15 +31,26 @@ liefert immer die ausgewählte Zielsprache. Gemeinsame Platzhalter erhalten
 dynamische Zähler, Uhrzeiten und Statuswerte; die Dashboards aller fünf Cores
 sind einschließlich ihrer Live-Kennzahlen vollständig abgedeckt.
 
-Aktueller Suite-Release (22.09.2026):
+## Flexibler Datentransfer
+
+Unter **Administration → Datenimport/-export** stellt das Cores Dashboard einen
+gemeinsamen Arbeitsbereich für Produkte, Geräte, Kontakte, Hersteller, Marken,
+Kategorien, Lagerbereiche, Kabel und Jobs bereit. Exporte erlauben eine freie
+Feldauswahl, lesbare oder technische Überschriften, drei CSV-Trennzeichen und
+XLSX. CSV-/XLSX-Importe werden anhand der Spaltennamen zugeordnet, vorab auf
+Typen und Referenzen geprüft und anschließend atomar geschrieben. Erkannte
+Konflikte lassen sich vollständig überspringen oder pro Spalte mit Importwert,
+Bestandswert beziehungsweise „nur leere Felder“ zusammenführen.
+
+Aktueller Suite-Release (23.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.35` |
-| RentalCore | `nobentie/rentalcore:5.3.109` |
-| WarehouseCore | `nobentie/warehousecore:5.9.79` |
-| PlannerCore | `nobentie/plannercore:2.6.23` |
-| ProcurementCore | `nobentie/procurementcore:1.0.39` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.36` |
+| RentalCore | `nobentie/rentalcore:5.3.110` |
+| WarehouseCore | `nobentie/warehousecore:5.9.80` |
+| PlannerCore | `nobentie/plannercore:2.6.24` |
+| ProcurementCore | `nobentie/procurementcore:1.0.40` |
 | Cores MCP | `nobentie/cores-mcp:1.5.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -200,6 +211,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 8. **Benutzerverwaltung** — Zentrale lokale/Microsoft-/Hybrid-Benutzerverwaltung; Microsoft-Stammdaten read-only, Cores-Rollen weiterhin lokal pflegbar
 9. **Microsoft 365 & Entra** — Eine zentral konfigurierte Tenant-App für Microsoft-Login, Gruppen-Sync sowie RentalCore-Kontakte und -Kalender
 10. **Installierbare Mobile-App** — Responsive Admin-PWA mit eigenem Icon, Safe Areas, Touch-Zielen, Drawer und fester App-Tabbar
+11. **Flexibler Datentransfer** — Feldselektiver CSV-/XLSX-Export und validierter Import mit headerbasierter Zuordnung, Vorschau und Konfliktregeln pro Spalte
 
 #### 📡 Wichtigste API-Endpunkte
 
@@ -282,6 +294,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 9. **Produktstammdaten 2.0** — Getrennte Produktklasse, Zubehörrolle und Bestandsführung; transaktionale Anlage mit initialen Devices, global unveränderliche Produkt-/Device-/Case-Barcodes, Scan-Aliase, typisierte Zubehörbeziehungen, Case-Modelle und automatisch kategorisierte Kabelprodukte
 10. **Procurement-Verknüpfung** — Bestehende Produkte automatisch vorgeschlagen oder manuell eindeutig abgleichen, Procurement-Artikel vollständig vorausgefüllt im Warehouse anlegen und Lagerbedarf direkt als Einkaufsentwurf melden
 11. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
+12. **Schema-getriebener Datentransfer** — Beschreibt exportierbare Felder und verarbeitet CSV-/XLSX-Importe bis 5.000 Zeilen atomar mit Vorschau und Zusammenführungsregeln
 
 #### 📡 Wichtigste API-Endpunkte
 
