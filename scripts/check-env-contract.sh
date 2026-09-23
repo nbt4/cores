@@ -36,6 +36,11 @@ for file in $compose_files; do
   fi
 done
 
+if grep -nE '^[[:space:]]+(JEV_|OPENROUTER_)[A-Z_]*:.*:-' $compose_files; then
+  echo "Jev/OpenRouter defaults must live in the Stack Environment" >&2
+  exit 1
+fi
+
 legacy='APP_BASE_URL|DASHBOARD_URL|PLANNER_APP_URL|RENTAL_PUBLIC_URL|WAREHOUSE_PUBLIC_URL'
 if grep -hoE '\$\{[A-Z][A-Z0-9_]*' $compose_files | sed 's/^${//' | grep -Eq "^($legacy)$"; then
   echo "Compose input uses a legacy URL alias; use the canonical *CORE_PUBLIC_URL key" >&2

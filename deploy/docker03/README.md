@@ -23,6 +23,9 @@ Komodo stores the Stack Environment as the stack `.env` and passes it to
 Compose. Mark credentials and tokens as secret variables. Do not add additional
 service-specific `.env` files; `ADAMHALL_*`, `OPENROUTER_API_KEY`, and all other
 settings belong to the single Stack Environment.
+Add every `JEV_*` and `OPENROUTER_*` entry from `.env.example` there, including
+the empty `OPENROUTER_API_KEY` placeholder until a key is available. Compose
+passes these entries to RentalCore and ProcurementCore without inline defaults.
 
 The Compose source is maintained in Git. Edit environment values in Komodo;
 edit Compose in this repository and redeploy the Stack. The explicit

@@ -19,7 +19,7 @@ wird nur nach der bestehenden Benutzeraktion gespeichert.
 
 ## Konfiguration
 
-| Variable | Standard | Bedeutung |
+| Variable | Wert in `.env.example` | Bedeutung |
 |---|---|---|
 | `OPENROUTER_API_KEY` | leer | Laufzeit-Secret; leer deaktiviert Jev |
 | `JEV_ENABLED` | `true` | Mit `false` explizit deaktivieren |
@@ -30,6 +30,9 @@ wird nur nach der bestehenden Benutzeraktion gespeichert.
 | `OPENROUTER_SITE_URL` | leer | Optionaler OpenRouter-Attributionsheader |
 | `OPENROUTER_APP_NAME` | `Cores` | Optionaler OpenRouter-Attributionsheader |
 
+Alle acht Variablen werden explizit im Komodo Stack Environment gepflegt; die
+Compose-Dateien reichen sie ohne eigene Standardwerte an RentalCore und
+ProcurementCore weiter. `.env.example` enthält die Vorlage für neue Hosts.
 Der API-Key darf nur in einer nicht versionierten Deployment-`.env` oder einem
 Secret-Manager liegen. Er wird nicht protokolliert. Ein leerer Key, ein
 Netzwerkfehler, ein Timeout, eine ungültige Antwort oder eine zu geringe

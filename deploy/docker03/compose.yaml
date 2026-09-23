@@ -53,14 +53,14 @@ services:
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
       M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
       APP_BASE_URL: ${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}
-      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
-      JEV_ENABLED: ${JEV_ENABLED:-true}
-      JEV_API_URL: ${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}
-      JEV_MODEL: ${JEV_MODEL:-typesafe/jev-1.13}
-      JEV_TIMEOUT: ${JEV_TIMEOUT:-3s}
-      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE:-0.70}
-      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-}
-      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-Cores}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      JEV_ENABLED: ${JEV_ENABLED}
+      JEV_API_URL: ${JEV_API_URL}
+      JEV_MODEL: ${JEV_MODEL}
+      JEV_TIMEOUT: ${JEV_TIMEOUT}
+      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME}
     volumes:
       - tscores_branding-data:/var/lib/branding
       - rentalcore-uploads:/app/uploads
@@ -320,14 +320,14 @@ services:
       DB_SSLMODE: disable
       ADAMHALL_USERNAME: "${ADAMHALL_USERNAME:-}"
       ADAMHALL_PASSWORD: "${ADAMHALL_PASSWORD:-}"
-      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
-      JEV_ENABLED: ${JEV_ENABLED:-true}
-      JEV_API_URL: ${JEV_API_URL:-https://openrouter.ai/api/alpha/decisions}
-      JEV_MODEL: ${JEV_MODEL:-typesafe/jev-1.13}
-      JEV_TIMEOUT: ${JEV_TIMEOUT:-3s}
-      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE:-0.70}
-      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-}
-      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-Cores}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      JEV_ENABLED: ${JEV_ENABLED}
+      JEV_API_URL: ${JEV_API_URL}
+      JEV_MODEL: ${JEV_MODEL}
+      JEV_TIMEOUT: ${JEV_TIMEOUT}
+      JEV_MIN_CONFIDENCE: ${JEV_MIN_CONFIDENCE}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME}
     ports:
       - "8084:8084"
     volumes:

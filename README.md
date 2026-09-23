@@ -112,8 +112,10 @@ Produkte, Pakete, Mietmaterial und Dienstleistungen entschieden; Procurement-
 Artikel werden zusätzlich gegen WarehouseCore-Kandidaten neu gerankt. Exakte
 IDs, gespeicherte Zuordnungen, Preise, Mengen und Berechtigungen bleiben
 deterministisch. Ohne API-Key, bei Timeout oder bei geringer Konfidenz läuft der
-bisherige Ablauf unverändert weiter. Konfiguration, Datenfluss und Grenzen sind
-in [docs/JEV_DECISIONS.md](docs/JEV_DECISIONS.md) beschrieben.
+bisherige Ablauf unverändert weiter. Alle Jev- und OpenRouter-Werte werden im
+Komodo Stack Environment gepflegt und von Compose ohne Inline-Standardwerte an
+RentalCore und ProcurementCore weitergereicht. Konfiguration, Datenfluss und
+Grenzen sind in [docs/JEV_DECISIONS.md](docs/JEV_DECISIONS.md) beschrieben.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
