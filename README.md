@@ -56,7 +56,7 @@ Aktueller Suite-Release (23.09.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.37` |
-| RentalCore | `nobentie/rentalcore:5.3.111` |
+| RentalCore | `nobentie/rentalcore:5.3.112` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.41` |
@@ -263,12 +263,22 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 8. **Dashboard mit Widgets** — Konfigurierbare Dashboard-Ansicht mit Status-Übersichten, Statistiken und KPIs
 9. **Installierbare Mobile-App** — RentalCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar
 
+Der Job-Arbeitsbereich zeigt Suche, Status, Zeitraum, Materialdeckung und
+Auftragswert zusammen. Produktpositionen und manuell geplanter Zusatzbedarf
+werden getrennt gespeichert und für WarehouseCore addiert. Statuswechsel
+werden geprüft; die Bestätigung verlangt einen Zeitraum. Änderungen der
+Stammdaten verwenden eine Revision gegen gleichzeitiges Überschreiben.
+PDF-Importe aktualisieren nur ihre eigenen Positionen. Jobs werden archiviert,
+wobei Verlauf und Gerätebeziehungen erhalten bleiben; ausgegebene Geräte müssen
+zuvor zurückgenommen werden. Dokumente nutzen den File Pool und bei lokaler
+Ablage das persistente Volume `rentalcore-uploads`.
+
 #### 📡 Wichtigste API-Endpunkte
 
 | Methode | Pfad | Beschreibung |
 |---------|------|-------------|
 | `GET/POST` | `/api/jobs` | Jobs auflisten / erstellen |
-| `GET/PUT/DELETE` | `/api/jobs/:id` | Job abrufen / aktualisieren / löschen |
+| `GET/PUT/DELETE` | `/api/jobs/:id` | Job abrufen / aktualisieren / archivieren |
 | `GET/POST` | `/api/devices` | Geräte auflisten / erstellen |
 | `GET/PUT/DELETE` | `/api/devices/:id` | Gerät abrufen / aktualisieren / löschen |
 | `GET/POST` | `/api/customers` | Kunden auflisten / erstellen |

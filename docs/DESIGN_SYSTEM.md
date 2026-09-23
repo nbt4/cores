@@ -96,6 +96,13 @@ Buttons: sekundär `--surface-1` plus Linie; primär ausschließlich roter Vollt
 
 ## 7. Tabellen, Karten, Menüs und Scrollbars
 
+Der RentalCore-Job-Arbeitsbereich verwendet die gemeinsamen Karten- und
+Tabellen-Primitives für Liste, Kennzahlen, Positionen und Detailabschnitte.
+Status erscheint zusätzlich zur semantischen Farbe immer als Text. Auf
+schmalen Displays werden Positionsfelder umgebrochen, während die Jobtabelle
+in `.suite-table-wrap` horizontal zugänglich bleibt. Bearbeitbare
+Positionswerte sind per Tastatur erreichbar und zeigen einen sichtbaren Fokus.
+
 Tabellen liegen in `.suite-table-wrap`: 1-px-Linie, 12-px-Radius, horizontales Scrollen auf kleinen Screens. Tabellenköpfe sind 12 px, 600, versal, `--surface-2`, mit 12 × 16 px Innenabstand. Zellen sind 14 px, 12 × 16 px, mit subtiler unterer Linie. Zeilen-Hover verwendet `--surface-2`; Zebra-Streifen werden nicht verwendet. Zahlen sind rechtsbündig und tabellarisch, Aktionen rechts. Leere Zustände ersetzen niemals die Tabellenstruktur durch dekorative Illustrationen.
 
 Karten verwenden `--surface-1`, 1-px-`--border-default` und 12 px Radius. Standard-Padding ist 20 px. Verschachtelte Karten werden vermieden; innerhalb einer Karte trennen Linien oder 16–24 px Abstand die Inhalte.

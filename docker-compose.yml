@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.111
+    image: nobentie/rentalcore:5.3.112
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -79,6 +79,7 @@ services:
       - "8081:8081"
     volumes:
       - branding-data:/var/lib/branding
+      - rentalcore-uploads:/app/uploads
     networks:
       - weidelbach
     healthcheck:
@@ -405,6 +406,9 @@ networks:
     driver: bridge
 
 volumes:
+  # RentalCore local document fallback and PDF uploads
+  rentalcore-uploads:
+    driver: local
   # PostgreSQL data
   postgres-data:
     driver: local

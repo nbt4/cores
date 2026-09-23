@@ -306,6 +306,7 @@ CREATE INDEX IF NOT EXISTS idx_devices_serialnumber ON devices(serialnumber);
 -- Jobs table
 CREATE TABLE IF NOT EXISTS jobs (
     jobid SERIAL PRIMARY KEY,
+    revision INTEGER NOT NULL DEFAULT 1,
     job_code VARCHAR(50),
     customerid INT NOT NULL REFERENCES customers(customerid) ON DELETE CASCADE,
     statusid INT NOT NULL REFERENCES status(statusid) ON DELETE RESTRICT,
@@ -1198,7 +1199,10 @@ CREATE TABLE IF NOT EXISTS job_product_requirements (
     job_id INTEGER NOT NULL REFERENCES jobs(jobid) ON DELETE CASCADE,
     product_id INTEGER NOT NULL REFERENCES products(productid) ON DELETE RESTRICT,
     quantity INTEGER NOT NULL DEFAULT 1 CHECK (quantity > 0),
+	manual_quantity INTEGER NOT NULL DEFAULT 1,
+	position_quantity INTEGER NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	CONSTRAINT chk_job_requirement_sources CHECK (manual_quantity >= 0 AND position_quantity >= 0 AND quantity = manual_quantity + position_quantity),
     CONSTRAINT job_product_requirements_job_product_unique UNIQUE (job_id, product_id)
 );
 
@@ -1230,6 +1234,7 @@ CREATE INDEX IF NOT EXISTS idx_job_product_req_product ON job_product_requiremen
 CREATE TABLE IF NOT EXISTS job_positions (
     position_id     BIGSERIAL PRIMARY KEY,
     job_id          BIGINT NOT NULL REFERENCES jobs(jobid) ON DELETE CASCADE,
+    pdf_extraction_item_id BIGINT,
     position_type   VARCHAR(20) NOT NULL DEFAULT 'product' CHECK (position_type IN ('product', 'service', 'rental', 'package')),
     product_id      INT REFERENCES products(productid) ON DELETE SET NULL,
     service_item_id BIGINT REFERENCES service_items(id) ON DELETE SET NULL,
@@ -1248,6 +1253,7 @@ CREATE TABLE IF NOT EXISTS job_positions (
 );
 
 CREATE INDEX idx_job_positions_job_id ON job_positions(job_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_job_position_pdf_item ON job_positions(job_id, pdf_extraction_item_id) WHERE pdf_extraction_item_id IS NOT NULL;
 CREATE INDEX idx_job_positions_product_id ON job_positions(product_id);
 CREATE INDEX idx_job_positions_service_item_id ON job_positions(service_item_id);
 CREATE INDEX IF NOT EXISTS idx_job_positions_rental_equipment ON job_positions(rental_equipment_id);
