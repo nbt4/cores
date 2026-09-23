@@ -16,6 +16,11 @@ grep -Fq "const rentalCoreVersion = \"$rental_version\"" rentalcore/cmd/server/m
   echo "RentalCore health/log version differs from release image: $rental_version" >&2
   exit 1
 }
+procurement_version=$(printf '%s\n' "$images" | sed -n 's#^nobentie/procurementcore:\(.*\)$#\1#p')
+grep -Fq "const version = \"$procurement_version\"" procurementcore/cmd/server/main.go || {
+  echo "ProcurementCore health version differs from release image: $procurement_version" >&2
+  exit 1
+}
 if grep -Eq 'auth/me.*\|\| true' docker-compose.yml; then
   echo "Dashboard healthcheck masks failures" >&2
   exit 1
