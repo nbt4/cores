@@ -42,15 +42,24 @@ Typen und Referenzen geprüft und anschließend atomar geschrieben. Erkannte
 Konflikte lassen sich vollständig überspringen oder pro Spalte mit Importwert,
 Bestandswert beziehungsweise „nur leere Felder“ zusammenführen.
 
+## A4-Etikettenbögen und individuelle Stückzahlen
+
+Das WarehouseCore-Druckcenter erzeugt neben maßhaltigen Einzelseiten jetzt auch
+A4-Etikettenbögen für normale Büro- und Aufkleberdrucker. Hoch-/Querformat,
+Seitenrand, horizontale und vertikale Abstände sowie optionale Schnittführungen
+sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
+Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
+gelten auf Wunsch auch für Zebra-Direktdruck.
+
 Aktueller Suite-Release (23.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.36` |
-| RentalCore | `nobentie/rentalcore:5.3.110` |
-| WarehouseCore | `nobentie/warehousecore:5.9.80` |
-| PlannerCore | `nobentie/plannercore:2.6.24` |
-| ProcurementCore | `nobentie/procurementcore:1.0.40` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.37` |
+| RentalCore | `nobentie/rentalcore:5.3.111` |
+| WarehouseCore | `nobentie/warehousecore:5.9.81` |
+| PlannerCore | `nobentie/plannercore:2.6.25` |
+| ProcurementCore | `nobentie/procurementcore:1.0.41` |
 | Cores MCP | `nobentie/cores-mcp:1.5.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -290,7 +299,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 5. **LED-Bin-Highlighting via MQTT** — IoT-gestützte optische Kommissionierhilfe: Lagerfächer leuchten per MQTT-Signal auf
 6. **Dynamische Handling Units** — Euroboxen, Flightcases und Kits frei oder nach Soll-Inhalt packen; Geräte, Mengenartikel und Untercases scannen, versiegeln, gesammelt ausgeben und zurücklagern
 7. **Defekt- und Wartungsmanagement** — Erfassung von Defekten, Reparaturhistorie und Wartungszyklen
-8. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; persistente PDF-Master beschleunigen Export und Browserdruck, Zebra-ZPL-Direktdruck erfolgt über TCP
+8. **Label Studio & Direktdruck** — Visueller Designer und Seriendruck für Geräte-, Kabel-, Case- und Zonenlabels; individuelle Stückzahlen, konfigurierbare A4-Etikettenbögen und Zebra-ZPL-Direktdruck über TCP
 9. **Produktstammdaten 2.0** — Getrennte Produktklasse, Zubehörrolle und Bestandsführung; transaktionale Anlage mit initialen Devices, global unveränderliche Produkt-/Device-/Case-Barcodes, Scan-Aliase, typisierte Zubehörbeziehungen, Case-Modelle und automatisch kategorisierte Kabelprodukte
 10. **Procurement-Verknüpfung** — Bestehende Produkte automatisch vorgeschlagen oder manuell eindeutig abgleichen, Procurement-Artikel vollständig vorausgefüllt im Warehouse anlegen und Lagerbedarf direkt als Einkaufsentwurf melden
 11. **Installierbare Mobile-App** — WarehouseCore bietet im Standalone-Modus Safe Areas, große Touch-Ziele, Drawer und eine feste App-Tabbar

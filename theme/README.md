@@ -8,6 +8,7 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 - `SuiteLanguageSwitcher.tsx` und `locales/{de,en}.json` stellen den gemeinsamen Sprach-Select und die synchronisierten Basisübersetzungen bereit.
 - Die Locale-Paare werden bidirektional aufgelöst; gleich benannte `{{platzhalter}}` lokalisieren dynamische UI-Texte ohne Nutzdaten zu verändern.
 - Die gemeinsamen Locale-Paare enthalten auch Datentransfer-Datensätze, Feldnamen, Vorschau- und Konflikttexte; technische Feldschlüssel und importierte Nutzdaten bleiben unverändert.
+- A4-Etikettenbogen, Papieroptionen, individuelle Stückzahlen und dynamische Druckmeldungen sind ebenfalls Teil der gemeinsamen Locale-Paare.
 - `cores-design.ts` löst außerdem die öffentliche Suite-Navigation auf; `.suite-core-*` stellt den identischen Core-Switcher und Dashboard-Link für jede Sidebar bereit.
 - [`../docs/DESIGN_SYSTEM.md`](../docs/DESIGN_SYSTEM.md) beschreibt die Produkt- und Anwendungsregeln.
 - `../scripts/sync-design-system.sh` verteilt die kanonische CSS-Datei in alle eigenständig deploybaren Core-Repositories.

@@ -110,6 +110,14 @@ Zeilenzähler und eine sichtbare Konfliktentscheidung. Bei Zusammenführungen is
 die Regel pro Feld auswählbar und die Vorschau zeigt abweichende Bestandswerte;
 Status wird nie nur durch Farbe vermittelt.
 
+Seriendruck-Ansichten zeigen Stückzahlen direkt beim jeweiligen ausgewählten
+Eintrag und zusätzlich als Gesamtsumme. Eine globale Stückzahl ist nur eine
+explizit anzuwendende Sammelaktion und überschreibt individuelle Werte nicht
+beim bloßen Ändern des Feldes. Papierformat, Ausrichtung, Ränder und Abstände
+stehen in einem klar abgegrenzten Ausgabebereich; optionale Druckhilfen werden
+als Checkbox angeboten. Auf kleinen Breakpoints bleiben Auswahl, Stückzahl und
+Status vollständig bedienbar und werden nicht allein durch Farbe vermittelt.
+
 ## 8. Dashboard-Vertrag
 
 Jeder Core besitzt ein fachlich angepasstes Dashboard, folgt aber derselben Informationsreihenfolge:
