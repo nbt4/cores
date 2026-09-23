@@ -21,7 +21,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.114
+    image: nobentie/rentalcore:5.3.115
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
