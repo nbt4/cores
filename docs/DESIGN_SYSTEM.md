@@ -150,6 +150,11 @@ Begrüßungen lauten ausschließlich `Guten Morgen, <Anzeigename>.`, `Guten Tag,
 
 Dashboards nutzen `.suite-dashboard`, `.suite-dashboard-header`, `.suite-dashboard-*`, `.suite-kpi-grid` und die zugehörigen Karten-Primitives. Fachdaten und Aktionen variieren, visuelle Hierarchie und Reihenfolge nicht.
 
+Der Plattformstatus im Cores Dashboard zählt die fünf Core-Dienste,
+Cores-MCP, den MQTT-Broker und PostgreSQL. Jede Komponente erscheint auch bei
+Ausfall als benannte Zeile; Zähler und Handlungsbedarf verwenden dieselbe
+vollständige Menge.
+
 ## 9. Zustände, Bewegung und Barrierefreiheit
 
 Loading-Zustände halten das spätere Layout als Skeleton stabil. Leere Zustände erklären kurz den Zustand und bieten höchstens eine passende Aktion. Fehler erscheinen beim betroffenen Bereich und bieten bei wiederholbaren Ladevorgängen „Erneut versuchen“. Toasts ergänzen, ersetzen aber keine dauerhafte Fehlermeldung.

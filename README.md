@@ -55,7 +55,7 @@ Aktueller Suite-Release (23.09.2026):
 
 | Service | Image |
 |---|---|
-| Cores Dashboard | `nobentie/cores-dashboard:1.14.37` |
+| Cores Dashboard | `nobentie/cores-dashboard:1.14.38` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
@@ -219,7 +219,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 
 1. **Zentrale JWT-Authentifizierung (SSO)** — Single-Sign-On für alle Cores-Services mit Token-basierter Authentifizierung
 2. **Live-Operations-Cockpit** — Priorisiertes Lagebild mit Umsatz, aktiven Jobs, Lagerbereitschaft, Rückläufen, persönlichen Planner-Aufgaben, Beschaffungsfreigaben und direkten Arbeitswegen
-3. **Plattformgesundheit** — Parallele Healthchecks aller fünf Cores-Dienste und PostgreSQL mit Versionen, Antwortzeiten und teilfehlertoleranter Darstellung
+3. **Plattformgesundheit** — Parallele Healthchecks aller fünf Cores-Dienste, Cores-MCP, MQTT-Broker und PostgreSQL mit verfügbaren Versionen, Antwortzeiten und teilfehlertoleranter Darstellung
 4. **API Reverse-Proxy** — Intelligentes Routing an RentalCore, WarehouseCore und PlannerCore
 5. **Admin Branding-Management** — Zentrale Verwaltung von Logos, Farben, Themes und Branding-Einstellungen für alle Services
 6. **Konfigurations-Endpunkt** — Bereitstellung globaler Konfigurationen für alle verbundenen Services
