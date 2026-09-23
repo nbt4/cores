@@ -102,6 +102,9 @@ Status erscheint zusätzlich zur semantischen Farbe immer als Text. Auf
 schmalen Displays werden Positionsfelder umgebrochen, während die Jobtabelle
 in `.suite-table-wrap` horizontal zugänglich bleibt. Bearbeitbare
 Positionswerte sind per Tastatur erreichbar und zeigen einen sichtbaren Fokus.
+Die Jobdetail- und Formularspalten wechseln anhand der verfügbaren Breite des
+Arbeitsbereichs auf eine Spalte. Die geöffnete Suite-Sidebar zählt dabei zur
+verbrauchten Fensterbreite; Positionsfelder bleiben innerhalb ihrer Karte.
 
 Tabellen liegen in `.suite-table-wrap`: 1-px-Linie, 12-px-Radius, horizontales Scrollen auf kleinen Screens. Tabellenköpfe sind 12 px, 600, versal, `--surface-2`, mit 12 × 16 px Innenabstand. Zellen sind 14 px, 12 × 16 px, mit subtiler unterer Linie. Zeilen-Hover verwendet `--surface-2`; Zebra-Streifen werden nicht verwendet. Zahlen sind rechtsbündig und tabellarisch, Aktionen rechts. Leere Zustände ersetzen niemals die Tabellenstruktur durch dekorative Illustrationen.
 

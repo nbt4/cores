@@ -56,7 +56,7 @@ Aktueller Suite-Release (23.09.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.37` |
-| RentalCore | `nobentie/rentalcore:5.3.112` |
+| RentalCore | `nobentie/rentalcore:5.3.113` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.41` |
@@ -270,7 +270,9 @@ werden geprüft; die Bestätigung verlangt einen Zeitraum. Änderungen der
 Stammdaten verwenden eine Revision gegen gleichzeitiges Überschreiben.
 PDF-Importe aktualisieren nur ihre eigenen Positionen. Jobs werden archiviert,
 wobei Verlauf und Gerätebeziehungen erhalten bleiben; ausgegebene Geräte müssen
-zuvor zurückgenommen werden. Dokumente nutzen den File Pool und bei lokaler
+zuvor zurückgenommen werden. Der Jobkalender entfernt archivierte Termine und
+bereinigt ältere Resttermine beim Start. Die Jobdetails ordnen die rechte Spalte
+bei wenig Platz unter dem Hauptbereich an. Dokumente nutzen den File Pool und bei lokaler
 Ablage das persistente Volume `rentalcore-uploads`.
 
 #### 📡 Wichtigste API-Endpunkte
