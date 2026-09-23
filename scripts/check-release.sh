@@ -11,6 +11,11 @@ for image in $images; do
   grep -Fq "$image" README.md || { echo "Release missing from README: $image" >&2; exit 1; }
   grep -Fq "image: $image" deploy/docker03/compose.yaml || { echo "docker03 release differs: $image" >&2; exit 1; }
 done
+rental_version=$(printf '%s\n' "$images" | sed -n 's#^nobentie/rentalcore:\(.*\)$#\1#p')
+grep -Fq "const rentalCoreVersion = \"$rental_version\"" rentalcore/cmd/server/main.go || {
+  echo "RentalCore health/log version differs from release image: $rental_version" >&2
+  exit 1
+}
 if grep -Eq 'auth/me.*\|\| true' docker-compose.yml; then
   echo "Dashboard healthcheck masks failures" >&2
   exit 1
