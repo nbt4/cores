@@ -106,6 +106,14 @@ Die Jobdetail- und Formularspalten wechseln anhand der verfügbaren Breite des
 Arbeitsbereichs auf eine Spalte. Die geöffnete Suite-Sidebar zählt dabei zur
 verbrauchten Fensterbreite; Positionsfelder bleiben innerhalb ihrer Karte.
 
+Im RentalCore-Jobdetail heißen kaufmännische Produktzeilen
+„Auftragspositionen · Produkte“. Der Link „Material und Geräte“ führt zum
+operativen Bedarf und zur Einzelgerätezuordnung. In der Umsatzanalyse sind
+realisierter Umsatz abgeschlossener Jobs und die Pipeline offener Jobs klar
+beschriftete, getrennte Ansichten. Drilldown-Zeilen sind echte Buttons mit
+Tastaturfokus; Blattknoten zeigen eine horizontal scrollbare Tabelle der
+zugehörigen Jobs mit direktem Link zum Jobdetail.
+
 Tabellen liegen in `.suite-table-wrap`: 1-px-Linie, 12-px-Radius, horizontales Scrollen auf kleinen Screens. Tabellenköpfe sind 12 px, 600, versal, `--surface-2`, mit 12 × 16 px Innenabstand. Zellen sind 14 px, 12 × 16 px, mit subtiler unterer Linie. Zeilen-Hover verwendet `--surface-2`; Zebra-Streifen werden nicht verwendet. Zahlen sind rechtsbündig und tabellarisch, Aktionen rechts. Leere Zustände ersetzen niemals die Tabellenstruktur durch dekorative Illustrationen.
 
 Karten verwenden `--surface-1`, 1-px-`--border-default` und 12 px Radius. Standard-Padding ist 20 px. Verschachtelte Karten werden vermieden; innerhalb einer Karte trennen Linien oder 16–24 px Abstand die Inhalte.

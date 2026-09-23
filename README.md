@@ -56,7 +56,7 @@ Aktueller Suite-Release (23.09.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.37` |
-| RentalCore | `nobentie/rentalcore:5.3.114` |
+| RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.43` |
@@ -281,6 +281,13 @@ zuvor zurückgenommen werden. Der Jobkalender entfernt archivierte Termine und
 bereinigt ältere Resttermine beim Start. Die Jobdetails ordnen die rechte Spalte
 bei wenig Platz unter dem Hauptbereich an. Dokumente nutzen den File Pool und bei lokaler
 Ablage das persistente Volume `rentalcore-uploads`.
+
+Die RentalCore-Umsatzanalyse zählt standardmäßig nur abgeschlossene Jobs.
+Geplante und bestätigte Jobs stehen getrennt in der Pipeline; stornierte Jobs
+erscheinen in keiner Umsatzansicht. Der Drilldown führt von Dienstleistungen,
+Produkten und Geräten zu den konkreten Jobs und Positionen. Im Jobdetail
+erklärt ein direkter Link den Weg von kaufmännischen Produktpositionen zum
+Materialbedarf und zur Gerätezuordnung.
 
 #### 📡 Wichtigste API-Endpunkte
 
