@@ -59,7 +59,7 @@ Aktueller Suite-Release (23.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.114` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.41` |
+| ProcurementCore | `nobentie/procurementcore:1.0.42` |
 | Cores MCP | `nobentie/cores-mcp:1.5.0` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -116,6 +116,11 @@ bisherige Ablauf unverändert weiter. Alle Jev- und OpenRouter-Werte werden im
 Komodo Stack Environment gepflegt und von Compose ohne Inline-Standardwerte an
 RentalCore und ProcurementCore weitergereicht. Konfiguration, Datenfluss und
 Grenzen sind in [docs/JEV_DECISIONS.md](docs/JEV_DECISIONS.md) beschrieben.
+ProcurementCore `1.0.42` nutzt Jev außerdem beim Produktlinkimport, um bei
+widersprüchlichen strukturierten Datensätzen das Hauptprodukt auszuwählen. Die
+lokale Vorschau bleibt bei Unsicherheit erhalten; ein Preis für eine andere
+Produktidentität wird zur Prüfung geleert. HTTP/2 verbessert den Abruf der
+Huss-Produktseiten.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.

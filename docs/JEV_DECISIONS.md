@@ -11,6 +11,8 @@ ersetzt weder OCR noch fachliche Validierung.
 - ProcurementCore: offene PDF-Bestellposition gegen Procurement-Produkte.
 - ProcurementCore: Kandidaten für die explizite Verknüpfung eines
   Procurement-Artikels mit WarehouseCore neu ordnen.
+- ProcurementCore: bei widersprüchlichen JSON-LD-/Microdata-Datensätzen das
+  Hauptprodukt einer importierten Produktseite auswählen.
 
 Gespeicherte Zuordnungen, exakte Identifikatoren und manuelle Entscheidungen
 haben Vorrang. Preise, Mengen, Summen, Datumswerte, Berechtigungen und
@@ -41,12 +43,23 @@ verfügbar.
 
 ## Datenminimierung
 
-Übertragen werden ausschließlich die Beschreibung einer einzelnen Position und
-eine begrenzte Menge fachlich vorselektierter Kandidatenmerkmale wie SKU, Name,
-Hersteller, Modell, Kategorie oder Lieferanten-SKU. Vollständige PDF-Dateien,
+Beim OCR- und Katalogabgleich werden ausschließlich die Beschreibung einer
+einzelnen Position und eine begrenzte Menge fachlich vorselektierter
+Kandidatenmerkmale wie SKU, Name, Hersteller, Modell, Kategorie oder
+Lieferanten-SKU übertragen. Vollständige PDF-Dateien,
 Dokumenttexte, Kunden- und Kontaktdaten, Preise, Zugangsdaten sowie sonstige
 Jobdaten werden nicht an OpenRouter gesendet.
 
+Beim Produktlinkimport gehen zusätzlich nur Host, URL-Pfad ohne Parameter,
+Seitentitel, sichtbare Überschrift und begrenzte Produktkandidatenmerkmale an
+Jev. Vollständiges HTML, Preisfelder und URL-Parameter werden nicht übertragen.
+Jev wählt ausschließlich zwischen den aus der Seite extrahierten Produkten und
+der bisherigen Vorschau. Bei einer geänderten Produktidentität wird der Preis
+zur manuellen Prüfung geleert; die Shop-Adapter bleiben für Artikelmerkmale und
+Preisquellen aktiv. Blockiert ein Shop schon den Abruf der Seite, kann Jev keine
+fehlenden Produktdaten ergänzen.
+
 Dokument- und Katalogtexte werden ausdrücklich als Daten markiert. Jev darf nur
-eine der serverseitig erzeugten Kandidaten-IDs oder `no_match` zurückgeben; jede
-Antwort wird vor der Verwendung validiert.
+eine der serverseitig erzeugten Kandidaten-IDs oder `no_match` beziehungsweise
+beim Produktlinkimport `keep` zurückgeben; jede Antwort wird vor der Verwendung
+validiert.
