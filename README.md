@@ -51,7 +51,7 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (23.09.2026):
+Aktueller Suite-Release (24.09.2026):
 
 | Service | Image |
 |---|---|
@@ -59,8 +59,8 @@ Aktueller Suite-Release (23.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.81` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.46` |
-| Cores MCP | `nobentie/cores-mcp:1.5.4` |
+| ProcurementCore | `nobentie/procurementcore:1.0.47` |
+| Cores MCP | `nobentie/cores-mcp:1.5.5` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -72,6 +72,9 @@ Maschinentokens erhalten keine privaten Planner-Daten. MCP verlangt am Endpunkt
 nur `cores:read`, sodass bewusst read-only ausgestellte Tokens gültig bleiben;
 jedes Schreibtool prüft zusätzlich `cores:write` oder seinen granularen
 Service-/Aktions-Scope.
+Procurement-Kategorien können über MCP nach einer Vorschau mit Duplikatprüfung,
+vollständigem Parameter-Schema und ausdrücklicher Bestätigung angelegt oder
+versionsgesichert geändert werden.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
 Auswahl. Cores MCP `1.5.0` bietet zusätzlich zu den geführten Anlagen acht
 zweistufige P0/P1- und Procurement-Workflows: Gerätezuweisung,
