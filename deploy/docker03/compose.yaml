@@ -77,7 +77,7 @@ services:
       - internal
 
   warehousecore:
-    image: nobentie/warehousecore:5.9.82
+    image: nobentie/warehousecore:5.9.83
     container_name: warehousecore
     restart: unless-stopped
     depends_on:

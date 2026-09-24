@@ -57,7 +57,7 @@ Aktueller Suite-Release (24.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.82` |
+| WarehouseCore | `nobentie/warehousecore:5.9.83` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.47` |
 | Cores MCP | `nobentie/cores-mcp:1.5.6` |
