@@ -57,10 +57,10 @@ Aktueller Suite-Release (24.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.81` |
+| WarehouseCore | `nobentie/warehousecore:5.9.82` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.47` |
-| Cores MCP | `nobentie/cores-mcp:1.5.5` |
+| Cores MCP | `nobentie/cores-mcp:1.5.6` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -75,6 +75,9 @@ Service-/Aktions-Scope.
 Procurement-Kategorien können über MCP nach einer Vorschau mit Duplikatprüfung,
 vollständigem Parameter-Schema und ausdrücklicher Bestätigung angelegt oder
 versionsgesichert geändert werden.
+Warehouse-Produkte können nach vollständigem Ist/Soll-Diff, Stammdatenprüfung
+und Versionsprüfung über MCP geändert werden; die Änderung wird im WarehouseCore
+auditiert und idempotent gespeichert.
 Die aktuellen Webclients teilen sich außerdem eine persistente Deutsch/Englisch-
 Auswahl. Cores MCP `1.5.0` bietet zusätzlich zu den geführten Anlagen acht
 zweistufige P0/P1- und Procurement-Workflows: Gerätezuweisung,
