@@ -59,8 +59,8 @@ Aktueller Suite-Release (25.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.83` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.48` |
-| Cores MCP | `nobentie/cores-mcp:1.5.7` |
+| ProcurementCore | `nobentie/procurementcore:1.0.49` |
+| Cores MCP | `nobentie/cores-mcp:1.5.8` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -78,6 +78,9 @@ versionsgesichert geändert werden.
 Procurement-Produkte lassen sich über MCP mit vollständigem Diff und
 Versionsprüfung ändern, ohne offene Bestellungen oder Bedarfe zu archivieren.
 Bei einer Anlage werden Produkt und optionales Erstangebot atomar gespeichert.
+Bestehende Beschaffungsprodukte können über geführte MCP-Werkzeuge zusätzliche
+Lieferantenangebote erhalten; Änderungen und Archivierung prüfen den Ist/Soll-Diff
+und die aktuelle Datensatzversion.
 Warehouse-Produkte können nach vollständigem Ist/Soll-Diff, Stammdatenprüfung
 und Versionsprüfung über MCP geändert werden; die Änderung wird im WarehouseCore
 auditiert und idempotent gespeichert.
