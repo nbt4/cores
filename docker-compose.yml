@@ -138,7 +138,7 @@ services:
   # Cores MCP - AI/Agent integration with confirmed guided writes across all Cores
   # ============================================================================
   cores-mcp:
-    image: nobentie/cores-mcp:1.5.12
+    image: nobentie/cores-mcp:1.5.13
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -285,7 +285,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.53
+    image: nobentie/procurementcore:1.0.54
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
