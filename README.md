@@ -59,8 +59,8 @@ Aktueller Suite-Release (25.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.83` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.49` |
-| Cores MCP | `nobentie/cores-mcp:1.5.8` |
+| ProcurementCore | `nobentie/procurementcore:1.0.50` |
+| Cores MCP | `nobentie/cores-mcp:1.5.9` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
