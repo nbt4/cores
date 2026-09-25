@@ -51,7 +51,7 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (24.09.2026):
+Aktueller Suite-Release (25.09.2026):
 
 | Service | Image |
 |---|---|
@@ -59,8 +59,8 @@ Aktueller Suite-Release (24.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.83` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.47` |
-| Cores MCP | `nobentie/cores-mcp:1.5.6` |
+| ProcurementCore | `nobentie/procurementcore:1.0.48` |
+| Cores MCP | `nobentie/cores-mcp:1.5.7` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -75,6 +75,9 @@ Service-/Aktions-Scope.
 Procurement-Kategorien können über MCP nach einer Vorschau mit Duplikatprüfung,
 vollständigem Parameter-Schema und ausdrücklicher Bestätigung angelegt oder
 versionsgesichert geändert werden.
+Procurement-Produkte lassen sich über MCP mit vollständigem Diff und
+Versionsprüfung ändern, ohne offene Bestellungen oder Bedarfe zu archivieren.
+Bei einer Anlage werden Produkt und optionales Erstangebot atomar gespeichert.
 Warehouse-Produkte können nach vollständigem Ist/Soll-Diff, Stammdatenprüfung
 und Versionsprüfung über MCP geändert werden; die Änderung wird im WarehouseCore
 auditiert und idempotent gespeichert.
