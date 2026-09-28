@@ -60,7 +60,7 @@ Aktueller Suite-Release (25.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.83` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.54` |
-| Cores MCP | `nobentie/cores-mcp:1.5.13` |
+| Cores MCP | `nobentie/cores-mcp:1.5.14` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -81,6 +81,8 @@ Bei einer Anlage werden Produkt und optionales Erstangebot atomar gespeichert.
 Bestellentwürfe lassen sich über MCP nach vollständiger Vorschau und
 Versionsprüfung einschließlich aller Positionen ändern; ProcurementCore
 speichert die Änderung mit Audit und Idempotenzbeleg atomar.
+Der redigierte Procurement-Auditverlauf deckt für Administratoren auch
+Produkte, Produktlinks, Lieferanten, Kategorien und Angebote ab.
 Bestehende Beschaffungsprodukte können über geführte MCP-Werkzeuge zusätzliche
 Lieferantenangebote erhalten; Änderungen und Archivierung prüfen den Ist/Soll-Diff
 und die aktuelle Datensatzversion.
