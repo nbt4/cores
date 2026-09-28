@@ -57,7 +57,7 @@ Aktueller Suite-Release (25.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.83` |
+| WarehouseCore | `nobentie/warehousecore:5.9.84` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.54` |
 | Cores MCP | `nobentie/cores-mcp:1.5.14` |
@@ -83,6 +83,9 @@ Versionsprüfung einschließlich aller Positionen ändern; ProcurementCore
 speichert die Änderung mit Audit und Idempotenzbeleg atomar.
 Der redigierte Procurement-Auditverlauf deckt für Administratoren auch
 Produkte, Produktlinks, Lieferanten, Kategorien und Angebote ab.
+WarehouseCore prüft bei MCP-Produktänderungen die exakte Vorschau-Version im
+Zielservice und speichert Anlage oder Änderung mit Audit und dauerhaftem
+Idempotenzbeleg atomar.
 Bestehende Beschaffungsprodukte können über geführte MCP-Werkzeuge zusätzliche
 Lieferantenangebote erhalten; Änderungen und Archivierung prüfen den Ist/Soll-Diff
 und die aktuelle Datensatzversion.
