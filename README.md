@@ -60,7 +60,7 @@ Aktueller Suite-Release (25.09.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.84` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.54` |
-| Cores MCP | `nobentie/cores-mcp:1.5.14` |
+| Cores MCP | `nobentie/cores-mcp:1.5.15` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -86,6 +86,8 @@ Produkte, Produktlinks, Lieferanten, Kategorien und Angebote ab.
 WarehouseCore prüft bei MCP-Produktänderungen die exakte Vorschau-Version im
 Zielservice und speichert Anlage oder Änderung mit Audit und dauerhaftem
 Idempotenzbeleg atomar.
+Der MCP zeigt Warehouse-Administratoren den redigierten Produkt-Auditverlauf
+einschließlich Archivierung und Wiederherstellung.
 Bestehende Beschaffungsprodukte können über geführte MCP-Werkzeuge zusätzliche
 Lieferantenangebote erhalten; Änderungen und Archivierung prüfen den Ist/Soll-Diff
 und die aktuelle Datensatzversion.
