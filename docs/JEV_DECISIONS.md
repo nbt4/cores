@@ -9,6 +9,10 @@ ersetzt weder OCR noch fachliche Validierung.
 - RentalCore: OCR-Position gegen Produkte, Pakete, Mietmaterial und
   Dienstleistungen.
 - ProcurementCore: offene PDF-Bestellposition gegen Procurement-Produkte.
+- ProcurementCore: offene Position aus einem Angebots-PDF gegen Procurement-Produkte;
+  gescannte Seiten werden zuvor lokal mit Tesseract gelesen. JEV erhält nur
+  Positionsbeschreibung, erkannte Lieferanten-SKU und begrenzte Kandidaten,
+  niemals die PDF. Neue Artikel werden nur nach ausdrücklicher Auswahl angelegt.
 - ProcurementCore: Kandidaten für die explizite Verknüpfung eines
   Procurement-Artikels mit WarehouseCore neu ordnen.
 - ProcurementCore: bei widersprüchlichen JSON-LD-/Microdata-Datensätzen das

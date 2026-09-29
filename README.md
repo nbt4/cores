@@ -59,7 +59,7 @@ Aktueller Suite-Release (29.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.88` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.54` |
+| ProcurementCore | `nobentie/procurementcore:1.0.55` |
 | Cores MCP | `nobentie/cores-mcp:1.5.19` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -161,6 +161,12 @@ widersprüchlichen strukturierten Datensätzen das Hauptprodukt auszuwählen. Di
 lokale Vorschau bleibt bei Unsicherheit erhalten; ein Preis für eine andere
 Produktidentität wird zur Prüfung geleert. HTTP/2 verbessert den Abruf der
 Huss-Produktseiten.
+
+ProcurementCore `1.0.55` übernimmt Lieferantenangebote als prüfbare
+Bedarfsentwürfe. Gescannte PDFs werden lokal mit Tesseract gelesen, JEV schlägt
+Katalogzuordnungen vor, und fehlende Artikel samt Bezugsquelle können in
+derselben Transaktion wie der Bedarf entstehen. Die Angebots-PDF wird nicht
+gespeichert; Preise, Mengen und Zuordnungen bleiben vor der Anlage editierbar.
 
 Die Suite-Navigation steht in allen fünf Oberflächen an derselben Sidebar-Position:
 ein Dropdown wechselt zwischen den Fach-Cores, ein eigener Link führt zum Dashboard.
