@@ -285,7 +285,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.58
+    image: nobentie/procurementcore:1.0.59
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
@@ -311,11 +311,21 @@ services:
       AMAZON_PUNCHOUT_RETURN_URL: "${AMAZON_PUNCHOUT_RETURN_URL:-}"
       AMAZON_PUNCHOUT_MODE: "${AMAZON_PUNCHOUT_MODE:-test}"
       AMAZON_SHIP_TO_COMPANY: "${AMAZON_SHIP_TO_COMPANY:-}"
+      AMAZON_SHIP_TO_RECIPIENT: "${AMAZON_SHIP_TO_RECIPIENT:-}"
       AMAZON_SHIP_TO_STREET: "${AMAZON_SHIP_TO_STREET:-}"
       AMAZON_SHIP_TO_POSTAL_CODE: "${AMAZON_SHIP_TO_POSTAL_CODE:-}"
       AMAZON_SHIP_TO_CITY: "${AMAZON_SHIP_TO_CITY:-}"
+      AMAZON_SHIP_TO_REGION: "${AMAZON_SHIP_TO_REGION:-}"
       AMAZON_SHIP_TO_COUNTRY: "${AMAZON_SHIP_TO_COUNTRY:-}"
       AMAZON_SHIP_TO_EMAIL: "${AMAZON_SHIP_TO_EMAIL:-}"
+      AMAZON_BILL_TO_COMPANY: "${AMAZON_BILL_TO_COMPANY:-}"
+      AMAZON_BILL_TO_RECIPIENT: "${AMAZON_BILL_TO_RECIPIENT:-}"
+      AMAZON_BILL_TO_STREET: "${AMAZON_BILL_TO_STREET:-}"
+      AMAZON_BILL_TO_POSTAL_CODE: "${AMAZON_BILL_TO_POSTAL_CODE:-}"
+      AMAZON_BILL_TO_CITY: "${AMAZON_BILL_TO_CITY:-}"
+      AMAZON_BILL_TO_REGION: "${AMAZON_BILL_TO_REGION:-}"
+      AMAZON_BILL_TO_COUNTRY: "${AMAZON_BILL_TO_COUNTRY:-}"
+      AMAZON_BILL_TO_EMAIL: "${AMAZON_BILL_TO_EMAIL:-}"
       # Optional Jev decision layer for PDF and cross-core product matching
       OPENROUTER_API_KEY: "${OPENROUTER_API_KEY}"
       JEV_ENABLED: "${JEV_ENABLED}"

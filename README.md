@@ -59,7 +59,7 @@ Aktueller Suite-Release (29.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.88` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.58` |
+| ProcurementCore | `nobentie/procurementcore:1.0.59` |
 | Cores MCP | `nobentie/cores-mcp:1.5.19` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -452,6 +452,9 @@ Amazon Business PunchOut nutzt eine einmalige cXML-Sitzung, erstellt aus dem
 Warenkorb einen Bedarfsentwurf und versendet freigegebene Bestellungen erst
 nach ausdrücklicher Bestätigung. Die Konfiguration steht in `.env.example`
 und im [ProcurementCore-README](procurementcore/README.md).
+Eine erfolgreiche cXML-Antwort bestätigt die Übertragung; die endgültige
+Annahme oder Ablehnung erfolgt später durch Amazon. Der lokale Status wird
+nach Prüfung der Amazon-Bestätigung oder Stornierung manuell aktualisiert.
 
 #### 🔑 Haupt-Features
 
