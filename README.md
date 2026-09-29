@@ -57,10 +57,10 @@ Aktueller Suite-Release (29.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.87` |
+| WarehouseCore | `nobentie/warehousecore:5.9.88` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.54` |
-| Cores MCP | `nobentie/cores-mcp:1.5.18` |
+| Cores MCP | `nobentie/cores-mcp:1.5.19` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -87,6 +87,9 @@ nicht am JSON-Decoder scheitern.
 Haupt-, Unter- und dritte Kategorien lassen sich ebenfalls einzeln nach
 Elternprüfung und Duplikatvorschau anlegen; WarehouseCore speichert Audit und
 Idempotenzbeleg mit dem Datensatz.
+Lagerplätze können mit Code, Scan-Code, Elternknoten und Kapazitätsdaten
+ebenfalls nach Vorschau angelegt werden. Die Anlage ist auditiert und
+idempotent.
 Procurement-Kategorien können über MCP nach einer Vorschau mit Duplikatprüfung,
 vollständigem Parameter-Schema und ausdrücklicher Bestätigung angelegt oder
 versionsgesichert geändert werden.
