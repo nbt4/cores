@@ -59,7 +59,7 @@ Aktueller Suite-Release (29.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.88` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.55` |
+| ProcurementCore | `nobentie/procurementcore:1.0.56` |
 | Cores MCP | `nobentie/cores-mcp:1.5.19` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -447,6 +447,11 @@ Materialbedarf und zur Gerätezuordnung.
 | **Interner Port** | `8084` |
 | **Öffentliche URL** | `https://procurement.tsunami-events.de` |
 | **Docker03 Host-Port** | `8084` |
+
+Amazon Business PunchOut nutzt eine einmalige cXML-Sitzung, erstellt aus dem
+Warenkorb einen Bedarfsentwurf und versendet freigegebene Bestellungen erst
+nach ausdrücklicher Bestätigung. Die Konfiguration steht in `.env.example`
+und im [ProcurementCore-README](procurementcore/README.md).
 
 #### 🔑 Haupt-Features
 

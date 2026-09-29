@@ -285,7 +285,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.55
+    image: nobentie/procurementcore:1.0.56
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
@@ -305,6 +305,17 @@ services:
       DB_SSLMODE: "disable"
       ADAMHALL_USERNAME: "${ADAMHALL_USERNAME:-}"
       ADAMHALL_PASSWORD: "${ADAMHALL_PASSWORD:-}"
+      AMAZON_PUNCHOUT_FROM_IDENTITY: "${AMAZON_PUNCHOUT_FROM_IDENTITY:-}"
+      AMAZON_PUNCHOUT_SHARED_SECRET: "${AMAZON_PUNCHOUT_SHARED_SECRET:-}"
+      AMAZON_PUNCHOUT_ORDER_URL: "${AMAZON_PUNCHOUT_ORDER_URL:-}"
+      AMAZON_PUNCHOUT_RETURN_URL: "${AMAZON_PUNCHOUT_RETURN_URL:-}"
+      AMAZON_PUNCHOUT_MODE: "${AMAZON_PUNCHOUT_MODE:-test}"
+      AMAZON_SHIP_TO_COMPANY: "${AMAZON_SHIP_TO_COMPANY:-}"
+      AMAZON_SHIP_TO_STREET: "${AMAZON_SHIP_TO_STREET:-}"
+      AMAZON_SHIP_TO_POSTAL_CODE: "${AMAZON_SHIP_TO_POSTAL_CODE:-}"
+      AMAZON_SHIP_TO_CITY: "${AMAZON_SHIP_TO_CITY:-}"
+      AMAZON_SHIP_TO_COUNTRY: "${AMAZON_SHIP_TO_COUNTRY:-}"
+      AMAZON_SHIP_TO_EMAIL: "${AMAZON_SHIP_TO_EMAIL:-}"
       # Optional Jev decision layer for PDF and cross-core product matching
       OPENROUTER_API_KEY: "${OPENROUTER_API_KEY}"
       JEV_ENABLED: "${JEV_ENABLED}"
