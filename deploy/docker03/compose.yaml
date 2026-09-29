@@ -94,7 +94,7 @@ services:
       DB_SSLMODE: disable
       RENTALCORE_DOMAIN: ${RENTALCORE_DOMAIN}
       WAREHOUSECORE_DOMAIN: ${WAREHOUSECORE_DOMAIN}
-      PROCUREMENTCORE_PUBLIC_URL: ${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}
+      PROCUREMENTCORE_PUBLIC_URL: ${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
       COOKIE_DOMAIN: ${COOKIE_DOMAIN}
       LED_MQTT_HOST: ${LED_MQTT_HOST:-mosquitto}
@@ -153,7 +153,7 @@ services:
       WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
       PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
-      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}"
       CORES_MCP_URL: "http://cores-mcp:8090"
       MOSQUITTO_HEALTH_ADDRESS: "${MOSQUITTO_HEALTH_ADDRESS:-mosquitto:1883}"
       COOKIE_DOMAIN: ${COOKIE_DOMAIN}
@@ -301,7 +301,7 @@ services:
       start_period: 60s
 
   procurementcore:
-    image: nobentie/procurementcore:1.0.57
+    image: nobentie/procurementcore:1.0.58
     container_name: procurementcore
     restart: unless-stopped
     depends_on:

@@ -112,7 +112,7 @@ services:
       PLANNERCORE_URL: "http://plannercore:8080"
       PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
-      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}"
       CORES_MCP_URL: "http://cores-mcp:8090"
       MOSQUITTO_HEALTH_ADDRESS: "${MOSQUITTO_HEALTH_ADDRESS:-mosquitto:1883}"
       DB_HOST: "postgres"
@@ -197,7 +197,7 @@ services:
       # Domain configuration for cross-navigation (without protocol or port)
       RENTALCORE_DOMAIN: "${RENTALCORE_DOMAIN:-}"
       WAREHOUSECORE_DOMAIN: "${WAREHOUSECORE_DOMAIN:-}"
-      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://procurement.tsunami-events.de}"
+      PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
       # Cookie domain for SSO (e.g., .example.com for subdomains, leave empty for localhost)
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
@@ -285,7 +285,7 @@ services:
   # ProcurementCore - Purchasing & Supplier Management
   # ============================================================================
   procurementcore:
-    image: nobentie/procurementcore:1.0.57
+    image: nobentie/procurementcore:1.0.58
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
