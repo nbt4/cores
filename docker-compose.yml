@@ -61,7 +61,7 @@ services:
       # App port
       SERVER_HOST: "0.0.0.0"
       SERVER_PORT: "8081"
-      APP_BASE_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
+      APP_BASE_URL: "${RENTALCORE_PUBLIC_URL:-https://cores.tsunami-events.de/rentalcore/}"
       # OCR Parser Configuration
       OCR_USE_PYTHON: "${OCR_USE_PYTHON:-true}"
       # Optional Jev decision layer for OCR catalog matching
@@ -106,11 +106,11 @@ services:
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       RENTALCORE_URL: "http://rentalcore:8081"
-      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
+      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://cores.tsunami-events.de/rentalcore/}"
       WAREHOUSECORE_URL: "http://warehousecore:8082"
-      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://cores.tsunami-events.de/warehousecore/}"
       PLANNERCORE_URL: "http://plannercore:8080"
-      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://cores.tsunami-events.de/plannercore/}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
       PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}"
       CORES_MCP_URL: "http://cores-mcp:8090"
@@ -267,7 +267,7 @@ services:
       DB_PASS: "${POSTGRES_PASSWORD:-}"
       APP_URL: "${PLANNERCORE_PUBLIC_URL:-http://localhost:8080}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
-      CORS_ALLOWED_ORIGINS: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      CORS_ALLOWED_ORIGINS: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
     ports:
       - "8083:8080"
     volumes:
@@ -296,7 +296,7 @@ services:
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-http://localhost:8080}"
-      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://cores.tsunami-events.de/warehousecore/}"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_NAME: "${POSTGRES_DB:-rentalcore}"

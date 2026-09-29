@@ -52,7 +52,7 @@ services:
       M365_CLIENT_SECRET: ${M365_CLIENT_SECRET}
       M365_SHARED_MAILBOX_ID: ${M365_SHARED_MAILBOX_ID}
       M365_CALENDAR_MAILBOX: ${M365_CALENDAR_MAILBOX:-events-calender@tsunami-events.de}
-      APP_BASE_URL: ${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}
+      APP_BASE_URL: ${RENTALCORE_PUBLIC_URL:-https://cores.tsunami-events.de/rentalcore/}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
       JEV_ENABLED: ${JEV_ENABLED}
       JEV_API_URL: ${JEV_API_URL}
@@ -149,9 +149,9 @@ services:
       RENTALCORE_URL: http://rentalcore:8080
       WAREHOUSECORE_URL: http://warehousecore:8081
       PLANNERCORE_URL: "http://plannercore:8080"
-      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://rent.tsunami-events.de}"
-      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
-      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      RENTALCORE_PUBLIC_URL: "${RENTALCORE_PUBLIC_URL:-https://cores.tsunami-events.de/rentalcore/}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://cores.tsunami-events.de/warehousecore/}"
+      PLANNERCORE_PUBLIC_URL: "${PLANNERCORE_PUBLIC_URL:-https://cores.tsunami-events.de/plannercore/}"
       PROCUREMENTCORE_URL: "http://procurementcore:8084"
       PROCUREMENTCORE_PUBLIC_URL: "${PROCUREMENTCORE_PUBLIC_URL:-https://cores.tsunami-events.de/procurementcore/}"
       CORES_MCP_URL: "http://cores-mcp:8090"
@@ -283,9 +283,9 @@ services:
       DB_NAME: ${POSTGRES_DB:-rentalcore}
       DB_USER: ${POSTGRES_USER:-rentalcore}
       DB_PASS: ${POSTGRES_PASSWORD:-}
-      APP_URL: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      APP_URL: "${PLANNERCORE_PUBLIC_URL:-https://cores.tsunami-events.de/plannercore/}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
-      CORS_ALLOWED_ORIGINS: "${PLANNERCORE_PUBLIC_URL:-https://planner.tsunami-events.de}"
+      CORS_ALLOWED_ORIGINS: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
     ports:
       - "8083:8080"
     volumes:
@@ -312,7 +312,7 @@ services:
       CORES_JWT_SECRET: "${CORES_JWT_SECRET:-}"
       COOKIE_DOMAIN: "${COOKIE_DOMAIN:-}"
       DASHBOARD_URL: "${CORES_DASHBOARD_PUBLIC_URL:-https://cores.tsunami-events.de}"
-      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://warehouse.tsunami-events.de}"
+      WAREHOUSECORE_PUBLIC_URL: "${WAREHOUSECORE_PUBLIC_URL:-https://cores.tsunami-events.de/warehousecore/}"
       DB_HOST: postgres
       DB_PORT: "5432"
       DB_NAME: ${POSTGRES_DB:-rentalcore}

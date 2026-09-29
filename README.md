@@ -302,7 +302,7 @@ die vier `*_PUBLIC_URL`-Werte. Details und Reverse-Proxy-Beispiele stehen in
 | **Tech-Stack** | Go (Backend) + React/TypeScript (Frontend) |
 | **Docker Image** | `rentalcore` |
 | **Interner Port** | `8081` |
-| **URL** | [rent.tsunami-events.de](https://rent.tsunami-events.de) |
+| **URL** | [cores.tsunami-events.de/rentalcore](https://cores.tsunami-events.de/rentalcore/) |
 
 #### 🔑 Haupt-Features
 
@@ -360,7 +360,7 @@ Materialbedarf und zur Gerätezuordnung.
 | **Tech-Stack** | Go (Backend) + React/TypeScript (Frontend) |
 | **Docker Image** | `warehousecore` |
 | **Interner Port** | `8082` |
-| **URL** | [warehouse.tsunami-events.de](https://warehouse.tsunami-events.de) |
+| **URL** | [cores.tsunami-events.de/warehousecore](https://cores.tsunami-events.de/warehousecore/) |
 
 #### 🔑 Haupt-Features
 
@@ -406,7 +406,7 @@ Materialbedarf und zur Gerätezuordnung.
 | **Tech-Stack** | Node.js (Backend) + React (Frontend) |
 | **Docker Image** | `plannercore` |
 | **Interner Port** | `8083:8080` |
-| **URL** | [planner.tsunami-events.de](https://planner.tsunami-events.de) |
+| **URL** | [cores.tsunami-events.de/plannercore](https://cores.tsunami-events.de/plannercore/) |
 
 #### 🔑 Haupt-Features
 
@@ -905,9 +905,9 @@ docker compose ps
 
 # Health-Checks
 curl --fail https://cores.tsunami-events.de/health
-curl --fail https://rent.tsunami-events.de/health
-curl --fail https://warehouse.tsunami-events.de/api/v1/health
-curl --fail https://planner.tsunami-events.de/health
+curl --fail https://cores.tsunami-events.de/rentalcore/health
+curl --fail https://cores.tsunami-events.de/warehousecore/api/v1/health
+curl --fail https://cores.tsunami-events.de/plannercore/health
 
 # Ressourcen-Nutzung
 docker stats
