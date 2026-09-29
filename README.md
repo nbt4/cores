@@ -59,7 +59,7 @@ Aktueller Suite-Release (29.09.2026):
 | RentalCore | `nobentie/rentalcore:5.3.115` |
 | WarehouseCore | `nobentie/warehousecore:5.9.88` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.61` |
+| ProcurementCore | `nobentie/procurementcore:1.0.62` |
 | Cores MCP | `nobentie/cores-mcp:1.5.19` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -121,8 +121,8 @@ Ausführung folgt auf eine read-only Live-Vorschau, Ziel-Core-Berechtigung und
 ausdrückliche Bestätigung. Bestätigte Aufrufe verlangen einen Idempotenzschlüssel;
 `dry_run=true` erzwingt eine auswirkungsfreie Simulation. MCP dedupliziert
 Wiederholungen, blockiert abweichende Payloads unter demselben Schlüssel und
-protokolliert die Herkunft `MCP/AI`. ProcurementCore `1.0.38` erzwingt für
-Freigaben das Vier-Augen-Prinzip und für Freigaben sowie Wareneingänge
+protokolliert die Herkunft `MCP/AI`. ProcurementCore erlaubt Administratoren
+seit `1.0.62` auch die Freigabe eigener Bedarfe. Für Freigaben und Wareneingänge gelten
 Versionsprüfung, persistente Idempotenz und eine atomare Fachtransaktion.
 Seriennummern, Überlieferungen und Putaway-Tasks werden vor der erhöhten
 Bestätigung vollständig ausgewiesen; beliebige Mutationen und Hard-Deletes
