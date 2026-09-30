@@ -59,3 +59,19 @@ Cores MCP `1.5.20` bietet im OAuth-Dialog außerdem die ausdrückliche Auswahl
 Nur Lesen oder Lesen und Schreiben. Bestehende lesende Tokens bleiben lesend;
 für Schreibtools den Connector neu verbinden und Lesen und Schreiben wählen.
 Es ist keine neue Konfiguration nötig; `MCP_ENABLE_WRITES=true` bleibt erforderlich.
+
+## Hersteller- und Markenpflege (30.09.2026)
+
+WarehouseCore `5.9.90` und Cores MCP `1.5.21` ergänzen die eigenständige
+Hersteller- und Markenpflege mit Vorschau und Versionsprüfung. WarehouseCore
+installiert die idempotente Migration `047_warehouse_master_version` beim Start;
+neue Datenbankvolumes erhalten dieselben Trigger über die Umbrella-Migration
+`020_warehouse_master_version`. Die Trigger erhöhen `manufacturer.updated_at`
+und `brands.updated_at` bei allen Updates. Ein Herstellerwechsel wird blockiert,
+wenn verknüpfte Produkte nicht bereits diese Zuordnung verwenden.
+
+Es sind keine zusätzlichen Umgebungsvariablen nötig. Die Ausführung benötigt
+`MCP_ENABLE_WRITES=true`, Warehouse-Adminrechte und den bestehenden Scope
+`cores:warehouse:update` oder `cores:write`. Für die vier neuen Werkzeuge die
+Tool-Liste im MCP-Client aktualisieren. Vorschauen benötigen ebenfalls den
+passenden Schreib-Scope und Warehouse-Administratorrechte.

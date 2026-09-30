@@ -57,10 +57,10 @@ Aktueller Suite-Release (30.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.89` |
+| WarehouseCore | `nobentie/warehousecore:5.9.90` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.20` |
+| Cores MCP | `nobentie/cores-mcp:1.5.21` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -80,7 +80,12 @@ blockieren die Archivierung auch im WarehouseCore selbst.
 Typisierte Beziehungen zwischen Warehouse-Produkten können nach vollständigem
 Diff und Versionsprüfung ebenfalls bestätigt und auditiert angelegt oder
 geändert werden.
-Hersteller und Marken lassen sich per MCP auch einzeln anlegen und anschließend
+Hersteller und Marken lassen sich per MCP einzeln anlegen sowie nach vollständigem
+Diff und Versionsprüfung ändern. Herstellerwechsel einer Marke sind gesperrt,
+wenn verknüpfte Produkte dadurch widersprüchlich werden. Website und
+Herstellerzuordnung können ausdrücklich geleert werden; Änderung, Audit und
+Idempotenzbeleg werden atomar gespeichert. Normale Oberflächenänderungen erhöhen
+ebenfalls die Version. Hersteller und Marken lassen sich anschließend
 über ihre IDs einem vorhandenen Warehouse-Produkt zuordnen. Der Produkt-Update-
 Body übernimmt vorhandene numerische Werte als Zahlen, damit reine Feldänderungen
 nicht am JSON-Decoder scheitern.
