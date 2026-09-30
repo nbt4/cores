@@ -57,10 +57,10 @@ Aktueller Suite-Release (30.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.91` |
+| WarehouseCore | `nobentie/warehousecore:5.9.92` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.21` |
+| Cores MCP | `nobentie/cores-mcp:1.5.22` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -92,6 +92,11 @@ Hersteller und Marken lassen sich anschließend
 über ihre IDs einem vorhandenen Warehouse-Produkt zuordnen. Der Produkt-Update-
 Body übernimmt vorhandene numerische Werte als Zahlen, damit reine Feldänderungen
 nicht am JSON-Decoder scheitern.
+Haupt-, Unter- und dritte Kategorien können über MCP versionsgesichert geändert
+werden. Elternwechsel dürfen bestehende Produktzuordnungen nicht verletzen.
+Ungenutzte Kategorien ohne Kinder lassen sich nach vollständiger Vorschau,
+exakter Version, eigener Löschberechtigung und datensatzgebundener Bestätigung
+entfernen; Audit bleibt erhalten, es gibt kein Cascade oder MCP-Undo.
 Haupt-, Unter- und dritte Kategorien lassen sich ebenfalls einzeln nach
 Elternprüfung und Duplikatvorschau anlegen; WarehouseCore speichert Audit und
 Idempotenzbeleg mit dem Datensatz.

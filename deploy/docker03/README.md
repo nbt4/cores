@@ -81,3 +81,21 @@ vorhandene Zielkategorien und ihre Referenzen. Migration `048` (Umbrella `021`)
 setzt die Markenidentität auf Name plus Hersteller, einschließlich einer
 eindeutigen NULL-Herstellergruppe. Dafür ist PostgreSQL >=15 nötig; der Stack
 verwendet Version 16. Es werden keine Kategorien oder Zuordnungen gelöscht.
+
+## Kategoriepflege und Entfernen (30.09.2026)
+
+WarehouseCore `5.9.92` und Cores MCP `1.5.22` ergänzen versionsgesicherte Updates
+und das explizit bestätigte Entfernen ungenutzter Haupt-, Unter- und dritter
+Kategorien. Produkte oder Kinder sperren die Löschung; widersprüchliche
+Produktzuordnungen sperren Elternwechsel. Es gibt kein Cascade oder MCP-Undo.
+
+WarehouseCore installiert `049_warehouse_category_version` beim Start;
+frische Datenbankvolumes erhalten dieselben Trigger über Umbrella-Migration
+`022_warehouse_category_version`. Die Trigger versionieren auch UI-/Importpfade.
+Es sind keine neuen Umgebungsvariablen erforderlich. `MCP_ENABLE_WRITES=true`
+und Warehouse-Adminrechte bleiben nötig. Updates verwenden
+`cores:warehouse:update`; das Entfernen benötigt neu `cores:warehouse:delete`
+oder Legacy `cores:write`. Bestehende granulare Update-Tokens dürfen nicht
+löschen; für Löschrechte den Connector neu autorisieren. Tool-Liste im Client
+aktualisieren; die zwölf neuen Werkzeuge liefern ihre Felder über
+`cores.entities.schema` (`update_fields`, `delete_fields`).
