@@ -99,3 +99,17 @@ oder Legacy `cores:write`. Bestehende granulare Update-Tokens dürfen nicht
 löschen; für Löschrechte den Connector neu autorisieren. Tool-Liste im Client
 aktualisieren; die zwölf neuen Werkzeuge liefern ihre Felder über
 `cores.entities.schema` (`update_fields`, `delete_fields`).
+
+## Produktpakete (30.09.2026)
+
+WarehouseCore `5.9.93` und Cores MCP `1.5.23` bieten geführtes Anlegen und
+Bearbeiten von Produktpaketen mit vollständigen Inhalten und optionalen
+Bestandteilen. Vorhandene Jobnutzung sperrt Preis- und Inhaltsänderungen;
+Metadaten bleiben bearbeitbar. Es werden weder Bestände bewegt noch Produkte
+erzeugt. Vier neue Werkzeuge; Schema-Discovery enthält auch `item_fields`.
+
+WarehouseCore installiert `050_warehouse_package_version` beim Start, frische
+Volumes erhalten die Trigger über Umbrella-Migration `023`. Versionierung
+umfasst Paketmetadaten und Einzelzeilenänderungen in UI-/Importpfaden.
+Keine neuen Umgebungsvariablen oder Scopes: Warehouse-Admin und vorhandener
+Create-/Update-Scope oder Legacy `cores:write` sind erforderlich.

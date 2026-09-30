@@ -57,10 +57,10 @@ Aktueller Suite-Release (30.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.92` |
+| WarehouseCore | `nobentie/warehousecore:5.9.93` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.22` |
+| Cores MCP | `nobentie/cores-mcp:1.5.23` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
@@ -92,6 +92,11 @@ Hersteller und Marken lassen sich anschließend
 über ihre IDs einem vorhandenen Warehouse-Produkt zuordnen. Der Produkt-Update-
 Body übernimmt vorhandene numerische Werte als Zahlen, damit reine Feldänderungen
 nicht am JSON-Decoder scheitern.
+Produktpakete lassen sich über MCP mit vollständigen Produktlisten, Mengen,
+Optionalität, Preis und Website-Sichtbarkeit anlegen und bearbeiten. Paket- und
+Inhaltsversionen schützen parallel geänderte Daten; vorhandene Jobnutzung sperrt
+Preis- und Inhaltsänderungen. Paket, Inhalte, Audit und Wiederholungsbeleg werden
+atomar gespeichert.
 Haupt-, Unter- und dritte Kategorien können über MCP versionsgesichert geändert
 werden. Elternwechsel dürfen bestehende Produktzuordnungen nicht verletzen.
 Ungenutzte Kategorien ohne Kinder lassen sich nach vollständiger Vorschau,
