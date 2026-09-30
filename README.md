@@ -57,7 +57,7 @@ Aktueller Suite-Release (30.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.90` |
+| WarehouseCore | `nobentie/warehousecore:5.9.91` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
 | Cores MCP | `nobentie/cores-mcp:1.5.21` |
@@ -85,7 +85,10 @@ Diff und Versionsprüfung ändern. Herstellerwechsel einer Marke sind gesperrt,
 wenn verknüpfte Produkte dadurch widersprüchlich werden. Website und
 Herstellerzuordnung können ausdrücklich geleert werden; Änderung, Audit und
 Idempotenzbeleg werden atomar gespeichert. Normale Oberflächenänderungen erhöhen
-ebenfalls die Version. Hersteller und Marken lassen sich anschließend
+ebenfalls die Version. Die Markenidentität besteht aus Name und Hersteller;
+Marken ohne Hersteller bleiben ebenfalls eindeutig. Der Neustart bewahrt
+bestehende englische und deutsche Kategorien mit ihren IDs und Zuordnungen.
+Hersteller und Marken lassen sich anschließend
 über ihre IDs einem vorhandenen Warehouse-Produkt zuordnen. Der Produkt-Update-
 Body übernimmt vorhandene numerische Werte als Zahlen, damit reine Feldänderungen
 nicht am JSON-Decoder scheitern.
