@@ -57,11 +57,22 @@ Aktueller Suite-Release (30.09.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.93` |
+| WarehouseCore | `nobentie/warehousecore:5.9.94` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.23` |
+| Cores MCP | `nobentie/cores-mcp:1.5.24` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
+
+WarehouseCore 5.9.94 und Cores MCP 1.5.24 bieten vollständige Einzelgeräte-Anlage
+und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
+kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
+Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
+Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
+zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
+versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
+Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
+Owning Core geprüft. Der MCP bietet 173 Werkzeuge (65 Abfragen, 54 Vorschauen,
+54 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
 Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und

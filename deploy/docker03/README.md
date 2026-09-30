@@ -113,3 +113,14 @@ Volumes erhalten die Trigger über Umbrella-Migration `023`. Versionierung
 umfasst Paketmetadaten und Einzelzeilenänderungen in UI-/Importpfaden.
 Keine neuen Umgebungsvariablen oder Scopes: Warehouse-Admin und vorhandener
 Create-/Update-Scope oder Legacy `cores:write` sind erforderlich.
+
+WarehouseCore `5.9.94` / Cores MCP `1.5.24` ergänzen Einzelgeräte-Anlage und
+Metadatenpflege sowie Archivierung/Restore, redigierte Geräte-Audits und den
+kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
+Migration `051` läuft beim Warehouse-Start; `024_warehouse_device_version.sql`
+initialisiert frische Umbrella-Datenbanken. Jede Geräteänderung versioniert;
+Archivierung deaktiviert Scan-Kennungen, Restore prüft Referenzen/Kapazität.
+Der MCP registriert 173 Werkzeuge (65 Abfragen, 54 Vorschauen, 54 Ausführungen).
+Die neuen Aktionen benötigen Warehouse-Admin und create/update/archive-Scope,
+Bestätigung, Version und Idempotenz; Archivierung/Revert zusätzlich eine
+Geräte- bzw. Audit-gebundene Phrase. Keine endgültige Geräte-Löschung.
