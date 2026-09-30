@@ -44,3 +44,18 @@ Before a deployment, validate the contract without reading any secret values:
 ./scripts/check-env-contract.sh
 docker compose --env-file .env -f deploy/docker03/compose.yaml config --quiet
 ```
+
+## Lagerplatzpflege (30.09.2026)
+
+WarehouseCore `5.9.89` und Cores MCP `1.5.20` ergänzen die versionsgesicherte
+Lagerplatzpflege. WarehouseCore installiert die idempotente Migration
+`046_warehouse_location_version` beim Start. Neue Datenbankvolumes erhalten
+denselben Trigger über die Umbrella-Migration `019_warehouse_location_version`.
+Der Trigger erhöht `storage_zones.updated_at` bei allen Schreibpfaden. Es sind
+keine zusätzlichen Umgebungsvariablen erforderlich; die Ausführung nutzt den
+bestehenden OAuth-Scope `cores:warehouse:update` und Warehouse-Adminrechte.
+
+Cores MCP `1.5.20` bietet im OAuth-Dialog außerdem die ausdrückliche Auswahl
+Nur Lesen oder Lesen und Schreiben. Bestehende lesende Tokens bleiben lesend;
+für Schreibtools den Connector neu verbinden und Lesen und Schreiben wählen.
+Es ist keine neue Konfiguration nötig; `MCP_ENABLE_WRITES=true` bleibt erforderlich.

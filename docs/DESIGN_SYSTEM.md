@@ -176,3 +176,13 @@ Die verbindlichen Breakpoints sind 480, 640, 768, 1024, 1280 und 1536 px. Kompon
 - `./scripts/check-design-system.sh`, alle betroffenen Frontend-Builds und Tests müssen vor Veröffentlichung erfolgreich sein.
 
 Ausnahmen benötigen eine dokumentierte fachliche Begründung in der jeweiligen Service-README und dürfen die Shell, Typografie, Farbsemantik, Formulare, Tabellen oder Dashboard-Hierarchie nicht verändern.
+
+## OAuth-Freigabe
+
+Die serverseitige MCP-Freigabeseite nutzt die gemeinsamen `suite-auth-*`-
+Primitives und den nativen Suite-Select. Bei aktivierten Schreibtools wählt der
+Nutzer ausdrücklich Nur Lesen oder Lesen und Schreiben; Nur Lesen bleibt die
+Voreinstellung. Der Select hat ein zugeordnetes Label, einen erklärenden Text
+und verwendet die vorhandenen Select-Primitives einschließlich mobilem
+Touch-Ziel und sichtbarem Tastaturfokus. Deutsch und Englisch
+folgen der Browsersprache oder der expliziten Sprachauswahl im Autorisierungslink.
