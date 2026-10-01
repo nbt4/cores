@@ -152,3 +152,14 @@ Migration `052` / Umbrella `025` versioniert auch Scanner-/UI-Inhalte und
 Verschachtelungen. Case, Audit und Replay sind atomar. Archive deaktiviert Scan-
 Kennungen; Restore prüft Vorlagen/Referenzen/Lagerhierarchie und Kapazität.
 Keine neue Konfiguration. MCP bietet 193 Tools (69/62/62). Tool-Liste neu laden.
+
+### MCP-Gerätestapel: WarehouseCore 5.9.98 / Cores MCP 1.5.28
+
+`warehouse.devices.prepare_bulk_create` und `bulk_create` ergänzen atomare
+Anlage für 1–100 vollständige Geräte. Admin/create-Scope, explizite Bestätigung,
+batchgebundene Phrase und Idempotenz sind erforderlich. Vorschau und Dry-run
+schreiben nichts; kombinierte Lagerkapazität, aktive Hierarchie, Profile sowie
+reservierte Serien-/Scan-Kennungen werden im WarehouseCore erneut geprüft.
+Geräte, Kennungen, per-Gerät-Audit und dauerhafter Replay werden gemeinsam
+committet. Keine neue Migration oder Konfiguration; MCP-Tool-Liste neu laden:
+195 Tools (69 Abfragen / 63 Vorschauen / 63 Ausführungen).
