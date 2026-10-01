@@ -163,3 +163,14 @@ reservierte Serien-/Scan-Kennungen werden im WarehouseCore erneut geprüft.
 Geräte, Kennungen, per-Gerät-Audit und dauerhafter Replay werden gemeinsam
 committet. Keine neue Migration oder Konfiguration; MCP-Tool-Liste neu laden:
 195 Tools (69 Abfragen / 63 Vorschauen / 63 Ausführungen).
+
+### MCP-Stammdaten-Lifecycle: WarehouseCore 5.9.99 / Cores MCP 1.5.29
+
+Hersteller und Marken besitzen Archivierung/Restore und redigierte Audit-Historien.
+Die Startup-Initialisierung installiert Warehouse-Migration `053`; Umbrella-
+Migration `026` hält neue Datenbanken synchron. Aktive Referenzen sperren Archive;
+Datenbankregeln verhindern aktive Zuordnungen zu archivierten Stammdaten und
+Bearbeitung archivierter Metadaten. Restore-Reihenfolge: Hersteller, Marke,
+Produkt. Warehouse-Admin/archive-Scope, genaue Version, Bestätigungsphrase und
+Idempotenz sind erforderlich. Keine neue Konfiguration. Tool-Liste neu laden:
+205 Tools (71 Abfragen / 67 Vorschauen / 67 Ausführungen).

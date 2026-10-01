@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.98` |
+| WarehouseCore | `nobentie/warehousecore:5.9.99` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.28` |
+| Cores MCP | `nobentie/cores-mcp:1.5.29` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.98 und Cores MCP 1.5.28 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.99 und Cores MCP 1.5.29 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,15 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 195 Werkzeuge (69 Abfragen, 63 Vorschauen,
-63 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 205 Werkzeuge (71 Abfragen, 67 Vorschauen,
+67 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Hersteller und Marken unterstützen Archivierung/Restore und redigierte
+Audit-Historien. Aktive Produkte beziehungsweise aktive Marken sperren Archive;
+IDs und historische Beziehungen bleiben erhalten. Migration `026` (Warehouse
+`053`) schützt aktive Zuordnungen und archivierte Metadaten bei allen Schreibern.
+Restore erfolgt vom Hersteller zur Marke zum Produkt. Die benannten MCP-Aktionen
+benötigen Admin/archive-Scope, genaue Version und eine recordgebundene Phrase.
 
 Gerätestapel lassen sich über `warehouse.devices.prepare_bulk_create` und
 `bulk_create` mit 1–100 vollständigen Entwürfen atomar anlegen. Lagerkapazität
