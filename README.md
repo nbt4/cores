@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.96` |
+| WarehouseCore | `nobentie/warehousecore:5.9.97` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.26` |
+| Cores MCP | `nobentie/cores-mcp:1.5.27` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.96 und Cores MCP 1.5.26 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.97 und Cores MCP 1.5.27 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,14 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 183 Werkzeuge (67 Abfragen, 58 Vorschauen,
-58 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 193 Werkzeuge (69 Abfragen, 62 Vorschauen,
+62 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Cases unterstützen vollständige Anlage, Metadatenpflege, Archivierung/Restore,
+Modellauflösung und redigierte Audits. Migration `025` (Warehouse `052`)
+versioniert auch Case-Inhalte, Templates und Verschachtelung; Lifecycle erhält
+Historie und sperrt aktive Abhängigkeiten. [MCP-Abschlusscheck](cores-mcp/docs/ISSUE_COMPLETION.md)
+führt die verbleibenden Anforderungen aus #4/#5 auf.
 
 Produktpakete lassen sich jetzt mit vollständiger Vorschau, exakter Version,
 Warehouse-Admin/archive-Scope und Paket-gebundener Phrase archivieren und

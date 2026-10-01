@@ -142,3 +142,13 @@ und Identität; unveränderte MCP-Archive erhalten den belegten Betriebszustand,
 ältere/bearbeitete Archive werden gesperrt aktiviert. Keine neue Migration;
 vorhandener Lagerplatz-Versionstrigger aus Root `019` bleibt maßgeblich.
 Der MCP bietet 183 Werkzeuge: 67 Abfragen, 58 Vorschauen, 58 Ausführungen.
+
+
+WarehouseCore `5.9.97` / Cores MCP `1.5.27` ergänzen vollständige Case-Anlage,
+Metadatenpflege, Archivierung/Restore, Modellauflösung und redigierte Audits.
+Warehouse-Admin, vorhandener create/update/archive-Scope, finale Bestätigung,
+exakte Version und Idempotenz sind nötig; Lifecycle verlangt eine Case-Phrase.
+Migration `052` / Umbrella `025` versioniert auch Scanner-/UI-Inhalte und
+Verschachtelungen. Case, Audit und Replay sind atomar. Archive deaktiviert Scan-
+Kennungen; Restore prüft Vorlagen/Referenzen/Lagerhierarchie und Kapazität.
+Keine neue Konfiguration. MCP bietet 193 Tools (69/62/62). Tool-Liste neu laden.
