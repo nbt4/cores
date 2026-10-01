@@ -124,3 +124,12 @@ Der MCP registriert 173 Werkzeuge (65 Abfragen, 54 Vorschauen, 54 Ausführungen)
 Die neuen Aktionen benötigen Warehouse-Admin und create/update/archive-Scope,
 Bestätigung, Version und Idempotenz; Archivierung/Revert zusätzlich eine
 Geräte- bzw. Audit-gebundene Phrase. Keine endgültige Geräte-Löschung.
+
+WarehouseCore `5.9.95` / Cores MCP `1.5.25` ergänzen geführte Paket-Archivierung
+und Restore sowie redigierte Paket-Audits. Admin/archive-Scope, exakte Version,
+Idempotenz und Paket-gebundene Phrase sind erforderlich. Aktive Jobs/offene
+Reservierungen sperren; Restore prüft Produkte/Bestandteile. Beide Aktionen
+setzen Website-Sichtbarkeit auf false und erhalten Historie/Inhaltszeilen.
+Keine neue Migration; vorhandene Paket-Versionstrigger gelten weiter.
+Geräte-Abhängigkeiten behandeln fehlenden Jobstatus nun ebenfalls als offen.
+Der MCP bietet 178 Werkzeuge: 66 Abfragen, 56 Vorschauen, 56 Ausführungen.

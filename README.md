@@ -51,19 +51,19 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (30.09.2026):
+Aktueller Suite-Release (01.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.94` |
+| WarehouseCore | `nobentie/warehousecore:5.9.95` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.24` |
+| Cores MCP | `nobentie/cores-mcp:1.5.25` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.94 und Cores MCP 1.5.24 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.95 und Cores MCP 1.5.25 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,14 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 173 Werkzeuge (65 Abfragen, 54 Vorschauen,
-54 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 178 Werkzeuge (66 Abfragen, 56 Vorschauen,
+56 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Produktpakete lassen sich jetzt mit vollständiger Vorschau, exakter Version,
+Warehouse-Admin/archive-Scope und Paket-gebundener Phrase archivieren und
+wiederherstellen. Aktive Jobs und offene Reservierungen sperren; Restore prüft
+Bestandteile/Produkte und veröffentlicht das Paket nicht erneut. Historie und
+Inhaltszeilen bleiben erhalten. Paket-Audit-Historie ist redigiert.
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
 Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und
