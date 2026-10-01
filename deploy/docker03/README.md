@@ -1,5 +1,18 @@
 # Cores stack on docker03
 
+## Kategorie-Lifecycle: WarehouseCore 5.9.104 / MCP 1.5.34
+
+Release ergänzt Archivierung/Restore und redigierte Historien aller drei
+Kategorieebenen; 304 Werkzeuge (86 Abfragen / 109 Vorschauen / 109 Ausführungen).
+Warehouse `058` / Umbrella `031` erhalten Referenzen und prüfen Archivzustand,
+aktive Eltern und Produktpfade auch bei UI-Schreibern. Eigentümer-API benötigt
+Admin/archive-Scope, genaue Record-/Abhängigkeitsversionen und recordgebundene
+Bestätigung; Lifecycle, Audit und dauerhafter Replay sind atomar. Fehler können
+mit demselben Schlüssel wiederholt werden. Vor Rollout vollständige Race-/DB-
+Tests, Vet/Build und frischer MCP-Ende-zu-Ende-Test; nach Rollout Containerstatus,
+Image-IDs, Schema-Sperren und ausschließlich lesender MCP-Smoke-Test prüfen.
+
+
 The production deployment is one Compose project named `cores`. Its canonical
 definition is `deploy/docker03/compose.yaml`; all substitutions are documented
 once in the repository-root `.env.example`.

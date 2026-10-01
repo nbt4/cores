@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.103` |
+| WarehouseCore | `nobentie/warehousecore:5.9.104` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.33` |
+| Cores MCP | `nobentie/cores-mcp:1.5.34` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.103 und Cores MCP 1.5.33 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.104 und Cores MCP 1.5.34 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,16 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 289 Werkzeuge (83 Abfragen, 103 Vorschauen,
-103 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 304 Werkzeuge (86 Abfragen, 109 Vorschauen,
+109 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Alle drei Warehouse-Kategorieebenen unterstützen Archivierung/Restore und
+redigierte Historien. Aktive Produkte/Unterkategorien blockieren Archivierung;
+Restore prüft aktive Eltern und erhält alle IDs, Metadaten und historischen
+Produktpfade. Genaue Record-/Abhängigkeitsversionen, Admin/archive-Scope und
+recordgebundene Bestätigung sind erforderlich. Lifecycle, Audit und dauerhafter
+Replay sind atomar. Root `031` / Warehouse `058` schützen auch bestehende
+Schreiber und verhindern das Löschen referenzierter Historie.
 
 Lageraufgaben unterstützen vollständige Anlage/Teilupdates, Start, Abschluss,
 Storno/Wiederöffnung, Archivierung/Restore und redigierte Historien. Alle Aktionen
