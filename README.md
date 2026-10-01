@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.102` |
+| WarehouseCore | `nobentie/warehousecore:5.9.103` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.32` |
+| Cores MCP | `nobentie/cores-mcp:1.5.33` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.102 und Cores MCP 1.5.32 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.103 und Cores MCP 1.5.33 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,8 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 268 Werkzeuge (80 Abfragen, 94 Vorschauen,
-94 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 289 Werkzeuge (83 Abfragen, 103 Vorschauen,
+103 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
 
 Lageraufgaben unterstützen vollständige Anlage/Teilupdates, Start, Abschluss,
 Storno/Wiederöffnung, Archivierung/Restore und redigierte Historien. Alle Aktionen
@@ -83,6 +83,17 @@ Aktionen verlangen eine recordgebundene Phrase. Root `029` / Warehouse `056`
 schützen Archive und versionieren Aufgaben, Ereignisse und Referenzen. Fehlgeschlagene
 dauerhaft abgesicherte Aufgaben-/Wartungsaktionen können mit demselben Schlüssel
 wiederholt werden. Erfolgreiche Aktionen werden unverändert wiedergegeben.
+
+Geführte Inventuren unterstützen Anlage/Teilupdates, explizite Mengenpflege,
+Review/Korrektur, Freigabe, Storno und Archivierung/Restore. Freigabe verlangt
+den separaten `cores:warehouse:approve`-Scope, exakte Versionen/Bestandskontext,
+eine recordgebundene Phrase und einen unveränderten Startbestand. Blinde
+Sollmengen bleiben bis Review verborgen; fehlende Zählungen werden nur nach
+expliziter Bestätigung genullt. Bestandsabgleich, Bewegungen, gepackte Case-Folgen,
+Differenzjournal, Lagertermine, Audits und dauerhafter Replay sind atomar.
+Warehouse `057` / Root `030` schützen alle Zeilen-/Ereignisschreiber. Vollständige
+Race-/Datenbanktests und frische MCP-Ende-zu-Ende-Prüfung sind erfolgreich.
+Details: `cores-mcp/docs/ISSUE_COMPLETION.md`.
 
 Manuelle Wartungsaufträge und Defekte bieten vollständige Feldpflege, geprüfte
 Statuswechsel, Abschluss/Storno/Wiederöffnung, Archivierung/Restore und redigierte

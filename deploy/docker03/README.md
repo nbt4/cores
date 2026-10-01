@@ -221,3 +221,24 @@ Aufgaben/Ereignisse und deren Referenzen und ergänzen das Schema für Neuinstal
 Fehlgeschlagene dauerhaft abgesicherte Aufgaben-/Wartungsaktionen dürfen mit
 demselben Schlüssel erneut ausgeführt werden. Keine neue Konfiguration.
 Tool-Liste neu laden: 268 Tools (80 Abfragen / 94 Vorschauen / 94 Ausführungen).
+
+### Geführte MCP-Inventur: WarehouseCore 5.9.103 / Cores MCP 1.5.33
+
+Neun benannte Vorschau-/Ausführungspaare plus Suche, Detail und redigierte
+Historie ergänzen Inventurzählungen. Alle Aktionen brauchen aktuelle Adminrechte,
+Aktionsscope, vollständige Vorschau, Bestätigung, exakte Versions-/Kontextwerte
+und Idempotenz. Freigabe benötigt ausdrücklich `cores:warehouse:approve`;
+Legacy-write sowie create/update genügen nicht. Review, Freigabe, Storno und
+Lifecycle verlangen eine recordgebundene Phrase. Mengen werden ersetzt;
+fehlende Zählungen nur nach ausdrücklicher Review-Bestätigung genullt.
+
+Blinde Sollmengen bleiben bis Review verborgen. Nur Freigabe gleicht physischen
+Bestand ab; Lagerhierarchien/Profile, Anfangsbestand und Abhängigkeiten werden
+atomar erneut geprüft. Gepackte Inhalte folgen ihrer Wurzelposition. Bestand,
+Bewegungen, Differenzjournal, Lagertermine, Ereignisse, Audits und dauerhafter
+Replay sind eine Transaktion. Terminale Zählungen bleiben nach Restore terminal;
+neue Inventuren sind neue Zählungen. Warehouse-Startup `057` / Umbrella `030`
+ergänzen Schema und Versions-/Archiv-/Baseline-Guards. Die alte UI-Freigabe für
+geführte MCP-Zählungen ist zugunsten des geprüften Pfads gesperrt. Keine neue
+Konfiguration. OAuth für Inventurfreigaben mit approve-Scope neu autorisieren.
+Tool-Liste neu laden: 289 Tools (83 Abfragen / 103 Vorschauen / 103 Ausführungen).
