@@ -133,3 +133,12 @@ setzen Website-Sichtbarkeit auf false und erhalten Historie/Inhaltszeilen.
 Keine neue Migration; vorhandene Paket-Versionstrigger gelten weiter.
 Geräte-Abhängigkeiten behandeln fehlenden Jobstatus nun ebenfalls als offen.
 Der MCP bietet 178 Werkzeuge: 66 Abfragen, 56 Vorschauen, 56 Ausführungen.
+
+WarehouseCore `5.9.96` / Cores MCP `1.5.26` ergänzen Lagerplatz-Archivierung,
+Restore und redigierte Audits. Admin/archive-Scope, Version, Idempotenz und
+Lagerplatz-gebundene Phrase sind erforderlich. Bestand, aktive Nachfahren,
+Heimat-Cases sowie offene Aufgaben/Inventuren sperren. Restore prüft Hierarchie
+und Identität; unveränderte MCP-Archive erhalten den belegten Betriebszustand,
+ältere/bearbeitete Archive werden gesperrt aktiviert. Keine neue Migration;
+vorhandener Lagerplatz-Versionstrigger aus Root `019` bleibt maßgeblich.
+Der MCP bietet 183 Werkzeuge: 67 Abfragen, 58 Vorschauen, 58 Ausführungen.

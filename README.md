@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.95` |
+| WarehouseCore | `nobentie/warehousecore:5.9.96` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.25` |
+| Cores MCP | `nobentie/cores-mcp:1.5.26` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.95 und Cores MCP 1.5.25 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.96 und Cores MCP 1.5.26 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,14 +71,19 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 178 Werkzeuge (66 Abfragen, 56 Vorschauen,
-56 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 183 Werkzeuge (67 Abfragen, 58 Vorschauen,
+58 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
 
 Produktpakete lassen sich jetzt mit vollständiger Vorschau, exakter Version,
 Warehouse-Admin/archive-Scope und Paket-gebundener Phrase archivieren und
 wiederherstellen. Aktive Jobs und offene Reservierungen sperren; Restore prüft
 Bestandteile/Produkte und veröffentlicht das Paket nicht erneut. Historie und
 Inhaltszeilen bleiben erhalten. Paket-Audit-Historie ist redigiert.
+
+Lagerplätze unterstützen geführtes Archivieren/Restore und redigierte Audits.
+Bestand, aktive Nachfahren, Heimat-Cases sowie offene Aufgaben/Inventuren sperren.
+Restore prüft Identität und Elternhierarchie, erhält den belegten Vorzustand oder
+aktiviert ältere/bearbeitete Archive gesperrt. Metadaten und Historie bleiben.
 
 Compose verwendet feste Release-Tags. `cores-common:v1.2.0` stellt die aktuelle
 Sitzungsprüfung für Dashboard und ProcurementCore bereit: Kontosperren und
