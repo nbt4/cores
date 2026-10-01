@@ -57,13 +57,13 @@ Aktueller Suite-Release (01.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.99` |
+| WarehouseCore | `nobentie/warehousecore:5.9.100` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.29` |
+| Cores MCP | `nobentie/cores-mcp:1.5.30` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.99 und Cores MCP 1.5.29 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.100 und Cores MCP 1.5.30 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,17 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 205 Werkzeuge (71 Abfragen, 67 Vorschauen,
-67 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 215 Werkzeuge (73 Abfragen, 71 Vorschauen,
+71 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Wartungspläne bieten vollständige Anlage, Teilupdates, Archivierung/Restore,
+Suche und redigierte Audits. Die Vorschau zeigt Plan, Gerät, Abhängigkeiten,
+den nächsten Gerätetermin und gegebenenfalls einen fälligen geplanten Auftrag.
+Plan, Gerätetermin, Auftrag/Ereignis, Audits und Replay werden atomar gespeichert.
+Admin/create/update/archive-Scope, genaue Plan-/Geräteversionen, Bestätigung
+und Idempotenz sind erforderlich; Lifecycle zusätzlich eine recordgebundene Phrase.
+Migration `027` (Warehouse `054`) ergänzt das Wartungsschema und versioniert
+Plan-/Auftragsschreiber. Neustarts erhalten vorhandene benutzerdefinierte Pläne.
 
 Hersteller und Marken unterstützen Archivierung/Restore und redigierte
 Audit-Historien. Aktive Produkte beziehungsweise aktive Marken sperren Archive;

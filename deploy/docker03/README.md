@@ -174,3 +174,16 @@ Bearbeitung archivierter Metadaten. Restore-Reihenfolge: Hersteller, Marke,
 Produkt. Warehouse-Admin/archive-Scope, genaue Version, Bestätigungsphrase und
 Idempotenz sind erforderlich. Keine neue Konfiguration. Tool-Liste neu laden:
 205 Tools (71 Abfragen / 67 Vorschauen / 67 Ausführungen).
+
+### MCP-Wartungspläne: WarehouseCore 5.9.100 / Cores MCP 1.5.30
+
+Wartungspläne unterstützen Anlage, Teilupdates, Archivierung/Restore, Suche
+und redigierte Audits. Warehouse-Admin, create/update/archive-Scope, genaue
+Plan-/Geräteversionen, Bestätigung und Idempotenz sind erforderlich; Lifecycle
+zusätzlich eine recordgebundene Phrase und keine offenen Aufträge. Vorschau
+und Dry-run schreiben nichts. Plan, Gerätetermin, gegebenenfalls erzeugter
+geplanter Auftrag/Ereignis, Audits und dauerhafter Replay sind atomar.
+Warehouse-Migration `054` installiert Versionstrigger; Umbrella `027` ergänzt
+auch das kanonische Schema für neue Datenbanken. Vorhandene benutzerdefinierte
+Pläne bleiben bei Neustarts erhalten. Keine neue Konfiguration. Tool-Liste neu
+laden: 215 Tools (73 Abfragen / 71 Vorschauen / 71 Ausführungen).
