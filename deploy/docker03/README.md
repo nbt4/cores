@@ -206,3 +206,18 @@ kann Kosten lesen, wenn explizit erlaubt, aber keine Änderungen ausführen.
 Aktuelle Adminrechte werden bei jeder MCP-Anfrage gelesen, ohne Token-Scopes
 zu erweitern. Kein neuer Konfigurationswert. Tool-Liste neu laden:
 252 Tools (78 Abfragen / 87 Vorschauen / 87 Ausführungen).
+
+### MCP-Lageraufgaben: WarehouseCore 5.9.102 / Cores MCP 1.5.32
+
+Vollständige Anlage/Teilupdates und Start, Abschluss, Storno/Wiederöffnung,
+Archivierung/Restore mit Vorschauen und redigierter Historie. Aktuelle Adminrechte,
+Aktionsscope, Bestätigung und Idempotenz sind erforderlich, ebenso genaue
+Aufgaben- und Referenzversionen. Terminale/Lifecycle-Aktionen benötigen eine
+recordgebundene Phrase; Storno/Wiederöffnung zusätzlich einen Grund.
+Aufgabe, Ereignis, Referenzversionen, Audits und dauerhafter Replay sind atomar.
+Aufgabenabschluss quittiert Arbeit; physische Bestandsbewegungen bleiben eigene
+Aktionen. Warehouse-Startup `056` und Umbrella `029` schützen Archive, versionieren
+Aufgaben/Ereignisse und deren Referenzen und ergänzen das Schema für Neuinstallationen.
+Fehlgeschlagene dauerhaft abgesicherte Aufgaben-/Wartungsaktionen dürfen mit
+demselben Schlüssel erneut ausgeführt werden. Keine neue Konfiguration.
+Tool-Liste neu laden: 268 Tools (80 Abfragen / 94 Vorschauen / 94 Ausführungen).
