@@ -187,3 +187,22 @@ Warehouse-Migration `054` installiert Versionstrigger; Umbrella `027` ergänzt
 auch das kanonische Schema für neue Datenbanken. Vorhandene benutzerdefinierte
 Pläne bleiben bei Neustarts erhalten. Keine neue Konfiguration. Tool-Liste neu
 laden: 215 Tools (73 Abfragen / 71 Vorschauen / 71 Ausführungen).
+
+### MCP-Wartungsaufträge/Defekte: WarehouseCore 5.9.101 / Cores MCP 1.5.31
+
+Vollständige manuelle Auftrag-/Defektanlage und Teilupdates, Statuswechsel,
+Abschluss/Storno/Wiederöffnung, Archivierung/Restore und redigierte Historien.
+Warehouse-Admin und Aktionsscope, genaue Auftrag-/Geräte-/Planversionen,
+Bestätigung und Idempotenz sind erforderlich; terminale/Lifecycle-Aktionen
+zusätzlich eine recordgebundene Phrase. Alle Folgeänderungen und Audits sind
+atomar. Warehouse-Startup `055` und Umbrella-Migration `028` schützen Archive
+und versionieren abhängige Geräte, Pläne, Aufträge, Ereignisse und Legacy-Defekte.
+Die normale Auftragsliste blendet Archive aus; historische IDs bleiben erhalten.
+
+Wartungskosten benötigen separat `cores:warehouse:financial`; Legacy-write
+genügt dafür nicht. Die OAuth-Freigabe zeigt bei angefragten Kosten einen
+unabhängigen, standardmäßig gesperrten Suite-Select. Read-only-Konfiguration
+kann Kosten lesen, wenn explizit erlaubt, aber keine Änderungen ausführen.
+Aktuelle Adminrechte werden bei jeder MCP-Anfrage gelesen, ohne Token-Scopes
+zu erweitern. Kein neuer Konfigurationswert. Tool-Liste neu laden:
+252 Tools (78 Abfragen / 87 Vorschauen / 87 Ausführungen).

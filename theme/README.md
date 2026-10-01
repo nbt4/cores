@@ -24,3 +24,7 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 5. Kanonische Datei, generierte Service-Kopien, Dokumentation und Submodule gemeinsam veröffentlichen.
 
 Die Kopien in den Service-Repositories sind absichtlich eingecheckt: Jeder Core muss ohne das Umbrella-Repository eigenständig gebaut und deployt werden können. Sie dürfen nicht direkt bearbeitet werden.
+
+Die MCP-OAuth-Seite nutzt dieselben Auth-/Select-Primitives für die gesonderte
+Freigabe angefragter Wartungskosten. Der Kosten-Select bleibt standardmäßig
+gesperrt und besitzt ein eigenes Label und eine Hilfetext-Zuordnung.

@@ -186,3 +186,13 @@ Voreinstellung. Der Select hat ein zugeordnetes Label, einen erklärenden Text
 und verwendet die vorhandenen Select-Primitives einschließlich mobilem
 Touch-Ziel und sichtbarem Tastaturfokus. Deutsch und Englisch
 folgen der Browsersprache oder der expliziten Sprachauswahl im Autorisierungslink.
+
+Angefragte Wartungskosten erhalten einen zweiten, unabhängig beschrifteten
+Suite-Select. „Kosten nicht freigeben“ ist voreingestellt; eine Client-Anfrage
+allein erteilt keinen Financial-Scope. Die Hilfetexte erklären Lesen und
+zusätzliche Schreibrechte in Deutsch/Englisch. Die bestehenden Auth-/Select-
+Primitives tragen Layout, Light/Dark und Tastaturfokus ohne zusätzliche CSS-Werte.
+
+Die OAuth-Logoform folgt dem kanonischen Cores-SVG; die monochromen Pfade
+verwenden `currentColor` und bleiben in Light/Dark erkennbar. Formularlabels
+verwenden den vorhandenen Sekundärtext-Token für ausreichenden Kontrast.
