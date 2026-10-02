@@ -1,5 +1,15 @@
 # Cores stack on docker03
 
+## Kunden/Venues: Rental 5.3.117 / MCP 1.5.36
+
+337 Werkzeuge (95 Abfragen / 121 Vorschauen / 121 Ausführungen).
+Rental `047` / Root `033` installiert die Venue-Grundtabellen sowie
+Stammdaten-/Job-/Versionsschutz und dauerhafte Receipts. Zuerst RentalCore
+ausrollen und gesund prüfen, danach Cores MCP; dessen minimale Venue-Abfragen
+benötigen das Lifecycle-Feld. Race-/DB-Tests, Vet/Build, Rental-Frontend- und
+Suite-Design-Prüfung sowie frische Streamable-HTTP-Lifecycle-Tests sind
+Release-Checks. Image-IDs und lesender produktiver MCP-Test abschließend prüfen.
+
 ## Produktbeziehungen: Warehouse 5.9.105 / MCP 1.5.35 / Rental 5.3.116
 
 315 Werkzeuge (89 Abfragen / 113 Vorschauen / 113 Ausführungen).
