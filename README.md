@@ -56,14 +56,14 @@ Aktueller Suite-Release (02.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.119` |
-| WarehouseCore | `nobentie/warehousecore:5.9.105` |
+| RentalCore | `nobentie/rentalcore:5.3.120` |
+| WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.38` |
+| Cores MCP | `nobentie/cores-mcp:1.5.39` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.105 und Cores MCP 1.5.38 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.106 und Cores MCP 1.5.39 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,19 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 346 Werkzeuge (96 Abfragen, 125 Vorschauen,
-125 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 353 Werkzeuge (99 Abfragen, 127 Vorschauen,
+127 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+RentalCore 5.3.120 ergänzt vollständige Materialbedarfe mit Gesamt-, manueller
+und servergesteuerter Positionsmenge, Archivierung/Restore und redigierter Historie.
+Exakte Zeilen-/Job-/Kontextversionen, aktuelle Admin-/Aktionsrechte und gebundene
+Vorschau schützen atomare native Historie, Audit und dauerhaften Replay.
+Rental `049` / Root `035` erhält IDs und ursprüngliche Mengen auch in nativen
+Auswahlabläufen. Archive fehlen in aktiven Bedarfen und Packlisten; Warehouse
+5.9.106 berücksichtigt zusätzliche manuelle Mengen neben Produktpositionen
+und erweitert Zubehör aus der Gesamtmenge. Rental zuerst deployen, danach
+Warehouse und MCP. Alte Job-Belege bleiben wiederholbar; alte unversionierte
+Materialvorschauen müssen mit neuen Metadaten neu erstellt werden.
 
 RentalCore 5.3.119 ergänzt vollständige Jobfelder, positionsbasierte Preisberechnung,
 Archivierung/Restore und redigierte Job-Audits. Exakte Job-/Kontextversionen,

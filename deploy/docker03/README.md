@@ -1,5 +1,22 @@
 # Cores stack on docker03
 
+## Materialbedarfe: Rental 5.3.120 / Warehouse 5.9.106 / MCP 1.5.39
+
+353 Werkzeuge (99 Abfragen / 127 Vorschauen / 127 Ausführungen).
+Rental `049` / Root `035` ergänzt exakte Zeilenversionen, Archivzeitpunkt und
+allgemeinen Schreib-/Identitäts-/Archivschutz; native Auswahlabläufe behalten
+die ursprünglichen IDs. Root `032` und Warehouse-Initialisierung behandeln
+archivierte Bedarfe als historische Referenzen. Zuerst Rental deployen und
+gesund prüfen, danach Warehouse und MCP. Warehouse berücksichtigt zusätzliche
+manuelle Mengen in Packlisten samt Zubehör; Archive fehlen in aktiven Bedarfen.
+Alte erfolgreiche Job-Belege bleiben nach dem Upgrade identisch wiederholbar.
+Alte unversionierte Material-Schreibvorschauen müssen neu vorbereitet werden.
+Vollständige Race-/DB-/Vet-/Build-Prüfungen, Upgrade-Replay, frische tatsächliche
+MCP-Abläufe samt Kunden-/Venue-/Job-Regression und Packlisten-Mengentests sind
+Release-Checks. Nach Rollout exakte Images, Material-/Jobschutz und den gesamten
+ausschließlich lesenden MCP-Katalog prüfen. Elternissues bleiben offen.
+
+
 ## Vollständige Jobs: Rental 5.3.119 / MCP 1.5.38
 
 346 Werkzeuge (96 Abfragen / 125 Vorschauen / 125 Ausführungen).
