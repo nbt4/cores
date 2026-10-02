@@ -56,14 +56,14 @@ Aktueller Suite-Release (02.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.118` |
+| RentalCore | `nobentie/rentalcore:5.3.119` |
 | WarehouseCore | `nobentie/warehousecore:5.9.105` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.37` |
+| Cores MCP | `nobentie/cores-mcp:1.5.38` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.105 und Cores MCP 1.5.37 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.105 und Cores MCP 1.5.38 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,18 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 341 Werkzeuge (95 Abfragen, 123 Vorschauen,
-123 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 346 Werkzeuge (96 Abfragen, 125 Vorschauen,
+125 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+RentalCore 5.3.119 ergänzt vollständige Jobfelder, positionsbasierte Preisberechnung,
+Archivierung/Restore und redigierte Job-Audits. Exakte Job-/Kontextversionen,
+aktuelle Aktions-/Adminrechte, Vorschauphrase und getrennte Finanzfreigabe schützen
+Änderungen; aktive Bearbeiter und Geräte-Zeitkonflikte blockieren sie.
+Job, native Historie, Audit und Replay sind atomar. Rental `048` / Root `034`
+versionieren alle Jobschreiber und schützen direkte sowie indirekte Inhalte
+archivierter Jobs. Ausgegebene Geräte folgen weiterhin dem physischen Rückgabeprozess.
+Hinweise zur clientseitigen Tool-Aktualisierung stehen in der
+[Cores-MCP-README](cores-mcp/README.md#tool-katalog-in-ki-apps-aktualisieren).
 
 Kunden und Venues unterstützen vollständige fachliche Feldpflege,
 Archivierung/Restore, minimale Identitätsabfragen und redigierte Historien.

@@ -1,5 +1,24 @@
 # Cores stack on docker03
 
+## Vollständige Jobs: Rental 5.3.119 / MCP 1.5.38
+
+346 Werkzeuge (96 Abfragen / 125 Vorschauen / 125 Ausführungen).
+Rental `048` / Root `034` installiert Job-/Inhaltsschutz, exakte monotone Versionen
+und vorhandene Personalzuordnungen auf frischen Installationen. Rental zuerst
+ausrollen und gesund prüfen, dann MCP. Offene Job-Vorschauen neu erstellen;
+Ausführung benötigt exakte Kontext-/Datensatzversion und Bestätigungsphrase.
+Finanzfelder und berechnete Summen benötigen ausdrücklich Rental-Finanzzugriff.
+Aktive Bearbeitungssitzungen, Geräte-Zeitkonflikte und Änderungen an Abhängigkeiten
+blockieren die bestätigte Ausführung. Archive erhalten alle Inhalte und blockieren
+ausgegebene Geräte, aktive Cases sowie offene Warehouse-Aufgaben. Restore erhält
+Status und Summen; Öffnen ist eine eigene Statusänderung. Native Historie, Audit
+und dauerhafter Beleg sind atomar; Replay prüft aktuelle Owner-Rechte.
+Race-/DB-/Vet-/Build-Prüfungen, frische tatsächliche MCP-Workflows und Kunden-/Venue-
+Regression sowie indirekte Positions-/Paket-Inhaltsprüfungen sind Release-Checks.
+Nach Rollout Image-IDs, Job-/Inhaltstrigger und den ganzen lesenden Katalog prüfen.
+App-Metadaten ggf. im ChatGPT-Plugin-Portal per Rescan bzw. Developer Mode per
+Refresh aktualisieren; ein bestehender Chat garantiert keine neue Tool-Liste.
+
 ## Kunden-/Venue-Feldrevert: Rental 5.3.118 / MCP 1.5.37
 
 341 Werkzeuge (95 Abfragen / 123 Vorschauen / 123 Ausführungen).
