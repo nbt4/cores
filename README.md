@@ -20,6 +20,14 @@ Kategorien. Root `038` / Procurement `009` schützen sämtliche Schreiber.
 Historische Kategorien und Lieferanten bleiben in der MCP-Auflösung auffindbar
 und verlangen separate Wiederherstellung. Der Gesamtkatalog enthält 373 Werkzeuge.
 
+ProcurementCore 1.0.68 / MCP 1.5.43 sichern den vollständigen Wareneingang:
+Teil-/Voll-/Überlieferung, Produktzuordnung, Lagerverteilung, Seriennummern und
+Zielplatz gehören zur exakten Vorschau. Buchung, Geräte/Bestand, Einlagerungs-
+aufgabe/-ereignis, Audit und dauerhafter Beleg sind atomar. Empfang und Freigabe
+verlangen ausdrücklich getrennte Scopes; allgemeines Schreibrecht genügt nicht.
+Erfolgreiche alte Belege bleiben ohne Doppelbuchung wiederholbar. Der Katalog
+bleibt bei 373 Werkzeugen; die übrigen Abnahmepunkte der MCP-Issues bleiben offen.
+
 ## Einheitliches Designsystem
 
 Alle Oberflächen der Cores Suite verwenden ein verbindliches Designsystem für Farbpalette, Inter-Typografie, Größenleiter, Shell/Sidebar, Tabellen, Formulare, Selects, Dropdowns, Scrollbars, Karten, Responsive-Verhalten und Dashboards. Die vollständige Spezifikation steht in [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md); Marken- und Logoregeln stehen ergänzend in [`docs/BRANDING.md`](docs/BRANDING.md).
@@ -76,8 +84,8 @@ Aktueller Suite-Release (02.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.67` |
-| Cores MCP | `nobentie/cores-mcp:1.5.42` |
+| ProcurementCore | `nobentie/procurementcore:1.0.68` |
+| Cores MCP | `nobentie/cores-mcp:1.5.43` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

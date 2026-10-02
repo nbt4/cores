@@ -1,5 +1,23 @@
 # Cores stack on docker03
 
+## Wareneingang: Procurement 1.0.68 / MCP 1.5.43
+
+Procurement zuerst deployen, MCP danach. Es gibt keine neue Migration; alle bisher
+installierten Guards bleiben erforderlich. Beide Compose-Dateien pinnen die
+neuen Images. Der Katalog bleibt bei 373 Werkzeugen. Vorhandene Erfolgsbelege
+bleiben ohne erneute Bestandsbuchung wiederholbar; alte ungebuchte Vorschauen
+brauchen eine neue Vorbereitung mit exaktem Kontext und Mengenbestätigung.
+Der alte MCP-Empfangspfad erlaubt nur gespeicherte Erfolgsbelege.
+
+Wareneingang verlangt ausdrücklich `cores:procurement:receive`, Freigabe und
+Bestellstatus `cores:procurement:approve`; `cores:write` alleine genügt nicht.
+Verbindungen müssen diese Scopes erneut mit ausdrücklicher Einwilligung anfordern.
+Falls der Client alte Schemas zwischenspeichert, Werkzeug-Metadaten gemäß der
+MCP-README per Refresh/Rescan aktualisieren. Prüfen: vollständiger lesender
+MCP-Katalog, sämtliche bisherigen Guards und die genauen gesunden Image-IDs.
+Parent-Issues bleiben bis zur vollständigen Abnahmeliste offen.
+
+
 ## Beschaffungskategorien: 1.0.67 / MCP 1.5.42
 
 Procurement zuerst deployen: Native `009` und Root `038` ergänzen den aktiven
