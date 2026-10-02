@@ -1,5 +1,17 @@
 # Cores stack on docker03
 
+## Produktbeziehungen: Warehouse 5.9.105 / MCP 1.5.35 / Rental 5.3.116
+
+315 Werkzeuge (89 Abfragen / 113 Vorschauen / 113 Ausführungen).
+Warehouse `059` / Root `032` installiert Historien-, Graph-, Job- und
+Versionsschutz. Zuerst WarehouseCore und Cores MCP ausrollen und gesund prüfen,
+danach RentalCore; dessen normale Beziehungsvorschläge benötigen das neue
+Lifecycle-Feld. Vollständige Race-/DB-Tests aller drei Dienste, Vet/Build,
+Rental-Frontend-/Suite-Design-Prüfung und frischer Streamable-HTTP-Test sind
+Release-Checks. Abschließend tatsächliche Image-IDs, gesonderte Trigger und
+nur lesende MCP-Abfragen im produktiven Stack prüfen.
+
+
 ## Kategorie-Lifecycle: WarehouseCore 5.9.104 / MCP 1.5.34
 
 Release ergänzt Archivierung/Restore und redigierte Historien aller drei

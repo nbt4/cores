@@ -51,19 +51,19 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (01.10.2026):
+Aktueller Suite-Release (02.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.115` |
-| WarehouseCore | `nobentie/warehousecore:5.9.104` |
+| RentalCore | `nobentie/rentalcore:5.3.116` |
+| WarehouseCore | `nobentie/warehousecore:5.9.105` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.64` |
-| Cores MCP | `nobentie/cores-mcp:1.5.34` |
+| Cores MCP | `nobentie/cores-mcp:1.5.35` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.104 und Cores MCP 1.5.34 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.105 und Cores MCP 1.5.35 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -71,8 +71,17 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 304 Werkzeuge (86 Abfragen, 109 Vorschauen,
-109 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 315 Werkzeuge (89 Abfragen, 113 Vorschauen,
+113 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Produktbeziehungen unterstützen vollständige Anlage/Teilupdates,
+Archivierung/Restore, Schema und redigierte Historien. Exakte Beziehungs-/Produkt-
+und Graphkontexte, aktuelle Admin/Aktionsrechte, recordgebundene Bestätigung
+und atomarer Audit/Replay sind erforderlich. Aktive Jobs über die Packlisten-
+Hierarchie und Pflichtzyklen blockieren Änderungen. Warehouse `059` / Root `032`
+erhalten Historie und versionieren alle Beziehungs-/Produkt-Schreiber.
+RentalCore 5.3.116 sowie Warehouse-Scanner/Packlisten verwenden ausschließlich
+aktive Beziehungen/Produkte; Archivierung bucht keinen Bestand.
 
 Alle drei Warehouse-Kategorieebenen unterstützen Archivierung/Restore und
 redigierte Historien. Aktive Produkte/Unterkategorien blockieren Archivierung;
