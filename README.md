@@ -59,7 +59,7 @@ Aktueller Suite-Release (02.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.64` |
+| ProcurementCore | `nobentie/procurementcore:1.0.65` |
 | Cores MCP | `nobentie/cores-mcp:1.5.39` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
@@ -73,6 +73,10 @@ versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
 Owning Core geprüft. Der MCP bietet 353 Werkzeuge (99 Abfragen, 127 Vorschauen,
 127 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+ProcurementCore 1.0.65 erhält vorhandene SQL-UNIQUE-Constraints für PunchOut-
+Zuordnungen, Token-Hashes und Confirmation-IDs. Damit startet auch ein frisch
+mit Umbrella-Migrationen angelegter Stack ohne GORM-Constraint-Fehler.
 
 RentalCore 5.3.120 ergänzt vollständige Materialbedarfe mit Gesamt-, manueller
 und servergesteuerter Positionsmenge, Archivierung/Restore und redigierter Historie.

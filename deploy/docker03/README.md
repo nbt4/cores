@@ -1,5 +1,16 @@
 # Cores stack on docker03
 
+## Procurement-Startschutz: 1.0.65
+
+GORM erhält vorhandene PostgreSQL-UNIQUE-Constraints für nullable PunchOut-
+Zuordnungen, Session-Token-Hashes und Confirmation-Payload-IDs. Keine neue
+Migration und keine Datenänderung erforderlich. Vollständige Race-/DB-/Vet-/Build-
+Prüfungen, 23 Frontend-Tests, Frontend-Build und wiederholte Initialisierung
+gegen die originalen SQL-Migrationsconstraints gehören zur Verifikation.
+Ein frischer kompletter Stack muss danach gesund starten; anschließend den
+ausschließlich lesenden MCP-Katalog und exakte produktive Image-IDs prüfen.
+
+
 ## Materialbedarfe: Rental 5.3.120 / Warehouse 5.9.106 / MCP 1.5.39
 
 353 Werkzeuge (99 Abfragen / 127 Vorschauen / 127 Ausführungen).
