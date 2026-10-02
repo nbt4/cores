@@ -1,5 +1,24 @@
 # Cores stack on docker03
 
+## Bedarfs-/Bestellarchive: Procurement 1.0.69 / MCP 1.5.44
+
+Procurement zuerst deployen, MCP danach. Native `010` und Root `039` ergänzen
+Archivzustände, historische Einlagerungszuordnungen und sechs Eltern-/Positions-
+Guards. Archiv erhält Status, Geschäftsfelder, Positionen und Historie; offene
+Folgebestellungen oder Einlagerungsaufgaben blockieren die Aktion. Restore prüft
+ursprüngliche aktive Eltern. Aktuelle Anforderer-/Admin-/Archiv-Rechte und exakte
+Version/Kontext/Bestätigung gelten auch vor dauerhaftem und gecachtem Replay.
+Zurückgegebene Bedarfe werden ausdrücklich überarbeitet und erneut eingereicht.
+
+Beide Compose-Dateien pinnen die neuen Images. Prüfen: genaue gesunde Images,
+vollständiger lesender 383-Werkzeug-Katalog, sämtliche bisherigen Guards und
+`proc_requisitions_guard_lifecycle_version`,
+`proc_purchase_orders_guard_lifecycle_version`,
+`proc_requisition_lines_guard_lifecycle`, `proc_requisition_lines_touch_version`,
+`proc_purchase_order_lines_guard_lifecycle`, `proc_purchase_order_lines_touch_version`.
+Bestehende Clients aktualisieren ihre Tool-Metadaten gemäß MCP-README per
+Refresh/Rescan. Parent-Issues bleiben für die übrige Abnahmeliste offen.
+
 ## Wareneingang: Procurement 1.0.68 / MCP 1.5.43
 
 Procurement zuerst deployen, MCP danach. Es gibt keine neue Migration; alle bisher
