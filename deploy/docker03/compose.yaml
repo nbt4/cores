@@ -81,6 +81,8 @@ services:
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
+      rentalcore:
+        condition: service_healthy
       postgres:
         condition: service_healthy
       mosquitto:
@@ -178,10 +180,18 @@ services:
       - internal
 
   cores-mcp:
-    image: nobentie/cores-mcp:1.5.39
+    image: nobentie/cores-mcp:1.5.40
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
+      rentalcore:
+        condition: service_healthy
+      warehousecore:
+        condition: service_healthy
+      procurementcore:
+        condition: service_healthy
+      plannercore:
+        condition: service_healthy
       postgres:
         condition: service_healthy
     environment:
@@ -305,6 +315,8 @@ services:
     container_name: procurementcore
     restart: unless-stopped
     depends_on:
+      warehousecore:
+        condition: service_healthy
       postgres:
         condition: service_healthy
     environment:

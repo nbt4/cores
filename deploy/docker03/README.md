@@ -1,5 +1,22 @@
 # Cores stack on docker03
 
+## Frischer Stack: MCP 1.5.40 / Root 036
+
+Die Compose-Startreihenfolge wartet auf gesunde Dienste: Rental vor Warehouse,
+Warehouse vor Procurement und alle vier Cores vor MCP. Damit kollidieren die
+gemeinsamen Rental-/Warehouse-Startmigrationen nicht und MCP startet erst mit
+dem vollständigen Schema.
+
+Root `036` übernimmt das bestehende committed Planner-Schema `003`/`004` für
+frische Umbrella-Datenbanken. Bestehende Tabellen bleiben erhalten. Neue
+Produktionsdatenbanken erhalten alle Cores-Tabellen über die Root-Migrationen;
+auf bestehenden Installationen fehlt kein Planner-Schema. MCP 1.5.40 rundet
+Packpreise und Wareneingangsprozente unabhängig davon, ob Mengen in SQL als
+NUMERIC oder über GORM als DOUBLE PRECISION gespeichert sind. Der Katalog
+bleibt bei 353 Werkzeugen. Vollständige Race-/DB-/Vet-/Build-Prüfungen sowie
+frischer kompletter Stack und ausschließlich lesender Katalog sind Release-Checks.
+
+
 ## Procurement-Startschutz: 1.0.65
 
 GORM erhält vorhandene PostgreSQL-UNIQUE-Constraints für nullable PunchOut-

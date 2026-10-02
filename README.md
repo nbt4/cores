@@ -60,10 +60,10 @@ Aktueller Suite-Release (02.10.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.65` |
-| Cores MCP | `nobentie/cores-mcp:1.5.39` |
+| Cores MCP | `nobentie/cores-mcp:1.5.40` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
-WarehouseCore 5.9.106 und Cores MCP 1.5.39 bieten vollständige Einzelgeräte-Anlage
+WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
 und Metadatenpflege, Archivierung/Restore, redigierte Geräte-Audits und den
 kontrollierten Rückweg der eigenen letzten unveränderten MCP-Feldänderung.
 Die neuen Geräteaktionen benötigen Adminrechte, passende create/update/archive-
@@ -73,6 +73,16 @@ versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
 Owning Core geprüft. Der MCP bietet 353 Werkzeuge (99 Abfragen, 127 Vorschauen,
 127 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+
+Die Compose-Startreihenfolge wartet auf gesunde Dienste: Rental vor Warehouse,
+Warehouse vor Procurement und alle vier Cores vor MCP. Damit kollidieren die
+gemeinsamen Rental-/Warehouse-Startmigrationen nicht und MCP startet erst mit
+dem vollständigen Schema.
+
+Root `036` initialisiert das bestehende Planner-Schema inklusive wiederkehrender
+Aufgaben bei einer frischen Installation. MCP 1.5.40 rundet Beschaffungs-Packpreise
+und Wareneingangsprozente auch mit Gleitkomma-Mengen korrekt; der Katalog bleibt
+bei 353 Werkzeugen.
 
 ProcurementCore 1.0.65 erhält vorhandene SQL-UNIQUE-Constraints für PunchOut-
 Zuordnungen, Token-Hashes und Confirmation-IDs. Damit startet auch ein frisch
