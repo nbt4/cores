@@ -1,5 +1,18 @@
 # Cores stack on docker03
 
+## Kunden-/Venue-Feldrevert: Rental 5.3.118 / MCP 1.5.37
+
+341 Werkzeuge (95 Abfragen / 123 Vorschauen / 123 Ausführungen).
+Keine neue Migration. Zuerst RentalCore ausrollen und gesund prüfen, danach
+Cores MCP. Offene Vorschauen neu erstellen; erfolgreiche Belege aus der vorherigen
+Version bleiben identisch wiederholbar. `prepare_revert_update/revert_update`
+benötigt aktuelle Admin-/update-Rechte, eigenes letztes unverändertes MCP-Update,
+exakten Quellaudit, Datensatz-/Kontextversion und Vorschauphrase. Feldrevert,
+Auditverweis und dauerhafter Beleg sind atomar. Vollständige Race-/DB-Tests,
+Vet/Build, Rental-Frontend-/Suite-Design-Prüfung, tatsächlicher Upgrade-Replay
+und frischer MCP-Test prüfen beide Entitäten und archivierte Duplikatrestores.
+Abschließend tatsächliche Image-IDs und ausschließlich lesenden MCP-Smoke prüfen.
+
 ## Kunden/Venues: Rental 5.3.117 / MCP 1.5.36
 
 337 Werkzeuge (95 Abfragen / 121 Vorschauen / 121 Ausführungen).
