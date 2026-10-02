@@ -13,6 +13,13 @@ Archiv-Scopes. Angefragte Finanzbereiche werden ausdrücklich angezeigt und
 bleiben standardmäßig nicht freigegeben. Vorhandene Token benötigen eine neue
 Einwilligung für zusätzliche Rechte; siehe die MCP-README.
 
+ProcurementCore 1.0.67 / MCP 1.5.42 ergänzen Kategoriearchive und Restore mit
+vollständig erhaltenen Parameterdefinitionen und redigierter Historie. Aktive
+Produkte blockieren Kategoriearchive; neue/reaktivierte Produkte brauchen aktive
+Kategorien. Root `038` / Procurement `009` schützen sämtliche Schreiber.
+Historische Kategorien und Lieferanten bleiben in der MCP-Auflösung auffindbar
+und verlangen separate Wiederherstellung. Der Gesamtkatalog enthält 373 Werkzeuge.
+
 ## Einheitliches Designsystem
 
 Alle Oberflächen der Cores Suite verwenden ein verbindliches Designsystem für Farbpalette, Inter-Typografie, Größenleiter, Shell/Sidebar, Tabellen, Formulare, Selects, Dropdowns, Scrollbars, Karten, Responsive-Verhalten und Dashboards. Die vollständige Spezifikation steht in [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md); Marken- und Logoregeln stehen ergänzend in [`docs/BRANDING.md`](docs/BRANDING.md).
@@ -69,8 +76,8 @@ Aktueller Suite-Release (02.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.66` |
-| Cores MCP | `nobentie/cores-mcp:1.5.41` |
+| ProcurementCore | `nobentie/procurementcore:1.0.67` |
+| Cores MCP | `nobentie/cores-mcp:1.5.42` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
@@ -81,8 +88,8 @@ Scopes, vollständige Vorschau, Bestätigung und Idempotenz; bestehende Geräte
 zusätzlich die exakte Version. Root-Migration `024` und Warehouse-Migration `051`
 versionieren auch andere Geräte-Schreiber und halten Scan-Kennungen am
 Archivstatus. Aktive Abhängigkeiten und belegte Lagerplätze werden erneut im
-Owning Core geprüft. Der MCP bietet 368 Werkzeuge (102 Abfragen, 133 Vorschauen,
-133 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
+Owning Core geprüft. Der MCP bietet 373 Werkzeuge (103 Abfragen, 135 Vorschauen,
+135 Ausführungen). Details stehen in den Service-READMEs und im Tool-Katalog.
 
 Die Compose-Startreihenfolge wartet auf gesunde Dienste: Rental vor Warehouse,
 Warehouse vor Procurement und alle vier Cores vor MCP. Damit kollidieren die

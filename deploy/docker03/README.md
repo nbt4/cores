@@ -1,5 +1,18 @@
 # Cores stack on docker03
 
+## Beschaffungskategorien: 1.0.67 / MCP 1.5.42
+
+Procurement zuerst deployen: Native `009` und Root `038` ergänzen den aktiven
+Kategoriezustand für vorhandene und frische Daten sowie Versions-/Identitäts-/
+Archivschutz. Aktive Produkte blockieren Archive; Produktanlage und Restore
+benötigen eine aktive Kategorie. Parameterdefinitionen und Geschäftsfelder bleiben.
+MCP danach deployen: 373 Werkzeuge (103 Abfragen / 135 Vorschauen / 135 Ausführungen).
+Archive bleiben als wiederherzustellende Identitäten auflösbar. Exakte Vorschau,
+Realnutzer/Admin/Archiv-Scope, gebundene Bestätigung, atomare Historie und Replay
+sind erforderlich; alte erfolgreiche Katalog-Belege bleiben gültig.
+Prüfen: gesamte lesende MCP-Abnahme, genaue gesunde Images und zusätzlich
+`proc_categories_guard_lifecycle_version` sowie die bisherigen Trigger.
+
 ## Procurement-Katalogarchive: 1.0.66 / MCP 1.5.41
 
 Procurement zuerst deployen: Native `008` initialisiert auf bestehenden Volumes
