@@ -1,5 +1,22 @@
 # Cores stack on docker03
 
+## Freigaben und Status: Procurement 1.0.70 / MCP 1.5.45
+
+Procurement zuerst deployen, MCP danach. Keine neue Migration; alle bisherigen
+Guards bleiben erforderlich. Die neuen Owner-Pfade binden vollständigen Datensatz,
+Positionen, Abhängigkeiten, Aktion und Begründung an exakte Version/Kontext und
+Bestätigung. Aktuelle Admin-/Approve-Rechte sowie ein anderer Bedarfsentscheider
+gelten auch für gecachtes, altes und dauerhaftes Replay. Ungebuchte alte MCP-
+Entscheidungs-/Statusaufrufe brauchen eine neue Vorbereitung; bereits erfolgreiche
+Belege bleiben gültig. Sent versendet keine externe Lieferantennachricht.
+
+Restore erhält den Originalstatus auch bei empfangenen und stornierten Bestellungen.
+Gemeinsame Workflow-Vorschauen sind auf 512 KiB Originaldatensatz begrenzt. Beide
+Compose-Dateien pinnen die neuen Images. Prüfen: genaue gesunde Image-IDs, sämtliche
+bisherigen Guards und der vollständige lesende 383-Werkzeug-Katalog. Neue Schemas
+werden in bestehenden KI-Apps gemäß MCP-README per Refresh/Rescan geladen.
+Parent-Issues bleiben für die restliche Abnahmeliste offen.
+
 ## Bedarfs-/Bestellarchive: Procurement 1.0.69 / MCP 1.5.44
 
 Procurement zuerst deployen, MCP danach. Native `010` und Root `039` ergänzen
