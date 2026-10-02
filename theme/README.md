@@ -26,5 +26,7 @@ Dieses Verzeichnis ist die technische Quelle der Wahrheit für das Erscheinungsb
 Die Kopien in den Service-Repositories sind absichtlich eingecheckt: Jeder Core muss ohne das Umbrella-Repository eigenständig gebaut und deployt werden können. Sie dürfen nicht direkt bearbeitet werden.
 
 Die MCP-OAuth-Seite nutzt dieselben Auth-/Select-Primitives für die gesonderte
-Freigabe angefragter Wartungskosten. Der Kosten-Select bleibt standardmäßig
+Freigabe angefragter Wartungskosten oder Rental-Preis-/Rabattänderungen und
+Job-Neuberechnung. Der Hilfetext nennt die konkret angefragten Core-Rechte.
+Der Finanz-Select bleibt standardmäßig
 gesperrt und besitzt ein eigenes Label und eine Hilfetext-Zuordnung.

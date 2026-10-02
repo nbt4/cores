@@ -187,8 +187,10 @@ und verwendet die vorhandenen Select-Primitives einschließlich mobilem
 Touch-Ziel und sichtbarem Tastaturfokus. Deutsch und Englisch
 folgen der Browsersprache oder der expliziten Sprachauswahl im Autorisierungslink.
 
-Angefragte Wartungskosten erhalten einen zweiten, unabhängig beschrifteten
-Suite-Select. „Kosten nicht freigeben“ ist voreingestellt; eine Client-Anfrage
+Angefragte Wartungskosten oder Rental-Jobpreise, Rabatte und Neuberechnung
+erhalten einen zweiten, unabhängig beschrifteten
+Suite-Select. Die konkreten angefragten Core-Rechte stehen im Hilfetext.
+„Finanzzugriff nicht freigeben“ ist voreingestellt; eine Client-Anfrage
 allein erteilt keinen Financial-Scope. Die Hilfetexte erklären Lesen und
 zusätzliche Schreibrechte in Deutsch/Englisch. Die bestehenden Auth-/Select-
 Primitives tragen Layout, Light/Dark und Tastaturfokus ohne zusätzliche CSS-Werte.

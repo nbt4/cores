@@ -1,5 +1,24 @@
 # Cores stack on docker03
 
+## Procurement-Katalogarchive: 1.0.66 / MCP 1.5.41
+
+Procurement zuerst deployen: Native `008` initialisiert auf bestehenden Volumes
+dieselben Guard-Trigger wie Root `037` auf frischen Installationen. Danach MCP
+deployen. Beide Compose-Dateien pinnen die neuen Versionen; der Katalog umfasst
+368 Werkzeuge (102 Abfragen / 133 Vorschauen / 133 Ausführungen).
+Identitäten und Geschäftsfelder bleiben beim Archivieren/Wiederherstellen erhalten.
+Offene Bestellungen/Bedarfe blockieren betroffene Archive, Angebot-Restore verlangt
+aktive Eltern. Hard-Delete und kombinierte Geschäfts-/Archivänderungen werden
+abgelehnt. Exakte Version/Kontext, Realnutzer/Admin, Archiv-Scope und Bestätigung
+sowie atomare Historie/Receipt schützen die Ausführung.
+
+OAuth bietet die zusätzlichen Rental-/Procurement-Archiv- und Rental-Finanz-Scopes.
+Vorhandene Token brauchen neue ausdrückliche Einwilligung; Finanzzugriff bleibt
+separat ausgeschaltet. Client-Kataloge nach README per Refresh/Rescan erneuern.
+Prüfen: Gesundheitszustand und genaue Images, vollständiger lesender MCP-Smoke
+sowie alle bisherigen und die drei `proc_*_guard_lifecycle_version`-Trigger.
+Parent-Issues bleiben bis zur vollständigen Abnahmeliste geöffnet.
+
 ## Frischer Stack: MCP 1.5.40 / Root 036
 
 Die Compose-Startreihenfolge wartet auf gesunde Dienste: Rental vor Warehouse,
