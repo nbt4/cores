@@ -1,5 +1,25 @@
 # Cores stack on docker03
 
+## Bedarfsentwürfe: Procurement 1.0.71 / MCP 1.5.46
+
+Procurement zuerst deployen, MCP danach. Native `011` / Root `040` ergänzen vier
+Referenz-Guards für alle Schreiber. Referenzzeilen bleiben bis zum Ende der
+Speicherung gesperrt; historische abgeschlossene Datensätze behalten ihre Eltern.
+Create, Update und Submit delegieren an die geschlossene Owner-API und verlangen
+vollständige Vorschau, exakte Version/Kontext, gebundene Bestätigungsphrase und
+aktuelle aktive Anforderer-/Adminrechte. Ausgelassene Positionen behalten IDs.
+Änderung, Audit, Aktivität und dauerhafter Erfolgsbeleg werden atomar gespeichert.
+Alte erfolgreiche Belege bleiben abrufbar; ungebuchte alte öffentliche MCP-
+Entwurfs-/Einreichungspfade verlangen neue Vorbereitung.
+
+Beide Compose-Dateien pinnen die neuen Versionen. Prüfen: genaue gesunde Image-IDs,
+alle bisherigen Guards sowie `proc_requisitions_guard_catalog_references`,
+`proc_purchase_orders_guard_catalog_references`,
+`proc_requisition_lines_guard_catalog_references` und
+`proc_purchase_order_lines_guard_catalog_references`; danach den vollständigen
+lesenden 383-Tool-Katalog. Bestehende KI-Apps aktualisieren Metadaten gemäß MCP-
+README per Refresh/Rescan. Parent-Issues bleiben für andere Abnahmepunkte offen.
+
 ## Freigaben und Status: Procurement 1.0.70 / MCP 1.5.45
 
 Procurement zuerst deployen, MCP danach. Keine neue Migration; alle bisherigen
