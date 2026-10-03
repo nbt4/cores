@@ -3,6 +3,15 @@
 > **Monorepo für das Cores-Ökosystem**  
 > Vollständige Management-Plattform bestehend aus fünf Core-Services, einer MCP-KI-Anbindung, zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
+ProcurementCore 1.0.72 / MCP 1.5.47 sichern vollständige Bestellentwürfe über die
+Owner-API: vollständige Kopfdaten, Positionswerte, native Gesamtwerte, aktuelle
+Referenzen und doppelte Lieferanten-Bestellnummern binden Vorschau und Bestätigung.
+Ausgelassene Positionen behalten ihre IDs. Aktuelle Admin-/Aktionsrechte gelten auch
+für Replay; Änderung, Audit, Aktivität und Erfolgsbeleg werden atomar gespeichert.
+Bestätigte, empfangene, archivierte und Amazon-Bestellungen bleiben geschützt.
+383 Werkzeuge; Bedarf-zu-Bestellung, externe Lieferanteneinreichung und weitere
+[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 ProcurementCore 1.0.71 / MCP 1.5.46 sichern vollständige Bedarfsentwürfe und
 Einreichung über die geschlossene Owner-API. Aktuelle Anforderer-/Adminrechte,
 vollständige Felder/Positionen, Katalogreferenzen und eigene Duplikate gehören zur
@@ -111,8 +120,8 @@ Aktueller Suite-Release (02.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.71` |
-| Cores MCP | `nobentie/cores-mcp:1.5.46` |
+| ProcurementCore | `nobentie/procurementcore:1.0.72` |
+| Cores MCP | `nobentie/cores-mcp:1.5.47` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

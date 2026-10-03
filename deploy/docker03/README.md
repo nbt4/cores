@@ -1,5 +1,22 @@
 # Cores stack on docker03
 
+## Bestellentwürfe: Procurement 1.0.72 / MCP 1.5.47
+
+Procurement zuerst deployen, MCP danach. Keine neue Migration; Native `011` /
+Root `040` und sämtliche bisherigen Guards bleiben erforderlich. Die vier
+Create-/Update-Werkzeuge binden vollständige Original-/Entwurfsfelder, native
+Gesamtwerte, aktive Referenzen, erhaltene Positionen, Wareneingänge und doppelte
+Lieferanten-Bestellnummern an exakten Kontext/Version und Bestätigung. Aktuelle
+Admin-/Aktionsrechte gelten auch für gecachtes, altes und dauerhaftes Replay.
+Änderung, Audit, Aktivität und Erfolgsbeleg werden atomar verbucht. Entwürfe
+versenden keine externe Bestellung und ändern keinen Bestand; ungebuchte alte
+öffentliche MCP-Entwurfsaufrufe benötigen neue Vorbereitung.
+
+Beide Compose-Dateien pinnen die neuen Images. Prüfen: genaue gesunde Image-IDs,
+sämtliche bisherigen Guards und der vollständige lesende 383-Tool-Katalog.
+Bestehende KI-Apps aktualisieren Schemas gemäß MCP-README per Refresh/Rescan.
+Parent-Issues bleiben für die restliche Abnahmeliste offen.
+
 ## Bedarfsentwürfe: Procurement 1.0.71 / MCP 1.5.46
 
 Procurement zuerst deployen, MCP danach. Native `011` / Root `040` ergänzen vier
