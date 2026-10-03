@@ -1,5 +1,23 @@
 # Cores stack on docker03
 
+## Bedarf zu Bestellung: Procurement 1.0.73 / MCP 1.5.48
+
+Procurement zuerst deployen und genaue gesunde Image-ID prüfen, MCP danach.
+Keine neue Migration; Native `011` / Root `040` und alle bisherigen Guards
+bleiben erforderlich. `procurement.requisitions.prepare_order/order` bindet
+vollständigen freigegebenen Bedarf, ausgewählten Lieferanten, alle Angebotskandidaten
+und abgeleiteten Bestellentwurf an genaue Version, Kontext und Bestätigungsphrase.
+Aktuelle Admin-/Create-Rechte gelten auch für gespeicherte Ergebnisse. Bestellung,
+Bedarfsstatus, beide Audits/Aktivitäten und Erfolgsbeleg sind atomar. Auch gleichzeitige
+bestehende UI-Aufrufe erstellen nur eine Bestellung. Originalfelder und Positions-IDs
+bleiben erhalten; die Umwandlung versendet keine Lieferanten-Nachricht und bucht
+keinen Bestand. Alter ungeführter MCP-Zugriff erhält 428.
+
+Beide Compose-Dateien pinnen die neuen Images. Abschließend genaue gesunde Image-IDs,
+alle installierten Guards und den vollständigen lesenden 385-Tool-Katalog prüfen.
+KI-Apps aktualisieren Schemas per Refresh/Rescan gemäß MCP-README. Parent-Issues
+bleiben für die restliche Abnahmeliste offen.
+
 ## Bestellentwürfe: Procurement 1.0.72 / MCP 1.5.47
 
 Procurement zuerst deployen, MCP danach. Keine neue Migration; Native `011` /
