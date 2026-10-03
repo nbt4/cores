@@ -1,5 +1,31 @@
 # Cores stack on docker03
 
+## Amazon-Übermittlung: Procurement 1.0.74 / MCP 1.5.49
+
+Procurement zuerst deployen: Native `012` / Root `041` installieren die dauerhaften
+Übermittlungsaufträge und drei Guards. Genaue gesunde Owner-Image-ID prüfen, dann
+MCP deployen. `prepare_send_amazon/send_amazon` erfordern aktuellen Admin und
+expliziten `cores:procurement:send`-Scope, vollständige exakte Vorschau/Version und
+Auftrag/Betrag/Kontext-Bestätigung. Der ursprüngliche von einem anderen Nutzer
+freigegebene Warenkorb bleibt unverändert. Allgemeine Schreibrechte gewähren
+keine Lieferantenübermittlung; OAuth erläutert dies ausdrücklich in DE/EN.
+
+Ein dauerhafter Auftrag mit geprüftem Geschäftskontext und Audit wird vor dem
+einmaligen externen Aufruf gespeichert. Bestätigung und lokaler Abschluss haben
+eigene dauerhafte Audit-Phasen. Ursprünglicher Schlüssel kann einen gespeicherten
+Abschluss wiederholen; `pending`/`submission_unknown` niemals automatisch erneut
+senden. Auch der bestehende UI-Aufruf nutzt diese Absicherung. Geschäftsfelder,
+Positionsdaten und Originalidentität bleiben geschützt, Wareneingang bleibt separat.
+
+Beide Compose-Dateien pinnen die neuen Images. Prüfen: genaue gesunde Image-IDs,
+alle bisherigen Guards plus `proc_order_submissions_guard_identity`,
+`proc_purchase_orders_guard_submission`, `proc_purchase_order_lines_guard_submission`
+und den vollständigen lesenden 387-Tool-Katalog. Keine Produktionsbestellungen zum
+Testen absenden; Übermittlungstests nutzen einen isolierten lokalen TLS-Mock.
+KI-Apps benötigen Refresh/Rescan für die zusätzlichen Werkzeuge und erneute
+explizite Freigabe des Senderechts. Parent-Issues bleiben für Adam Hall, geführte
+Klärung und die übrige Abnahmeliste offen.
+
 ## Bedarf zu Bestellung: Procurement 1.0.73 / MCP 1.5.48
 
 Procurement zuerst deployen und genaue gesunde Image-ID prüfen, MCP danach.

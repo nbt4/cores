@@ -198,3 +198,10 @@ Primitives tragen Layout, Light/Dark und Tastaturfokus ohne zusätzliche CSS-Wer
 Die OAuth-Logoform folgt dem kanonischen Cores-SVG; die monochromen Pfade
 verwenden `currentColor` und bleiben in Light/Dark erkennbar. Formularlabels
 verwenden den vorhandenen Sekundärtext-Token für ausreichenden Kontrast.
+
+Angefragte Lieferanten-Senderechte (`cores:procurement:send`) werden im
+OAuth-Hilfetext ausdrücklich als externe Bestellübermittlung erklärt, in Deutsch
+und Englisch. Lesen bleibt voreingestellt; allgemeine Schreibrechte ersetzen
+diesen Scope nicht. Die fachliche Bestätigung erfolgt zusätzlich an der
+vollständigen konkreten Bestellung mit Betrag, Adressen und Modus. Dafür werden
+weiterhin die bestehenden Auth-/Select-Primitives verwendet.

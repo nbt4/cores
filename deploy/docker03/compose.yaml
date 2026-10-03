@@ -180,7 +180,7 @@ services:
       - internal
 
   cores-mcp:
-    image: nobentie/cores-mcp:1.5.48
+    image: nobentie/cores-mcp:1.5.49
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
@@ -311,7 +311,7 @@ services:
       start_period: 60s
 
   procurementcore:
-    image: nobentie/procurementcore:1.0.73
+    image: nobentie/procurementcore:1.0.74
     container_name: procurementcore
     restart: unless-stopped
     depends_on:

@@ -3,6 +3,17 @@
 > **Monorepo für das Cores-Ökosystem**  
 > Vollständige Management-Plattform bestehend aus fünf Core-Services, einer MCP-KI-Anbindung, zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
+ProcurementCore 1.0.74 / MCP 1.5.49 ergänzen die explizit freigegebene Amazon-
+Übermittlung: vollständiger unveränderter freigegebener Warenkorb, Liefer-/Rechnungs-
+adressen, EUR-Betrag und Modus binden Vorschau und Bestätigung. Ein dauerhafter
+Auftrag wird vor dem externen Aufruf gespeichert. Wiederholungen schließen eine
+vorhandene Lieferantenbestätigung ab und senden niemals erneut; unklare Ergebnisse
+benötigen menschliche Prüfung. Native `012` / Root `041` schützen Übermittlungs-
+identität, Originalpositionen und die Sperre gegen erneutes Absenden. Produktion
+wird ausschließlich lesend geprüft. Der Katalog enthält 387 Werkzeuge;
+Adam Hall, geführte Klärung unklarer Ergebnisse und weitere
+[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 ProcurementCore 1.0.73 / MCP 1.5.48 ergänzen die geführte Umwandlung freigegebener
 Bedarfe in Lieferanten-Bestellentwürfe. Vollständiger Bedarf, Lieferant, Angebote
 und abgeleiteter Entwurf binden exakte Vorschau/Version und Bestätigung. Bestellung,
@@ -122,7 +133,7 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (02.10.2026):
+Aktueller Suite-Release (03.10.2026):
 
 | Service | Image |
 |---|---|
@@ -130,8 +141,8 @@ Aktueller Suite-Release (02.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.73` |
-| Cores MCP | `nobentie/cores-mcp:1.5.48` |
+| ProcurementCore | `nobentie/procurementcore:1.0.74` |
+| Cores MCP | `nobentie/cores-mcp:1.5.49` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
