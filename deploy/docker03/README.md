@@ -1,5 +1,22 @@
 # Cores stack on docker03
 
+## Menschliche Klärung: Procurement 1.0.75 / MCP 1.5.50
+
+Procurement zuerst deployen, genaue gesunde Image-ID und nativen `013` / Root `042`
+prüfen; MCP danach deployen. Alle bisherigen Guards plus
+`proc_submission_reconciliations_guard_retention` und 389 Tools lesend prüfen.
+`prepare_reconcile_submission/reconcile_submission` erfordern aktuellen Admin,
+expliziten Send-Scope, abgeschlossene menschliche Lieferantenprüfung/Evidenz,
+15 Minuten Abstand zur Originalübermittlung, genaue Version/Kontext und Phrase.
+`found_order` speichert die Lieferantenreferenz; `confirmed_not_sent` storniert
+unverändert erhaltene Originalpositionen. Klärungsbeleg, Status, Audit/Aktivität
+und Replay sind atomar. Originalübermittlung und Antwort bleiben erhalten und
+gegen Wiederholung gesperrt. Es gibt keine Lieferantenaufrufe/Bestandsbuchungen.
+Neuer Bedarf benötigt einen separat freigegebenen Lieferantenwarenkorb. Produktion
+wird ausschließlich lesend geprüft; beide Parent-Issues bleiben für Adam Hall und
+weitere Abnahmepunkte offen.
+
+
 ## Amazon-Übermittlung: Procurement 1.0.74 / MCP 1.5.49
 
 Procurement zuerst deployen: Native `012` / Root `041` installieren die dauerhaften

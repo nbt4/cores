@@ -1,5 +1,13 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+ProcurementCore 1.0.75 / MCP 1.5.50 ergänzen die geführte menschliche Klärung
+ungewisser Übermittlungen. Auftrag, ursprünglicher Lieferantenbeleg und Evidenz
+binden genaue Vorschau und Bestätigung; Klärung, Status, Audit und Wiederholungs-
+antwort werden atomar gespeichert. Originalübermittlung und Positionen bleiben
+erhalten; es wird niemals erneut gesendet. Native `013` / Root `042` bewahren
+Klärungsbelege. Der Katalog enthält 389 Werkzeuge. Adam Hall und die übrigen
+[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 > **Monorepo für das Cores-Ökosystem**  
 > Vollständige Management-Plattform bestehend aus fünf Core-Services, einer MCP-KI-Anbindung, zentraler Authentifizierung, einheitlichem Branding und Shared Infrastructure.
 
@@ -141,8 +149,8 @@ Aktueller Suite-Release (03.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.74` |
-| Cores MCP | `nobentie/cores-mcp:1.5.49` |
+| ProcurementCore | `nobentie/procurementcore:1.0.75` |
+| Cores MCP | `nobentie/cores-mcp:1.5.50` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
