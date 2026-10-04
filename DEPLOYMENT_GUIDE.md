@@ -35,10 +35,10 @@ protected configuration separately from the database.
 
 The versioned [docker03 Compose](deploy/docker03/compose.yaml) preserves the
 existing host's network, volume and port layout. On docker03, Komodo manages stack `cores` using
-`/opt/docker/komodo/stacks/tscores/compose.yaml` and project name `cores`.
+`/opt/docker/komodo/stacks/cores/deploy/docker03/compose.yaml` and project name `cores`.
 Existing volume names and internal service ports differ from a fresh install
-and must be preserved when applying release updates. Synchronize the host file
-and Komodo's stored configuration. Recreating only changed application services
+and must be preserved when applying release updates. Komodo pulls `nbt4/cores` branch `main` with `auto_pull` enabled and
+uses `deploy/docker03/compose.yaml`; publish the committed pins before rollout. Recreating only changed application services
 avoids restarting PostgreSQL and unrelated services. Verify all application
 health endpoints and the completed backup after deployment. PlannerCore uses
 `/health`; `/api/health` serves the SPA fallback and is not a health check.
