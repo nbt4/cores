@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+MCP 1.5.58 übernimmt die Procurement-Rechte für Bedarfsmeldungen in allen
+Lesepfaden: ursprünglicher Anforderer oder aktuell aktiver Administrator.
+Suche, Produktkontexte, Zählungen, Seitennavigation, Verknüpfungen und
+Aggregationen berücksichtigen diese Rechte vor der Auswertung. Diensttokens
+sehen keine Bedarfsmeldungen; alte Rollen im Token umgehen keinen Rechteentzug.
+Warehouse 5.9.112, Migrationen und die 433 Werkzeuge bleiben unverändert.
+PostgreSQL-/Race-Tests, reale MCP-/Native-Rechtevergleiche, bestehende
+Wiederholungsbelege und vollständige Lesetests beider Teststacks sind bestanden.
+Finanzrechte, Dokumente und weitere [Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md)
+bleiben in Bearbeitung.
+
 WarehouseCore 5.9.112 / MCP 1.5.57 ergänzen sechs vollständige Case-Abläufe:
 Versiegeln, Öffnen, Umsetzen, Job-Ausgabe, Rücknahme und Rücknahmeprüfung.
 Der gesamte verschachtelte Inhalt, Reservierungen, Job-Bearbeitungssperren,
@@ -202,7 +213,7 @@ Aktueller Suite-Release (04.10.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.112` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.57` |
+| Cores MCP | `nobentie/cores-mcp:1.5.58` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

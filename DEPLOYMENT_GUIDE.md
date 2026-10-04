@@ -4,7 +4,13 @@ Deployment entry points for the complete Cores suite.
 
 **Last Updated:** October 2026
 
-For Warehouse 5.9.112 / MCP 1.5.57, apply Warehouse migration 062
+MCP 1.5.58 restricts all requisition records and counts to their original
+requester or a current active administrator before search, pagination, joins
+and aggregation. No additional database migration or owning-Core release is
+required. Machine identities have no requisition access; token role claims
+cannot retain revoked permissions. Verify read-only after redeploying MCP.
+
+For Warehouse 5.9.112 / MCP 1.5.58, apply Warehouse migration 062
 (root PostgreSQL migration 046) before deploying MCP. It retains case identities
 and immutable physical event history; native removal archives rather than
 hard-deleting. Verify exact image revisions, health, the 433-tool catalog and
