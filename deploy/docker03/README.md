@@ -1,5 +1,23 @@
 # Cores stack on docker03
 
+## Physischer Case-Inhalt: Warehouse 5.9.109 / MCP 1.5.54
+
+Warehouse zuerst deployen und die genaue gesunde Image-ID, native `061` /
+Root `045` sowie `devicescases_guard_physical`,
+`case_product_contents_guard_physical`, `case_child_contents_guard_physical`,
+`devicescases_sync_membership` und `case_product_contents_sync_stock` prüfen.
+Danach MCP deployen und `/ready`, 420 Werkzeuge (108 Abfragen / 156 Vorschauen /
+156 Ausführungen), Prompts/Ressourcen und alle bisherigen Guards lesend prüfen.
+Beide Compose-Dateien pinnen die veröffentlichten Tags. Neue und aktualisierte
+Teststacks prüfen alle sieben Pack-/Entpackaktionen, erhaltene Gesamtmengen,
+Child-Versiegelungen und Gerätezuordnungen, genaue Versionen und Kapazitäten,
+aktuelle Rechte auch bei Wiederholung, Audit-/Ereignis-/Beleg-Rollback,
+Wiederholung mit gleichem Schlüssel, gleichzeitige Entwürfe mit einem Gewinner
+sowie unveränderte alte und neue Belege nach Neustart. Die Gesamtmenge schließt
+physisch gepackte Mengenartikel ein. Keine produktiven Pack-/Bestandsänderungen
+und keine Lieferantenaufrufe zum Testen. Versiegeln/Öffnen, Umsetzen und
+Job-Ausgabe/Rücknahme sowie übrige Issue-Anforderungen bleiben offen.
+
 ## Case-Sollvorlagen: Warehouse 5.9.108 / MCP 1.5.53
 
 Warehouse zuerst deployen und genaue gesunde Image-ID sowie native `060` /
@@ -13,7 +31,7 @@ Versionen, Audit-Rollback und erneuten Versuch mit demselben Schlüssel.
 Gleichzeitige vorbereitete Änderungen derselben Case-Version führen zu genau
 einer Ausführung. Neustarts erhalten Vorlagen, Belege, Bestand und genaue
 Referenzversionen. Keine produktiven Case-/Bestandsänderungen zum Testen.
-Physische Pack-/Entpackabläufe und weitere Issue-Anforderungen bleiben offen.
+Weitere Case-Workflows und Issue-Anforderungen bleiben offen.
 
 ## Produkt-Batch und URL-Übernahme: Warehouse 5.9.107 / MCP 1.5.52
 

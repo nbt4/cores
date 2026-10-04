@@ -1,5 +1,17 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+WarehouseCore 5.9.109 / MCP 1.5.54 ergänzen sieben geführte Pack-/Entpackaktionen
+für Geräte, Mengenartikel, Child-Cases und vollständiges Entpacken. Vollständiger
+Inhalts-/Lager-/Job-/Aufgabenkontext und genaue Versionen binden Vorschau und
+Bestätigung. Inhalt, erhaltene Gesamtmenge, Gerätebewegung, Case-Ereignis, Audit
+und Wiederholungsbeleg sind atomar; Child-Cases behalten ihre Versiegelung.
+Native `061` / Root `045` schützen Inhalte und berücksichtigen gepackte
+Mengen im Gesamtbestand. Neustarts verändern keine Belege oder Referenzversionen.
+Der Katalog enthält **420 Werkzeuge**. Warehouse zuerst, danach MCP ausrollen;
+Produktion ausschließlich lesend prüfen. Versiegeln/Öffnen, Umsetzen,
+Job-Ausgabe/Rücknahme und die übrigen
+[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 WarehouseCore 5.9.108 / MCP 1.5.53 ergänzen vollständige Case-Sollvorlagen:
 Anlegen, Ändern, Archivieren und Wiederherstellen mit erhaltenen IDs,
 aktuellem Administrator-/Aktionsrecht, genauer Case-/Artikel-/Inhaltsprüfung,
@@ -8,7 +20,7 @@ keinen Bestand. Native Entfernung archiviert; Wiederholungen nach Neustart
 verändern keine Mengen oder genauen Versionen. Native `060` / Root `044`
 schützen Vorlagen auch vor anderen Schreibern. Der Katalog enthält **405 Werkzeuge**.
 Warehouse zuerst, danach MCP ausrollen und Produktion nur lesend prüfen.
-Pack-/Entpackabläufe und die übrigen
+Weitere Case-Workflows und die übrigen
 [MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
 
 WarehouseCore 5.9.107 / MCP 1.5.52 ergänzen Produkt-Batches und die Übernahme
