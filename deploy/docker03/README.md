@@ -1,5 +1,20 @@
 # Cores stack on docker03
 
+## Case-Sollvorlagen: Warehouse 5.9.108 / MCP 1.5.53
+
+Warehouse zuerst deployen und genaue gesunde Image-ID sowie native `060` /
+Root `044` mit `case_templates_guard_lifecycle` prüfen. Danach MCP deployen
+und `/ready`, 405 Tools (107 Abfragen / 149 Vorschauen / 149 Ausführungen),
+Prompts/Ressourcen und sämtliche bisherigen Guards ausschließlich lesend prüfen.
+Beide Compose-Dateien pinnen die freigegebenen Tags. Neue und aktualisierte
+Teststacks prüfen Sollzeilen-Lebenszyklus, aktive Standardansichten, native
+Kompatibilität, Rechte einschließlich gespeicherter Wiederholung, Kontext und
+Versionen, Audit-Rollback und erneuten Versuch mit demselben Schlüssel.
+Gleichzeitige vorbereitete Änderungen derselben Case-Version führen zu genau
+einer Ausführung. Neustarts erhalten Vorlagen, Belege, Bestand und genaue
+Referenzversionen. Keine produktiven Case-/Bestandsänderungen zum Testen.
+Physische Pack-/Entpackabläufe und weitere Issue-Anforderungen bleiben offen.
+
 ## Produkt-Batch und URL-Übernahme: Warehouse 5.9.107 / MCP 1.5.52
 
 Warehouse zuerst deployen und `/api/v1/health` sowie die genaue Image-ID prüfen;

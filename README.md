@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+WarehouseCore 5.9.108 / MCP 1.5.53 ergänzen vollständige Case-Sollvorlagen:
+Anlegen, Ändern, Archivieren und Wiederherstellen mit erhaltenen IDs,
+aktuellem Administrator-/Aktionsrecht, genauer Case-/Artikel-/Inhaltsprüfung,
+gebundener Bestätigung und atomarem Audit/Wiederholungsbeleg. Sollmengen bewegen
+keinen Bestand. Native Entfernung archiviert; Wiederholungen nach Neustart
+verändern keine Mengen oder genauen Versionen. Native `060` / Root `044`
+schützen Vorlagen auch vor anderen Schreibern. Der Katalog enthält **405 Werkzeuge**.
+Warehouse zuerst, danach MCP ausrollen und Produktion nur lesend prüfen.
+Pack-/Entpackabläufe und die übrigen
+[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 WarehouseCore 5.9.107 / MCP 1.5.52 ergänzen Produkt-Batches und die Übernahme
 geprüfter Daten aus Herstellerseiten. Die vollständige Vorschau bindet Stammdaten,
 Kennungen und gemeinsame Lagerkapazität; Anlage, Anfangsbestand/Geräte, Scan-IDs,
@@ -166,10 +177,10 @@ Aktueller Suite-Release (03.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.120` |
-| WarehouseCore | `nobentie/warehousecore:5.9.107` |
+| WarehouseCore | `nobentie/warehousecore:5.9.108` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.52` |
+| Cores MCP | `nobentie/cores-mcp:1.5.53` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
