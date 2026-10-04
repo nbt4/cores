@@ -2,7 +2,22 @@
 
 Deployment entry points for the complete Cores suite.
 
-**Last Updated:** September 2026
+**Last Updated:** October 2026
+
+For Warehouse 5.9.112 / MCP 1.5.57, apply Warehouse migration 062
+(root PostgreSQL migration 046) before deploying MCP. It retains case identities
+and immutable physical event history; native removal archives rather than
+hard-deleting. Verify exact image revisions, health, the 433-tool catalog and
+retention triggers with read-only production checks. Detailed workflows and
+remaining parent issue acceptance are documented in the linked MCP checklist.
+
+Release validation: full Go tests with race detection and owned PostgreSQL,
+Vet/builds, fresh root migration initialization, and real Streamable HTTP
+upgrade/fresh workflows pass. Six whole-case actions, explicit return inspection,
+reservation conflicts, preview/dry-run, current permissions, final fault rollback,
+same-key retry, native archive/default lists and restart replay are covered.
+Both isolated read sweeps report 433 tools / five prompts / zero failures;
+prior supplier/order/product/template/physical-case receipts remain unchanged.
 
 The canonical service inventory and pinned images are in [README.md](README.md)
 and [docker-compose.yml](docker-compose.yml). Deploy the exact committed Compose

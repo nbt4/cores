@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+WarehouseCore 5.9.112 / MCP 1.5.57 ergänzen sechs vollständige Case-Abläufe:
+Versiegeln, Öffnen, Umsetzen, Job-Ausgabe, Rücknahme und Rücknahmeprüfung.
+Der gesamte verschachtelte Inhalt, Reservierungen, Job-Bearbeitungssperren,
+Aufgaben und Lagerkapazität binden die finale Vorschau und Bestätigung.
+Case-/Gerätestatus, Bewegungen, erhaltene physische Ereignisse, Job-Historie,
+Audit und Wiederholungsbeleg sind atomar. Native `062` / Root `046` erhalten
+Case-Identitäten und unveränderliche physische Historie; native Entfernung
+archiviert. Der Katalog enthält **433 Werkzeuge** (109 Abfragen / 162 Vorschauen /
+162 Ausführungen). Warehouse zuerst, danach MCP ausrollen; Produktion nur lesend
+prüfen. Die übrigen [MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+
 WarehouseCore 5.9.109 / MCP 1.5.54 ergänzen sieben geführte Pack-/Entpackaktionen
 für Geräte, Mengenartikel, Child-Cases und vollständiges Entpacken. Vollständiger
 Inhalts-/Lager-/Job-/Aufgabenkontext und genaue Versionen binden Vorschau und
@@ -8,9 +19,8 @@ und Wiederholungsbeleg sind atomar; Child-Cases behalten ihre Versiegelung.
 Native `061` / Root `045` schützen Inhalte und berücksichtigen gepackte
 Mengen im Gesamtbestand. Neustarts verändern keine Belege oder Referenzversionen.
 Der Katalog enthält **420 Werkzeuge**. Warehouse zuerst, danach MCP ausrollen;
-Produktion ausschließlich lesend prüfen. Versiegeln/Öffnen, Umsetzen,
-Job-Ausgabe/Rücknahme und die übrigen
-[MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+Produktion ausschließlich lesend prüfen. Vollständige Case-Abläufe folgen im
+oben dokumentierten Folgerelease.
 
 WarehouseCore 5.9.108 / MCP 1.5.53 ergänzen vollständige Case-Sollvorlagen:
 Anlegen, Ändern, Archivieren und Wiederherstellen mit erhaltenen IDs,
@@ -183,16 +193,16 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (03.10.2026):
+Aktueller Suite-Release (04.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.120` |
-| WarehouseCore | `nobentie/warehousecore:5.9.108` |
+| WarehouseCore | `nobentie/warehousecore:5.9.112` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.53` |
+| Cores MCP | `nobentie/cores-mcp:1.5.57` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
@@ -803,7 +813,7 @@ Anbindung oder manuelle Prüfung.
 | **Interner Port** | `8090` |
 | **Öffentlicher Endpunkt** | `https://cores.tsunami-events.de/mcp` |
 
-Der Dienst umfasst 64 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Optional kommen 39 read-only Vorbereitungstools und 39 bestätigte Schreibtools hinzu. Sie decken eng begrenzte Anlagen sowie Gerätezuweisung, Job-/Requirement-Änderung, Bestellung, Lagerbewegung und Gerätezustand über die validierte API des zuständigen Core ab. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Benannte Freigabe-, Wareneingangs- und Archivierungsworkflows verlangen zusätzliche Scopes und Bestätigungen. Beliebiges SQL, generische Mutation und Hard-Deletes bleiben ausgeschlossen. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
+Der Dienst umfasst 109 fest definierte Abfragetools für Jobs, Bestand, Geräte, Planung, Beschaffung, Datenqualität und Cross-Core-Entscheidungen sowie fünf geführte Analyse-Prompts und Knowledge-Ressourcen. Optional kommen 162 read-only Vorbereitungstools und 162 bestätigte Schreibtools hinzu. Sie decken eng begrenzte Anlagen sowie Gerätezuweisung, Job-/Requirement-Änderung, Bestellung, Lagerbewegung und Gerätezustand über die validierte API des zuständigen Core ab. OAuth trennt `cores:read` und `cores:write`; Maschinentokens bleiben read-only. Benannte Freigabe-, Wareneingangs- und Archivierungsworkflows verlangen zusätzliche Scopes und Bestätigungen. Beliebiges SQL, generische Mutation und Hard-Deletes bleiben ausgeschlossen. Vollständige Dokumentation: [`cores-mcp/README.md`](cores-mcp/README.md).
 
 Bleiben `MCP_DB_USER` und `MCP_DB_PASSWORD` leer, übernimmt Compose automatisch `POSTGRES_USER` und `POSTGRES_PASSWORD`. Ein abweichender PostgreSQL-Login funktioniert damit ohne zusätzliche MCP-Konfiguration. Produktionssysteme können weiterhin beide MCP-Werte auf einen dedizierten Read-only-Login setzen.
 
