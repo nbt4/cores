@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+ProcurementCore 1.0.76 / MCP 1.5.51 ergänzen die geführte Adam-Hall-Bestellung:
+lokale Vorschau, separat bestätigte Warenkorbvorbereitung und vollständige
+Geschäftspreis-/Adressprüfung vor der kostenpflichtigen Bestätigung. Vorhandene
+fremde Warenkörbe werden nicht gelöscht; geänderte Preise oder Methoden stoppen
+den Versand. Verschlüsselte private Checkouts, dauerhafte Übermittlungsaufträge,
+Audit und unveränderte Anfragekennungen verhindern erneutes Absenden. Native
+`014` / Root `043` bewahren geprüfte Checkouts. Der Katalog enthält 393 Werkzeuge;
+die übrigen [MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+Produktion wird ausschließlich lesend geprüft.
+
 ProcurementCore 1.0.75 / MCP 1.5.50 ergänzen die geführte menschliche Klärung
 ungewisser Übermittlungen. Auftrag, ursprünglicher Lieferantenbeleg und Evidenz
 binden genaue Vorschau und Bestätigung; Klärung, Status, Audit und Wiederholungs-
@@ -149,8 +159,8 @@ Aktueller Suite-Release (03.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.120` |
 | WarehouseCore | `nobentie/warehousecore:5.9.106` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.75` |
-| Cores MCP | `nobentie/cores-mcp:1.5.50` |
+| ProcurementCore | `nobentie/procurementcore:1.0.76` |
+| Cores MCP | `nobentie/cores-mcp:1.5.51` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

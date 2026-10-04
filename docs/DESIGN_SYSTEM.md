@@ -205,3 +205,14 @@ und Englisch. Lesen bleibt voreingestellt; allgemeine Schreibrechte ersetzen
 diesen Scope nicht. Die fachliche Bestätigung erfolgt zusätzlich an der
 vollständigen konkreten Bestellung mit Betrag, Adressen und Modus. Dafür werden
 weiterhin die bestehenden Auth-/Select-Primitives verwendet.
+
+## Lieferantenbestellung
+
+Der ProcurementCore-Adam-Hall-Dialog trennt lokale Vorschau, ausdrücklich
+bestätigte Lieferanten-Warenkorbvorbereitung und kostenpflichtige Bestellung.
+Geschäftliche Preise, Liefer-/Rechnungsadressen sowie Zahlungs-/Versandarten
+stehen vor der zweiten Bestätigung. Beide Sprachen folgen der Suite-Auswahl.
+Bestehende Modal-/Formular-/Button- und `suite-table-wrap`-Primitives tragen
+Light/Dark, mobilen Tabellenzugriff und sichtbaren Tastaturfokus. Lade-, Fehler-,
+blockierte und ausstehende Zustände bleiben im Dialog lesbar; Wiederholung
+verwendet den gespeicherten ursprünglichen Vorgang.

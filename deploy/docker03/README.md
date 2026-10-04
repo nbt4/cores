@@ -1,5 +1,31 @@
 # Cores stack on docker03
 
+## Adam Hall: Procurement 1.0.76 / MCP 1.5.51
+
+Procurement zuerst deployen und genaue gesunde Image-ID prüfen. Native `014` /
+Root `043` installieren den gespeicherten privaten Checkout und
+`proc_adam_hall_checkouts_guard_retention`; danach MCP deployen und 393 Tools
+sowie alle bisherigen Guards ausschließlich lesend prüfen. Tests gegen isolierte
+TLS-/SSO-/PKCE-Lieferanten-Fixtures auf Upgrade- und sauberem Root-Volumen ersetzen
+jede Produktionsbestellung. Beide Compose-Dateien pinnen die veröffentlichten Tags.
+
+`prepare_build_adam_hall_cart/build_adam_hall_cart` benötigen aktuelle Admin-/Send-
+Rechte, genaue lokale Vorschau und eigene Warenkorb-Bestätigung. Kein ungeprüftes
+Löschen vorhandener fremder Positionen, kein kostenpflichtiger Bestellaufruf.
+`prepare_send_adam_hall/send_adam_hall` benötigen den frischen vollständigen
+Lieferanten-Warenkorb, Geschäftsadressen, Methoden, EUR-Summe, exakte Checkout-ID /
+Version / Kontext und eigene bezahlte Bestätigung. Derselbe private Kontext wird
+vor dem einzigen Bestellaufruf erneut geprüft; es gibt keinen Neuaufbau.
+
+Private Lieferanten-Kontexte werden AES-GCM mit dem gemeinsamen JWT-Secret
+verschlüsselt und an ihren Beleg gebunden, ohne API-/Audit-Ausgabe. Secret-Rotation
+macht alte Checkouts unlesbar; eine neue bestätigte Warenkorbvorbereitung ist
+nötig. Ein unveränderlicher Auftrag und vollständiger Audit gehen jedem bezahlten
+Aufruf voraus; gespeicherte Ergebnisse werden nur finalisiert. Ungewissheit benötigt
+menschliche Klärung. Der native Dialog nutzt dieselben getrennten Bestätigungen.
+KI-Apps benötigen weiterhin Refresh/Rescan für neue Schemas. Beide Parent-Issues
+bleiben für die übrigen Abnahmepunkte offen.
+
 ## Menschliche Klärung: Procurement 1.0.75 / MCP 1.5.50
 
 Procurement zuerst deployen, genaue gesunde Image-ID und nativen `013` / Root `042`
