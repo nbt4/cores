@@ -1,5 +1,20 @@
 # Cores stack on docker03
 
+## Produkt-Batch und URL-Übernahme: Warehouse 5.9.107 / MCP 1.5.52
+
+Warehouse zuerst deployen und `/api/v1/health` sowie die genaue Image-ID prüfen;
+danach MCP deployen und `/ready`, 395 Tools (105 Abfragen / 145 Vorschauen /
+145 Ausführungen), Prompts/Ressourcen und alle vorhandenen Datenbankguards lesend
+verifizieren. Keine neue Migration. Die öffentliche Hersteller-URL wird nur von
+der Produktvorbereitung gelesen. Bestätigte Anlage verwendet den geprüften
+Entwurf ohne erneuten Seitenabruf. Alle Batch-Produkte, Stammdaten, optionale
+Zuordnung, Anfangsbestand/Geräte, Scan-IDs, Audit und Wiederholungsbeleg sind eine
+Transaktion. Preise benötigen ausdrückliches Finanzrecht. Aktualisierter und
+frischer Teststack prüfen Rechte, pure Vorschau/Dry-run, alte Versionen, vollständigen
+Audit-Rollback, denselben Schlüssel und unveränderte Belege nach Neustart. Keine
+produktiven Produkt-/Bestandsänderungen oder externen Herstelleraufrufe zum Testen.
+Die übrigen MCP-Abnahmepunkte bleiben offen.
+
 ## Adam Hall: Procurement 1.0.76 / MCP 1.5.51
 
 Procurement zuerst deployen und genaue gesunde Image-ID prüfen. Native `014` /

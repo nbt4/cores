@@ -1,5 +1,14 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+WarehouseCore 5.9.107 / MCP 1.5.52 ergänzen Produkt-Batches und die Übernahme
+geprüfter Daten aus Herstellerseiten. Die vollständige Vorschau bindet Stammdaten,
+Kennungen und gemeinsame Lagerkapazität; Anlage, Anfangsbestand/Geräte, Scan-IDs,
+Audit und dauerhafte Wiederholungsantwort sind atomar. Produktpreise benötigen
+einen ausdrücklichen Finanz-Scope. URL-Werte bleiben ungeprüfte Geschäftsdaten und
+werden vor bestätigter Anlage eingefroren. Der Katalog enthält **395 Werkzeuge**;
+die übrigen [MCP-Abnahmepunkte](cores-mcp/docs/ISSUE_COMPLETION.md) bleiben offen.
+Warehouse zuerst, danach MCP ausrollen; Produktion ausschließlich lesend prüfen.
+
 ProcurementCore 1.0.76 / MCP 1.5.51 ergänzen die geführte Adam-Hall-Bestellung:
 lokale Vorschau, separat bestätigte Warenkorbvorbereitung und vollständige
 Geschäftspreis-/Adressprüfung vor der kostenpflichtigen Bestätigung. Vorhandene
@@ -157,10 +166,10 @@ Aktueller Suite-Release (03.10.2026):
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.120` |
-| WarehouseCore | `nobentie/warehousecore:5.9.106` |
+| WarehouseCore | `nobentie/warehousecore:5.9.107` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.51` |
+| Cores MCP | `nobentie/cores-mcp:1.5.52` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
