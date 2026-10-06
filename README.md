@@ -1,5 +1,12 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+RentalCore 5.3.121 / WarehouseCore 5.9.113 / MCP 1.5.59 ergänzen echte
+Produkt-Auftragspositionen mit Vorschau, Anlage, Update und erhaltener Archivierung.
+Manuelle Bedarfe können ausdrücklich im selben Schritt auf 0 gesetzt werden;
+Position, Materialbedarf und Auftragswert werden atomar aktualisiert.
+Der Katalog enthält 442 Werkzeuge. Bestehende Jobs werden nicht automatisch
+verändert. Details und Rechte stehen im [Tool-Katalog](cores-mcp/docs/TOOL_CATALOG.md).
+
 MCP 1.5.58 übernimmt die Procurement-Rechte für Bedarfsmeldungen in allen
 Lesepfaden: ursprünglicher Anforderer oder aktuell aktiver Administrator.
 Suche, Produktkontexte, Zählungen, Seitennavigation, Verknüpfungen und
@@ -204,16 +211,16 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (04.10.2026):
+Aktueller Suite-Release (06.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.120` |
-| WarehouseCore | `nobentie/warehousecore:5.9.112` |
+| RentalCore | `nobentie/rentalcore:5.3.121` |
+| WarehouseCore | `nobentie/warehousecore:5.9.113` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.58` |
+| Cores MCP | `nobentie/cores-mcp:1.5.59` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
