@@ -1,54 +1,13 @@
-# GEMINI.md
+# GEMINI
 
-> **Mandatory UI rule:** Before any UI work, read `docs/DESIGN_SYSTEM.md`, `theme/README.md`, and `AGENTS.md`. Change only the canonical files in `theme/`, run the sync and design-check scripts, and never edit generated service copies directly.
+Diese Datei gilt nicht mehr als eigene Anweisungsquelle.
 
-## Project Overview
+**Verbindlich für alle KI-Agenten in diesem Repository ist `AGENTS.md` im
+Wurzelverzeichnis.** Dort stehen Zweck, Aufbau, Test-Gates, verbotene Pfade,
+Secret-Regeln, harte Grenzen und Freigabe-Gates.
 
-This project contains the deployment configuration for the Tsunami Events core management systems, an integrated equipment rental and warehouse management solution. The system is composed of two main Go applications, **RentalCore** and **WarehouseCore**, which share a single **PostgreSQL** database. The stack also includes a **Mosquitto MQTT broker** for real-time LED bin highlighting in the warehouse. The entire system is containerized and managed using `docker-compose`.
+Der übergeordnete Ablauf steht im Paperclip-Dokument `workflow` auf
+[TSU-3](/TSU/issues/TSU-3#document-workflow), die Architektur in
+[Cores — Architektur (Phase 1)](/TSU/issues/TSU-4#document-architecture).
 
-- **RentalCore**: Handles job management, customer data, and invoicing.
-- **WarehouseCore**: Manages physical warehouse inventory, device tracking, and location mapping.
-
-The project has completed the migration from MySQL to PostgreSQL as detailed in the migration documentation.
-
-## Building and Running
-
-The application is designed to be run with Docker and Docker Compose.
-
-### Prerequisites
-
-- Docker Engine 20.10+
-- Docker Compose 2.0+
-
-### Running the Application
-
-1.  **Create Environment File:**
-    ```bash
-    cp .env.example .env
-    ```
-    *Note: You may need to edit the `.env` file to set database passwords and other configuration options.*
-
-2.  **Start the services:**
-    ```bash
-    docker-compose up -d
-    ```
-
-This command will build the Docker images, start all the services, and initialize the database.
-
-### Accessing the Applications
-
-- **RentalCore**: [http://localhost:8081](http://localhost:8081)
-- **WarehouseCore**: [http://localhost:8082](http://localhost:8082)
-
-Default credentials are `admin`/`admin`.
-
-## Development Conventions
-
-Based on the `plan.md` file, the project follows a structured development process for migrating features:
-
-1.  **Analysis**: Understand the existing functionality in `RentalCore` and `WarehouseCore`.
-2.  **Implementation**: Implement the features in `WarehouseCore`.
-3.  **Deactivation**: Remove or disable the functionality in `RentalCore`.
-4.  **Testing**: Write and run tests for both services.
-5.  **Documentation**: Update `README.md` and other relevant documentation.
-6.  **Docker**: Build and push new Docker images for each service after each phase.
+Bei einem Widerspruch zwischen dieser Datei und `AGENTS.md` gewinnt `AGENTS.md`.
