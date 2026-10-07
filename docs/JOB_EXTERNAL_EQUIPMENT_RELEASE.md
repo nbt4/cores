@@ -3,12 +3,13 @@
 Geplante Abbilder: `nobentie/rentalcore:5.3.122` und
 `nobentie/cores-mcp:1.5.61`. Andere Dienst-Pins, Ports, Netzwerke und Volumes
 bleiben unverändert. Die Dienst-Commits werden vor Veröffentlichung gemergt;
-Entwurfs-PRs und menschliche Merge-Freigabe sind erforderlich. Der Nutzer hat
-den Livegang dieser Erweiterung ausdrücklich angefordert.
+Entwurfs-PRs und eine ausdrückliche Nutzer-Freigabe sind erforderlich. Der
+Nutzer hat für dieses konkrete Release-Paket den Agenten zusätzlich ausdrücklich
+zum Merge, Docker-Hub-Push und Deployment auf docker03 autorisiert.
 
 ## Reihenfolge
 
-1. Dienst-PRs prüfen und durch den Nutzer mergen. Lokale Images entstehen aus
+1. Dienst-PRs prüfen und nach der erteilten Nutzer-Freigabe mergen. Lokale Images entstehen aus
    den exakt eingecheckten Dienstquellen, einschließlich OCI-Revisionslabel.
 2. Nach dem Merge die versionierten Abbilder veröffentlichen. Keine bereits
    veröffentlichte Versionsnummer überschreiben.
@@ -160,18 +161,19 @@ PASS
 ok  	go-barcode-webapp/internal/handlers	1.288s
 ```
 
-## Veröffentlichung angehalten
+## Veröffentlichung und Freigabe
 
 Am 2026-10-07 hat GitHub den Push von `feat/mcp-job-external-equipment` nach
 `nbt4/cores-mcp` zweimal mit `Internal Server Error` abgelehnt. Das Konto hat
 laut GitHub-API ausdrücklich Push-Rechte. Die GitHub-Request-IDs waren
 `FE9B:33290B:2235A7:2697B8:6AC661B2` und
 `F71F:8536A:235D1D:27C84B:6AC661F6`. Gemäß AGENTS.md Abschnitt 11 wurden
-weitere Push-Versuche angehalten. Es bestehen deshalb noch keine GitHub-PRs
-für dieses Paket.
+weitere Push-Versuche zunächst angehalten. Der Nutzer hat den erneuten Versuch
+und die Ausführung von Merge, Docker-Hub-Push und Deployment anschließend
+ausdrücklich freigegeben. Der Branch-Push über HTTPS war danach erfolgreich;
+[der MCP-Entwurfs-PR #11](https://github.com/nbt4/cores-mcp/pull/11) ist angelegt.
 
 Die lokale Entwicklung, Tests, Review-Unterlagen und Images sind fertig.
-GitHub-Veröffentlichung, menschlicher Merge, Docker-Hub-Push und produktiver
-Rollout stehen aus. Die erteilte Deployment-Freigabe gilt weiterhin für dieses
-Release-Paket. Der nächste Schritt ist ein freigegebener neuer Push-Versuch,
-anschließend die Entwurfs-PRs und der menschliche Merge gemäß Workflow.
+Die autorisierten nächsten Schritte sind die Dienst-Merges, die Veröffentlichung
+der bereits gebauten und geprüften Abbilder, der Suite-Merge und der geordnete
+Rollout über den vorhandenen Stack auf docker03.
