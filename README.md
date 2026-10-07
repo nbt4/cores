@@ -1,5 +1,11 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+MCP 1.5.60 ergänzt die OAuth-Nachfreigabe für Auftragspositionen: Tool-Scopes
+und strukturierte Authentifizierungsaufforderungen ermöglichen die ausdrückliche
+Finanzfreigabe über den Cores-Dialog. Vorhandene Rechte bleiben erhalten;
+Token-Refresh erweitert keine Rechte und es werden keine Aufträge verändert.
+Details im [Tool-Katalog](cores-mcp/docs/TOOL_CATALOG.md).
+
 RentalCore 5.3.121 / WarehouseCore 5.9.113 / MCP 1.5.59 ergänzen echte
 Produkt-Auftragspositionen mit Vorschau, Anlage, Update und erhaltener Archivierung.
 Manuelle Bedarfe können ausdrücklich im selben Schritt auf 0 gesetzt werden;
@@ -211,7 +217,7 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (06.10.2026):
+Aktueller Suite-Release (07.10.2026):
 
 | Service | Image |
 |---|---|
@@ -220,7 +226,7 @@ Aktueller Suite-Release (06.10.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.113` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.59` |
+| Cores MCP | `nobentie/cores-mcp:1.5.60` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
