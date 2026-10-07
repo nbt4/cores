@@ -1,5 +1,16 @@
 # Cores stack on docker03
 
+## Mietprodukte am Job: RentalCore 5.3.122 / MCP 1.5.61
+
+RentalCore zuerst ausrollen und `/health` mit Version 5.3.122 sowie gesunde
+Image-ID prüfen; danach MCP 1.5.61 ausrollen und `/ready` prüfen. Der neue
+MCP-Katalog hat 444 Werkzeuge, darunter
+`rental.job_external_equipment.prepare_create/create`. Keine neue Migration.
+Vorhandene Mietprodukt-Zuordnungen, Jobversion, Historie, Audit und
+`rental_mcp_mutation_receipts` werden weiter genutzt. Client-Definitionen
+aktualisieren und bei Bedarf Create-/Finanzzugriff separat nachfreigeben.
+Produktive Jobänderungen sind kein Release-Test.
+
 ## Physischer Case-Inhalt: Warehouse 5.9.109 / MCP 1.5.54
 
 Warehouse zuerst deployen und die genaue gesunde Image-ID, native `061` /

@@ -1,5 +1,18 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Mietprodukte am Job — RentalCore 5.3.122 / MCP 1.5.61
+
+Die neuen `rental.job_external_equipment.prepare_create/create` weisen vorhandene
+Fremdmietprodukte unter „Mietprodukte“ einem Job zu. Menge und Miettage sind
+explizit; die finale Vorschau zeigt Live-Preise und Mietkosten. Fehlende Preise,
+vorhandene Zuordnungen, veraltete Vorschauen und fremde aktive Bearbeiter sperren.
+Persönlicher Admin-/Create-/Finanzzugriff, gebundene Bestätigung und dauerhafte
+Idempotenz schützen die atomare Zuordnung mit Jobversion, Historie und Audit.
+RentalCore zuerst ausrollen, anschließend MCP und die Client-Toolliste erneuern.
+Keine zusätzliche Produktionsmigration; Auftragspositionen, Lagerbestand und
+Procurement werden durch eine Mietprodukt-Zuweisung nicht verändert.
+[Release-Ablauf und Prüfungen](docs/JOB_EXTERNAL_EQUIPMENT_RELEASE.md).
+
 MCP 1.5.60 ergänzt die OAuth-Nachfreigabe für Auftragspositionen: Tool-Scopes
 und strukturierte Authentifizierungsaufforderungen ermöglichen die ausdrückliche
 Finanzfreigabe über den Cores-Dialog. Vorhandene Rechte bleiben erhalten;
@@ -222,11 +235,11 @@ Aktueller Suite-Release (07.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.121` |
+| RentalCore | `nobentie/rentalcore:5.3.122` |
 | WarehouseCore | `nobentie/warehousecore:5.9.113` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.60` |
+| Cores MCP | `nobentie/cores-mcp:1.5.61` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
