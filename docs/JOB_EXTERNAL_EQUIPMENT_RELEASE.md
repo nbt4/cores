@@ -114,3 +114,64 @@ Release image pins and inventory verified
 ```text
 Designsystem-Prüfung erfolgreich.
 ```
+
+## Lokale Abbilder und Review
+
+Beide Docker-Abbilder wurden erfolgreich aus `git archive HEAD` gebaut, mit
+OCI-Quell- und Revisionslabel. Sie wurden noch nicht nach Docker Hub übertragen.
+
+| Abbild | Lokale Image-ID | Quellen-Commit |
+|---|---|---|
+| `nobentie/rentalcore:5.3.122` | `sha256:6b699a6925fe28b1b987c36ee3e6f5d19be8215c75ba850efbaebb19481d19bc` | `e31f09ed85a4d0af6326a52a4a787fac4d10ee48` |
+| `nobentie/cores-mcp:1.5.61` | `sha256:d2f7a05bce388f4dab241a31383eae36ead257b45dfa9a36da9e7699a03ff847` | `0807e364d2332c22d1693ef5801e74c73cfb374f` |
+
+RentalCores finaler Docker-Build hat auch die OCR-Runtime mit den vorhandenen
+Imports (`click`, `pandas`, `pdfplumber`, `rapidfuzz`) geprüft.
+
+Ein separater Review-Agent hat die beiden Dienst-Diffs und den Suite-Release-
+Diff statisch geprüft und keine blockierenden Findings gemeldet. Geprüft wurden
+Authentifizierung, aktuelle Rechte vor Replay, Vorschau-/Versionsbindung, Preise,
+Duplikate, atomare Historie/Audit/Receipt, MCP/OAuth/Schemas, Frontend-Importe
+und zusammenpassende Pins/Commits. Der Review führte keine eigenen Tests und
+keine Browser-/Image-/Produktionsprüfung aus. Zusätzlich wurden die neuen
+Tests mit sichtbaren Testnamen ohne Cache erneut lokal ausgeführt:
+
+### MCP/OAuth/Referenzauflösung
+
+```text
+=== RUN   TestPositionOAuthDiscoveryAndChallengeAcrossHTTP
+--- PASS: TestPositionOAuthDiscoveryAndChallengeAcrossHTTP (1.21s)
+=== RUN   TestExternalRentalAssignmentReferenceResolution
+--- PASS: TestExternalRentalAssignmentReferenceResolution (0.12s)
+=== RUN   TestExternalRentalAssignmentDelegationDryRunRetryAndRights
+--- PASS: TestExternalRentalAssignmentDelegationDryRunRetryAndRights (0.00s)
+=== RUN   TestExternalRentalAssignmentScopesAndCompleteSchema
+--- PASS: TestExternalRentalAssignmentScopesAndCompleteSchema (0.00s)
+PASS
+ok  	github.com/nbt4/cores-mcp/internal/mcpserver	1.346s
+```
+
+### RentalCore-Zuweisung
+
+```text
+=== RUN   TestRentalJobExternalEquipmentAtomicAssignmentAndGuards
+--- PASS: TestRentalJobExternalEquipmentAtomicAssignmentAndGuards (1.25s)
+PASS
+ok  	go-barcode-webapp/internal/handlers	1.288s
+```
+
+## Veröffentlichung angehalten
+
+Am 2026-10-07 hat GitHub den Push von `feat/mcp-job-external-equipment` nach
+`nbt4/cores-mcp` zweimal mit `Internal Server Error` abgelehnt. Das Konto hat
+laut GitHub-API ausdrücklich Push-Rechte. Die GitHub-Request-IDs waren
+`FE9B:33290B:2235A7:2697B8:6AC661B2` und
+`F71F:8536A:235D1D:27C84B:6AC661F6`. Gemäß AGENTS.md Abschnitt 11 wurden
+weitere Push-Versuche angehalten. Es bestehen deshalb noch keine GitHub-PRs
+für dieses Paket.
+
+Die lokale Entwicklung, Tests, Review-Unterlagen und Images sind fertig.
+GitHub-Veröffentlichung, menschlicher Merge, Docker-Hub-Push und produktiver
+Rollout stehen aus. Die erteilte Deployment-Freigabe gilt weiterhin für dieses
+Release-Paket. Der nächste Schritt ist ein freigegebener neuer Push-Versuch,
+anschließend die Entwurfs-PRs und der menschliche Merge gemäß Workflow.
