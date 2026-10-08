@@ -111,3 +111,33 @@ JOB001165 und sämtliche Produktionsdaten sind unverändert.
 - `docs/RENTAL_POSITION_TESTS.md`
 - `migrations/postgresql/049_rental_position_cost_link.sql`
 
+
+## Release-Vorbereitung nach „go live“
+
+Die oben stehenden Basis-/Dateilisten dokumentieren den ursprünglichen
+Entwicklungsabschluss vor dem Live-Auftrag. Anschließend wurden isoliert
+Implementierungscommits erstellt und die aktuellen main-Stände übernommen.
+Die neuen Tags sind RentalCore 5.3.124 und Cores-MCP 1.5.62. Die Service-Versionen
+sind im jeweiligen Kandidaten aktualisiert; keine neuen Images veröffentlicht.
+
+Die Suite-Prüfungen wurden erneut gegen diesen Cores-Worktree mit exakt
+initialisierten, bereits auf origin/main freigegebenen Submodulen ausgeführt:
+
+- `docker compose config --quiet`: Exit 0, Warnungen über ungesetzte lokale
+  optionale Stack-Eingaben, keine Secretwerte.
+- `./scripts/check-env-contract.sh`: Exit 0, `Compose environment contract verified`.
+- `sh scripts/check-release.sh`: Exit 0, `Compose environment contract verified`
+  und `Release image pins and inventory verified`.
+- `./scripts/check-design-system.sh`: Exit 0, `Designsystem-Prüfung erfolgreich.`
+
+Damit benötigt dieser exakt gepinnte Suite-Checkout keine Theme-Ausnahme.
+RentalCore hat separat die auf main gemergte Bestandsformatierung übernommen;
+`gofmt -l .` ist vollständig grün. Frontend-Build/Lint, Go-Build, uncached
+PostgreSQL-Tests, Vet und 14 Frontendtests wurden nach dem Merge erneut erfolgreich
+ausgeführt. MCP-Tests, Vet und Server-Build wurden ebenfalls erneut grün ausgeführt.
+
+Die neue Root-Migration 049 wurde mit allen bestehenden Root-Init-Migrationen
+und den bekannten Owner-DDLs auf einem eigenen lokalen Test-Volume geprüft.
+Produktiv fehlen die beiden neuen Kostenlink-Spalten noch; der Code wird vor dem
+menschlichen Migrationsschritt nicht ausgerollt. Menschlicher Merge und Migration
+bleiben gemäß AGENTS.md erforderlich. Ablauf: `docs/RENTAL_POSITION_LIVE.md`.
