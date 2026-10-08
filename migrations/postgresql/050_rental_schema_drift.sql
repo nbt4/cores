@@ -1,5 +1,5 @@
 -- Repair PostgreSQL schema objects required by RentalCore at runtime.
--- Mirrors rentalcore/migrations/051_repair_runtime_schema_drift.sql.
+-- The legacy MySQL migrations for these objects were never a valid PostgreSQL path.
 
 CREATE TABLE IF NOT EXISTS audit_events (
     id BIGSERIAL PRIMARY KEY,
