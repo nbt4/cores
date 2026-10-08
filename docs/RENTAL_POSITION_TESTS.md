@@ -141,3 +141,9 @@ und den bekannten Owner-DDLs auf einem eigenen lokalen Test-Volume geprüft.
 Produktiv fehlen die beiden neuen Kostenlink-Spalten noch; der Code wird vor dem
 menschlichen Migrationsschritt nicht ausgerollt. Menschlicher Merge und Migration
 bleiben gemäß AGENTS.md erforderlich. Ablauf: `docs/RENTAL_POSITION_LIVE.md`.
+
+Die Review-Korrektur ergänzt den vierten Trigger
+`normalize_job_rental_captured_cost`. Vollständiger neuer RentalCore-Beweislauf,
+Vet, erneute lokale Anwendung der Root-Migration bei bereits vorhandenem Schema,
+Migrationsvergleich und git diff --check sind grün. Die alte Handler-Skalierung
+wird dadurch sowohl beim Update als auch bei einem Code-Rollback neutralisiert.

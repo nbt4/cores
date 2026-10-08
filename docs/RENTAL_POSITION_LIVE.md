@@ -46,9 +46,9 @@ WHERE table_schema=current_schema() AND table_name='job_rental_equipment'
 ORDER BY column_name;
 ```
 
-Zusätzlich müssen `idx_jre_position`, `jre_linked_cost_snapshot` sowie die drei
+Zusätzlich müssen `idx_jre_position`, `jre_linked_cost_snapshot` sowie die vier
 Trigger `validate_job_rental_position_link`, `sync_job_rental_day_costs` und
-`sync_job_rental_position_costs` vorhanden sein. Vorher keinen neuen Code deployen.
+`sync_job_rental_position_costs` und `normalize_job_rental_captured_cost` vorhanden sein. Vorher keinen neuen Code deployen.
 
 ## Basisstand
 
@@ -58,3 +58,13 @@ origin/main fe8c76e; Cores-Basis ist origin/main 93b94c3. Die bereits veröffent
 Änderungen wurden nicht durch einen älteren Checkout ersetzt.
 
 Prüfprotokoll und PR-/Review-Referenzen werden nach den Kandidaten-Gates ergänzt.
+
+## Review-Korrektur: Kompatibilität mit altem RentalCore
+
+Das unabhängige Review hat eine doppelte Kostenskalierung beim alten Handler
+nach Schema-vor-Code-Rollout beziehungsweise Code-Rollback reproduziert. Der
+neue BEFORE-Kostentrigger normalisiert aus dem vorhandenen Snapshot und macht
+die zweite alte Skalierung wirkungslos. Tests prüfen beide Tagesrichtungen,
+Legacy-NULL-Snapshot, Nullpreise und den blockierten Repair inkonsistenter
+Snapshots. Vorhandene SQL-Dateien außerhalb dieser unveröffentlichten neuen
+Migration wurden nicht geändert.
