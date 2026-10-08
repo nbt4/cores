@@ -5,59 +5,59 @@ Produktiv laufen vor diesem Release RentalCore 5.3.123 und MCP 1.5.61 gesund.
 Eine ausschließlich lesende Schema-Abfrage hat bestätigt, dass
 `job_rental_equipment.position_id` und `rental_unit_price` noch fehlen.
 
-## Reihenfolge
+## Ausdrückliche Release-Delegation
 
-1. Service- und Schema-Draft-PRs unabhängig reviewen lassen.
-2. Der Nutzer mergt die geprüften PRs gemäß AGENTS.md. Kein Agent merge/push auf main.
-3. Ein Mensch spielt die additive Migration von debian01 per SSH ein.
-4. Aus den gemergten Service-Commits die freigegebenen Images 5.3.124 / 1.5.62
-   mit dem unveränderten Release-Werkzeug bauen und veröffentlichen.
-5. Erst nach den Service-Merges die Cores-Submodul-Zeiger und beide Compose-Pins
-   auf die freigegebenen neuen Releases aktualisieren, Vertragstests, Draft-PR,
-   Review und menschlicher Merge. Andere Dienste/Volumes/Ports bleiben unverändert.
-6. Komodo-Stack cores aktualisieren; nur RentalCore und MCP neu erstellen.
-7. Gesunde exakte Image-IDs/Revisionen, API-Health und MCP-Bereitschaft lesend prüfen.
+Der Nutzer hat anschließend ausdrücklich angewiesen: „merge du bitte und mach
+das alles live. ignorier die anforderung“. Diese Freigabe gilt für den vorliegenden
+Release und delegiert Merge, produktive Schema-Migration, Image-Veröffentlichung,
+Release-Pins und Deployment an den Agenten. AGENTS.md wurde nicht geändert.
 
-Keine automatische Reparatur von JOB001165 oder anderen bestehenden Jobs.
-Keine produktiven Buchungen, Mutationen oder MCP-Schreibtests beim Live-Check.
+## Ausgeführte und verbleibende Release-Schritte
 
-## Manueller Migrationsschritt
+Die unabhängig geprüften PRs RentalCore #21, Cores-MCP #12 und Cores #19 wurden
+mit exakt gebundenem Head-Commit gemergt:
 
-Auf debian01 aus dem geprüften Cores-Worktree ausführen. Dieser Befehl ist
-für die menschliche Ausführung dokumentiert; der Agent führt ihn nicht aus:
+- RentalCore: `5f5e07c758b3f1c5a4fc41807a71160b5d882ce4`
+- Cores-MCP: `e99893b9769992900b98899defdcd4b53b816fb9`
+- Cores-Schema: `e4ef9a38b8e6dde965d9a79e01c5c8e97e65ae37`
 
-```bash
-cd /opt/dev/cores-rental-product-logic
-ssh docker03 'docker exec -i postgres sh -c '"'"'exec psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1 --single-transaction'"'"'' < migrations/postgresql/049_rental_position_cost_link.sql
+Die jeweils gemergten Dateibäume sind identisch zu den zuvor getesteten und
+reviewten Kandidaten. Die additive Root-Migration 049 wurde von debian01 per SSH
+atomar auf docker03 angewandt (`ON_ERROR_STOP`, einzelne Transaktion,
+Lock-Timeout 5 s, Statement-Timeout 60 s). Beide Spalten und alle vier Trigger
+wurden anschließend lesend bestätigt. Die vorhandenen Positionen und
+Lieferantenkosten von JOB001165 sind nach Prüfsummenvergleich unverändert.
+Keine automatische Reparatur oder Testbuchung in Produktion.
+
+Aus den gemergten Commits werden mit dem unveränderten Release-Werkzeug die
+Images 5.3.124 / 1.5.62 veröffentlicht. Beide Compose-Dateien, Release-Inventar
+und Submodul-Zeiger werden mit den grünen Suite-Verträgen als Release-PR geprüft.
+Nach dessen Merge wird der bestehende Komodo-Git-Checkout aktualisiert und
+nur RentalCore sowie MCP werden in der Reihenfolge Owner → MCP neu erstellt.
+Vor dem Neustart muss die gerenderte Stack-Umgebung exakt den bestehenden
+Container-Eingaben entsprechen; Werte werden nicht ausgegeben oder geändert.
+Andere Dienste, Volumes und Ports bleiben unverändert.
+
+Abschließend exakte Image-IDs, Quellrevisionen, Health/Bereitschaft,
+Schema-Guards und die unveränderten Prüfsummen von JOB001165 bestätigen.
+Aktuelle Secrets bleiben ausschließlich in der bestehenden Stack-Umgebung.
+
+## Datenbank-Schema
+
+Migrationen `051_rental_position_cost_link.sql` (RentalCore) und
+`049_rental_position_cost_link.sql` (Cores) sind bytegleich. Verifiziert:
+
+```text
+position_id|bigint
+rental_unit_price|numeric
+normalize_job_rental_captured_cost
+sync_job_rental_day_costs
+sync_job_rental_position_costs
+validate_job_rental_position_link
 ```
 
-Die Migration ist identisch zur RentalCore-Migration 051. Sie verändert keine
-bestehenden Positionen oder Zuordnungsdaten, sondern ergänzt nullable Link und
-Preis-Snapshot, eindeutigen Index, Linkvalidierung und Kosten-Trigger. Beide
-vollständigen SQL-Dateien wurden gegen die lokale PostgreSQL-16-Testdatenbank
-geprüft, einschließlich einer wiederholten Anwendung bei vorhandenem Altbestand.
-
-Nach der menschlichen Ausführung wird ausschließlich lesend verifiziert:
-
-```sql
-SELECT column_name FROM information_schema.columns
-WHERE table_schema=current_schema() AND table_name='job_rental_equipment'
-  AND column_name IN ('position_id','rental_unit_price')
-ORDER BY column_name;
-```
-
-Zusätzlich müssen `idx_jre_position`, `jre_linked_cost_snapshot` sowie die vier
-Trigger `validate_job_rental_position_link`, `sync_job_rental_day_costs` und
-`sync_job_rental_position_costs` und `normalize_job_rental_captured_cost` vorhanden sein. Vorher keinen neuen Code deployen.
-
-## Basisstand
-
-Der Kandidat übernimmt RentalCore origin/main ada49f6 einschließlich des
-Terminradars und der separat gemergten Bestandsformatierung. MCP-Basis ist
-origin/main fe8c76e; Cores-Basis ist origin/main 93b94c3. Die bereits veröffentlichten
-Änderungen wurden nicht durch einen älteren Checkout ersetzt.
-
-Prüfprotokoll und PR-/Review-Referenzen werden nach den Kandidaten-Gates ergänzt.
+Die Migration enthält keine direkte UPDATE-/INSERT-/DELETE-Datenreparatur.
+Vorhandene Zuordnungen werden erst in einem separat bestätigten Repair verändert.
 
 ## Review-Korrektur: Kompatibilität mit altem RentalCore
 
@@ -68,3 +68,29 @@ die zweite alte Skalierung wirkungslos. Tests prüfen beide Tagesrichtungen,
 Legacy-NULL-Snapshot, Nullpreise und den blockierten Repair inkonsistenter
 Snapshots. Vorhandene SQL-Dateien außerhalb dieser unveröffentlichten neuen
 Migration wurden nicht geändert.
+
+## Veröffentlichte Images
+
+Mit `build_and_push_docker.sh` aus den gemergten Commits veröffentlicht:
+
+| Image | Quellrevision | Registry-Digest |
+|---|---|---|
+| `nobentie/rentalcore:5.3.124` | `5f5e07c758b3f1c5a4fc41807a71160b5d882ce4` | `sha256:d19cbc2c3b4c638b9e1feee916f8214fda271b2aa6d72dfffbe2283a1aec27d7` |
+| `nobentie/cores-mcp:1.5.62` | `e99893b9769992900b98899defdcd4b53b816fb9` | `sha256:ea13a264a0160ce772e6609e71c42a757946f0bf209f60f70b41c0619d56e66c` |
+
+Die Tags `latest` wurden durch das unveränderte Release-Werkzeug mitgeführt;
+Compose verwendet ausschließlich die fest gepinnten Versionen.
+
+Nach Aktualisierung beider Pins und Submodule liefen die Suite-Gates wieder in
+verbindlicher Reihenfolge grün:
+
+```text
+Compose config: Exit 0 (lokale optionale ENV-Warnungen)
+Compose environment contract verified
+Compose environment contract verified
+Release image pins and inventory verified
+Designsystem-Prüfung erfolgreich.
+```
+
+Diese Release-Änderung bewegt ausschließlich die beiden freigegebenen
+Service-Zeiger und Image-Pins; keine fremden Dienste/Volumes/Ports verändert.

@@ -21,7 +21,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.123
+    image: nobentie/rentalcore:5.3.124
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -180,7 +180,7 @@ services:
       - internal
 
   cores-mcp:
-    image: nobentie/cores-mcp:1.5.61
+    image: nobentie/cores-mcp:1.5.62
     container_name: cores-mcp
     restart: unless-stopped
     depends_on:
