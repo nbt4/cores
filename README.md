@@ -1,5 +1,12 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Terminradar — RentalCore 5.3.123
+
+Das Rental-Dashboard lädt sichtbare Daten jede Minute und bei Rückkehr zum Tab.
+Tageswechsel aktualisieren Termine und Kennzahlen; überfällige Jobs bleiben in
+der Arbeitsliste und verdrängen keine laufenden oder kommenden Radar-Termine.
+[Release-Ablauf und Prüfungen](docs/TERMINRADAR_RELEASE.md).
+
 ## Mietprodukte am Job — RentalCore 5.3.122 / MCP 1.5.61
 
 Die neuen `rental.job_external_equipment.prepare_create/create` weisen vorhandene
@@ -230,12 +237,12 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (07.10.2026):
+Aktueller Suite-Release (08.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.122` |
+| RentalCore | `nobentie/rentalcore:5.3.123` |
 | WarehouseCore | `nobentie/warehousecore:5.9.113` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
