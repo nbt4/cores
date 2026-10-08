@@ -30,7 +30,7 @@ services:
   # RentalCore - Rental Management System (PostgreSQL)
   # ============================================================================
   rentalcore:
-    image: nobentie/rentalcore:5.3.122
+    image: nobentie/rentalcore:5.3.123
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
