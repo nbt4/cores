@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Mietprodukt-Positionen — RentalCore 5.3.124 / MCP 1.5.62
+
+UI und MCP erzeugen echte Rental-Auftragspositionen zum Kundenpreis, atomar mit
+eindeutig verknüpften Lieferantenkosten. Einkaufspreis und Kundenpreis bleiben
+getrennt; Netto-Marge und Kosten funktionieren auch bei Rabatt und null Umsatz.
+Migration Rental 051 / Cores 049 ergänzt Link, Snapshot und kompatible
+Kosten-Trigger. Bestehende fehlende Positionen werden ausschließlich über den
+bestätigten Repair-Modus ergänzt.
+[Release-Ablauf und Prüfungen](docs/RENTAL_POSITION_LIVE.md).
+
 ## Terminradar — RentalCore 5.3.123
 
 Das Rental-Dashboard lädt sichtbare Daten jede Minute und bei Rückkehr zum Tab.
@@ -242,11 +252,11 @@ Aktueller Suite-Release (08.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.123` |
+| RentalCore | `nobentie/rentalcore:5.3.124` |
 | WarehouseCore | `nobentie/warehousecore:5.9.113` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.61` |
+| Cores MCP | `nobentie/cores-mcp:1.5.62` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
