@@ -1,10 +1,55 @@
 # Repository Guidelines
 
+## Autonomie und dauerhafte Operationsfreigabe
+
+Der Nutzer hat diese Freigabe am 12. Oktober 2026 ausdrücklich für das
+Cores-Dachrepository und alle Cores-Dienst-Repositories erteilt. Dieser Abschnitt
+hat bei widersprüchlichen Freigabe-, Draft-, Merge-, Deployment- oder
+TSU-Vorgaben Vorrang. Er betrifft die Arbeit des Entwicklungsagenten; fachliche
+Benutzerrechte, OAuth-Scopes und Bestätigungen in den Anwendungen bleiben gültig.
+
+- Beauftragte Arbeiten eigenständig bis zum geprüften und veröffentlichten Ergebnis
+  abschließen. Keine erneute Einzelfreigabe für die folgenden Operationsschritte
+  verlangen, wenn sie zum Auftrag gehören.
+- Änderungen committen und zu GitHub pushen; PRs erstellen, reviewen, freigeben,
+  von Draft auf ready setzen und nach erfolgreichen Prüfungen selbst mergen.
+  Ein menschlicher Merge oder eine separate Paperclip-Review-Aufgabe ist keine Pflicht.
+  Für umfangreiche Änderungen ein unabhängiges Review durch einen Review-Agenten
+  nutzen und konkrete Befunde vor dem Merge beheben.
+- Auf Arbeitsbranches oder in Worktrees entwickeln. `main` nach erfolgreicher
+  Validierung eigenständig aktualisieren, bevorzugt durch einen PR-Merge.
+  Keine fremden Änderungen überschreiben oder ungeprüft force-pushen.
+- Docker-Abbilder aus committed Quellcode bauen und nach Prüfung des zuletzt
+  veröffentlichten Tags mit der nächsten fortlaufenden Version und `latest` nach
+  Docker Hub pushen. Submodul-Zeiger, Versionspins und Release-Dokumentation synchron halten.
+- Über die vorkonfigurierten Komodo- und SSH-Zugänge auf `docker03` eigenständig
+  deployen, Images pullen und die betroffenen Dienste starten, stoppen oder neu starten.
+  Laufzeitumgebung und Volumes erhalten; anschließend Image, Quellrevision und
+  Healthchecks prüfen. Andere Dienste nur ändern, wenn der Auftrag es erfordert.
+- Build-, CI-, Deployment-Konfiguration und `AGENTS.md` im Aufgabenumfang pflegen.
+  Prüfungen dürfen dadurch nicht ausgeschaltet oder zur Verdeckung von Fehlern
+  gelockert werden. Fehler selbst diagnostizieren und beheben; erst bei tatsächlich
+  fehlendem Zugang, fehlender Information oder unklarem Umfang nachfragen.
+- Tests passend zur Änderung durchführen und die echte Ausgabe protokollieren.
+  Code- und Release-Gates weiterhin in der dokumentierten Reihenfolge ausführen;
+  Go-Beweisläufe mit `-count=1`. Reine Dokumentations- oder `AGENTS.md`-Änderungen
+  brauchen Diff-/Strukturprüfungen, keinen erneuten Anwendungsbuild oder Image-Release.
+- Branches verständlich nach dem Thema benennen; Conventional Commits verwenden.
+  Eine TSU-Nummer oder Paperclip-Aufgabe ist optional, kein Arbeits- oder Release-Gate.
+- Bestehende Zugangsdaten nur über vorkonfigurierte Sessions, Laufzeitumgebungen
+  oder Secret-Manager verwenden. Keine Secrets in Repository, PR, Kommentar oder Log
+  schreiben; keine privaten Laufzeit- oder Produktionsdaten zu Testdaten machen.
+- Destruktive Produktionsdatenänderungen und manuelle Schema-/Migrationseingriffe
+  benötigen einen konkreten Auftrag dafür; die allgemeine Git-/Deployment-Freigabe
+  ersetzt diesen Auftrag nicht. Datenbanktests ausschließlich lokal oder in einer
+  isolierten Testumgebung ausführen. Große fachliche Umbauten bei unklarem Auftrag
+  zunächst klären.
+
 ## Project Structure & Module Organization
-- `docker-compose.yml` orchestrates RentalCore, WarehouseCore, MySQL, and Mosquitto; keep service names aligned with upstream app repos.
-- `rentalcore/` (Go 1.23) handles job and customer flows; key paths are `cmd/server`, `internal/`, `web/`, and migrations.
-- `warehousecore/` (Go 1.24) mirrors the layout for warehouse features; shared validators live in `internal/validation`.
-- Root `migrations/` and `RentalCore.sql` feed MySQL; update when schema changes span services.
+- `docker-compose.yml` orchestrates all Core services, PostgreSQL 16, and Mosquitto; keep service names aligned with upstream app repos.
+- `rentalcore/` (Go) handles job and customer flows; key paths are `cmd/server`, `internal/`, `web/`, and migrations.
+- `warehousecore/` (Go) mirrors the layout for warehouse features; shared validators live in `internal/validation`.
+- Root `migrations/` and `RentalCore.sql` document the shared database; update when schema changes span services.
 - Deployment examples in `nginx-reverse-proxy.conf`, `docker-compose.*.yml`, and `docs/` must mirror port, domain, or env changes.
 - Ensure both cores stay fully deployable and feature-complete with one `docker-compose.yml` plus `.env` on any host.
 
@@ -42,8 +87,8 @@
 ## Deployment Discipline
 - Treat `github.com/nbt4/cores` as the canonical umbrella repository for the complete Cores stack. Every Core service must be present as a Git submodule, including ProcurementCore and future services.
 - After every service release, update and commit all changed service submodule pointers in `cores`, and keep the root Compose files, service inventory, README, and deployment documentation synchronized with the released versions.
-- Finish every complete umbrella release by merging the updated `cores` branch into `main` and pushing `origin/main`; `main` must always represent the latest fully deployed Cores stack.
-- For every change, always build and push the matching Docker image to Docker Hub after checking the latest published tag.
+- Finish umbrella releases by autonomously merging the validated `cores` release PR into `main`; keep the canonical stack synchronized with the deployed versions.
+- For runtime changes, build and push the matching Docker image after validation and checking the latest published tag. Documentation-only changes do not require a new image.
 - GitHub (`github.com/nbt4`) is the only source-code remote and source of truth.
 - Mirror the build by pushing code to GitHub (per-service repo + `cores` if affected) so image and source stay in sync.
 - Before starting a build, check Docker Hub for the most recent matching image tag and bump to the next sequential version, then push both the new tag and `latest` alongside the corresponding GitHub commit.
@@ -58,4 +103,4 @@
 ## Issues
 - When you are working on an Issue change the Label to in_progress.
 - When your are done and solved the issue, change the label to done and try to close the Issue
-- List all remaining Issues after you solved one and ask which one next. But that at the very end (after redeploy, Docker build/push, and GitHub push).
+- Report the completed task and relevant remaining blockers after verification; continue work already requested by the user.

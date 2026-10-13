@@ -193,7 +193,7 @@ services:
   # WarehouseCore - Warehouse Management System (PostgreSQL)
   # ============================================================================
   warehousecore:
-    image: nobentie/warehousecore:5.9.113
+    image: nobentie/warehousecore:5.9.114
     container_name: warehousecore
     restart: unless-stopped
     depends_on:
