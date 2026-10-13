@@ -31,7 +31,7 @@ beim Warehouse auf dem oben genannten Release-Commit. Ein Vergleich bestätigt,
 dass diese sieben zusätzlichen Commits ausschließlich `AGENTS.md` verändern.
 Andere, noch nicht veröffentlichte Dienständerungen werden damit nicht in die
 Suite übernommen. Die Regeln sind zugleich in den jeweiligen Dienst-`main`-Branches
-über die getrennten Autonomie-PRs vorbereitet.
+über die getrennten Autonomie-PRs gemergt.
 
 ## Nachweis
 
@@ -82,13 +82,34 @@ HTTP 200
 nobentie/warehousecore:5.9.113 running healthy
 ```
 
-Die ausdrückliche Nutzerfreigabe umfasst jetzt auch den eigenständigen Merge
-und die Pflege aller `AGENTS.md`. Die geprüften Regeln sind im Dach und in allen
-Dienst-Repositories vereinheitlicht; die Details stehen in `AGENT_AUTONOMY.md`.
-Der Suite-Release wird nach grünen Prüfungen und separatem Review eigenständig
-auf `main` gemergt. Der anschließende Rollout aktualisiert ausschließlich
-WarehouseCore und erhält dessen Laufzeitumgebung, Volumes und Netzwerkzuordnung.
+Der [Suite-PR #23](https://github.com/nbt4/cores/pull/23) wurde am 13. Oktober 2026
+nach grünen lokalen Gates, grüner GitHub-CI und separatem Review gemergt.
+Der produktive Checkout wurde über die vorhandene Komodo-Periphery auf
+`3f3546fb083a02c7b717fd96bd92df50a5a66fcc` aktualisiert, einschließlich der
+festgelegten Submodulstände. Die acht `AGENTS.md` enthalten die dauerhafte
+Operationsfreigabe; die Details stehen in `AGENT_AUTONOMY.md`.
 
-Nach dem Rollout werden exaktes Image, OCI-Quellrevision, Container-Gesundheit und
-die öffentliche Health-Version ausschließlich lesend geprüft. Produktive Aufgaben
-oder Bestände werden nicht zu Testzwecken verändert.
+Der Rollout auf `docker03` aktualisierte ausschließlich WarehouseCore mit
+`docker compose up -d --no-deps --wait`. Vor dem Neustart wurden Image-Digest
+und OCI-Quellrevision geprüft. Die komplette bestehende Laufzeitumgebung wurde
+ausschließlich im Arbeitsspeicher übernommen; Secrets wurden weder geschrieben
+noch ausgegeben. Vorprüfung und Nachprüfung bestätigten unveränderte Umgebung,
+Volumes, Netzwerkzuordnung und Ports. Alle anderen Stack-Container behielten
+ihre Container-ID.
+
+Der ausschließlich lesende Live-Nachweis am 13. Oktober 2026 ergab:
+
+```text
+DEPLOYED nobentie/warehousecore:5.9.114 healthy
+Image ID: sha256:46fe7489a4a774f045a3c1db1cd9d9e929d29de58dac90cf89e885312ea8c494
+Source revision: e65e7d1eb6591e19938c84a46dfb994c0bc9b67f
+All other stack containers unchanged; runtime environment preserved
+
+GET https://cores.tsunami-events.de/warehousecore/api/v1/health
+{"service":"warehousecore","status":"ok","version":"5.9.114"}
+HTTP 200
+nobentie/warehousecore:5.9.114 running healthy
+```
+
+Produktive Aufgaben oder Bestände wurden nicht zu Testzwecken verändert.
+Es wurden keine manuellen Produktionsmigrationen ausgeführt.
