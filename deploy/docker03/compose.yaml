@@ -21,7 +21,7 @@ services:
       - internal
 
   rentalcore:
-    image: nobentie/rentalcore:5.3.124
+    image: nobentie/rentalcore:5.3.125
     container_name: rentalcore
     restart: unless-stopped
     depends_on:
@@ -77,7 +77,7 @@ services:
       - internal
 
   warehousecore:
-    image: nobentie/warehousecore:5.9.114
+    image: nobentie/warehousecore:5.9.115
     container_name: warehousecore
     restart: unless-stopped
     depends_on:

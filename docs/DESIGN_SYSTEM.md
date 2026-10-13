@@ -216,3 +216,16 @@ Bestehende Modal-/Formular-/Button- und `suite-table-wrap`-Primitives tragen
 Light/Dark, mobilen Tabellenzugriff und sichtbaren Tastaturfokus. Lade-, Fehler-,
 blockierte und ausstehende Zustände bleiben im Dialog lesbar; Wiederholung
 verwendet den gespeicherten ursprünglichen Vorgang.
+
+## Produktarbeitsbereich
+
+WarehouseCore verwendet direkt verlinkbare Produktabschnitte für Stammdaten,
+Bestand/Geräte, Beziehungen, Website, Beschaffung und Verlauf. Hauptnavigation
+liegt in der gemeinsamen Sidebar; Abschnittslinks umbrechen auf kleinen Displays.
+`suite-card`, `suite-button`, `suite-search-field` und `suite-table-wrap` bleiben
+die einzigen visuellen Primitives. Kategorien erscheinen als dreistufiger Baum;
+komplexe Editoren verwenden native Dialoge mit Fokuscontainment und Escape.
+Öffentliche Beschreibung und interne Notizen sind getrennte Felder. Speicherung,
+Veröffentlichung und Website-Aktualisierung haben eigene beschriftete Zustände.
+Die Formulargestaltung stammt aus dem kanonischen Theme; ehemalige Warehouse-
+Input-/Select-Regeln mit festen dunklen Farben werden nicht weiter verwendet.
