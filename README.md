@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Produktmanagement · Warehouse 5.9.115 / Rental 5.3.125
+
+Der Warehouse-Produktbereich wurde mit direkt verlinkbaren Produkt-, Geräte-,
+Paket-, Website- und Stammdatenseiten überarbeitet. Bilder werden optional bereits
+im Browser optimiert, parallel hochgeladen und lokal für Vorschauen verarbeitet.
+Veröffentlichungen erhalten eine haltbare Hintergrundwarteschlange mit Status.
+PDF und Scanansicht teilen einen versionierten Materialstand. RentalCore filtert
+seine älteren Zubehörvorschläge passend zu den typisierten Beziehungen.
+[Funktionsdokumentation](warehousecore/docs/product-management.md) ·
+[Release und Prüfnachweise](docs/PRODUCT_MANAGEMENT_RELEASE.md).
+
 ## Mietprodukt-Positionen — RentalCore 5.3.124 / MCP 1.5.62
 
 UI und MCP erzeugen echte Rental-Auftragspositionen zum Kundenpreis, atomar mit
@@ -247,13 +258,13 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (08.10.2026):
+Aktueller Suite-Release (14.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.124` |
-| WarehouseCore | `nobentie/warehousecore:5.9.114` |
+| RentalCore | `nobentie/rentalcore:5.3.125` |
+| WarehouseCore | `nobentie/warehousecore:5.9.115` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
 | Cores MCP | `nobentie/cores-mcp:1.5.62` |
