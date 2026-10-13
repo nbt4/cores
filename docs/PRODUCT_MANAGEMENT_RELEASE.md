@@ -91,8 +91,36 @@ prüft zusätzlich isoliertes PostgreSQL und Warehouse-Frontend-Lint.
 ## Rollout
 
 Die bestehenden Operationsfreigaben aus Cores-AGENTS autorisieren Push, PR-Merge,
-Image-Veröffentlichung und gezielten Rollout. Deployment nach grüner CI auf
-`docker03` mit erhaltenen Laufzeitvariablen, Volumes, Netzwerken und Ports; nur
-WarehouseCore und RentalCore werden neu erstellt. Abbild-Digest, OCI-Quellrevision
-und Healthchecks werden gegen den veröffentlichten Stand geprüft. Andere Dienste
-bleiben erhalten. Konkrete Produktionsnachweise werden nach dem Rollout ergänzt.
+Image-Veröffentlichung und gezielten Rollout. [Suite-PR #25](https://github.com/nbt4/cores/pull/25)
+wurde nach vollständig grüner Suite-CI am 14. Oktober 2026 gemergt. Der produktive
+Checkout wurde einschließlich der beiden Service-Submodule auf
+`aed86dd7ebe532f1dcdd88533aee93050cf5e550` aktualisiert.
+
+Der gezielte Rollout auf `docker03` ist abgeschlossen. Die Docker-Pulls bestätigten
+die oben dokumentierten Registry-Digests und OCI-Quellrevisionen. Vor dem Start
+wurden Laufzeitvariablen, Volumes, Netzwerke und Ports gegen die vorherigen
+Container verglichen; nach dem Start blieben die Laufzeitvariablen identisch.
+Ausschließlich WarehouseCore und RentalCore wurden neu erstellt. Die übrigen
+Suite-Container behielten ihre Container-IDs und wurden nicht neu gestartet.
+
+```text
+DEPLOYED nobentie/warehousecore:5.9.115 healthy
+Image ID: sha256:3f297af389fcdcd78712addcf17d5c3142f91fce294eaf22e534af862dde693a
+Source revision: 14889f31495b3775c089835522dcc5b30a85a172
+
+DEPLOYED nobentie/rentalcore:5.3.125 healthy
+Image ID: sha256:341912449e486ee5d80c07f3a9c2b8539d97ac68f6659611686f97136e2f9101
+Source revision: c4273ccc91ac26552279ab0163525c79ad712a0b
+```
+
+Auch die öffentlichen Healthchecks bestätigen den Produktionsstand:
+
+```json
+{"service":"warehousecore","status":"ok","version":"5.9.115"}
+{"service":"rentalcore","status":"ok","version":"5.3.125"}
+```
+
+Anfragen ohne Anmeldung an den Website-Workspace und die Packliste antworten mit
+HTTP 401. Es wurden keine Produkt-/Jobdaten in Produktion für Tests angelegt oder
+geändert. Die isolierte PostgreSQL-Testumgebung enthält ausschließlich synthetische
+Fixtures. Die Quellstände sind über Service- und Suite-PRs auf GitHub veröffentlicht.
