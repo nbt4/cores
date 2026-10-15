@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Fremdmietkatalog per MCP
+
+RentalCore 5.3.126 und Cores MCP 1.5.63 ergänzen
+`rental.external_equipment.prepare_create/create`: neue Fremdmietprodukte mit
+Bezeichnung, Kategorie, Lieferant sowie getrennten Einkaufs-/Kundenmietpreisen.
+Vorschau und Anlage benötigen Create-/Finanzfreigabe, aktuelle Rental-Adminrechte
+und eine gebundene fachliche Bestätigung. Die Anlage erzeugt einen Katalogeintrag;
+Jobs werden separat zugeordnet. [Release und Prüfungen](docs/EXTERNAL_EQUIPMENT_CATALOG_RELEASE.md).
+
+
 ## Produktmanagement · Warehouse 5.9.115 / Rental 5.3.125
 
 Der Warehouse-Produktbereich wurde mit direkt verlinkbaren Produkt-, Geräte-,
@@ -263,11 +273,11 @@ Aktueller Suite-Release (14.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.125` |
+| RentalCore | `nobentie/rentalcore:5.3.126` |
 | WarehouseCore | `nobentie/warehousecore:5.9.115` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.62` |
+| Cores MCP | `nobentie/cores-mcp:1.5.63` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
