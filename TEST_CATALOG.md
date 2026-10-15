@@ -168,3 +168,16 @@ This catalog is the definitive source of truth for validating the complete funct
 | 2026-01-09 | Infra Init | PASS | Deployment successful. |
 | 2026-01-09 | API Fixes | PASS | Fixed 500/403 errors in WarehouseCore API. Verified via Curl. |
 | 2026-01-09 | Integ Test | BLOCKED | Browser automation rate limited (429). Manual verification required. |
+
+## Fremdmietkatalog-Lebenszyklus (2026-10-15)
+
+Isolierter PostgreSQL16-Compose-Stack mit frischem Volume und Root-Migrationen.
+Keine produktiven Geschäftsdaten. Vollständige Go-Beweisläufe aller drei
+Dienste mit `-count=1`, zusätzliche Race-Prüfungen an Owner-/Schema-/MCP-Grenzen.
+
+- Rental `go test -race -count=1 ./internal/handlers ./internal/schema -run ExternalCatalog`: Teiländerung/Nullpreise, exakte Vorschau, Rechte vor Replay, retained archive/restore, beide Jobreferenzquellen, Lieferanten/Duplikate, Audit-Rollback, Schema-Idempotenz, zwei reale Verbindungen gegen Archive/Reference/Reopen und First-Reference/Reopen; tatsächliche native Child-Versionstrigger und409 bei Sperrkollision.
+- Warehouse `go test -race -count=1 ./internal/handlers -run ExternalCatalog`: delegierte native Bypässe vor DB, Softarchive mit tatsächlichem Audit, historische Preise/Zusatzwerte, vollständige Restore-Editoren mit unveränderten/geänderten/leeren Properties, nativer Audit-Rollback und identische Startup-/Standalone-SQL.
+- MCP `go test -race -count=1 ./internal/authn ./internal/mcpserver`: echte HTTP-OAuth-Discovery/Challenges, signierte Owner-Delegation, Dry-run/Retry/Replay, fehlende Finanz-/Admin-/Aktionsrechte vor Belegen, minimale aktive/inaktive Reads und redigierte Audit-Finanzprojektion mit aktuellem DB-Rechteentzug.
+
+Die Suite-CI hält alle drei Datenbankgrenzen im bestehenden mcp-access-Job aktiv.
+Echte Ausgaben: jeweilige Service-`docs/EXTERNAL_EQUIPMENT_LIFECYCLE_TESTS.md`.
