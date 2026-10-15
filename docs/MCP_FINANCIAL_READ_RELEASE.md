@@ -116,3 +116,8 @@ Bestehende KI-Clients laden die 446 Tooldefinitionen neu und geben benötigte
 Finanzscopes ausdrücklich über OAuth frei. Gespeicherte Tokens werden nicht
 stillschweigend erweitert. Keine produktiven Finanz-/Geschäftsdatenabrufe
 oder Schreiboperationen als Deploymenttest.
+
+Die bestehende `mcp-access`-CI setzt jetzt neben der Auth-Test-URL auch die
+Procurement-Test-URL auf denselben isolierten CI-PostgreSQL-Dienst. Dadurch
+laufen Finanz-Lese-/Audit-Alias-/Pool-Regressionen künftig automatisch im
+bestehenden Race-Gate; Testanforderungen werden nicht gelockert.
