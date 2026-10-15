@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Fremdmietkatalog-Lebenszyklus · Rental 5.3.127 / Warehouse 5.9.116 / MCP 1.5.66
+
+Fremdmietprodukte lassen sich jetzt gezielt lesen, suchen, ändern, archivieren
+und wiederherstellen. Vorschau, exakte Version/Kontext, gebundene Bestätigung,
+aktuelle Admin-/Aktions- und separate Finanzrechte sowie atomarer Audit/Replay
+sichern jede Änderung. Offene Jobs blockieren Archivierung/Identitätswechsel;
+historische Jobpreise, Lieferantenkosten und Zusatzfelder bleiben erhalten.
+Native Warehouse-Löschung archiviert mit Audit und denselben Datenbankschutzregeln.
+[Vertrag und Rollout](docs/EXTERNAL_EQUIPMENT_LIFECYCLE_RELEASE.md).
+Jobzuweisungs-Lebenszyklus und weitere Teilbereiche aus #4/#5 bleiben offen.
+
 ## Finanzrechte für Einkaufs-Schreibabläufe
 
 Cores MCP 1.5.65 und ProcurementCore 1.0.77 verlangen für alle 21 preisführenden
@@ -287,16 +298,16 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (14.10.2026):
+Aktueller Suite-Release (15.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.126` |
-| WarehouseCore | `nobentie/warehousecore:5.9.115` |
+| RentalCore | `nobentie/rentalcore:5.3.127` |
+| WarehouseCore | `nobentie/warehousecore:5.9.116` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.77` |
-| Cores MCP | `nobentie/cores-mcp:1.5.65` |
+| Cores MCP | `nobentie/cores-mcp:1.5.66` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

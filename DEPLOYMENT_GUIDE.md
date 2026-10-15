@@ -1,5 +1,19 @@
 # 🚀 Fresh System Deployment Guide
 
+## Fremdmietkatalog-Lebenszyklus · 15.10.2026
+
+RentalCore5.3.127, WarehouseCore5.9.116 und MCP1.5.66 ergänzen geführte
+Teiländerung, Archivierung/Restore und minimale Katalog-/History-Abfragen.
+Native Warehouse-Löschung archiviert jetzt; offene Jobs blockieren diese
+Aktion und Identitätswechsel. Bestehende Jobkalkulationen bleiben erhalten.
+Additive Root/Rental052- und Warehouse065-Guards werden beim Start installiert,
+ohne Bestandsdaten umzuschreiben oder manuelle Migration. Reihenfolge:
+RentalCore → WarehouseCore → MCP. Unveränderte Umgebungen, Volumes, Netzwerke,
+Ports und andere Container erhalten; Image, OCI-Revision und Health prüfen.
+MCP-Clients aktualisieren den nun455Tools umfassenden Katalog und geben nötige
+Aktions-/Finanzscopes separat frei. Keine produktiven Fachmutationen als Test.
+[Vertrag und Verifikation](docs/EXTERNAL_EQUIPMENT_LIFECYCLE_RELEASE.md).
+
 Deployment entry points for the complete Cores suite.
 
 **Last Updated:** October 2026
