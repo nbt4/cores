@@ -1,5 +1,16 @@
 # Cores stack on docker03
 
+## Fremdmietkatalog: RentalCore 5.3.126 / MCP 1.5.63
+
+RentalCore zuerst ausrollen, `/health` auf 5.3.126 prüfen, dann Cores MCP
+1.5.63 und `/ready` prüfen. Nur diese beiden Dienste neu erstellen; vorhandene
+Laufzeitumgebung, Volumes, Netzwerke und Ports erhalten. Keine neue Migration
+oder Konfiguration. MCP-Katalog: 446 Werkzeuge; neues Paar
+`rental.external_equipment.prepare_create/create`. Client-Metadaten neu laden;
+Create-/Finanzzugriff bleiben getrennte OAuth-Freigaben.
+[Release-Prüfung](../../docs/EXTERNAL_EQUIPMENT_CATALOG_RELEASE.md).
+Produktive Katalog-/Jobanlagen sind kein Deployment-Test.
+
 ## Mietprodukte am Job: RentalCore 5.3.122 / MCP 1.5.61
 
 RentalCore zuerst ausrollen und `/health` mit Version 5.3.122 sowie gesunde
