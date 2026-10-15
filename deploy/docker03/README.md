@@ -1,5 +1,14 @@
 # Cores stack on docker03
 
+## Finanz-Lesezugriff: Cores MCP 1.5.64
+
+Nur MCP ausrollen; keine Owner-/Schemaänderung. OCI-Revision/Image-Digest und
+unveränderte Umgebung, Volumes/Bindmounts, Netzwerke/Ports prüfen, dann
+`docker compose up -d --no-deps --wait cores-mcp`. `/health` muss 1.5.64 melden,
+`/ready` HTTP 200. Katalog bleibt 446; neue Finanz-Descriptormetadaten neu laden
+und benötigte Finanzscopes ausdrücklich per OAuth freigeben. Bestehende Tokens
+werden nicht erweitert. [Release](../../docs/MCP_FINANCIAL_READ_RELEASE.md).
+
 ## Fremdmietkatalog: RentalCore 5.3.126 / MCP 1.5.63
 
 RentalCore zuerst ausrollen, `/health` auf 5.3.126 prüfen, dann Cores MCP

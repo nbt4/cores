@@ -229,3 +229,10 @@ komplexe Editoren verwenden native Dialoge mit Fokuscontainment und Escape.
 Veröffentlichung und Website-Aktualisierung haben eigene beschriftete Zustände.
 Die Formulargestaltung stammt aus dem kanonischen Theme; ehemalige Warehouse-
 Input-/Select-Regeln mit festen dunklen Farben werden nicht weiter verwendet.
+
+Die MCP-Finanzfreigabe benennt angefragte Warehouse-Preise/Geräteumsätze/
+Wartungskosten, Rental-Job-/Fremdmietwerte und Procurement-Angebots-/Bedarfs-/
+Bestellwerte verständlich in Deutsch und Englisch. Finanzleserechte bleiben
+von Schreibrechten getrennt, auch bei Read-only-Konfiguration. Labels nutzen
+die vorhandene `suite-auth-copy`-Klasse statt durch CSP gesperrter Inline-Styles.
+Die bestehenden Select-, Fokus-, Light/Dark- und Touch-Primitives gelten weiter.

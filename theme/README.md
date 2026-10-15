@@ -30,3 +30,10 @@ Freigabe angefragter Wartungskosten oder Rental-Preis-/Rabattänderungen und
 Job-Neuberechnung. Der Hilfetext nennt die konkret angefragten Core-Rechte.
 Der Finanz-Select bleibt standardmäßig
 gesperrt und besitzt ein eigenes Label und eine Hilfetext-Zuordnung.
+
+Die MCP-Finanzfreigabe benennt angefragte Warehouse-Preise/Geräteumsätze/
+Wartungskosten, Rental-Job-/Fremdmietwerte und Procurement-Angebots-/Bedarfs-/
+Bestellwerte verständlich in Deutsch und Englisch. Finanzleserechte bleiben
+von Schreibrechten getrennt, auch bei Read-only-Konfiguration. Labels nutzen
+die vorhandene `suite-auth-copy`-Klasse statt durch CSP gesperrter Inline-Styles.
+Die bestehenden Select-, Fokus-, Light/Dark- und Touch-Primitives gelten weiter.
