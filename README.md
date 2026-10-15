@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Finanzrechte für Einkaufs-Schreibabläufe
+
+Cores MCP 1.5.65 und ProcurementCore 1.0.77 verlangen für alle 21 preisführenden
+Einkaufsaktionen und deren Vorschauen zusätzlich ausdrücklich
+`cores:procurement:financial`. Das gilt auch für gespeicherte Antworten und
+optionale Angebote bei Produktanlage. Reine Stammdaten bleiben finanzfrei;
+Signatur, tatsächlicher Nutzer, Aktionsrecht und aktuelle Owner-Rechte werden
+weiterhin geprüft. Bestehende Tokens werden nicht erweitert.
+
+[Release, Tests und Rollout](docs/MCP_FINANCIAL_WRITE_RELEASE.md).
+
 ## Finanz-Lesezugriff per MCP
 
 Cores MCP 1.5.64 trennt lesenden Warehouse-/Rental-/Procurement-Finanzzugriff
@@ -284,8 +295,8 @@ Aktueller Suite-Release (14.10.2026):
 | RentalCore | `nobentie/rentalcore:5.3.126` |
 | WarehouseCore | `nobentie/warehousecore:5.9.115` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
-| ProcurementCore | `nobentie/procurementcore:1.0.76` |
-| Cores MCP | `nobentie/cores-mcp:1.5.64` |
+| ProcurementCore | `nobentie/procurementcore:1.0.77` |
+| Cores MCP | `nobentie/cores-mcp:1.5.65` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

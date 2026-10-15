@@ -1,5 +1,16 @@
 # Cores stack on docker03
 
+## Procurement-Finanzrechte: Procurement 1.0.77 / MCP 1.5.65
+
+Zuerst `procurementcore`, danach `cores-mcp` mit den gepinnten Images pullen
+und jeweils mit `up -d --no-deps --wait` aktualisieren. Während des Übergangs
+verweigert der neue Owner alte Delegationen ohne getrennten Finanzclaim.
+Laufzeitumgebung, Volumes, Bind-Mounts, Ports und Netzwerke erhalten.
+Anschließend Image-Digest, OCI-Quellrevision, beide Health-Versionen und
+MCP `/ready` prüfen. Keine Migration oder neue Umgebungsvariable nötig.
+
+[Vertrag und Prüfnachweis](../../docs/MCP_FINANCIAL_WRITE_RELEASE.md).
+
 ## Finanz-Lesezugriff: Cores MCP 1.5.64
 
 Nur MCP ausrollen; keine Owner-/Schemaänderung. OCI-Revision/Image-Digest und
