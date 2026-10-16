@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Planner-OAuth-Nachfreigabe · MCP 1.5.70
+
+Der OAuth-Server veröffentlicht jetzt auch `cores:planner:update` und
+`cores:planner:archive`, damit Clients die neuen Planner-Aktionen ausdrücklich
+freigeben können. Bestehende Grants werden nicht erweitert; fachliche
+Mitgliedschafts-, Versions- und Bestätigungsprüfungen bleiben erforderlich.
+Ein Regressionstest gleicht alle99 OAuth-Tooldeskriptoren mit den tatsächlich
+veröffentlichten OAuth-Metadaten ab. Katalog unverändert:492 Werkzeuge.
+[Vertrag und Nachprüfung](docs/PLANNER_PLAN_TASK_RELEASE.md).
+
 ## Planner-Lebenszyklus · PlannerCore 2.6.26 / MCP 1.5.69
 
 Pläne und Aufgaben lassen sich vollständig anlegen, gezielt ändern, mit ihren
@@ -338,7 +348,7 @@ Aktueller Suite-Release (16.10.2026):
 | WarehouseCore | `nobentie/warehousecore:5.9.116` |
 | PlannerCore | `nobentie/plannercore:2.6.26` |
 | ProcurementCore | `nobentie/procurementcore:1.0.77` |
-| Cores MCP | `nobentie/cores-mcp:1.5.69` |
+| Cores MCP | `nobentie/cores-mcp:1.5.70` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
