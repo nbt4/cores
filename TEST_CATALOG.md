@@ -181,3 +181,21 @@ Dienste mit `-count=1`, zusätzliche Race-Prüfungen an Owner-/Schema-/MCP-Grenz
 
 Die Suite-CI hält alle drei Datenbankgrenzen im bestehenden mcp-access-Job aktiv.
 Echte Ausgaben: jeweilige Service-`docs/EXTERNAL_EQUIPMENT_LIFECYCLE_TESTS.md`.
+
+## Fremdmiet-Zuweisungs-Lebenszyklus (2026-10-16)
+
+Root/Rental 053 auf frischem isoliertem PostgreSQL16-Compose-Volume, synthetische
+Daten. Rental `go test -race -count=1 ./internal/handlers -run RentalAssignment`:
+Teiländerung/Nullpreise, genaue Ledger-/Positions-/Jobversionen, aktuelle Rechte
+vor Replay, gehaltene NUMERIC-Präzision, Archive-Freeze/Restore unter geänderter
+Tagesregel, letzter Umsatz null, Netto-/Bruttogoldens mit Rabatten/Steuer,
+Unicode-Grenze, native und MCP-Audit-Rollbacks, echte Child-Versionstrigger und
+Zwei-Verbindungs-Rennen einschließlich alter nativer PUTs über Archive/Restore
+und Legacy-Writer gegen explizites Repair. Gesperrte Job-/Tabellenressourcen
+liefern409. Migration/Startup identisch und wiederholbar.
+
+MCP: echte HTTP-OAuth-Challenges/Descriptors, Dry-run/Retry/Replay und Scope-
+Entzug; Finanz-Get/Search aktiver/archivierter Zuweisungen und redigierte History
+mit aktuellem DB-Adminentzug. Beide Dienste vollständig mit `-count=1`, Race,
+Vet/Build; Rental-Frontend lint/build und Suite-Release-/Designverträge.
+Die Suite-CI erweitert die bestehende Owner-PostgreSQL-Selektion um RentalAssignment.
