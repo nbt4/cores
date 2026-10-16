@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Planner-Lebenszyklus · PlannerCore 2.6.26 / MCP 1.5.69
+
+Pläne und Aufgaben lassen sich vollständig anlegen, gezielt ändern, mit ihren
+Verknüpfungen archivieren und wiederherstellen. Aktuelle Planmitgliedschaft,
+exakte Versionen, endgültiger Entwurf und gebundene Bestätigung schützen den
+atomaren Audit-/Historien-/Replay-Pfad. Wiederkehrende Aufgaben erzeugen beim
+Abschließen genau eine Folgeaufgabe innerhalb derselben Transaktion.
+Adminrechte ersetzen keine Planmitgliedschaft; Finanzrechte sind nicht nötig.
+[Vertrag und Rollout](docs/PLANNER_PLAN_TASK_RELEASE.md).
+
 ## Personalzuordnung · RentalCore 5.3.129 / MCP 1.5.68
 
 Mitarbeiter lassen sich einem Job zuweisen, ihre Rolle ändern und Zuordnungen
@@ -326,9 +336,9 @@ Aktueller Suite-Release (16.10.2026):
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.129` |
 | WarehouseCore | `nobentie/warehousecore:5.9.116` |
-| PlannerCore | `nobentie/plannercore:2.6.25` |
+| PlannerCore | `nobentie/plannercore:2.6.26` |
 | ProcurementCore | `nobentie/procurementcore:1.0.77` |
-| Cores MCP | `nobentie/cores-mcp:1.5.68` |
+| Cores MCP | `nobentie/cores-mcp:1.5.69` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage

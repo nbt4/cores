@@ -69,6 +69,13 @@ jobs:
           CORES_MCP_RENTAL_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
           CORES_MCP_PROCUREMENT_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
         run: go test -race -count=1 ./internal/authn ./internal/mcpserver -timeout 120s
+      - name: Planner migration parity
+        run: cmp migrations/postgresql/055_planner_plan_task_lifecycle.sql plannercore/migrations/postgresql/005_plan_task_lifecycle.sql
+      - name: Planner owner PostgreSQL regressions
+        working-directory: plannercore
+        env:
+          PLANNERCORE_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
+        run: go test -race -count=1 ./internal/lifecycle ./internal/plans -timeout 120s
       - name: Staffing migration parity
         run: cmp migrations/postgresql/054_rental_staffing_lifecycle.sql rentalcore/migrations/054_rental_staffing_lifecycle.sql
       - name: Rental catalog, assignment and staffing owner PostgreSQL regressions
