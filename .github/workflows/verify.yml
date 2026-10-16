@@ -69,11 +69,13 @@ jobs:
           CORES_MCP_RENTAL_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
           CORES_MCP_PROCUREMENT_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
         run: go test -race -count=1 ./internal/authn ./internal/mcpserver -timeout 120s
-      - name: Rental external catalog and assignment owner PostgreSQL regressions
+      - name: Staffing migration parity
+        run: cmp migrations/postgresql/054_rental_staffing_lifecycle.sql rentalcore/migrations/054_rental_staffing_lifecycle.sql
+      - name: Rental catalog, assignment and staffing owner PostgreSQL regressions
         working-directory: rentalcore
         env:
           RENTALCORE_TEST_POSTGRES_DSN: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
-        run: go test -race -count=1 ./internal/handlers ./internal/schema -run 'ExternalCatalog|RentalAssignment' -timeout 120s
+        run: go test -race -count=1 ./internal/handlers ./internal/schema ./internal/sync/m365 -run 'ExternalCatalog|RentalAssignment|RentalStaffing|StaffingArchive' -timeout 120s
       - name: Native external catalog PostgreSQL regressions
         working-directory: warehousecore
         env:
