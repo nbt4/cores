@@ -1,5 +1,16 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Personalzuordnung · RentalCore 5.3.129 / MCP 1.5.68
+
+Mitarbeiter lassen sich einem Job zuweisen, ihre Rolle ändern und Zuordnungen
+mit erhaltener Historie archivieren oder wiederherstellen. Der Entwurf zeigt
+Terminkonflikte; Überschneidungen müssen ausdrücklich bestätigt werden.
+Aktuelle Admin-/Aktionsrechte, exakte Versionen und gebundene Bestätigung
+schützen den atomaren Audit-/Historien-/Replay-Pfad. Finanzrechte sind dafür
+nicht erforderlich. Mitarbeitersuche gibt nur Identität, Aktivstatus und
+Qualifikationen aus. Die vorhandene Kalenderanbindung läuft nach dem Commit.
+[Vertrag und Rollout](docs/RENTAL_STAFFING_RELEASE.md).
+
 ## Fremdmiet-Zuweisungen · RentalCore 5.3.128 / MCP 1.5.67
 
 Geführte Teiländerung, Archivierung und Wiederherstellung verwalten Position,
@@ -313,11 +324,11 @@ Aktueller Suite-Release (16.10.2026):
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
-| RentalCore | `nobentie/rentalcore:5.3.128` |
+| RentalCore | `nobentie/rentalcore:5.3.129` |
 | WarehouseCore | `nobentie/warehousecore:5.9.116` |
 | PlannerCore | `nobentie/plannercore:2.6.25` |
 | ProcurementCore | `nobentie/procurementcore:1.0.77` |
-| Cores MCP | `nobentie/cores-mcp:1.5.67` |
+| Cores MCP | `nobentie/cores-mcp:1.5.68` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
