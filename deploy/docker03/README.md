@@ -1,5 +1,19 @@
 # Cores stack on docker03
 
+## Rental-Finanzrechte · RentalCore 5.3.130 / MCP 1.5.71
+
+Preisführende Rental-Aktionen verlangen vor Vorschau, Ausführung und Replay
+separat `cores:rental:financial`. Organisatorische Jobänderungen bleiben ohne
+Finanzfreigabe möglich; Umsatz-/Rabattfelder werden aus Antworten ausgeblendet,
+vollständige gespeicherte Belege bleiben erhalten. Gerätezuweisung behält ihren
+Update-Scope und verlangt zusätzlich Finanzzugriff. Delegierte Tokens können
+keine normalen Job-/History-Endpunkte als Browser-Sitzung verwenden.
+
+Zuerst RentalCore, danach MCP deployen; Laufzeitkonfiguration und Volumes
+behalten. Keine Migration, neuen Tools oder Änderungen an anderen Diensten.
+Details und Prüfnachweise: [Rental-Finanzrelease](../../docs/RENTAL_FINANCIAL_WRITE_RELEASE.md).
+Die MCP-Issues #4/#5 bleiben für die übrigen Abnahmepunkte in_progress.
+
 ## Planner-OAuth-Nachfreigabe · MCP 1.5.70
 
 Der OAuth-Server veröffentlicht jetzt auch `cores:planner:update` und
