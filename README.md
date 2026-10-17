@@ -1,5 +1,15 @@
 # 🏗️ Cores — Tsunami Events Management System
 
+## Warehouse-Finanzrechte · WarehouseCore 5.9.117 / MCP 1.5.72
+
+Produkt-/Paketpreise und Wartungskosten benötigen separate Finanzfreigabe.
+Organisatorische Pflege bleibt ohne Finanzscope möglich; Preise bleiben dabei
+im Datensatz erhalten und werden aus Antworten ausgeblendet. Gespeicherte
+Antworten prüfen aktuelle Owner-Rechte. Delegierte Tokens können keine normalen
+Browser-Endpunkte als Ausweichweg verwenden. Keine Migration oder neue MCP-Tools.
+Zuerst WarehouseCore, danach MCP aktualisieren; Laufzeitinputs und andere Dienste
+behalten. Details: [Release-Nachweis](docs/WAREHOUSE_FINANCIAL_WRITE_RELEASE.md).
+
 ## Rental-Finanzrechte · RentalCore 5.3.130 / MCP 1.5.71
 
 Preisführende Rental-Aktionen verlangen vor Vorschau, Ausführung und Replay
@@ -353,16 +363,16 @@ sind konfigurierbar. Für jedes ausgewählte Geräte-, Kabel-, Case- oder
 Lagerzonenlabel lässt sich eine eigene Kopienzahl setzen; dieselben Stückzahlen
 gelten auf Wunsch auch für Zebra-Direktdruck.
 
-Aktueller Suite-Release (17.10.2026):
+Aktueller Suite-Release (18.10.2026):
 
 | Service | Image |
 |---|---|
 | Cores Dashboard | `nobentie/cores-dashboard:1.14.39` |
 | RentalCore | `nobentie/rentalcore:5.3.130` |
-| WarehouseCore | `nobentie/warehousecore:5.9.116` |
+| WarehouseCore | `nobentie/warehousecore:5.9.117` |
 | PlannerCore | `nobentie/plannercore:2.6.26` |
 | ProcurementCore | `nobentie/procurementcore:1.0.77` |
-| Cores MCP | `nobentie/cores-mcp:1.5.71` |
+| Cores MCP | `nobentie/cores-mcp:1.5.72` |
 | Datenbanksicherung | `nobentie/cores-backup:1.0.0` |
 
 WarehouseCore 5.9.106 und Cores MCP 1.5.40 bieten vollständige Einzelgeräte-Anlage
