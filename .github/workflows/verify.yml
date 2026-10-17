@@ -83,11 +83,11 @@ jobs:
         env:
           RENTALCORE_TEST_POSTGRES_DSN: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
         run: go test -race -count=1 ./internal/handlers ./internal/schema ./internal/sync/m365 -run 'ExternalCatalog|RentalAssignment|RentalStaffing|StaffingArchive|RentalFinancial|RentalDelegation|RentalNamedBoundary|RentalJobOwnerAtomic' -timeout 120s
-      - name: Native external catalog PostgreSQL regressions
+      - name: Warehouse native catalog and financial PostgreSQL regressions
         working-directory: warehousecore
         env:
           WAREHOUSE_TEST_DATABASE_URL: postgres://postgres:isolated-ci-test@localhost:5432/cores_test?sslmode=disable
-        run: go test -race -count=1 ./internal/handlers -run ExternalCatalog -timeout 120s
+        run: go test -race -count=1 ./internal/handlers ./internal/middleware -run 'ExternalCatalog|WarehouseFinancial|WarehouseRoute|WarehouseProductMCPUpdate|WarehousePackageMCPAtomic' -timeout 120s
   backup:
     runs-on: ubuntu-24.04
     steps:

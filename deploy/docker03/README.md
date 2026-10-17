@@ -1,5 +1,15 @@
 # Cores stack on docker03
 
+## Warehouse-Finanzrechte · WarehouseCore 5.9.117 / MCP 1.5.72
+
+Produkt-/Paketpreise und Wartungskosten benötigen separate Finanzfreigabe.
+Organisatorische Pflege bleibt ohne Finanzscope möglich; Preise bleiben dabei
+im Datensatz erhalten und werden aus Antworten ausgeblendet. Gespeicherte
+Antworten prüfen aktuelle Owner-Rechte. Delegierte Tokens können keine normalen
+Browser-Endpunkte als Ausweichweg verwenden. Keine Migration oder neue MCP-Tools.
+Zuerst WarehouseCore, danach MCP aktualisieren; Laufzeitinputs und andere Dienste
+behalten. Details: [Release-Nachweis](../../docs/WAREHOUSE_FINANCIAL_WRITE_RELEASE.md).
+
 ## Rental-Finanzrechte · RentalCore 5.3.130 / MCP 1.5.71
 
 Preisführende Rental-Aktionen verlangen vor Vorschau, Ausführung und Replay
